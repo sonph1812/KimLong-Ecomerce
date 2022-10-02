@@ -5,7 +5,7 @@ import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from '../context/constants';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { getUserInfo } from '../../reducer/slice/userSlice';
-
+import jwt_decode from "jwt-decode"
 function LoginForm() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -36,11 +36,10 @@ function LoginForm() {
             .then(function (response) {
                 console.log(response.data.message);
                 localStorage.setItem('token', response.data.accessToken);
-                const userInfo = JSON.stringify(response.data.user)
-                localStorage.setItem('userInfo',userInfo)
-                
-                dispatch(getUserInfo(response.data.user))
-                const role = response.data.user.roleId.name
+                const decode = jwt_decode(response.data.accessToken)
+                dispatch(getUserInfo(decode.user))
+                const role = decode.user.roleId.name
+                localStorage.setItem('role',role);
                 if(role == "user"){
                     navigate('/home');
                 }else if(role === "admin" || role === "seller" || role === "accountant"){

@@ -12,7 +12,7 @@ const userSlice = createSlice({
     reducers: {
         logOut : (state,action) => {
             state.userInfo = {}
-            localStorage.removeItem
+            localStorage.clear()
             
         },
         getUserInfo: (state, action) => {
@@ -63,7 +63,8 @@ export const {
     updateUserSlice,
     searchUserSlice,
     searchStaffSlice,
-    getUserInfo
+    getUserInfo,
+    logOut
 } = userSlice.actions;
 
 export default userSlice.reducer;

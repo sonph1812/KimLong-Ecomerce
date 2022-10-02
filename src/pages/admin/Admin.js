@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { Navbar, Footer, Sidebar, ThemeSettings } from '../../components';
@@ -6,13 +6,24 @@ import { useStateContext } from '../../contexts/ContextProvider';
 import {useEffect} from "react"
 function Admin() {
     const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
+    const navigate = useNavigate()
+    const role = localStorage.getItem('role')
     useEffect(() => {
-        const currentThemeColor = localStorage.getItem('colorMode');
-        const currentThemeMode = localStorage.getItem('themeMode');
-        if (currentThemeColor && currentThemeMode) {
-          setCurrentColor(currentThemeColor);
-          setCurrentMode(currentThemeMode);
+        if(!role){
+            navigate('/login')
+        }else{
+            if(role == "user"){
+                navigate('/error')
+            }else{
+                const currentThemeColor = localStorage.getItem('colorMode');
+                const currentThemeMode = localStorage.getItem('themeMode');
+                if (currentThemeColor && currentThemeMode) {
+                  setCurrentColor(currentThemeColor);
+                  setCurrentMode(currentThemeMode);
+                }
+            }
         }
+      
        
       }, []);
     return (

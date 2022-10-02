@@ -5,6 +5,7 @@ import './App.css';
 import { useDispatch } from "react-redux"
 import { getUserInfo } from './reducer/slice/userSlice';
 import { getAllUser, getAllStaff } from "./service/userService"
+import jwt_decode from "jwt-decode"
 
 
 
@@ -19,13 +20,11 @@ import RegisterForm from './components/auth/RegisterForm';
 const App = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
-  const local = localStorage.getItem('userInfo')
-  const user = JSON.parse(local)
-
-
+  
   useEffect(() => {
 
     if (token) {
+      const user = jwt_decode(token).user
       dispatch(getUserInfo(user))
       if (user.roleId.name == "admin") {
         getAllStaff(dispatch)
