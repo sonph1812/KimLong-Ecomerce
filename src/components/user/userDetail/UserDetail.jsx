@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-import { getDetailUser } from "../../../../src/service/userService"
+import { getDetailUser } from "../../../service/userService"
 
 function UserDetail() {
     const user = useSelector(state => state.userReducer.user)
-    const param = useParams().id;
+    const id = useParams().id;
     const dispatch = useDispatch()
     useEffect(()=>{
-        getDetailUser(dispatch)
+        getDetailUser(id,dispatch)
     })
     return (
         <div>

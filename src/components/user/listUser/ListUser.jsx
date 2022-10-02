@@ -1,17 +1,21 @@
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { getAllUser } from "../../../../src/service/userService"
+import { useState } from "react";
+import { useDispatch} from "react-redux"
+import { deleteUser } from "../../../service/userService";
 
-
-function ListUser() {
-    const [isList, setIsList] = useState(false)
-    const listUser = useSelector((state) => state.userReducer.users)
+function ListUser({users, model}) {
+    const listUser = users;
     const dispatch = useDispatch()
-    useEffect(() => {
-        getAllUser(dispatch)
-        setIsList(true)
-    }, [])
+    const handelDelete = (id,index) => {
+        deleteUser(id,index,model,dispatch)
+    }
+    // const [listPage,setListPage] = useState(1)
+    // const limit = 3;
+    // const list = (listPage, limit) => {
+    //     const x = [];
+    //     for(limit*listP){
 
+    //     }
+    // }
     return (
         <div>
             <table className="min-w-full leading-normal">
@@ -45,7 +49,7 @@ function ListUser() {
                     </tr>
                 </thead>
                 <tbody>
-                    {isList && listUser.map((user, index) => (
+                    {listUser.map((user, index) => (
                         <tr key={index}>
 
                             <td
@@ -79,7 +83,7 @@ function ListUser() {
                                 <button className="absolute px-10  bg-green-200 opacity-50 rounded-full row">Edit</button>
                             </td>
                             <td className=" text-center px-5 py-3 border-b border-gray-200 bg-white text-sm">
-                                <button className="absolute  px-5 bg-red-200 opacity-50 rounded-full row">Delete</button>
+                                <button className="absolute  px-5 bg-red-200 opacity-50 rounded-full row" onClick={()=>{handelDelete(user._id,index)}}>Delete</button>
                             </td>
                         </tr>
 
