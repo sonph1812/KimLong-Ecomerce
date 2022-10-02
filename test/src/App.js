@@ -21,18 +21,6 @@ function App() {
   const user = JSON.parse(local)
   const userInfo = useSelector(state => state.userReducer.userInfo);
 
-  //  useEffect (()=>{
-  //   dispatch(getUserInfo())
-  //   if (token) {  
-  //     if(userInfo){
-  //       if (userInfo.roleId.name == "admin") {
-  //         getAllStaff(dispatch)
-  //         getAllUser(dispatch)
-  //       }
-  //     }
-
-  //   }
-  //  },[])
   useEffect(() => {
     if (token) {
       dispatch(getUserInfo(user))

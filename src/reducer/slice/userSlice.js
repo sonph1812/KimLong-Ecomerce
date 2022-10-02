@@ -10,6 +10,11 @@ const userSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
+        logOut : (state,action) => {
+            state.userInfo = {}
+            localStorage.removeItem
+            
+        },
         getUserInfo: (state, action) => {
             state.userInfo = action.payload
         },

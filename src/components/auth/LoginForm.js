@@ -1,7 +1,7 @@
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from '../../context/constants';
+import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from '../context/constants';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { getUserInfo } from '../../reducer/slice/userSlice';
