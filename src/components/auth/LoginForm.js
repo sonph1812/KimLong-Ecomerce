@@ -40,14 +40,11 @@ function LoginForm() {
                 localStorage.setItem('userInfo',userInfo)
                 
                 dispatch(getUserInfo(response.data.user))
-                if(response.data.user.roleId.name == "user"){
+                const role = response.data.user.roleId.name
+                if(role == "user"){
                     navigate('/home');
-                }else if(response.data.user.roleId.name == "admin"){
+                }else if(role === "admin" || role === "seller" || role === "accountant"){
                     navigate('/admin')
-                }else if(response.data.user.roleId.name == "seller"){
-                    navigate('/seller')
-                }else if(response.data.user.roleId.name == "acountant"){
-                    navigate('/acountant')
                 }
                 return response.data.message;
             })
