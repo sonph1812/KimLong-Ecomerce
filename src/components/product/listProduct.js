@@ -58,19 +58,6 @@ const ListProduct = () => {
                             </button>
                         </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <table className="min-w-full leading-normal ">
                         <thead>
                         <tr>

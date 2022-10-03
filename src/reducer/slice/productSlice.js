@@ -14,11 +14,18 @@ const productSlice = createSlice({
         createProductSlice:(state, action)=>{
             state.products = action.payload
             state.loading = false
+        },
+        deleteProductSlice:(state, action)=>{
+            state.products.filter((product)=>(
+                product !== action.payload
+            ))
+            state.loading = true
         }
+
 
 
     }
 })
 
-export const {getAllProductSlice,createProductSlice} = productSlice.actions;
+export const {getAllProductSlice,createProductSlice,deleteProductSlice} = productSlice.actions;
 export default productSlice.reducer;
