@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {getAllProduct} from "../service/sellerService";
 
-const Employees = () => {
+const Products = () => {
   const toolbarOptions = ['Search'];
 
   const editing = { allowDeleting: true, allowEditing: true };
@@ -82,4 +82,4 @@ const Employees = () => {
     </div>
   );
 };
-export default Employees;
+export default Products;

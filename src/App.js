@@ -13,6 +13,7 @@ import jwt_decode from "jwt-decode"
 import Admin from './pages/admin/Admin';
 import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
+import Products from "./pages/Products";
 
 
 
@@ -51,7 +52,7 @@ const App = () => {
           <Route path="ecommerce" element={(<Ecommerce />)} />
 
           <Route path="orders" element={<Orders />} />
-          <Route path="employees" element={<Employees />} />
+          <Route path="employees" element={<Products />} />
           <Route path="customers" element={<Customers />} />
 
           <Route path="kanban" element={<Kanban />} />
