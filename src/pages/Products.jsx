@@ -1,16 +1,16 @@
 import React from 'react';
-import { GridComponent, Inject, ColumnsDirective, ColumnDirective, Search, Page } from '@syncfusion/ej2-react-grids';
+// import { GridComponent, Inject, ColumnsDirective, ColumnDirective, Search, Page } from '@syncfusion/ej2-react-grids';
 
-import { employeesData, employeesGrid } from '../data/dummy';
+// import { employeesGrid } from '../data/dummy';
 import { Header } from '../components';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllProduct } from "../service/sellerService";
 
 const Products = () => {
-  const toolbarOptions = ['Search'];
+  // const toolbarOptions = ['Search'];
 
-  const editing = { allowDeleting: true, allowEditing: true };
+  // const editing = { allowDeleting: true, allowEditing: true };
 
   const dispatch = useDispatch()
   const products = useSelector(state => state.productReducer.products)
