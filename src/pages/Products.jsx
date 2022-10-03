@@ -5,7 +5,7 @@ import { employeesData, employeesGrid } from '../data/dummy';
 import { Header } from '../components';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {getAllProduct} from "../service/sellerService";
+import {deleteProduct, getAllProduct} from "../service/sellerService";
 
 const Products = () => {
   const toolbarOptions = ['Search'];
@@ -20,6 +20,10 @@ const Products = () => {
         setIsProductYet(true)
         getAllProduct(dispatch)
     }, [])
+    const handleDelete = (id) => {
+        deleteProduct(dispatch,id);
+        window.confirm("Bạn muốn xóa chứ !")
+    }
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -52,7 +56,7 @@ const Products = () => {
                     {/*    <button  className="absolute  px-10 bg-red-400 opacity-50 rounded-full row hover:bg-red-700 focus:outline-none rounded">Delete</button>*/}
                     {/*</td>*/}
                     <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button className="absolute px-3 bg-green-400 opacity-50 rounded-full row hover:bg-green-800 focus:outline-none rounded">update</button> </td>
-                    <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button className="absolute px-3  bg-red-400 opacity-50 rounded-full row hover:bg-red-800 focus:outline-none rounded">delete</button> </td>
+                    <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button className="absolute px-3  bg-red-400 opacity-50 rounded-full row hover:bg-red-800 focus:outline-none rounded" onClick={()=>{handleDelete(product._id)}}>delete</button> </td>
 
 
 
