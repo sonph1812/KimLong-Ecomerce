@@ -3,8 +3,12 @@ import { GridComponent, ColumnsDirective, ColumnDirective, Page, Selection, Inje
 
 import { customersData, customersGrid } from '../data/dummy';
 import { Header } from '../components';
+import {useSelector} from "react-redux";
 
 const Customers = () => {
+    const user = useSelector(state => state.userReducer.users)
+    console.log(user)
+
   const selectionsettings = { persistSelection: true };
   const toolbarOptions = ['Delete'];
   const editing = { allowDeleting: true, allowEditing: true };
