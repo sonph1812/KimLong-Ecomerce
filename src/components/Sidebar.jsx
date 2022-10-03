@@ -74,7 +74,7 @@ const Sidebar = () => {
                 Pages
               </p>
               {pages.map((link) =>
-                  {return (role == link.role && <NavLink
+                  {return (role  && <NavLink
                     to={`/admin/${link.name}`}
                     key={link.name}
                     onClick={handleCloseSideBar}
