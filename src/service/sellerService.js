@@ -1,6 +1,6 @@
 
 import {customAxios} from "./tokenHeader";
-import {deleteProductSlice, getAllProductSlice} from "../reducer/slice/productSlice";
+import {createProductSlice, deleteProductSlice, getAllProductSlice} from "../reducer/slice/productSlice";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 const baseURL = "http://localhost:3000";
 
@@ -12,8 +12,9 @@ export const getDetailProduct = async (dispatch)=>{
     const  res = await  customAxios.get(`${baseURL}/admin/products/:id`)
 dispatch()
 }
-export const createProduct = async (dispatch)=>{
-    const res = await customAxios.post(`${baseURL}/admin/products`)
+export const createProduct = async (dispatch,data)=>{
+    const res = await customAxios.post(`${baseURL}/admin/products`,data)
+    dispatch(createProductSlice(data));
 }
 export const deleteProduct = async (dispatch,id)=>{
     const res = await customAxios.delete(`${baseURL}/admin/products/${id}`)

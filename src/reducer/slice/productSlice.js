@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import products from "../../pages/Products";
 
 const initialState = {
     products: [],
@@ -12,7 +13,7 @@ const productSlice = createSlice({
             state.products = action.payload
         },
         createProductSlice:(state, action)=>{
-            state.products = action.payload
+            state.products.push(action.payload)
             state.loading = false
         },
         deleteProductSlice:(state, action)=>{

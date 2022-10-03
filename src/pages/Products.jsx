@@ -5,9 +5,11 @@ import { employeesData, employeesGrid } from '../data/dummy';
 import { Header } from '../components';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {deleteProduct, getAllProduct} from "../service/sellerService";
+import {createProduct, deleteProduct, getAllProduct} from "../service/sellerService";
+import {useNavigate} from "react-router-dom";
 
 const Products = () => {
+    const navigate = useNavigate();
   const toolbarOptions = ['Search'];
 
   const editing = { allowDeleting: true, allowEditing: true };
@@ -24,11 +26,16 @@ const Products = () => {
         deleteProduct(dispatch,id);
         window.confirm("Bạn muốn xóa chứ !")
     }
+    const handlerCreate = (data) => {
+      createProduct(dispatch,data)
+        navigate('/admin/editor')
+    }
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Products" />
         <input type="text" placeholder="Search" className="mb-3 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+        <button onClick={()=>{handlerCreate()}}>Create</button>
             <table className="min-w-full leading-normal ">
 
             <thead>
