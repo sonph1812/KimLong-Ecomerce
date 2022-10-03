@@ -40,6 +40,7 @@ const App = () => {
     }
   }, []);
 
+
   return (
     <BrowserRouter>
       <Routes>
@@ -52,7 +53,7 @@ const App = () => {
           <Route path="ecommerce" element={(<Ecommerce />)} />
 
           <Route path="orders" element={<Orders />} />
-          <Route path="employees" element={<Products />} />
+          <Route path="products" element={<Products />} />
           <Route path="customers" element={<Customers />} />
 
           <Route path="kanban" element={<Kanban />} />

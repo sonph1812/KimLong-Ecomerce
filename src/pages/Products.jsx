@@ -24,26 +24,9 @@ const Products = () => {
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Products" />
-      {/*<GridComponent*/}
-      {/*  dataSource={employeesData}*/}
-      {/*  width="auto"*/}
-      {/*  allowPaging*/}
-      {/*  allowSorting*/}
-      {/*  pageSettings={{ pageCount: 5 }}*/}
-      {/*  editSettings={editing}*/}
-      {/*  toolbar={toolbarOptions}*/}
-      {/*>*/}
-      {/*  <ColumnsDirective>*/}
-      {/*    /!* eslint-disable-next-line react/jsx-props-no-spreading *!/*/}
-      {/*    {employeesGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}*/}
-      {/*  </ColumnsDirective>*/}
-      {/*  <Inject services={[Search, Page]} />*/}
+        <input type="text" placeholder="Search" className="mb-3 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+            <table className="min-w-full leading-normal ">
 
-      {/*</GridComponent>*/}
-
-
-
-        <table className="min-w-full leading-normal ">
             <thead>
             <tr>
                 <td className="px-5 py-3 border-b-2  border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Name</td>
@@ -51,7 +34,6 @@ const Products = () => {
                 <td className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Description</td>
                 <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Rating</td>
                 <td colSpan={2} className=" text-center px-8 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider colSpan={'2'}"  >Action</td>
-
             </tr>
             </thead>
             <tbody>
@@ -78,7 +60,26 @@ const Products = () => {
             ))}
 
             </tbody>
-        </table>
+
+                <div className="flex flex-col  ">
+
+                    <span className="text-sm text-gray-700 dark:text-gray-400">
+      Showing <span className="font-semibold text-gray-900 dark:text-white">1</span> to <span
+                        className="font-semibold text-gray-900 dark:text-white">10</span> of <span
+                        className="font-semibold text-gray-900 dark:text-white">100</span> Pages</span>
+                    <div className="inline-flex mt-2  xs:mt-0 ">
+                        <button
+                            className="py-2 px-4 text-sm font-medium text-white bg-yellow-300 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Prev
+                        </button>
+                        <button
+                            className="py-2 px-4 text-sm font-medium text-white bg-yellow-300 rounded-r border-0 border-l border-white hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+            </table>
     </div>
   );
 };
