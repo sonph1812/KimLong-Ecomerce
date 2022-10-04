@@ -1,60 +1,57 @@
-import React from 'react';
-
-import { Header } from '../components';
-import { useSelector } from "react-redux";
-import Search from '../components/Search';
-
-const SearchUser = () => {
-  const users = useSelector(state => state.userReducer.users)
-  const role = localStorage.getItem('role')
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import { setListSearch } from "../reducer/slice/userSlice"
+import {useDispatch} from "react-redux"
+function Search({ list, model }) {
+  const [search, setSearch] = useState('')
+  const dispatch = useDispatch()
+  const handleChange = (e) => {
+    setSearch(e.target.value)
+  }
+  const handelClick = () => {
+    if(model === 'admin'){
+      dispatch(setListSearch(list.filter(isSearch)))
+    }
+  }
+  const isSearch = (item) => {
+    if (search === "") {
+      return;
+    }
+    return item.name.toLowerCase().includes(search.toLowerCase())
+  }
 
   return (
 
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Page" title="Custommer" />
-      <Search list = {users} model = "user"></Search>
-      <table className="min-w-full leading-normal ">
-        <thead>
-          <tr>
-            <td className="px-5 py-2 border-b-2  border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Name</td>
-            <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Email</td>
-            <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Phone</td>
-            <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Dob</td>
-            <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Gender</td>
-            <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Address</td>
-            <td colSpan={2} className=" text-center px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider colSpan={'2'}"  >Action</td>
-          </tr>
-        </thead>
-        <tbody>
-          {role &&
-            users.map((user, index) => (
-              <tr key={user._id}>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <img
-                    style={{
-                      width: "40px",
-                      display: "block"
-                    }}
-                    src="https://i.pinimg.com/736x/8b/37/03/8b3703f0fe2d1db552f5a527404bdcb6.jpg" />
-                  {user.name}</td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.email}</td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.phone} </td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.dob} </td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.gender} </td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.address} </td>
-                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm" >  <button style={{ position: "relative", left: "100px" }} class="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                  Update
-                </button> </td>
-                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button style={{ position: "relative", left: "10px" }} class="bg-yellow-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
-                  Delete
-                </button> </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-    </div>
-  );
-};
+      <div>
+        <input style={{
+          position: "absolute", right: "80px", top: "190px",
+          width: "400px"
 
-export default Customers;
+        }}
+               onChange={e => { handleChange(e) }}
+               type="text"
+               placeholder="Search" className="mb-3 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+        <button
+            style={{
+              position: "absolute", right: "90px", top: "195px"
+
+            }}
+            onClick={() => {
+              handelClick()
+            }}
+            class="p-1 focus:outline-none focus:shadow-outline">
+          <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" class="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </button>
+        {search !== "" && <div className="absolute right-20 z-10 w-96  origin-top-right bg-white border border-gray-100 rounded-md shadow-lg">
+          {list && list.filter(isSearch)
+              .map((item) => (
+                  <Link to=""
+                        className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-200 hover:text-gray-700"
+                  >
+                    {item.name}
+                  </Link>
+              ))}
+        </div>}
+      </div>)
+}
+export default Search;

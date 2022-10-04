@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import products from "../../pages/Products";
 
 const initialState = {
     products: [],
@@ -11,14 +12,24 @@ const productSlice = createSlice({
         getAllProductSlice: (state,action) =>{
             state.products = action.payload
         },
-        createProductSlice:(state, action)=>{
+        createProductSlice:(state, action) => {
             state.products = action.payload
             state.loading = false
+        },
+        deleteProductSlice:(state, action) => {
+            state.products.filter((product)=>(
+                product !== action.payload
+            ))
+            state.loading = true
+        },
+        updateProductSlice : (state,action) => {
+            state.products = action.payload
         }
+
 
 
     }
 })
 
-export const {getAllProductSlice,createProductSlice} = productSlice.actions;
+export const {getAllProductSlice,createProductSlice,deleteProductSlice,updateProductSlice} = productSlice.actions;
 export default productSlice.reducer;
