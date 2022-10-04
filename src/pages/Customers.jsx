@@ -4,11 +4,16 @@ import React from 'react';
 // import { customersData, customersGrid } from '../data/dummy';
 import { Header } from '../components';
 import { useSelector } from "react-redux";
+import {useNavigate} from "react-router";
 
 const Customers = () => {
   const users = useSelector(state => state.userReducer.users)
   const role = localStorage.getItem('role')
   console.log(users);
+  const navigate = useNavigate();
+  const handleCreateCustomer = () => {
+    navigate(`/admin/customers/create`);
+}
   // const selectionsettings = { persistSelection: true };
   // const toolbarOptions = ['Delete'];
   // const editing = { allowDeleting: true, allowEditing: true };
@@ -35,6 +40,7 @@ const Customers = () => {
     // </div>
 
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+      <button onClick={handleCreateCustomer} className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Customer</button>
       <Header category="Page" title="Custommer" />
       <table className="min-w-full leading-normal ">
         <thead>
@@ -58,10 +64,10 @@ const Customers = () => {
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.dob} </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.gender} </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.address} </td>
-                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm" >  <button style={{ position: "relative", left: "100px" }} class="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm" >  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                   Update
                 </button> </td>
-                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button style={{ position: "relative", left: "10px" }} class="bg-yellow-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
+                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
                   Delete
                 </button> </td>
               </tr>
