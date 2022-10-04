@@ -5,20 +5,14 @@ import {useEffect, useState} from "react";
 import {createProduct, deleteProduct, getAllProduct, updateProducts} from "../service/sellerService";
 import {useNavigate} from "react-router-dom";
 
-
-
 const Products = () => {
     const navigate = useNavigate();
   const toolbarOptions = ['Search'];
-  const [currentPage, setCurrentPage] = useState(1);
-  const [search,setSearch] = useState('')
-
 
   const editing = { allowDeleting: true, allowEditing: true };
 
     const dispatch = useDispatch()
     const products = useSelector(state => state.productReducer.products)
-  console.log()
     const [isProductYet, setIsProductYet] = useState(false)
     console.log(products)
     useEffect(() => {
@@ -89,7 +83,7 @@ const Products = () => {
                 {product.name}
               </td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.price} $</td>
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.images[0]}</td>
+              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.image.link}</td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.description}</td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.rating} </td>
 

@@ -3,7 +3,7 @@ import {Header} from "../components";
 import {useDispatch} from "react-redux";
 import {createProduct} from "../service/sellerService";
 import {useNavigate} from "react-router-dom";
-import { storage } from "../components/firebase/config";
+import { storage } from "../firebase/config";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const Editor = () => {
@@ -17,8 +17,7 @@ const Editor = () => {
             [e.target.name]: e.target.value
         })
     }
-    const handlerCreate = async (e,values) => {
-        console.log(values)
+    const handlerCreate = async (e) => {
         e.preventDefault()
         // createProduct(products, dispatch)
         let imageUpload = image;
@@ -26,9 +25,9 @@ const Editor = () => {
             const imageRef = ref(storage, `images/${imageUpload?.name}`);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    console.log(url);
-                    values.image = {link: url};
-                    console.log(values);
+                    // console.log(url);
+                    products.image = url;
+                    console.log(products)
                     createProduct(products, dispatch)
                 ;
                 });
@@ -40,6 +39,7 @@ const Editor = () => {
 
 const handlePreviewAvatar = (e) => {
     const file = e.target.files[0];
+    console.log(file)
     // file.preview = URL.createObjectURL(file);
     setImage(file);
 };

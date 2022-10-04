@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Editor } from './pages';
+import {Ecommerce, Editor} from './pages';
 import './App.css';
 import { useDispatch } from "react-redux"
 import { getUserInfo } from './reducer/slice/userSlice';
@@ -16,6 +16,7 @@ import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
 import {getAllProduct} from "./service/sellerService";
+import Customers from "./pages/Customers";
 
 
 
@@ -64,7 +65,7 @@ const App = () => {
 
 
           {/*<Route path="" element={(<Ecommerce />)} />*/}
-          {/*<Route path="ecommerce" element={(<Ecommerce />)} />*/}
+          <Route path="customers" element={(<Customers/>)} />
           {/*<Route path="orders" element={<Orders />} />*/}
           {/*<Route path="kanban" element={<Kanban />} />*/}
           {/*<Route path="calendar" element={<Calendar />} />*/}

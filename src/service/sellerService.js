@@ -13,7 +13,6 @@ export const getDetailProduct = async (dispatch)=>{
 dispatch()
 }
 export const createProduct = async (data,dispatch)=>{
-    console.log(data)
     const res = await customAxios.post(`${baseURL}/admin/products/create`,data)
     dispatch(createProductSlice(res.data));
 }
