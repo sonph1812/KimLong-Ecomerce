@@ -3,6 +3,7 @@ import products from "../../pages/Products";
 
 const initialState = {
     products: [],
+    product: {},
     loading:false
 }
 const productSlice = createSlice({
@@ -10,7 +11,7 @@ const productSlice = createSlice({
     initialState,
     reducers:{
         getAllProductSlice: (state,action) =>{
-            console.log(state.products)
+
             state.products = action.payload
 
         },
@@ -25,7 +26,11 @@ const productSlice = createSlice({
             state.loading = true
         },
         updateProductSlice : (state,action) => {
-            state.products = action.payload
+
+        },
+        getDetailProductSlice : (state,action) => {
+
+            state.product = action.payload
         }
 
 
@@ -33,5 +38,5 @@ const productSlice = createSlice({
     }
 })
 
-export const {getAllProductSlice,createProductSlice,deleteProductSlice,updateProductSlice} = productSlice.actions;
+export const {getAllProductSlice,createProductSlice,deleteProductSlice,updateProductSlice,getDetailProductSlice} = productSlice.actions;
 export default productSlice.reducer;
