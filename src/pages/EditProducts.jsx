@@ -6,6 +6,8 @@ import {updateProducts} from "../service/sellerService";
 import {useParams} from "react-router-dom";
 
 const EditProducts = () => {
+    let {id} = useParams()
+
     const dispatch = useDispatch();
     // const product = useSelector((state)=> state.productReducer.product)
     // console.log(product)
@@ -16,15 +18,16 @@ const EditProducts = () => {
         rating: ""
     })
 
-    const handeEdit = (e,id) => {
-        e.preventDefault();
-        updateProducts(dispatch,product,id)
+    const handeEdit = (e) => {
+        e.preventDefault()
+        updateProducts(dispatch,{product: product,id: id})
+
     }
     return (
         <div>
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
                 <Header/>
-                <form method="POST">
+                <form>
                     <div className="overflow-hidden shadow sm:rounded-md">
                         <div className="bg-white px-4 py-5 sm:p-6">
                             <div className="grid grid-cols-6 gap-6">
@@ -100,9 +103,9 @@ const EditProducts = () => {
                         {/*</div>*/}
 
                         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                            <button
+                            <button type= "submit"
                                 className="inline-flex justify-center rounded-md border border-transparent bg-yellow-300 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                onClick={()=>{handeEdit(product._id)}}>Edit
+                                onClick={(e)=>{handeEdit(e)}}>Edit
                             </button>
                         </div>
                     </div>

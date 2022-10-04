@@ -26,8 +26,8 @@ export const deleteProduct = async (dispatch, id) => {
     const res = await customAxios.delete(`${baseURL}/admin/products/${id}`)
     dispatch(deleteProductSlice(id))
 }
-export const updateProducts = async (dispatch, data,id) => {
-    console.log(id)
-    const res = await customAxios.put(`${baseURL}/admin/products/${id}`,data)
+export const updateProducts = async (dispatch, props) => {
+    console.log(props.product)
+    const res = await customAxios.put(`${baseURL}/admin/products/${props.id}`,props.product)
     dispatch(updateProductSlice());
 }
