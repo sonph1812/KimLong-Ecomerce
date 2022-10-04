@@ -14,15 +14,18 @@ const productSlice = createSlice({
             state.products = action.payload
 
         },
-        createProductSlice:(state, action)=>{
+        createProductSlice:(state, action) => {
             state.products = action.payload
             state.loading = false
         },
-        deleteProductSlice:(state, action)=>{
+        deleteProductSlice:(state, action) => {
             state.products.filter((product)=>(
                 product !== action.payload
             ))
             state.loading = true
+        },
+        updateProductSlice : (state,action) => {
+            state.products = action.payload
         }
 
 
@@ -30,5 +33,5 @@ const productSlice = createSlice({
     }
 })
 
-export const {getAllProductSlice,createProductSlice,deleteProductSlice} = productSlice.actions;
+export const {getAllProductSlice,createProductSlice,deleteProductSlice,updateProductSlice} = productSlice.actions;
 export default productSlice.reducer;

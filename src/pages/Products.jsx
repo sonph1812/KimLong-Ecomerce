@@ -1,11 +1,8 @@
 import React from 'react';
-import { GridComponent, Inject, ColumnsDirective, ColumnDirective, Search, Page } from '@syncfusion/ej2-react-grids';
-
-import { employeesData, employeesGrid } from '../data/dummy';
 import { Header } from '../components';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {createProduct, deleteProduct, getAllProduct} from "../service/sellerService";
+import {createProduct, deleteProduct, getAllProduct, updateProducts} from "../service/sellerService";
 import {useNavigate} from "react-router-dom";
 
 const Products = () => {
@@ -29,6 +26,10 @@ const Products = () => {
     const handlerCreate = (data) => {
       createProduct(dispatch,data)
         navigate('/admin/editor')
+    }
+    const handleUpdate = (dispatch,id) => {
+      updateProducts(dispatch,id)
+        navigate('/admin/editProducts')
     }
 
   return (
@@ -62,7 +63,7 @@ const Products = () => {
                     {/*<td className=" text-center px-5 py-3 border-b border-gray-200 bg-white text-sm">*/}
                     {/*    <button  className="absolute  px-10 bg-red-400 opacity-50 rounded-full row hover:bg-red-700 focus:outline-none rounded">Delete</button>*/}
                     {/*</td>*/}
-                    <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button className="absolute px-3 bg-green-400 opacity-50 rounded-full row hover:bg-green-800 focus:outline-none rounded">update</button> </td>
+                    <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button className="absolute px-3 bg-green-400 opacity-50 rounded-full row hover:bg-green-800 focus:outline-none rounded" onClick={()=>{handleUpdate(product._id)}}>update</button> </td>
                     <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button className="absolute px-3  bg-red-400 opacity-50 rounded-full row hover:bg-red-800 focus:outline-none rounded" onClick={()=>{handleDelete(product._id)}}>delete</button> </td>
 
 

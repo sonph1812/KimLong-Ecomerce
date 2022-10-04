@@ -1,28 +1,23 @@
-import React, {useState} from 'react';
-import {Header} from "../components";
+import React from "react";
+import Header from "../components/Header";
+import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {createProduct} from "../service/sellerService";
-import {useNavigate} from "react-router-dom";
+import {updateProducts} from "../service/sellerService";
 
-const Editor = () => {
-    const navigate = useNavigate();
-
-    const dispatch = useDispatch()
+const EditProducts = () => {
+    const dispatch = useDispatch();
     const [products, setProducts] = useState({})
-   const handlerChange = (e) => {
-     setProducts({
-         ...products,
-         [e.target.name] : e.target.value
-     })
-   }
-    const handlerCreate = (e) => {
-        console.log(products)
-        e.preventDefault()
-       createProduct(products,dispatch)
-        navigate('/admin/products')
+    const handlerChange = (e) => {
+        setProducts({
+            ...products,
+            [e.target.name] : e.target.value
+        })
 
-  }
-    return (
+    }
+    const handeEdit = (id) => {
+
+    }
+    return(
         <div>
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
                 <Header/>
@@ -63,8 +58,7 @@ const Editor = () => {
                                 {/*<div className="col-span-6 sm:col-span-3">*/}
                                 {/*    <label htmlFor="first-name"*/}
                                 {/*           className="block text-sm font-medium text-neutral-900">Stock</label>*/}
-                                {/*    <input onChange={(e) => {handlerChange(e)}}
-                                type="text" name="stock" id="first-name" autoComplete="given-name"*/}
+                                {/*    <input type="text" name="stock" id="first-name" autoComplete="given-name"*/}
                                 {/*           className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>*/}
                                 {/*</div>*/}
 
@@ -99,8 +93,8 @@ const Editor = () => {
 
                         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                             <button
-                                    className="inline-flex justify-center rounded-md border border-transparent bg-yellow-300 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                    onClick={handlerCreate}>luu
+                                className="inline-flex justify-center rounded-md border border-transparent bg-yellow-300 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                onClick={handeEdit}>Edit
                             </button>
                         </div>
                     </div>
@@ -110,5 +104,4 @@ const Editor = () => {
         </div>
     )
 }
-
-export default Editor;
+export default EditProducts;

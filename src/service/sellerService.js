@@ -21,3 +21,7 @@ export const deleteProduct = async (dispatch,id)=>{
     const res = await customAxios.delete(`${baseURL}/admin/products/${id}`)
     dispatch(deleteProductSlice(id))
 }
+export const updateProducts = async (dispatch,id) => {
+    const res = await customAxios.put(`${baseURL}/admin/products/${id}`)
+    dispatch(updateProducts(id));
+}

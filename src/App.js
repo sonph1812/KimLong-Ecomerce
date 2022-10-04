@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
+import { Editor } from './pages';
 import './App.css';
 import { useDispatch } from "react-redux"
 import { getUserInfo } from './reducer/slice/userSlice';
@@ -14,6 +14,7 @@ import Admin from './pages/admin/Admin';
 import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
+import EditProducts from "./pages/EditProducts";
 
 
 
@@ -50,26 +51,29 @@ const App = () => {
         <Route path="/home"></Route>
         <Route path="/"></Route>
         <Route path="/admin" element={<Admin></Admin>}>
-          <Route path="" element={(<Ecommerce />)} />
-          <Route path="ecommerce" element={(<Ecommerce />)} />
-
-          <Route path="orders" element={<Orders />} />
-          <Route path="products" element={<Products />} />
-          <Route path="customers" element={<Customers />} />
-
-          <Route path="kanban" element={<Kanban />} />
           <Route path="editor" element={<Editor />} />
-          <Route path="calendar" element={<Calendar />} />
-          <Route path="color-picker" element={<ColorPicker />} />
+          <Route path="products" element={<Products />} />
+          <Route path="editProducts" element={<EditProducts />} />
 
-          <Route path="line" element={<Line />} />
-          <Route path="area" element={<Area />} />
-          <Route path="bar" element={<Bar />} />
-          <Route path="pie" element={<Pie />} />
-          <Route path="financial" element={<Financial />} />
-          <Route path="color-mapping" element={<ColorMapping />} />
-          <Route path="pyramid" element={<Pyramid />} />
-          <Route path="stacked" element={<Stacked />} />
+
+
+
+
+
+          {/*<Route path="" element={(<Ecommerce />)} />*/}
+          {/*<Route path="ecommerce" element={(<Ecommerce />)} />*/}
+          {/*<Route path="orders" element={<Orders />} />*/}
+          {/*<Route path="kanban" element={<Kanban />} />*/}
+          {/*<Route path="calendar" element={<Calendar />} />*/}
+          {/*<Route path="color-picker" element={<ColorPicker />} />*/}
+          {/*<Route path="line" element={<Line />} />*/}
+          {/*<Route path="area" element={<Area />} />*/}
+          {/*<Route path="bar" element={<Bar />} />*/}
+          {/*<Route path="pie" element={<Pie />} />*/}
+          {/*<Route path="financial" element={<Financial />} />*/}
+          {/*<Route path="color-mapping" element={<ColorMapping />} />*/}
+          {/*<Route path="pyramid" element={<Pyramid />} />*/}
+          {/*<Route path="stacked" element={<Stacked />} />*/}
 
         </Route>
       </Routes>
