@@ -15,7 +15,6 @@ const Products = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.productReducer.products)
   const [isProductYet, setIsProductYet] = useState(false)
-  console.log(products)
   useEffect(() => {
     setIsProductYet(true)
     getAllProduct(dispatch)

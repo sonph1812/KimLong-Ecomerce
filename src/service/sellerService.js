@@ -1,7 +1,6 @@
 
 import {customAxios} from "./tokenHeader";
 import { getAllProductSlice } from "../reducer/slice/productSlice";
-import {createAsyncThunk} from "@reduxjs/toolkit";
 const baseURL = "http://localhost:3000";
 
 export const getAllProduct = async (dispatch) => {

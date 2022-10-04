@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { Header } from '../components';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Search from '../components/Search';
-import { setListSearch } from '../reducer/slice/userSlice';
-const Customers = () => {
-  const list = useSelector(state => state.userReducer.users)
-  const listSearch = useSelector (s => s.userReducer.listSearch)
-  const [users, setUsers] = useState(list)
+
+const SearchUser = () => {
+  const users = useSelector(state => state.userReducer.users)
   const role = localStorage.getItem('role')
-  const dispatch = useDispatch()
-  useEffect (()=>{
-    if(listSearch){
-      setUsers(listSearch)
-    }
-  },[listSearch])
-  const handelUser = () => {
-    dispatch(setListSearch(null))
-    setUsers(list)
-  } 
+
   return (
 
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <div onClick = {()=>{handelUser()}}><Header category="Page" title="Custommer" /></div>
-      <Search list={list} model="admin" ></Search>
+      <Header category="Page" title="Custommer" />
+      <Search list = {users} model = "user"></Search>
       <table className="min-w-full leading-normal ">
         <thead>
           <tr>
