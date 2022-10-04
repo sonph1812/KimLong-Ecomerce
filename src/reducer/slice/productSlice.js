@@ -10,10 +10,12 @@ const productSlice = createSlice({
     initialState,
     reducers:{
         getAllProductSlice: (state,action) =>{
+            console.log(state.products)
             state.products = action.payload
+
         },
         createProductSlice:(state, action)=>{
-            state.products.push(action.payload)
+            state.products = action.payload
             state.loading = false
         },
         deleteProductSlice:(state, action)=>{

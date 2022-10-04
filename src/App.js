@@ -30,6 +30,7 @@ const App = () => {
       if (user.roleId.name == "admin") {
         getAllStaff(dispatch)
         getAllUser(dispatch)
+
       } else if (user.roleId.name == "seller") {
 
       } else if (user.roleId.name == "accountant") {
