@@ -64,6 +64,7 @@ const Customers = () => {
           }
         </tbody>
       </table>
+
     </div>
   );
 };
