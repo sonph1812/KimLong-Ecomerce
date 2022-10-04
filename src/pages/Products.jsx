@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from '../components';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {createProduct, deleteProduct, getAllProduct, updateProducts} from "../service/sellerService";
+import {createProduct, deleteProduct, getAllProduct, getDetailProduct, updateProducts} from "../service/sellerService";
 import {useNavigate} from "react-router-dom";
 
 const Products = () => {
@@ -14,7 +14,6 @@ const Products = () => {
     const dispatch = useDispatch()
     const products = useSelector(state => state.productReducer.products)
     const [isProductYet, setIsProductYet] = useState(false)
-    console.log(products)
     useEffect(() => {
         setIsProductYet(true)
         getAllProduct(dispatch)
@@ -27,9 +26,9 @@ const Products = () => {
       createProduct(dispatch,data)
         navigate('/admin/editor')
     }
-    const handleUpdate = (dispatch,id) => {
-      updateProducts(dispatch,id)
-        navigate('/admin/editProducts')
+    const handleUpdate = (id) => {
+        getDetailProduct(dispatch,id)
+        navigate(`/admin/editProducts/${id}`)
     }
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
@@ -94,8 +93,10 @@ const Products = () => {
                     {/*<td className=" text-center px-5 py-3 border-b border-gray-200 bg-white text-sm">*/}
                     {/*    <button  className="absolute  px-10 bg-red-400 opacity-50 rounded-full row hover:bg-red-700 focus:outline-none rounded">Delete</button>*/}
                     {/*</td>*/}
-                    <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button className="absolute px-3 bg-green-400 opacity-50 rounded-full row hover:bg-green-800 focus:outline-none rounded" onClick={()=>{handleUpdate(product._id)}}>update</button> </td>
-                    <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button className="absolute px-3  bg-red-400 opacity-50 rounded-full row hover:bg-red-800 focus:outline-none rounded" onClick={()=>{handleDelete(product._id)}}>delete</button> </td>
+                    <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
+                        <button className="absolute px-3 bg-green-400 opacity-50 rounded-full row hover:bg-green-800 focus:outline-none rounded" onClick={()=>{handleUpdate(product._id)}}>update</button> </td>
+                    <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
+                        <button className="absolute px-3  bg-red-400 opacity-50 rounded-full row hover:bg-red-800 focus:outline-none rounded" onClick={()=>{handleDelete(product._id)}}>delete</button> </td>
 
 
 
