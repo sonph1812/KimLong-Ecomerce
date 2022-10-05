@@ -20,7 +20,7 @@ const Products = () => {
     }, [])
     const handleDelete = (id) => {
         deleteProduct(dispatch,id);
-        // window.confirm("Bạn muốn xóa chứ !")
+        window.confirm("Bạn muốn xóa chứ !")
     }
     const handlerCreate = (data) => {
       createProduct(dispatch,data)
