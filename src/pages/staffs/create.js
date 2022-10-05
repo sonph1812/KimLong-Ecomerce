@@ -2,31 +2,33 @@ import Header from "../../components/Header";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addUser } from "../../service/userService";
-function CreateCustomer() {
-  const navigate = useNavigate();
+import { addStaff } from "../../service/userService";
+
+
+function CreateStaff() {
+    const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [customer, setCustomer] = useState({
-    roleId: "user",
+  const [staff, setStaff] = useState({
     avatar: {
       public_id: "a",
       url: "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2021/11/20/975861/5-Giong-Cho-Long-Xu-.jpg",
     },
     gender: "Nam",
+    roleId: "seller"
   });
 
   const handleChange = (e) => {
-    setCustomer({
-      ...customer,
+    setStaff({
+      ...staff,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleCreate = (e) => {
-    console.log(customer);
+    console.log(staff);
     e.preventDefault();
-    addUser(customer, dispatch);
-    navigate("/admin/customers");
+    addStaff(staff, dispatch);
+    navigate("/admin/staffs");
   };
 
   return (
@@ -200,6 +202,26 @@ function CreateCustomer() {
                     className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
+                <div className="col-span-6 sm:col-span-3">
+                  <label
+                    htmlFor="roleId"
+                    className="block text-sm font-medium text-neutral-900"
+                  >
+                    Role
+                  </label>
+                  <select
+                    id="roleId"
+                    name="roleId"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                  >
+                    <option value="seller">Seller</option>
+                    <option value="accountant">Accountant</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
@@ -217,4 +239,4 @@ function CreateCustomer() {
   );
 }
 
-export default CreateCustomer;
+export default CreateStaff;

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
+import { Staffs ,Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
 import CreateCustomer  from './pages/customer/create';
+import CreateStaff from './pages/staffs/create';
 import './App.css';
 import { useDispatch } from "react-redux"
 import { getUserInfo } from './reducer/slice/userSlice';
@@ -57,6 +58,10 @@ const App = () => {
           <Route path="products" element={<Products />} />
           <Route path="customers" element={<Customers />} />
           <Route path='customers/create' element={<CreateCustomer/>}/>
+          <Route path="staffs" element={<Staffs />} />
+          <Route path='staffs/create' element={<CreateStaff/>}/>
+
+
 
           <Route path="kanban" element={<Kanban />} />
           <Route path="editor" element={<Editor />} />

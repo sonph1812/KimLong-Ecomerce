@@ -36,9 +36,11 @@ const userSlice = createSlice({
         deleteUserSlice: (state, action) => {
             if (action.payload.model == "staff") {
                state.staffs.splice(action.payload.index,1)
+            //    state.staffs = state.staffs.filter((arrow) => arrow._id !== action.payload)
             }
             if (action.payload.model == "user") {
                 state.users.splice(action.payload.index,1)
+                // state.users = state.users.filter((arrow) => arrow._id !== action.payload)
             }
 
         },
