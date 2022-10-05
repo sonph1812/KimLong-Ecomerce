@@ -82,7 +82,7 @@ const Products = () => {
                 {product.name}
               </td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.price} $</td>
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.image.link}</td>
+              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"><img src={product.image} alt=""/></td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.description}</td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.rating} </td>
 
