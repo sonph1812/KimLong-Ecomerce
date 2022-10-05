@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Editor } from './pages';
+import {Ecommerce, Editor} from './pages';
 import './App.css';
 import { useDispatch } from "react-redux"
 import { getUserInfo } from './reducer/slice/userSlice';
@@ -60,7 +60,7 @@ const App = () => {
 
 
 
-          {/*<Route path="" element={(<Ecommerce />)} />*/}
+          <Route path="" element={(<Ecommerce />)} />
           {/*<Route path="ecommerce" element={(<Ecommerce />)} />*/}
           {/*<Route path="orders" element={<Orders />} />*/}
           {/*<Route path="kanban" element={<Kanban />} />*/}

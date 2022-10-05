@@ -2,15 +2,15 @@ import React from "react";
 import Header from "../components/Header";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateProducts} from "../service/sellerService";
+import {getDetailProduct, updateProducts} from "../service/sellerService";
 import {useParams} from "react-router-dom";
 
 const EditProducts = () => {
     let {id} = useParams()
 
     const dispatch = useDispatch();
-    // const product = useSelector((state)=> state.productReducer.product)
-    // console.log(product)
+    const products = useSelector((state)=> state.productReducer.product)
+    console.log(products)
     const [product, setProduct] = useState({
         name: "",
         description: "",
@@ -38,6 +38,7 @@ const EditProducts = () => {
 
 
                                            type="text" name="name" id="name" autoComplete="given-name"
+
 
                                            className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                                 </div>
