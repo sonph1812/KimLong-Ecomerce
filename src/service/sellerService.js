@@ -18,13 +18,15 @@ export const getDetailProduct = async (dispatch, id) => {
     dispatch(getDetailProductSlice(res.data.product))
 }
 export const createProduct = async (data, dispatch) => {
-
     const res = await customAxios.post(`${baseURL}/admin/products/create`,data)
     dispatch(createProductSlice(res.data));
 }
 export const deleteProduct = async (dispatch, id) => {
-    const res = await customAxios.delete(`${baseURL}/admin/products/${id}`)
-    dispatch(deleteProductSlice(id))
+    const deleteConfirm = window.confirm('Bạn muốn xóa chứ!!!')
+    if(deleteConfirm){
+        const res = await customAxios.delete(`${baseURL}/admin/products/${id}`)
+        dispatch(deleteProductSlice(id))
+    }
 }
 export const updateProducts = async (dispatch, props) => {
     console.log(props.product)

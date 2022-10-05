@@ -16,14 +16,11 @@ const productSlice = createSlice({
 
         },
         createProductSlice:(state, action) => {
-            state.products = action.payload
+            state.products.push(action.payload)
             state.loading = false
         },
         deleteProductSlice:(state, action) => {
-            state.products.filter((product)=>(
-                product !== action.payload
-            ))
-            state.loading = true
+            state.products = state.products.filter((arrow) => arrow._id !== action.payload)
         },
         updateProductSlice : (state,action) => {
 

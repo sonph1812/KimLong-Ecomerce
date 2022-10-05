@@ -20,7 +20,7 @@ const Products = () => {
     }, [])
     const handleDelete = (id) => {
         deleteProduct(dispatch,id);
-        window.confirm("Bạn muốn xóa chứ !")
+        // window.confirm("Bạn muốn xóa chứ !")
     }
     const handlerCreate = (data) => {
       createProduct(dispatch,data)
@@ -48,7 +48,7 @@ const Products = () => {
             </tr>
             </thead>
             <tbody>
-            {isProductYet && products.map((product) => (
+            {isProductYet && products.map((product,index) => (
                 <tr key={product._id}>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.name}</td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.price} $</td>

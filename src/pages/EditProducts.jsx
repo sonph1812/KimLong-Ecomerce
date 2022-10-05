@@ -3,24 +3,30 @@ import Header from "../components/Header";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getDetailProduct, updateProducts} from "../service/sellerService";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 const EditProducts = () => {
+    let navigate = useNavigate()
     let {id} = useParams()
 
     const dispatch = useDispatch();
-    const products = useSelector((state)=> state.productReducer.product)
-    console.log(products)
+    const products = useSelector((state)=> state.productReducer.products)
+
+    let productItem = products.filter(item =>(
+        item._id === id
+    ))
+    console.log(productItem)
     const [product, setProduct] = useState({
-        name: "",
-        description: "",
-        price: "",
-        rating: ""
+        name: productItem[0].name,
+        description: productItem[0].description,
+        price: productItem[0].price,
+        rating: productItem[0].rating
     })
 
-    const handeEdit = (e) => {
-        e.preventDefault()
+    const handeEdit = () => {
+        // e.preventDefault()
         updateProducts(dispatch,{product: product,id: id})
+        navigate('/admin/products')
 
     }
     return (
@@ -36,9 +42,8 @@ const EditProducts = () => {
                                            className="block text-sm font-medium text-neutral-900">Name</label>
                                     <input onChange={(e) => setProduct({ ...product, name: e.target.value })}
 
-
                                            type="text" name="name" id="name" autoComplete="given-name"
-
+                                           value={product.name}
 
                                            className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                                 </div>
@@ -47,6 +52,7 @@ const EditProducts = () => {
                                            className="block text-sm font-medium text-neutral-900">Price</label>
                                     <input onChange={(e) => setProduct({ ...product, price: e.target.value })}
                                            type="text" name="price" id="price" autoComplete="given-name"
+                                           value={product.price}
 
                                            className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                                 </div>
@@ -57,6 +63,7 @@ const EditProducts = () => {
                                     <input onChange={(e) => setProduct({ ...product, description: e.target.value })}
                                            type="text" name="description" id="description"
                                            autoComplete="street-address"
+                                           value={product.description}
 
                                            className="mt-1  px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
                                 </div>
@@ -65,6 +72,7 @@ const EditProducts = () => {
                                            className="block text-sm font-medium text-neutral-900">Rating</label>
                                     <input onChange={(e) => setProduct({ ...product, rating: e.target.value })}
                                            type="text" name="rating" id="rating" autoComplete="given-name"
+                                           value={product.rating}
                                            className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                                 </div>
                                 {/*<div className="col-span-6 sm:col-span-3">*/}
