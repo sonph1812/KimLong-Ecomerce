@@ -28,6 +28,10 @@ const userSlice = createSlice({
             state.user = action.payload
         },
         addStaffSlice: (state, action) => {
+            state.staffs.push(action.payload)
+        },
+        addUserSlice: (state, action) => {
+            state.users.push(action.payload)
         },
         deleteUserSlice: (state, action) => {
             if (action.payload.model == "staff") {
@@ -58,6 +62,7 @@ export const {
     getAllStaffSlice,
     getDetailUserSlice,
     addStaffSlice,
+    addUserSlice,
     deleteUserSlice,
     updateRoleUserSlice,
     updateUserSlice,

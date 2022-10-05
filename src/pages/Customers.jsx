@@ -1,44 +1,25 @@
 import React from 'react';
-// import { GridComponent, ColumnsDirective, ColumnDirective, Page, Selection, Inject, Edit, Toolbar, Sort, Filter } from '@syncfusion/ej2-react-grids';
-
-// import { customersData, customersGrid } from '../data/dummy';
 import { Header } from '../components';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {useNavigate} from "react-router";
+import { deleteUser , addUser } from '../service/userService';
 
 const Customers = () => {
   const users = useSelector(state => state.userReducer.users)
   const role = localStorage.getItem('role')
   console.log(users);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleCreateCustomer = () => {
+  const handleCreateCustomer = (data) => {
+    addUser(data, dispatch);
     navigate(`/admin/customers/create`);
 }
-  // const selectionsettings = { persistSelection: true };
-  // const toolbarOptions = ['Delete'];
-  // const editing = { allowDeleting: true, allowEditing: true };
+const handleDelete = (id) => {
+  deleteUser(id, dispatch);
+  window.confirm("Bạn muốn xóa chứ !")
+}
 
   return (
-    // <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-    //   <Header category="Page" title="Customers" />
-    //   <GridComponent
-    //     dataSource={customersData}
-    //     enableHover={false}
-    //     allowPaging
-    //     pageSettings={{ pageCount: 5 }}
-    //     selectionSettings={selectionsettings}
-    //     toolbar={toolbarOptions}
-    //     editSettings={editing}
-    //     allowSorting
-    //   >
-    //     <ColumnsDirective>
-    //       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-    //       {customersGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}
-    //     </ColumnsDirective>
-    //     <Inject services={[Page, Selection, Toolbar, Edit, Sort, Filter]} />
-    //   </GridComponent>
-    // </div>
-
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <button onClick={handleCreateCustomer} className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Customer</button>
       <Header category="Page" title="Custommer" />
@@ -67,7 +48,7 @@ const Customers = () => {
                 <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm" >  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                   Update
                 </button> </td>
-                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
+                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full"  onClick={()=>{handleDelete(user._id)}}>
                   Delete
                 </button> </td>
               </tr>

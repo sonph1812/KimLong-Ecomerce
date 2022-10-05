@@ -5,6 +5,7 @@ import {
     getAllStaffSlice,
     getDetailUserSlice,
     addStaffSlice,
+    addUserSlice,
     deleteUserSlice,
     updateRoleUserSlice,
     updateUserSlice,
@@ -27,9 +28,14 @@ export const getDetailUser = async (id, dispatch) => {
     dispatch(getDetailUserSlice(res.data))
 }
 export const addStaff = async (data,dispatch) => {
-    console.log(data);
     const res = await customAxios.post(`${baseURL}/user`,data)
     dispatch(addStaffSlice(res.data))
+}
+export const addUser = async (data,dispatch) => {
+    console.log(data);
+    const res = await customAxios.post(`${baseURL}/user`,data)
+    console.log(res.data)
+    dispatch(addUserSlice(res.data))
 }
 export const deleteUser = async (id,index,model, dispatch) => {
     const res = await customAxios.delete(`${baseURL}/user/${id}`)
