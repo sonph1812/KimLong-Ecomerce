@@ -35,7 +35,6 @@ const App = () => {
         getAllUser(dispatch)
         getAllProduct(dispatch)
 
-
       } else if (user.roleId.name == "seller") {
 
       } else if (user.roleId.name == "accountant") {

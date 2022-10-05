@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { setListSearch } from "../reducer/slice/userSlice"
-import {useDispatch} from "react-redux"
+import { setProductSearch } from "../reducer/slice/productSlice"
+import { useDispatch } from "react-redux"
 function Search({ list, model }) {
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
@@ -9,8 +10,10 @@ function Search({ list, model }) {
         setSearch(e.target.value)
     }
     const handelClick = () => {
-        if(model === 'admin'){
+        if (model === 'user') {
             dispatch(setListSearch(list.filter(isSearch)))
+        } else if (model === 'product') {
+            dispatch(setProductSearch(list.filter(isSearch)))
         }
     }
     const isSearch = (item) => {
@@ -28,9 +31,9 @@ function Search({ list, model }) {
                 width: "400px"
 
             }}
-                   onChange={e => { handleChange(e) }}
-                   type="text"
-                   placeholder="Search" className="mb-3 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                onChange={e => { handleChange(e) }}
+                type="text"
+                placeholder="Search" className="mb-3 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
             <button
                 style={{
                     position: "absolute", right: "90px", top: "195px"
@@ -46,7 +49,7 @@ function Search({ list, model }) {
                 {list && list.filter(isSearch)
                     .map((item) => (
                         <Link to=""
-                              className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-200 hover:text-gray-700"
+                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-200 hover:text-gray-700"
                         >
                             {item.name}
                         </Link>
