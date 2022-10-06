@@ -14,7 +14,7 @@ const Products = () => {
   const listSearch = useSelector(s => s.productReducer.listSearch)
   const [products, setProduct] = useState([])
   const role = localStorage.getItem('role')
-
+  console.log(products)
   useEffect(() => {
     if (listSearch) {
       setProduct(listSearch)
@@ -80,16 +80,10 @@ const Products = () => {
                 <button className="absolute px-3 bg-green-400 opacity-50 rounded-full row hover:bg-green-800 focus:outline-none rounded" onClick={() => { handleUpdate(product._id) }}>update</button> </td>
               <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                 <button className="absolute px-3  bg-red-400 opacity-50 rounded-full row hover:bg-red-800 focus:outline-none rounded" onClick={() => { handleDelete(product._id) }}>delete</button> </td>
-
-
-
             </tr>
           ))}
 
         </tbody>
-
-
-
       </table>
     </div>
   );
