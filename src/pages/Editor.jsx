@@ -7,12 +7,11 @@ import { storage } from "../firebase/config";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const Editor = () => {
+  const brands = useSelector(s => s.brandReducer.brands)
     const navigate = useNavigate();
     const [image, setImage] = useState();
     const dispatch = useDispatch()
-    const brand = useSelector(state => state.productReducer.brands)
-    console.log(brand)
-    const [products, setProducts] = useState({})
+    const [products, setProducts] = useState(null)
     const handlerChange = (e) => {
         setProducts({
             ...products,
@@ -21,7 +20,7 @@ const Editor = () => {
     }
     const handlerCreate = async (e) => {
         e.preventDefault()
-        // createProduct(products, dispatch)
+        createProduct(products, dispatch)
         let imageUpload = image;
         if (imageUpload) {
             const imageRef = ref(storage, `images/${imageUpload?.name}`);
@@ -36,8 +35,6 @@ const Editor = () => {
             });
         }
     }
-
-
 
 const handlePreviewAvatar = (e) => {
     const file = e.target.files[0];
@@ -111,11 +108,14 @@ return (
                             </div>
                             <div>
                                 <label htmlFor="states" className="sr-only">Brand</label>
-                                <select id="states"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select id="brandId"
+                                        name = "brandId" 
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        onChange={(e)=>{handlerChange(e)}}
+                                        >
                                     <option selected>Brand</option>
-                                    {brand && brand.map((brands)=>(
-                                        <option value={brand._id}>{brands.name}</option>
+                                    {brands && brands.map((brand)=>(
+                                        <option value={brand._id}>{brand.name}</option>
                                     ))}
                                 </select>
                             </div>
