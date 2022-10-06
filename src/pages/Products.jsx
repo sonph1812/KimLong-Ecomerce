@@ -2,11 +2,10 @@ import React from 'react';
 import { Header } from '../components';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { createProduct, deleteProduct, getDetailProduct, updateProducts } from "../service/sellerService";
+import { createProduct, deleteProduct, getDetailProduct, updateProducts } from "../service/productService";
 import { useNavigate } from "react-router-dom";
 import Search from '../components/Search';
 import { setProductSearch } from "../reducer/slice/productSlice"
-import {getAllBrand} from "../service/brandService";
 
 const Products = () => {
   const navigate = useNavigate();
@@ -15,12 +14,13 @@ const Products = () => {
   const listSearch = useSelector(s => s.productReducer.listSearch)
   const [products, setProduct] = useState([])
   const role = localStorage.getItem('role')
-  console.log(products)
+
   useEffect(() => {
     if (listSearch) {
       setProduct(listSearch)
     }
   }, [listSearch])
+
   useEffect(() => {
     setProduct(list)
   }, [list])

@@ -5,7 +5,6 @@ import {
     getAllProductSlice,
     getDetailProductSlice, updateProductSlice
 } from "../reducer/slice/productSlice";
-import {createAsyncThunk} from "@reduxjs/toolkit";
 
 const baseURL = "http://localhost:3000";
 

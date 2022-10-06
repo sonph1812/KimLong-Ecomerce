@@ -7,12 +7,9 @@ import { setListSearch } from '../reducer/slice/userSlice';
 const Customers = () => {
   const list = useSelector(state => state.userReducer.users)
   const listSearch = useSelector (s => s.userReducer.listSearch)
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState(list)
   const role = localStorage.getItem('role')
   const dispatch = useDispatch()
-  useEffect(()=>{
-    setUsers(list)
-  },[list])
   useEffect (()=>{
     if(listSearch){
       setUsers(listSearch)
@@ -26,7 +23,7 @@ const Customers = () => {
 
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <div onClick = {()=>{handelUser()}}><Header category="Page" title="Custommer" /></div>
-      <Search list={list} model="user" ></Search>
+      <Search list={list} model="admin" ></Search>
       <table className="min-w-full leading-normal ">
         <thead>
           <tr>

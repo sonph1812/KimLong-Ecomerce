@@ -15,7 +15,7 @@ import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
-import {getAllProduct} from "./service/sellerService";
+import {getAllProduct} from "./service/productService";
 import Customers from "./pages/Customers";
 import {getAllBrand} from "./service/brandService";
 
@@ -37,6 +37,7 @@ const App = () => {
 
       } else if (user.roleId.name == "seller" || user.roleId.name == "user") {
         getAllProduct(dispatch)
+        getAllBrand(dispatch)
       }
     }
   }, [token]);
