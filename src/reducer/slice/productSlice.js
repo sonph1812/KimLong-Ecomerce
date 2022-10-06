@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import products from "../../pages/Products";
 
 const initialState = {
     products: [],
@@ -25,11 +24,9 @@ const productSlice = createSlice({
 
         },
         getDetailProductSlice : (state,action) => {
-
             state.product = action.payload
         },
         setProductSearch: (state, action) => {
-            console.log('ok2');
             state.listSearch = action.payload
 
         }

@@ -11,7 +11,6 @@ function Search({ list, model }) {
     }
     const handelClick = () => {
         if (model === 'user') {
-        console.log('Click');
             dispatch(setListSearch(list.filter(isSearch)))
         } else if (model === 'product') {
             dispatch(setProductSearch(list.filter(isSearch)))
