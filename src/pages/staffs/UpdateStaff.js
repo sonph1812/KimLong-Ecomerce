@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import { useState } from "react";
 
-function UpdateStaffs() {
+function UpdateStaff() {
 
 
   const [staff, setStaff] = useState({
@@ -232,4 +232,4 @@ function UpdateStaffs() {
     );
 }
 
-export default UpdateStaffs;
+export default UpdateStaff;

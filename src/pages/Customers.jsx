@@ -23,7 +23,6 @@ const handleDelete = (id) => {
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <button onClick={handleCreateCustomer} className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Customer</button>
       <Header category="Page" title="Custommer" />
       <table className="min-w-full leading-normal ">
         <thead>
