@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from '../components';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { createProduct, deleteProduct, getDetailProduct, updateProducts } from "../service/productService";
+import {createProduct, deleteProduct, getAllProduct, getDetailProduct, updateProducts} from "../service/productService";
 import { useNavigate } from "react-router-dom";
 import Search from '../components/Search';
 import { setProductSearch } from "../reducer/slice/productSlice"
@@ -20,6 +20,7 @@ const Products = () => {
       setProduct(listSearch)
     }
   }, [listSearch])
+
 
   useEffect(() => {
     setProduct(list)
