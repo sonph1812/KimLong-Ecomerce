@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import {Ecommerce, Editor} from './pages';
+import { Ecommerce, Editor } from './pages';
 import './App.css';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getUserInfo } from './reducer/slice/userSlice';
 import { getAllUser, getAllStaff } from "./service/userService"
 import jwt_decode from "jwt-decode"
@@ -15,35 +15,31 @@ import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
-import {getAllProduct} from "./service/sellerService";
+import { getAllProduct } from "./service/productService";
 import Customers from "./pages/Customers";
-import HomeUser from "./pages/HomeUser";
-import Testnav from "./components/testnav";
-
+import { getAllBrand } from "./service/brandService";
 
 
 
 const App = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
-  
+
   useEffect(() => {
 
     if (token) {
+      getAllProduct(dispatch)
+      getAllBrand(dispatch)
       const user = jwt_decode(token).user
       dispatch(getUserInfo(user))
       if (user.roleId.name == "admin") {
         getAllStaff(dispatch)
         getAllUser(dispatch)
-        // getAllProduct(dispatch)
-
-      } else if (user.roleId.name == "seller") {
-
-      } else if (user.roleId.name == "accountant") {
-
-      } else if (user.roleId.name == "user") {
         getAllProduct(dispatch)
 
+      } else if (user.roleId.name == "seller" || user.roleId.name == "user") {
+        getAllProduct(dispatch)
+        getAllBrand(dispatch)
       }
     }
   }, [token]);
@@ -54,14 +50,20 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<LoginForm />}></Route>
         <Route path="/register" element={<RegisterForm />}></Route>
-        <Route path="/home" element={<HomeUser/>}></Route>
-        <Route path="/" element={<Testnav/>}></Route>
+        <Route path="/home" <></Route>
+        <Route path="/"></Route>
         <Route path="/admin" element={<Admin></Admin>}>
           <Route path="editor" element={<Editor />} />
           <Route path="products" element={<Products />} />
-          <Route path="editProducts/:id" element={<EditProducts />} />
+          <Route path="editProducts/:id" element={<EditProducts></EditProducts>} />
+
+
+
+
+
+
           {/*<Route path="" element={(<Ecommerce />)} />*/}
-          <Route path="customers" element={(<Customers/>)} />
+          <Route path="customers" element={(<Customers />)} />
           {/*<Route path="orders" element={<Orders />} />*/}
           {/*<Route path="kanban" element={<Kanban />} />*/}
           {/*<Route path="calendar" element={<Calendar />} />*/}
@@ -74,13 +76,10 @@ const App = () => {
           {/*<Route path="color-mapping" element={<ColorMapping />} />*/}
           {/*<Route path="pyramid" element={<Pyramid />} />*/}
           {/*<Route path="stacked" element={<Stacked />} />*/}
-          //Route
-          <Route>
-          </Route>
-        </Route>
 
+        </Route>
       </Routes>
-      
+
 
     </BrowserRouter>
   );

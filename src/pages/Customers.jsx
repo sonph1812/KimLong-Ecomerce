@@ -7,12 +7,9 @@ import { setListSearch } from '../reducer/slice/userSlice';
 const Customers = () => {
   const list = useSelector(state => state.userReducer.users)
   const listSearch = useSelector (s => s.userReducer.listSearch)
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState(list)
   const role = localStorage.getItem('role')
   const dispatch = useDispatch()
-  useEffect(()=>{
-    setUsers(list)
-  },[list])
   useEffect (()=>{
     if(listSearch){
       setUsers(listSearch)

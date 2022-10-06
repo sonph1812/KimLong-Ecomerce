@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     products: [],
@@ -13,25 +13,20 @@ const productSlice = createSlice({
         getAllProductSlice: (state, action) => {
             state.products = action.payload
         },
-        createProductSlice: (state, action) => {
-            state.products = action.payload
+        createProductSlice:(state, action) => {
+            state.products.push(action.payload)
             state.loading = false
         },
-        deleteProductSlice: (state, action) => {
-            state.products.filter((product) => (
-                product !== action.payload
-            ))
-            state.loading = true
+        deleteProductSlice:(state, action) => {
+            state.products = state.products.filter((arrow) => arrow._id !== action.payload)
         },
-        updateProductSlice: (state, action) => {
+        updateProductSlice : (state,action) => {
 
         },
-        getDetailProductSlice: (state, action) => {
-
+        getDetailProductSlice : (state,action) => {
             state.product = action.payload
         },
         setProductSearch: (state, action) => {
-            console.log('ok2');
             state.listSearch = action.payload
 
         }
