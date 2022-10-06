@@ -18,7 +18,6 @@ import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
 import { getAllProduct } from "./service/productService";
-import Customers from "./pages/Customers";
 import { getAllBrand } from "./service/brandService";
 
 

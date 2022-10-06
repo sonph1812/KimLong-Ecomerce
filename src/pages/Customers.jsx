@@ -21,7 +21,6 @@ const Customers = () => {
     dispatch(setListSearch(null))
     setUsers(list)
   } 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleCreateCustomer = (data) => {
     addUser(data, dispatch);
