@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Header} from "../components";
-import {useDispatch} from "react-redux";
-import {createProduct} from "../service/sellerService";
+import {useDispatch, useSelector} from "react-redux";
+import {createProduct} from "../service/productService";
 import {useNavigate} from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
@@ -10,6 +10,8 @@ const Editor = () => {
     const navigate = useNavigate();
     const [image, setImage] = useState();
     const dispatch = useDispatch()
+    const brand = useSelector(state => state.productReducer.brands)
+    console.log(brand)
     const [products, setProducts] = useState({})
     const handlerChange = (e) => {
         setProducts({
@@ -39,7 +41,6 @@ const Editor = () => {
 
 const handlePreviewAvatar = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     // file.preview = URL.createObjectURL(file);
     setImage(file);
 };
@@ -91,6 +92,15 @@ return (
                                        className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                             </div>
                             <div className="col-span-6 sm:col-span-3">
+                                <label htmlFor="rating"
+                                       className="block text-sm font-medium text-neutral-900">Stock</label>
+                                <input onChange={(e) => {
+                                    handlerChange(e)
+                                }}
+                                       type="text" name="stock" id="stock" autoComplete="given-name"
+                                       className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
+                            </div>
+                            <div className="col-span-6 sm:col-span-3">
                                 <label
                                     className="block text-sm font-medium text-neutral-900">Upload file</label>
                                 <input onChange={(e) => {
@@ -100,58 +110,29 @@ return (
                                        className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                             </div>
                             <div>
-
-                                <label htmlFor="states" className="sr-only">Choose a state</label>
+                                <label htmlFor="states" className="sr-only">Brand</label>
                                 <select id="states"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected>Choose a state</option>
-                                    <option value="CA">California</option>
-                                    <option value="TX">Texas</option>
-                                    <option value="WH">Washinghton</option>
-                                    <option value="FL">Florida</option>
-                                    <option value="VG">Virginia</option>
-                                    <option value="GE">Georgia</option>
-                                    <option value="MI">Michigan</option>
+                                    <option selected>Brand</option>
+                                    {brand && brand.map((brands)=>(
+                                        <option value={brand._id}>{brands.name}</option>
+                                    ))}
                                 </select>
-
                             </div>
-                            {/*<div className="col-span-6 sm:col-span-3">*/}
-                            {/*    <label htmlFor="first-name"*/}
-                            {/*           className="block text-sm font-medium text-neutral-900">Stock</label>*/}
-                            {/*    <input onChange={(e) => {handlerChange(e)}}
-                                type="text" name="stock" id="first-name" autoComplete="given-name"*/}
-                            {/*           className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>*/}
+                            <br/>
+                            {/*<div>*/}
+                            {/*    <label htmlFor="states" className="sr-only">Category</label>*/}
+                            {/*    <select id="states"*/}
+                            {/*            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">*/}
+                            {/*        <option selected>Brand</option>*/}
+                            {/*        <option value="CA">Apple</option>*/}
+                            {/*        <option value="TX">Sam Sung</option>*/}
+                            {/*        <option value="WH">Oppo</option>*/}
+                            {/*        <option value="FL">hawei</option>*/}
+                            {/*    </select>*/}
                             {/*</div>*/}
-
                         </div>
                     </div>
-                    {/*<div>*/}
-                    {/*    <div>*/}
-                    {/*        <label className="block text-sm font-medium text-gray-700">adload image</label>*/}
-                    {/*        <div*/}
-                    {/*            className="mt-1 flex justify-center rounded-md border-2 border-dashed border-neutral-900 px-0 pt-3 pb-3">*/}
-                    {/*            <div className="space-y-1 text-center">*/}
-                    {/*                <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor"*/}
-                    {/*                     fill="none"*/}
-                    {/*                     viewBox="0 0 48 48" aria-hidden="true">*/}
-                    {/*                    <path*/}
-                    {/*                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"*/}
-                    {/*                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>*/}
-                    {/*                </svg>*/}
-                    {/*                <div className="flex text-sm text-gray-600">*/}
-                    {/*                    <label htmlFor="image"*/}
-                    {/*                           className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">*/}
-                    {/*                        <span>Upload a file</span>*/}
-                    {/*                        <input id="image" name="image" type="file" className="sr-only"/>*/}
-                    {/*                    </label>*/}
-                    {/*                    <p className="pl-1">or drag and drop</p>*/}
-                    {/*                </div>*/}
-                    {/*                <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-
                         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                             <button
                                     className="inline-flex justify-center rounded-md border border-transparent bg-yellow-300 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"

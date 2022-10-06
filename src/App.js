@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {Ecommerce, Editor} from './pages';
 import './App.css';
-import { useDispatch } from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { getUserInfo } from './reducer/slice/userSlice';
 import { getAllUser, getAllStaff } from "./service/userService"
 import jwt_decode from "jwt-decode"
@@ -15,6 +15,7 @@ import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
+import {getAllBrand} from "./service/brandService";
 
 
 
@@ -24,7 +25,6 @@ const App = () => {
   const token = localStorage.getItem('token')
   
   useEffect(() => {
-
     if (token) {
       const user = jwt_decode(token).user
       dispatch(getUserInfo(user))
@@ -41,7 +41,6 @@ const App = () => {
       }
     }
   }, []);
-
 
   return (
     <BrowserRouter>

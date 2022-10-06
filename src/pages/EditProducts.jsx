@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getDetailProduct, updateProducts} from "../service/sellerService";
+import {getDetailProduct, updateProducts} from "../service/productService";
 import {useNavigate, useParams} from "react-router-dom";
 
 const EditProducts = () => {
@@ -80,7 +80,7 @@ const EditProducts = () => {
                                     <select id="states"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option selected>Choose a state</option>
-                                        <option value="CA">California</option>
+                                        <option value="CA"></option>
                                         <option value="TX">Texas</option>
                                         <option value="WH">Washinghton</option>
                                         <option value="FL">Florida</option>
