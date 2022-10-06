@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header } from '../components';
 import { useSelector, useDispatch } from "react-redux";
 import { addStaff ,deleteUser } from '../service/userService';
@@ -15,6 +15,8 @@ function Staffs() {
       addStaff(data, dispatch);
       navigate(`/admin/staffs/create`);
   }
+
+
   const handleDelete = (id) => { 
      let confirmDelete = window.confirm("Bạn muốn xóa chứ !")
      if(confirmDelete){
@@ -22,6 +24,7 @@ function Staffs() {
      }
      navigate(`/admin/staffs`);
   }
+
     return (
         <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
           <button onClick={handleCreateStaffs}  className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Staffs</button>
@@ -40,12 +43,12 @@ function Staffs() {
               </tr>
             </thead>
             <tbody>
-              {role &&
+              {role && staffs &&
                 staffs.map((user, index) => (
                   <tr key = {user._id}>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.name}</td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.email}</td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.phone} </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.phone} </td>  
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.dob} </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.gender} </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.address} </td>

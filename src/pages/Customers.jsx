@@ -15,8 +15,10 @@ const Customers = () => {
     navigate(`/admin/customers/create`);
 }
 const handleDelete = (id) => {
-  deleteUser(id, dispatch);
-  window.confirm("Bạn muốn xóa chứ !")
+  const confirmDelete =   window.confirm("Bạn muốn xóa chứ !")
+  if(confirmDelete){
+    deleteUser(id, dispatch);
+  }
 }
 
   return (

@@ -23,7 +23,6 @@ function CreateCustomer() {
   };
 
   const handleCreate = (e) => {
-    console.log(customer);
     e.preventDefault();
     addUser(customer, dispatch);
     navigate("/admin/customers");

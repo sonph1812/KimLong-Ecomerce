@@ -32,14 +32,13 @@ export const addStaff = async (data,dispatch) => {
     dispatch(addStaffSlice(res.data))
 }
 export const addUser = async (data,dispatch) => {
-    console.log(data);
-    const res = await customAxios.post(`${baseURL}/user`,data)
-    console.log(res.data)
+    // console.log(data);
+    const res = await customAxios.post(`${baseURL}/user`, data)
     dispatch(addUserSlice(res.data))
 }
-export const deleteUser = async (id,index,model, dispatch) => {
+export const deleteUser = async (id,dispatch) => {
     const res = await customAxios.delete(`${baseURL}/user/${id}`)
-    dispatch(deleteUserSlice({id,index,model}))
+    dispatch(deleteUserSlice(id))
 }
 export const updateRoleUser = async (id, dispatch) => {
     const res = await customAxios.put(`${baseURL}/user/updateRoleUser/${id}`)

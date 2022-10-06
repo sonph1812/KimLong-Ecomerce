@@ -14,7 +14,7 @@ function CreateStaff() {
       url: "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2021/11/20/975861/5-Giong-Cho-Long-Xu-.jpg",
     },
     gender: "Nam",
-    roleId: "seller"
+    role: "seller"
   });
 
   const handleChange = (e) => {
@@ -204,14 +204,14 @@ function CreateStaff() {
                 </div>
                 <div className="col-span-6 sm:col-span-3">
                   <label
-                    htmlFor="roleId"
+                    htmlFor="role"
                     className="block text-sm font-medium text-neutral-900"
                   >
                     Role
                   </label>
                   <select
-                    id="roleId"
-                    name="roleId"
+                    id="role"
+                    name="role"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     onChange={(e) => {
                       handleChange(e);
