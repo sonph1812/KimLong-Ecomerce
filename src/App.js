@@ -17,6 +17,7 @@ import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
 import {getAllProduct} from "./service/sellerService";
 import Customers from "./pages/Customers";
+import HomeUser from "./pages/HomeUser";
 
 
 
@@ -52,18 +53,12 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<LoginForm />}></Route>
         <Route path="/register" element={<RegisterForm />}></Route>
-        <Route path="/home"></Route>
-        <Route path="/"></Route>
+        <Route path="/home" element={<HomeUser/>}></Route>
+        <Route path="/" element={<HomeUser/>}></Route>
         <Route path="/admin" element={<Admin></Admin>}>
           <Route path="editor" element={<Editor />} />
           <Route path="products" element={<Products />} />
           <Route path="editProducts/:id" element={<EditProducts />} />
-
-
-
-
-
-
           {/*<Route path="" element={(<Ecommerce />)} />*/}
           <Route path="customers" element={(<Customers/>)} />
           {/*<Route path="orders" element={<Orders />} />*/}
@@ -78,8 +73,11 @@ const App = () => {
           {/*<Route path="color-mapping" element={<ColorMapping />} />*/}
           {/*<Route path="pyramid" element={<Pyramid />} />*/}
           {/*<Route path="stacked" element={<Stacked />} />*/}
-
+          //Route
+          <Route>
+          </Route>
         </Route>
+
       </Routes>
       
 
