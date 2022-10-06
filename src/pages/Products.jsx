@@ -6,7 +6,7 @@ import { createProduct, deleteProduct, getDetailProduct, updateProducts } from "
 import { useNavigate } from "react-router-dom";
 import Search from '../components/Search';
 import { setProductSearch } from "../reducer/slice/productSlice"
-
+import paginator from "paginator"
 const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -59,7 +59,7 @@ const Products = () => {
           <tr>
             <td className="px-5 py-3 border-b-2  border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Name</td>
             <td className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Price</td>
-            <td className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Image</td>
+            {/*<td className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Image</td>*/}
             <td className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Description</td>
             <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Rating</td>
             <td colSpan={2} className=" text-center px-8 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider colSpan={'2'}"  >Action</td>
@@ -72,7 +72,7 @@ const Products = () => {
                 {product.name}
               </td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.price} $</td>
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"><img src={product.image} alt="" /></td>
+              {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"><img src={product.images} alt="" /></td>*/}
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.description}</td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.rating} </td>
 

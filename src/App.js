@@ -18,6 +18,7 @@ import EditProducts from "./pages/EditProducts";
 import {getAllProduct} from "./service/sellerService";
 import Customers from "./pages/Customers";
 import HomeUser from "./pages/HomeUser";
+import Testnav from "./components/testnav";
 
 
 
@@ -34,13 +35,14 @@ const App = () => {
       if (user.roleId.name == "admin") {
         getAllStaff(dispatch)
         getAllUser(dispatch)
-        getAllProduct(dispatch)
+        // getAllProduct(dispatch)
 
       } else if (user.roleId.name == "seller") {
 
       } else if (user.roleId.name == "accountant") {
 
       } else if (user.roleId.name == "user") {
+        getAllProduct(dispatch)
 
       }
     }
@@ -53,7 +55,7 @@ const App = () => {
         <Route path="/login" element={<LoginForm />}></Route>
         <Route path="/register" element={<RegisterForm />}></Route>
         <Route path="/home" element={<HomeUser/>}></Route>
-        <Route path="/" element={<HomeUser/>}></Route>
+        <Route path="/" element={<Testnav/>}></Route>
         <Route path="/admin" element={<Admin></Admin>}>
           <Route path="editor" element={<Editor />} />
           <Route path="products" element={<Products />} />

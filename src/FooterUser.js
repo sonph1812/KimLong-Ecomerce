@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer
-      className="w-full bg-tertiary-200 py-12 absolute b-0 mt-auto"
+      className="w-full bg-tertiary-200 py-12 bg-amber-300 absolute b-0 mt-auto"
       aria-labelledby="footer-heading"
     >
       <div className="section-center  flex items-center justify-center">
@@ -19,7 +19,7 @@ const Footer = () => {
                 className="mx-2 text-secondary-900 hover:text-secondary-600"
                 rel="noopener noreferrer"
               >
-                @NamLabs
+                @SonPham
               </a>
               
             </span>

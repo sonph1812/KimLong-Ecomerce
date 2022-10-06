@@ -6,7 +6,7 @@ const Promo = () => {
                 <div className="relative section-center sm:static">
                     <div className="sm:max-w-lg">
                         <h2 className="text-3xl font font-extrabold tracking-tight text-gray-900 sm:text-6xl">
-                            OUR WATCHES ARE CRAFTED WITH SCRUPULOUS ATTENTION TO DETAIL.
+                            OUR PHONES ARE MADE WITH LOVE.
                         </h2>
                         <p className="mt-4 text-base text-gray-500">
                             Explore the collection of prestigious, high-precision timepieces.
@@ -25,57 +25,57 @@ const Promo = () => {
                                     <div className="flex items-center space-x-6 lg:space-x-8">
                                         <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
                                             <div className="w-44 h-64 rounded-lg overflow-hidden sm:opacity-0 lg:opacity-100">
-                                                {/*<img*/}
-                                                {/*    src={promo1}*/}
-                                                {/*    alt=""*/}
-                                                {/*    className="w-full h-full object-center object-cover"*/}
-                                                {/*/>*/}
+                                                <img
+                                                    src={"admin2.jpeg"}
+                                                    alt=""
+                                                    className="w-full h-full object-center object-cover"
+                                                />
                                             </div>
                                             <div className="w-44 h-64 rounded-lg overflow-hidden">
-                                                {/*<img*/}
-                                                {/*    src={promo2}*/}
-                                                {/*    alt=""*/}
-                                                {/*    className="hidden lg:flex w-full h-full object-center object-cover"*/}
-                                                {/*/>*/}
-                                            </div>
-                                        </div>
-                                        <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div className="w-44 h-64 rounded-lg overflow-hidden">
-                                                {/*<img*/}
-                                                {/*    src={promo3}*/}
-                                                {/*    alt=""*/}
-                                                {/*    className="w-full h-full object-center object-cover"*/}
-                                                {/*/>*/}
-                                            </div>
-                                            <div className="w-44 h-64 rounded-lg overflow-hidden">
-                                                {/*<img*/}
-                                                {/*//     src={promo4}*/}
-                                                {/*//     alt=""*/}
-                                                {/*//     className="w-full h-full object-center object-cover"*/}
-                                                {/*// />*/}
-                                            </div>
-                                            <div className="w-44 h-64 rounded-lg overflow-hidden">
-                                                {/*<img*/}
-                                                {/*    src={promo5}*/}
-                                                {/*    alt=""*/}
-                                                {/*    className="w-full h-full object-center object-cover"*/}
-                                                {/*/>*/}
+                                                <img
+                                                    src={"admin2.jpeg"}
+                                                    alt=""
+                                                    className="hidden lg:flex w-full h-full object-center object-cover"
+                                                />
                                             </div>
                                         </div>
                                         <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
                                             <div className="w-44 h-64 rounded-lg overflow-hidden">
-                                                {/*<img*/}
-                                                {/*    src={promo6}*/}
-                                                {/*    alt=""*/}
-                                                {/*    className="w-full h-full object-center object-cover"*/}
-                                                {/*/>*/}
+                                                <img
+                                                    src={"admin2.jpeg"}
+                                                    alt=""
+                                                    className="w-full h-full object-center object-cover"
+                                                />
                                             </div>
                                             <div className="w-44 h-64 rounded-lg overflow-hidden">
-                                                {/*<img*/}
-                                                {/*    src={promo7}*/}
-                                                {/*    alt=""*/}
-                                                {/*    className="w-full h-full object-center object-cover"*/}
-                                                {/*/>*/}
+                                                <img
+                                                    src={"admin2.jpeg"}
+                                                    alt=""
+                                                    className="w-full h-full object-center object-cover"
+                                                />
+                                            </div>
+                                            <div className="w-44 h-64 rounded-lg overflow-hidden">
+                                                <img
+                                                    src={"admin2.jpeg"}
+                                                    alt=""
+                                                    className="w-full h-full object-center object-cover"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
+                                            <div className="w-44 h-64 rounded-lg overflow-hidden">
+                                                <img
+                                                    src={"admin2.jpeg"}
+                                                    alt=""
+                                                    className="w-full h-full object-center object-cover"
+                                                />
+                                            </div>
+                                            <div className="w-44 h-64 rounded-lg overflow-hidden">
+                                                <img
+                                                    src={"admin2.jpeg"}
+                                                    alt=""
+                                                    className="w-full h-full object-center object-cover"
+                                                />
                                             </div>
                                         </div>
                                     </div>

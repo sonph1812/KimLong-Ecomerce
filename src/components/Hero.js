@@ -11,16 +11,18 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="relative overflow-hidden  py-0 sm:py-24">
+    <div className="relative overflow-hidden  py-5 xl:py-24">
+      {/*<video controls="false" autoplay="autoplay"*/}
+      {/*    src={"assets/ip14.webm"}*/}
+      {/*    className=" w-1/3 h-1/2 object-center w-full relative  "*/}
+      {/*/>*/}
       <div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
         <div className="relative section-center sm:static">
           <div className="sm:max-w-lg">
             <h1 className="text-4xl font font-extrabold tracking-tight text-gray-900 sm:text-6xl">
-              Summer styles are finally here
-            </h1>
-            <p className="mt-4 text-xl text-gray-500">
-              This year, our new summer collection will shelter you from the
-              harsh elements of a world that doesn't care if you live or die.
+Có tất cả nhưng thiếu frontend         </h1>
+            <p className="mt-4 text-xl text-gray-500 absolute">
+              Bao giờ đổ xong dữ liệu
             </p>
           </div>
           <div>
@@ -34,57 +36,57 @@ const Hero = () => {
                   <div className="flex items-center space-x-6 lg:space-x-8">
                     <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
                       <div className="w-44 h-64 rounded-lg overflow-hidden sm:opacity-0 lg:opacity-100">
-                        {/*<img*/}
-                        {/*  src={product1}*/}
-                        {/*  alt=""*/}
-                        {/*  className="w-full h-full object-center object-cover"*/}
-                        {/*/>*/}
+                        <img
+                          src={"assets/iphone14.jpeg"}
+                          alt=""
+                          className="w-full h-full object-center  relative object-cover"
+                        />
                       </div>
                       <div className="w-44 h-64 rounded-lg overflow-hidden">
-                        {/*<img*/}
-                        {/*  src={product2}*/}
-                        {/*  alt=""*/}
-                        {/*  className="w-full h-full object-center object-cover"*/}
-                        {/*/>*/}
-                      </div>
-                    </div>
-                    <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
-                      <div className="w-44 h-64 rounded-lg overflow-hidden">
-                        {/*<img*/}
-                        {/*  src={product3}*/}
-                        {/*  alt=""*/}
-                        {/*  className="w-full h-full object-center object-cover"*/}
-                        {/*/>*/}
-                      </div>
-                      <div className="w-44 h-64 rounded-lg overflow-hidden">
-                        {/*<img*/}
-                        {/*  src={product4}*/}
-                        {/*  alt=""*/}
-                        {/*  className="w-full h-full object-center object-cover"*/}
-                        {/*/>*/}
-                      </div>
-                      <div className="w-44 h-64 rounded-lg overflow-hidden">
-                        {/*<img*/}
-                        {/*  src={product5}*/}
-                        {/*  alt=""*/}
-                        {/*  className="w-full h-full object-center object-cover"*/}
-                        {/*/>*/}
+                        <img
+                            src={"admin.jpeg"}
+                          alt=""
+                          className="w-full h-full object-center object-cover"
+                        />
                       </div>
                     </div>
                     <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
                       <div className="w-44 h-64 rounded-lg overflow-hidden">
-                        {/*<img*/}
-                        {/*  src={product6}*/}
-                        {/*  alt=""*/}
-                        {/*  className="w-full h-full object-center object-cover"*/}
-                        {/*/>*/}
+                        <img
+                           src={"admin.jpeg"}
+                          alt=""
+                          className="w-full h-full object-center object-cover"
+                        />
                       </div>
                       <div className="w-44 h-64 rounded-lg overflow-hidden">
-                        {/*<img*/}
-                        {/*  src={product7}*/}
-                        {/*  alt=""*/}
-                        {/*  className="w-full h-full object-center object-cover"*/}
-                        {/*/>*/}
+                        <img
+                            src={"admin.jpeg"}
+                          alt=""
+                          className="w-full h-full object-center object-cover"
+                        />
+                      </div>
+                      <div className="w-44 h-64 rounded-lg overflow-hidden">
+                        <img
+                            src={"admin.jpeg"}
+                          alt=""
+                          className="w-full h-full object-center object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
+                      <div className="w-44 h-64 rounded-lg overflow-hidden">
+                        <img
+                            src={"admin.jpeg"}
+                          alt=""
+                          className="w-full h-full object-center object-cover"
+                        />
+                      </div>
+                      <div className="w-44 h-64 rounded-lg overflow-hidden">
+                        <img
+                            src={"admin.jpeg"}
+                          alt=""
+                          className="w-full h-full object-center object-cover"
+                        />
                       </div>
                     </div>
                   </div>

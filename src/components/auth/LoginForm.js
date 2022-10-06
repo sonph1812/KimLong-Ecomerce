@@ -54,19 +54,24 @@ function LoginForm() {
     };
     return (
         <div>
-            <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-                <div className="w-full max-w-md space-y-8">
-                    <div>
-                        <img
-                            className="mx-auto h-12 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                            alt="Your Company"
-                        />
-                        <h1 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                            Sign in to your account
-                        </h1>
-                    </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
+            {/*<div className="w-screen h-screen flex justify-center items-center*/}
+    {/*bg-gradient-to-tl from-white to-white">*/}
+            <div>
+
+                <h1 className="mt-6 text-center text-3xl font-bold tracking-tight text-black">
+                    Sign in to your account
+                </h1>
+            </div>
+
+
+            <div className="flex  md:flex-row items-center justify-center  px-4 sm:px-8 lg:px-8">
+                <div className="h-full md:h-auto md:w-1/2">
+                    <img className="mt-8 space-y-6 px-5 py-5 bg-yellow-200  rounded-lg" src="https://source.unsplash.com/user/erondu/1600x900"
+                         alt="img"/>
+                </div>
+                <div className="h-full md:h-auto md:w-1/2">
+
+                    <form className="mt-8 space-y-6 px-5 py-5 bg-yellow-200  rounded-lg " action="#" method="POST">
                         <input type="hidden" name="remember" defaultValue="true" />
                         <div className="-space-y-px rounded-md shadow-sm">
                             <div>
@@ -163,6 +168,7 @@ function LoginForm() {
                 </div>
             </div>
         </div>
+        // </div>
     );
 }
 
