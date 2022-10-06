@@ -4,16 +4,15 @@ import products from "../../pages/Products";
 const initialState = {
     products: [],
     product: {},
-    loading:false
+    loading: false,
+    listSearch:null
 }
 const productSlice = createSlice({
-    name:'products',
+    name: 'products',
     initialState,
-    reducers:{
-        getAllProductSlice: (state,action) =>{
-
+    reducers: {
+        getAllProductSlice: (state, action) => {
             state.products = action.payload
-
         },
         createProductSlice:(state, action) => {
             state.products.push(action.payload)
@@ -28,6 +27,11 @@ const productSlice = createSlice({
         getDetailProductSlice : (state,action) => {
 
             state.product = action.payload
+        },
+        setProductSearch: (state, action) => {
+            console.log('ok2');
+            state.listSearch = action.payload
+
         }
 
 
@@ -35,5 +39,5 @@ const productSlice = createSlice({
     }
 })
 
-export const {getAllProductSlice,createProductSlice,deleteProductSlice,updateProductSlice,getDetailProductSlice} = productSlice.actions;
+export const {setProductSearch, getAllProductSlice, createProductSlice, deleteProductSlice, updateProductSlice, getDetailProductSlice } = productSlice.actions;
 export default productSlice.reducer;

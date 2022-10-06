@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {Ecommerce, Editor} from './pages';
 import './App.css';
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch } from "react-redux"
 import { getUserInfo } from './reducer/slice/userSlice';
 import { getAllUser, getAllStaff } from "./service/userService"
 import jwt_decode from "jwt-decode"
@@ -15,8 +15,9 @@ import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
+import {getAllProduct} from "./service/sellerService";
+import Customers from "./pages/Customers";
 import {getAllBrand} from "./service/brandService";
-
 
 
 
@@ -25,22 +26,21 @@ const App = () => {
   const token = localStorage.getItem('token')
   
   useEffect(() => {
+
     if (token) {
       const user = jwt_decode(token).user
       dispatch(getUserInfo(user))
       if (user.roleId.name == "admin") {
         getAllStaff(dispatch)
         getAllUser(dispatch)
+        getAllProduct(dispatch)
 
-      } else if (user.roleId.name == "seller") {
-
-      } else if (user.roleId.name == "accountant") {
-
-      } else if (user.roleId.name == "user") {
-
+      } else if (user.roleId.name == "seller" || user.roleId.name == "user") {
+        getAllProduct(dispatch)
       }
     }
-  }, []);
+  }, [token]);
+
 
   return (
     <BrowserRouter>
@@ -59,8 +59,8 @@ const App = () => {
 
 
 
-          <Route path="" element={(<Ecommerce />)} />
-          {/*<Route path="ecommerce" element={(<Ecommerce />)} />*/}
+          {/*<Route path="" element={(<Ecommerce />)} />*/}
+          <Route path="customers" element={(<Customers/>)} />
           {/*<Route path="orders" element={<Orders />} />*/}
           {/*<Route path="kanban" element={<Kanban />} />*/}
           {/*<Route path="calendar" element={<Calendar />} />*/}
