@@ -21,6 +21,9 @@ const productSlice = createSlice({
             state.products = state.products.filter((arrow) => arrow._id !== action.payload)
         },
         updateProductSlice : (state,action) => {
+            console.log(action.payload)
+            // state.products.push(action.payload)
+            // state.loading = false
 
         },
         getDetailProductSlice : (state,action) => {

@@ -5,6 +5,7 @@ import {
     getAllProductSlice,
     getDetailProductSlice, updateProductSlice
 } from "../reducer/slice/productSlice";
+import products from "../pages/Products";
 
 const baseURL = "http://localhost:3000";
 
@@ -28,7 +29,6 @@ export const deleteProduct = async (dispatch, id) => {
     }
 }
 export const updateProducts = async (dispatch, props) => {
-    console.log(props.product)
     const res = await customAxios.put(`${baseURL}/admin/products/${props.id}`,props.product)
-    dispatch(updateProductSlice());
+    dispatch(updateProductSlice(props.product));
 }

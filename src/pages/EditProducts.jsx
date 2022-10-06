@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getDetailProduct, updateProducts} from "../service/productService";
+import {getAllProduct, getDetailProduct, updateProducts} from "../service/productService";
 import {useNavigate, useParams} from "react-router-dom";
 
 const EditProducts = () => {
@@ -11,6 +11,7 @@ const EditProducts = () => {
 
     const dispatch = useDispatch();
     const products = useSelector((state)=> state.productReducer.products)
+    const brands = useSelector(s => s.brandReducer.brands)
 
     let productItem = products.filter(item =>(
         item._id === id
@@ -20,14 +21,14 @@ const EditProducts = () => {
         name: productItem[0].name,
         description: productItem[0].description,
         price: productItem[0].price,
-        rating: productItem[0].rating
+        rating: productItem[0].rating,
+        stock : productItem[0].stock,
+        brandId : productItem[0].brand
     })
 
     const handeEdit = () => {
-        // e.preventDefault()
         updateProducts(dispatch,{product: product,id: id})
         navigate('/admin/products')
-
     }
     return (
         <div>
@@ -75,27 +76,38 @@ const EditProducts = () => {
                                            value={product.rating}
                                            className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                                 </div>
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="first-name"
+                                           className="block text-sm font-medium text-neutral-900">Stock</label>
+                                    <input  onChange={(e) => setProduct({ ...product, stock : e.target.value })}
+                                        type="text" name="stock" id="first-name" autoComplete="given-name"
+                                            value={product.stock}
+                                           className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
+                                </div>
                                 <div>
                                     <label htmlFor="states" className="sr-only">Choose a state</label>
                                     <select id="states"
+                                            onChange={(e) => setProduct({ ...product, brandId: e.target.value })}
+                                            value={product.brandId}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected>Choose a state</option>
-                                        <option value="CA"></option>
-                                        <option value="TX">Texas</option>
-                                        <option value="WH">Washinghton</option>
-                                        <option value="FL">Florida</option>
-                                        <option value="VG">Virginia</option>
-                                        <option value="GE">Georgia</option>
-                                        <option value="MI">Michigan</option>
+                                        <option selected>Brand</option>
+                                        {brands && brands.map((brand)=>(
+                                            <option value={brand._id}>{brand.name}</option>
+                                        ))}
                                     </select>
 
                                 </div>
-                                {/*<div className="col-span-6 sm:col-span-3">*/}
-                                {/*    <label htmlFor="first-name"*/}
-                                {/*           className="block text-sm font-medium text-neutral-900">Stock</label>*/}
-                                {/*    <input type="text" name="stock" id="first-name" autoComplete="given-name"*/}
-                                {/*           className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>*/}
+                                {/*<div>*/}
+                                {/*    <label htmlFor="states" className="sr-only">Choose a state</label>*/}
+                                {/*    <select id="states"*/}
+                                {/*            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">*/}
+                                {/*        <option selected>Choose a state</option>*/}
+                                {/*        <option value="CA"></option>*/}
+                                {/*        <option value="TX">Texas</option>*/}
+                                {/*    </select>*/}
+
                                 {/*</div>*/}
+
 
                             </div>
                         </div>
