@@ -32,7 +32,6 @@ export const addStaff = async (data,dispatch) => {
     dispatch(addStaffSlice(res.data))
 }
 export const addUser = async (data,dispatch) => {
-    // console.log(data);
     const res = await customAxios.post(`${baseURL}/user`, data)
     dispatch(addUserSlice(res.data))
 }

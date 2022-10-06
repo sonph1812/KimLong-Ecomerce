@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Staffs ,Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
 import CreateCustomer  from './pages/customer/create';
 import CreateStaff from './pages/staffs/create';
+import UpdateStaffs from './pages/staffs/update';
 import './App.css';
 import { useDispatch } from "react-redux"
 import { getUserInfo } from './reducer/slice/userSlice';
@@ -60,6 +61,7 @@ const App = () => {
           <Route path='customers/create' element={<CreateCustomer/>}/>
           <Route path="staffs" element={<Staffs />} />
           <Route path='staffs/create' element={<CreateStaff/>}/>
+          <Route path='staffs/update' element={<UpdateStaffs/>}/>
 
 
 

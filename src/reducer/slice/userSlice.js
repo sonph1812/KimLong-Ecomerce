@@ -29,6 +29,7 @@ const userSlice = createSlice({
         },
         addStaffSlice: (state, action) => {
             state.staffs.push(action.payload[0])
+            console.log('actionne',action)
         },
         addUserSlice: (state, action) => {
             
@@ -37,7 +38,7 @@ const userSlice = createSlice({
         deleteUserSlice: (state, action) => {
             state.users = state.users.filter((arrow) => arrow._id !== action.payload)
             state.staffs = state.staffs.filter((arrow) => arrow._id !== action.payload)
-            console.log('action',action)
+            // console.log('action',action)
         },
         updateRoleUserSlice: (state, action) => {
 

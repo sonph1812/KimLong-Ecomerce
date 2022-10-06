@@ -25,6 +25,11 @@ function Staffs() {
      navigate(`/admin/staffs`);
   }
 
+  const handleUpdate = () =>{
+    navigate(`/admin/staffs/update`);
+  }
+
+
     return (
         <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
           <button onClick={handleCreateStaffs}  className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Staffs</button>
@@ -53,7 +58,7 @@ function Staffs() {
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.gender} </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.address} </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.roleId.name} </td>
-                    <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm" >  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                    <td onClick={()=>{handleUpdate()}} className="px-2 py-2 border-b border-gray-200 bg-white text-sm" >  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                       Update
                     </button> </td>
                     <td onClick={()=>{handleDelete(user._id)}} className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full"  >

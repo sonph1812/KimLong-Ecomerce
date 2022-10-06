@@ -34,7 +34,7 @@ function CreateStaff() {
   return (
     <div>
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-        <Header title="Create Custommer" />
+        <Header title="Create Staff" />
         <form method="POST">
           <div className="overflow-hidden shadow sm:rounded-md">
             <div className="bg-white px-4 py-5 sm:p-6">
