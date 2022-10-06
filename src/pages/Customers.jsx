@@ -23,7 +23,7 @@ const Customers = () => {
 
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <div onClick = {()=>{handelUser()}}><Header category="Page" title="Custommer" /></div>
-      <Search list={list} model="admin" ></Search>
+      <Search list={list} model="user" ></Search>
       <table className="min-w-full leading-normal ">
         <thead>
           <tr>
