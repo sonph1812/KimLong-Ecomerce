@@ -31,7 +31,4 @@ export const deleteProduct = async (dispatch, id) => {
 export const updateProducts = async (dispatch, props) => {
     const res = await customAxios.put(`${baseURL}/admin/products/${props.id}`,props.product)
     dispatch(updateProductSlice());
-    if(res === true){
-        getAllProduct(dispatch)
-    }
 }

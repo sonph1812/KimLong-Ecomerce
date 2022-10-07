@@ -6,7 +6,7 @@ import {getAllProduct, getDetailProduct, updateProducts} from "../service/produc
 import {useNavigate, useParams} from "react-router-dom";
 
 const EditProducts =  () => {
-    let navigate = useNavigate();
+    let navigate = useNavigate()
     let {id} = useParams();
     const dispatch = useDispatch();
     const products = useSelector((state)=> state.productReducer.products)
@@ -27,7 +27,6 @@ const EditProducts =  () => {
 
     const handeEdit = () => {
         updateProducts(dispatch,{product: product,id: id})
-        getAllProduct(dispatch)
         navigate('/admin/products')
     }
     return (
