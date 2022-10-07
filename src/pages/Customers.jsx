@@ -9,7 +9,7 @@ import {useNavigate} from "react-router";
 const Customers = () => {
   const list = useSelector(state => state.userReducer.users)
   const listSearch = useSelector (s => s.userReducer.listSearch)
-  const [users, setUsers] = useState(list)
+  const [users, setUsers] = useState([])
   const role = localStorage.getItem('role')
   const dispatch = useDispatch()
   useEffect (()=>{
@@ -17,6 +17,9 @@ const Customers = () => {
       setUsers(listSearch)
     }
   },[listSearch])
+  useEffect(() => {
+    setUsers(list)
+  }, [list])
   const handelUser = () => {
     dispatch(setListSearch(null))
     setUsers(list)
