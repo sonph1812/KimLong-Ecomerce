@@ -14,7 +14,6 @@ const baseURL = "http://localhost:3000";
 export const getAllBrand = async (dispatch) => {
     const res = await customAxios.get(`${baseURL}/brand`)
     dispatch(getAllBrandSlice(res.data))
-
 }
 export const createBrand = async (data,dispatch) => {
     const res = await customAxios.post(`${baseURL}/brand`)

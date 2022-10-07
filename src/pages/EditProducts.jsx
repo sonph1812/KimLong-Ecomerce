@@ -11,6 +11,7 @@ const EditProducts =  () => {
     const dispatch = useDispatch();
     const products = useSelector((state)=> state.productReducer.products)
     const brands = useSelector(s => s.brandReducer.brands)
+    const categories = useSelector(s => s.categoryReducer.category)
 
     let productItem = products.filter(item =>(
         item._id === id
@@ -21,7 +22,8 @@ const EditProducts =  () => {
         price: productItem[0].price,
         rating: productItem[0].rating,
         stock : productItem[0].stock,
-        brandId : productItem[0].brand
+        brandId : productItem[0].brand,
+        categoryId : productItem[0].category
     })
     console.log(productItem[0].name)
 
@@ -84,7 +86,7 @@ const EditProducts =  () => {
                                            className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                                 </div>
                                 <div>
-                                    <label htmlFor="states" className="sr-only">Choose a state</label>
+                                    <label htmlFor="states" className="sr-only">Brand</label>
                                     <select id="states"
                                             onChange={(e) => setProduct({ ...product, brandId: e.target.value })}
                                             value={product.brandId}
@@ -94,19 +96,19 @@ const EditProducts =  () => {
                                             <option value={brand._id}>{brand.name}</option>
                                         ))}
                                     </select>
-
                                 </div>
-                                {/*<div>*/}
-                                {/*    <label htmlFor="states" className="sr-only">Choose a state</label>*/}
-                                {/*    <select id="states"*/}
-                                {/*            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">*/}
-                                {/*        <option selected>Choose a state</option>*/}
-                                {/*        <option value="CA"></option>*/}
-                                {/*        <option value="TX">Texas</option>*/}
-                                {/*    </select>*/}
-
-                                {/*</div>*/}
-
+                                <div>
+                                    <label htmlFor="states" className="sr-only">Category</label>
+                                    <select id="states"
+                                            onChange={(e) => setProduct({ ...product, categoryId : e.target.value })}
+                                            value={product.categoryId}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected>Category</option>
+                                        {categories && categories.map((category)=>(
+                                            <option value={category._id}>{category.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
 
                             </div>
                         </div>

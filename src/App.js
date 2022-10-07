@@ -18,6 +18,7 @@ import EditProducts from "./pages/EditProducts";
 import { getAllProduct } from "./service/productService";
 import Customers from "./pages/Customers";
 import { getAllBrand } from "./service/brandService";
+import {getAllCategory} from "./service/categoryService";
 
 
 
@@ -30,6 +31,7 @@ const App = () => {
     if (token) {
       getAllProduct(dispatch)
       getAllBrand(dispatch)
+      getAllCategory(dispatch)
       const user = jwt_decode(token).user
       dispatch(getUserInfo(user))
       if (user.roleId.name == "admin") {
@@ -40,6 +42,7 @@ const App = () => {
       } else if (user.roleId.name == "seller" || user.roleId.name == "user") {
         getAllProduct(dispatch)
         getAllBrand(dispatch)
+        getAllCategory(dispatch)
       }
     }
   }, [token]);
