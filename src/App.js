@@ -42,7 +42,7 @@ const App = () => {
       } else if (user.roleId.name == "seller" || user.roleId.name == "user") {
         getAllProduct(dispatch)
         getAllBrand(dispatch)
-        getAllCategory(dispatch)
+        // getAllCategory(dispatch)
       }
     }
   }, [token]);

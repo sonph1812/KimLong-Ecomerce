@@ -9,7 +9,6 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 const Editor = () => {
   const brands = useSelector(s => s.brandReducer.brands)
     const categories = useSelector(s => s.categoryReducer.categories)
-    console.log(categories)
     const navigate = useNavigate();
     const [image, setImage] = useState();
     const dispatch = useDispatch()

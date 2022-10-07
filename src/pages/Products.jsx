@@ -13,9 +13,7 @@ const Products = () => {
   const list = useSelector(state => state.productReducer.products)
   const listSearch = useSelector(s => s.productReducer.listSearch)
   const [products, setProduct] = useState([])
-    // console.log(products)
   const role = localStorage.getItem('role')
-
   useEffect(() => {
     if (listSearch) {
       setProduct(listSearch)
