@@ -23,6 +23,10 @@ import HomeUser from "./pages/HomeUser";
 import ProductList from "./pages/ProductList";
 import SingleProductPage from "./pages/SingleProductPage";
 import {getAllCategory} from "./service/categoryService";
+import  CreateCategory from './pages/CreateCategory';
+import Categories from './pages/Categories';
+
+
 
 
 
@@ -80,6 +84,8 @@ element={<SingleProductPage/>} ></Route>
 
           {/*<Route path="" element={(<Ecommerce />)} />*/}
           <Route path="customers" element={(<Customers />)} />
+          <Route path="categories" element={(<Categories/>)} />
+          <Route path='addCategory' element={(<CreateCategory/>)} />
           {/*<Route path="orders" element={<Orders />} />*/}
           {/*<Route path="kanban" element={<Kanban />} />*/}
           {/*<Route path="calendar" element={<Calendar />} />*/}

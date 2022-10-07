@@ -11,6 +11,8 @@ import { useStateContext } from '../contexts/ContextProvider';
 import { IoMdContacts } from 'react-icons/io';
 import { RiContactsLine } from 'react-icons/ri';
 import {  AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiFillAppstore } from 'react-icons/ai';
+
 
 const Sidebar = () => {
   const role = localStorage.getItem('role')
@@ -36,7 +38,13 @@ const Sidebar = () => {
         name: 'staffs',
         icon: <RiContactsLine />,
         role: "admin"
+      },
+      {
+        name : 'categories',
+        icon : <AiFillAppstore />,
+        role : 'admin'
       }
+
     ]
   const handleCloseSideBar = () => {
     if (activeMenu !== undefined && screenSize <= 900) {

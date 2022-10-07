@@ -15,7 +15,7 @@ export const getAllCategory = async (dispatch) => {
     dispatch(getAllCategorySlice(res.data))
 }
 export const createCategory = async (data,dispatch) =>{
-    const res = await customAxios.post(`${baseURL}/category`)
+    const res = await customAxios.post(`${baseURL}/category`,data)
     dispatch(createCategorySlice(res.data))
 }
 export const deleteCategory = async (dispatch,id) => {
