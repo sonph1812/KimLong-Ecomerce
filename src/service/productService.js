@@ -13,7 +13,7 @@ export const getAllProduct = async (dispatch) => {
     dispatch(getAllProductSlice(res.data))
 }
 export const getDetailProduct = async (dispatch, id) => {
-    const res = await customAxios.get(`${baseURL}/admin/products/${id}`)
+    const res = await customAxios.get(`${baseURL}/admin/products/633e82a1c92cb75ee2e5e0e7`)
     dispatch(getDetailProductSlice(res.data.product))
 }
 export const createProduct = async (data, dispatch) => {
