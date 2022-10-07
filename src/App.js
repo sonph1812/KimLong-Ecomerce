@@ -29,23 +29,20 @@ import {getAllCategory} from "./service/categoryService";
 const App = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
-
+  console.log(token , 1);
   useEffect(() => {
-
+    getAllProduct(dispatch)
+    getAllBrand(dispatch)
+    getAllCategory(dispatch)
     if (token) {
-      getAllProduct(dispatch)
-      getAllBrand(dispatch)
-      getAllCategory(dispatch)
       const user = jwt_decode(token).user
       dispatch(getUserInfo(user))
       if (user.roleId.name == "admin") {
         getAllStaff(dispatch)
         getAllUser(dispatch)
-        getAllProduct(dispatch)
-
       } else if (user.roleId.name == "seller" || user.roleId.name == "user") {
-        getAllProduct(dispatch)
-        getAllBrand(dispatch)
+        // getAllProduct(dispatch)
+        // getAllBrand(dispatch)
       }
     }
   }, [token]);
