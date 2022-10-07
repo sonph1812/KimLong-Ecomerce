@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from '../components';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { createProduct, deleteProduct, getDetailProduct, updateProducts } from "../service/productService";
+import {createProduct, deleteProduct, getAllProduct, getDetailProduct, updateProducts} from "../service/productService";
 import { useNavigate } from "react-router-dom";
 import Search from '../components/Search';
 import { setProductSearch } from "../reducer/slice/productSlice"
@@ -14,12 +14,12 @@ const Products = () => {
   const listSearch = useSelector(s => s.productReducer.listSearch)
   const [products, setProduct] = useState([])
   const role = localStorage.getItem('role')
-
   useEffect(() => {
     if (listSearch) {
       setProduct(listSearch)
     }
   }, [listSearch])
+
 
   useEffect(() => {
     setProduct(list)
@@ -41,17 +41,18 @@ const Products = () => {
     }
 
   return (
+
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+
       <div onClick={() => { handelProduct() }}>
         <Header category="Page" title="Products" />
+              <div>
+                  <button className="col-span-2 sm:col-span-3 absolute px-3 bg-yellow-200 opacity-50 rounded-full row hover:bg-green-800 focus:outline-none rounded" onClick={() => { handlerCreate() }}>Create</button>
+              </div>
       </div>
-      <Search list={products} model="product" ></Search>
-      <div className="grid grid-cols-6 gap-6">
 
-        <div>
-          <button className="col-span-2 sm:col-span-3 absolute px-3 bg-yellow-200 opacity-50 rounded-full row hover:bg-green-800 focus:outline-none rounded" onClick={() => { handlerCreate() }}>Create</button>
-        </div>
-      </div>
+      <Search list={products} model="product" ></Search>
+
 
       <table className="min-w-full leading-normal ">
 
@@ -69,7 +70,7 @@ const Products = () => {
             </tr>
             </thead>
             <tbody>
-            {role && products .map((product,index) => (
+            {role && products.map((product,index) => (
                 <tr key={product._id}>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.name}</td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.price} $</td>

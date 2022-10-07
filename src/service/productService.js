@@ -3,8 +3,10 @@ import {
     createProductSlice,
     deleteProductSlice,
     getAllProductSlice,
-    getDetailProductSlice, updateProductSlice
+    getDetailProductSlice,
+    updateProductSlice
 } from "../reducer/slice/productSlice";
+
 
 const baseURL = "http://localhost:3000";
 
@@ -28,7 +30,9 @@ export const deleteProduct = async (dispatch, id) => {
     }
 }
 export const updateProducts = async (dispatch, props) => {
-    console.log(props.product)
     const res = await customAxios.put(`${baseURL}/admin/products/${props.id}`,props.product)
     dispatch(updateProductSlice());
+    if (res){
+        window.location.reload();
+    }
 }

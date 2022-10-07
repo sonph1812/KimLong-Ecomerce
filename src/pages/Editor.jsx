@@ -8,6 +8,7 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const Editor = () => {
   const brands = useSelector(s => s.brandReducer.brands)
+    const categories = useSelector(s => s.categoryReducer.categories)
     const navigate = useNavigate();
     const [image, setImage] = useState();
     const dispatch = useDispatch()
@@ -25,14 +26,15 @@ const Editor = () => {
             const imageRef = ref(storage, `images/${imageUpload?.name}`);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    console.log(url);
+                    // console.log(url);
                     products.image = url;
                     console.log(products)
-                     createProduct(products, dispatch)
+                    createProduct(products, dispatch)
                 ;
                 });
             });
         }
+        navigate('/admin/products')
     }
 
 const handlePreviewAvatar = (e) => {
@@ -118,18 +120,21 @@ return (
                                     ))}
                                 </select>
                             </div>
+                            <div>
+                                <label htmlFor="states" className="sr-only">Category</label>
+                                <select id="categoryId"
+                                        name = "categoryId"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        onChange={(e)=>{handlerChange(e)}}
+                                >
+                                    <option selected>Category</option>
+                                    {categories && categories.map((category)=>(
+                                        <option value={category._id}>{category.name}</option>
+                                    ))}
+                                </select>
+                            </div>
                             <br/>
-                            {/*<div>*/}
-                            {/*    <label htmlFor="states" className="sr-only">Category</label>*/}
-                            {/*    <select id="states"*/}
-                            {/*            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">*/}
-                            {/*        <option selected>Brand</option>*/}
-                            {/*        <option value="CA">Apple</option>*/}
-                            {/*        <option value="TX">Sam Sung</option>*/}
-                            {/*        <option value="WH">Oppo</option>*/}
-                            {/*        <option value="FL">hawei</option>*/}
-                            {/*    </select>*/}
-                            {/*</div>*/}
+
                         </div>
                     </div>
                         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">

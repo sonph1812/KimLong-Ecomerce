@@ -15,12 +15,13 @@ import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
-import {getAllProduct, getDetailProduct} from "./service/productService";
+import { getAllProduct } from "./service/productService";
 import Customers from "./pages/Customers";
 import { getAllBrand } from "./service/brandService";
 import HomeUser from "./pages/HomeUser";
 import ProductList from "./pages/ProductList";
 import SingleProductPage from "./pages/SingleProductPage";
+import {getAllCategory} from "./service/categoryService";
 
 
 
@@ -28,11 +29,12 @@ const App = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
 
-  useEffect( async () => {
+  useEffect(() => {
 
     if (token) {
-       await getAllProduct(dispatch)
-      await getAllBrand(dispatch)
+      getAllProduct(dispatch)
+      getAllBrand(dispatch)
+      getAllCategory(dispatch)
       const user = jwt_decode(token).user
       dispatch(getUserInfo(user))
       if (user.roleId.name == "admin") {
@@ -43,7 +45,6 @@ const App = () => {
       } else if (user.roleId.name == "seller" || user.roleId.name == "user") {
         getAllProduct(dispatch)
         getAllBrand(dispatch)
-        getDetailProduct(dispatch)
       }
     }
   }, [token]);
@@ -73,6 +74,7 @@ element={<SingleProductPage/>} ></Route>
 
           {/*<Route path="" element={(<Ecommerce />)} />*/}
           <Route path="customers" element={(<Customers />)} />
+          {/*<Route path="orders" element={<Orders />} />*/}
           {/*<Route path="kanban" element={<Kanban />} />*/}
           {/*<Route path="calendar" element={<Calendar />} />*/}
           {/*<Route path="color-picker" element={<ColorPicker />} />*/}

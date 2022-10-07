@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import products from "../../pages/Products";
 
 const initialState = {
     products: [],
@@ -21,6 +22,9 @@ const productSlice = createSlice({
             state.products = state.products.filter((arrow) => arrow._id !== action.payload)
         },
         updateProductSlice : (state,action) => {
+            // console.log(action.payload)
+            // state.products.splice(action.payload)
+            // state.loading = false
 
         },
         getDetailProductSlice : (state,action) => {
