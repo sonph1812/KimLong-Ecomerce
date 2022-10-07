@@ -29,7 +29,7 @@ import {getAllCategory} from "./service/categoryService";
 const App = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
-  console.log(token , 1);
+  const userInfo = useSelector(s => s.userReducer.userInfo)
   useEffect(() => {
     getAllProduct(dispatch)
     getAllBrand(dispatch)

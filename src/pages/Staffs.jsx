@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '../components';
 import { useSelector, useDispatch } from "react-redux";
 import { addStaff ,deleteUser } from '../service/userService';
 import {useNavigate} from "react-router";
+import Search from '../components/Search';
 
 
 function Staffs() {
-    const staffs = useSelector(state => state.userReducer.staffs)
+    const list = useSelector(state => state.userReducer.staffs)
+    const [staffs,setStaffs] = useState(list);
     const role = localStorage.getItem('role')
-    console.log(staffs);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleCreateStaffs = (data) => {
@@ -34,6 +35,7 @@ function Staffs() {
         <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
           <button onClick={handleCreateStaffs}  className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Create Staffs</button>
           <Header category="Page" title="Staffs" />
+          <Search list={list} model="staff" ></Search>
           <table className="min-w-full leading-normal ">
             <thead>
               <tr>
