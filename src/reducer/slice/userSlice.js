@@ -29,15 +29,17 @@ const userSlice = createSlice({
             state.user = action.payload
         },
         addStaffSlice: (state, action) => {
+            state.staffs.push(action.payload[0])
+            console.log('actionne',action)
+        },
+        addUserSlice: (state, action) => {
+            
+            state.users.push(action.payload)
         },
         deleteUserSlice: (state, action) => {
-            if (action.payload.model == "staff") {
-               state.staffs.splice(action.payload.index,1)
-            }
-            if (action.payload.model == "user") {
-                state.users.splice(action.payload.index,1)
-            }
-
+            state.users = state.users.filter((arrow) => arrow._id !== action.payload)
+            state.staffs = state.staffs.filter((arrow) => arrow._id !== action.payload)
+            // console.log('action',action)
         },
         updateRoleUserSlice: (state, action) => {
 
@@ -63,6 +65,7 @@ export const {
     getAllStaffSlice,
     getDetailUserSlice,
     addStaffSlice,
+    addUserSlice,
     deleteUserSlice,
     updateRoleUserSlice,
     updateUserSlice,

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Ecommerce, Editor } from './pages';
+import { Staffs ,Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
+import CreateStaff from './pages/staffs/CreateStaff';
+import UpdateStaff from './pages/staffs/UpdateStaff';
 import './App.css';
 import { useDispatch, useSelector } from "react-redux"
 import { getUserInfo } from './reducer/slice/userSlice';
@@ -16,7 +18,6 @@ import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
 import { getAllProduct } from "./service/productService";
-import Customers from "./pages/Customers";
 import { getAllBrand } from "./service/brandService";
 import HomeUser from "./pages/HomeUser";
 import ProductList from "./pages/ProductList";
@@ -68,6 +69,11 @@ element={<SingleProductPage/>} ></Route>
           <Route path="editProducts/:id" element={<EditProducts></EditProducts>} />
 
 
+
+
+          <Route path="staffs" element={<Staffs />} />
+          <Route path='staffs/create' element={<CreateStaff/>}/>
+          <Route path='staffs/update' element={<UpdateStaff/>}/>
 
 
 
