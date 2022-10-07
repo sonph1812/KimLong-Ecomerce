@@ -38,6 +38,7 @@ const Products = () => {
     }
     const handleUpdate = (id) => {
         getDetailProduct(dispatch,id)
+
         navigate(`/admin/editProducts/${id}`)
     }
 

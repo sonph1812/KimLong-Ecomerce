@@ -15,7 +15,6 @@ const EditProducts =  () => {
     let productItem = products.filter(item =>(
         item._id === id
     ))
-    console.log(productItem)
     const [product, setProduct] = useState({
         name: productItem[0].name,
         description: productItem[0].description,
@@ -24,6 +23,7 @@ const EditProducts =  () => {
         stock : productItem[0].stock,
         brandId : productItem[0].brand
     })
+    console.log(productItem[0].name)
 
     const handeEdit = () => {
         updateProducts(dispatch,{product: product,id: id})
