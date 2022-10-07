@@ -20,16 +20,15 @@ const Editor = () => {
     }
     const handlerCreate = async (e) => {
         e.preventDefault()
-        createProduct(products, dispatch)
         let imageUpload = image;
         if (imageUpload) {
             const imageRef = ref(storage, `images/${imageUpload?.name}`);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    // console.log(url);
+                    console.log(url);
                     products.image = url;
                     console.log(products)
-                    createProduct(products, dispatch)
+                     createProduct(products, dispatch)
                 ;
                 });
             });

@@ -4,6 +4,9 @@ import PageHero from "../components/PageHero";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {formatPrice} from "../utils/helpers";
+import { Dialog, Disclosure, Transition } from '@headlessui/react';
+import Btn from "../components/Btn";
+
 
 const ProductList = () => {
     const products = useSelector(state => state.productReducer.products)
@@ -12,25 +15,151 @@ const ProductList = () => {
         <>
             <NavbarUser/>
             <PageHero title="Products"/>
-            <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mb-10 place-items-center">
-                {products?.map((product, index) => (
-                    <Link to={`product/${product._id}`} className="group">
-                        <div className="w-full  max-w-sm aspect-square rounded-lg overflow-hidden  bg-tertiary-50">
-                            <img
-                                src={'admin2.jpeg'}
-                                // alt={name}
-                                className="w-40 h-40 object-center object-cover group-hover:opacity-75"
-                            />
-                        </div>
-                        <div className="flex-col items-center justify-center">
-                            <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-                            <p className="mt-1 text-lg font-medium text-gray-900">
-                                {formatPrice(product.price)}
-                            </p>
-                        </div>
-                    </Link>
-                ))}
-            </div>
+
+            {/*<>*/}
+            {/*    /!* Price header *!/*/}
+            {/*    <h3 className="-mx-2 -my-3 flow-root">*/}
+            {/*        <Disclosure>*/}
+
+
+
+
+            {/*            */}
+            {/*        </Disclosure>*/}
+            {/*        <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">*/}
+            {/*                <span className="font-medium text-gray-900">*/}
+            {/*                  Price*/}
+            {/*                </span>*/}
+            {/*            <span className="ml-6 flex items-center">*/}
+            {/*                  {open ? (*/}
+            {/*                      <svg*/}
+            {/*                          xmlns="http://www.w3.org/2000/svg"*/}
+            {/*                          className="h-5 w-5"*/}
+            {/*                          aria-hidden="true"*/}
+            {/*                          fill="none"*/}
+            {/*                          viewBox="0 0 24 24"*/}
+            {/*                          stroke="currentColor"*/}
+            {/*                      >*/}
+            {/*                          <path d="M18 12H6" />*/}
+            {/*                      </svg>*/}
+            {/*                  ) : (*/}
+            {/*                      <svg*/}
+            {/*                          xmlns="http://www.w3.org/2000/svg"*/}
+            {/*                          className="h-5 w-5"*/}
+            {/*                          aria-hidden="true"*/}
+            {/*                          fill="none"*/}
+            {/*                          viewBox="0 0 24 24"*/}
+            {/*                          stroke="currentColor"*/}
+            {/*                      >*/}
+            {/*                          <path d="M12 6v6m0 0v6m0-6h6m-6 0H6" />*/}
+            {/*                      </svg>*/}
+            {/*                  )}*/}
+            {/*                </span>*/}
+            {/*        </Disclosure.Button>*/}
+            {/*    </h3>*/}
+
+            {/*    /!* Price panel *!/*/}
+            {/*    <Disclosure.Panel className="pt-6">*/}
+            {/*        /!* <div className="space-y-6">*/}
+            {/*                {companies.map((option, optionIdx) => (*/}
+            {/*                  <div*/}
+            {/*                    key={optionIdx}*/}
+            {/*                    className="flex items-center"*/}
+            {/*                  >*/}
+            {/*                    <button*/}
+            {/*                      name="company"*/}
+            {/*                      type="button"*/}
+            {/*                      onClick={updateFilters}*/}
+            {/*                      className={`${*/}
+            {/*                        option.toLowerCase() === company*/}
+            {/*                          ? 'font-bold'*/}
+            {/*                          : null*/}
+            {/*                      }  text-gray-500 capitalize`}*/}
+            {/*                    >*/}
+            {/*                      {option}*/}
+            {/*                    </button>*/}
+            {/*                  </div>*/}
+            {/*                ))}*/}
+            {/*              </div> *!/*/}
+            {/*        <div className="space-y-6">*/}
+            {/*            {products.price?.map((p, priceIdx) => {*/}
+            {/*                if (p === 'all') {*/}
+            {/*                    return (*/}
+            {/*                        <div*/}
+            {/*                            key={priceIdx}*/}
+            {/*                            className="flex-col items-center"*/}
+            {/*                        >*/}
+            {/*                            <Disclosure.Button*/}
+            {/*                                name="price"*/}
+            {/*                                data-price={priceIdx}*/}
+            {/*                                // onClick={updateFilters}*/}
+            {/*                                className={`${*/}
+            {/*                                    priceIdx === p.price ? 'font-bold' : null*/}
+            {/*                                }  text-gray-500 capitalize`}*/}
+            {/*                            >*/}
+            {/*                                all*/}
+            {/*                            </Disclosure.Button>*/}
+            {/*                        </div>*/}
+            {/*                    );*/}
+            {/*                }*/}
+            {/*                return (*/}
+            {/*                    <div*/}
+            {/*                        key={priceIdx}*/}
+            {/*                        className="flex-col items-center"*/}
+            {/*                    >*/}
+            {/*                        <Disclosure.Button*/}
+            {/*                            key={priceIdx}*/}
+            {/*                            name="price"*/}
+            {/*                            data-price={p}*/}
+            {/*                            onClick={updateFilters}*/}
+            {/*                            className={`${*/}
+            {/*                                p === price ? 'font-bold' : null*/}
+            {/*                            }  text-gray-500 capitalize`}*/}
+            {/*                        >*/}
+            {/*                            less than {formatPrice(p)}*/}
+            {/*                        </Disclosure.Button>*/}
+            {/*                    </div>*/}
+            {/*                );*/}
+            {/*            })}*/}
+            {/*        </div>*/}
+            {/*    </Disclosure.Panel>*/}
+            {/*</>*/}
+            {/*<div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mb-10 place-items-center">*/}
+
+            {/*<Disclosure>*/}
+            {/*    <Disclosure.Button className="py-2">*/}
+            {/*        Is team pricing available?*/}
+            {/*    </Disclosure.Button>*/}
+            {/*    <Disclosure.Panel className="text-gray-500">*/}
+            {/*        Yes! You can purchase a license that you can share with your entire*/}
+            {/*        team.*/}
+            {/*    </Disclosure.Panel>*/}
+            {/*</Disclosure>*/}
+            {/*    </div>*/}
+
+<div className="lg:col-span-3">
+    <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mb-10 place-items-center">
+        {products?.map((product, index) => (
+            <Link to={`product/${product._id}`} className="group">
+                <div className="w-full  max-w-sm aspect-square rounded-lg overflow-hidden  bg-tertiary-50">
+                    <img
+                        src={product.image}
+                        // alt={name}
+                        className="w-40 h-40 object-center object-cover group-hover:opacity-75"
+                    />
+                </div>
+                <div className="flex-col items-center justify-center">
+                    <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
+                    <p className="mt-1 text-lg font-medium text-gray-900">
+                        {formatPrice(product.price)}
+                    </p>
+                </div>
+            </Link>
+        ))}
+    </div>
+
+</div>
+
         </>
     );
 };

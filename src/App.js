@@ -28,11 +28,11 @@ const App = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
 
-  useEffect( () => {
+  useEffect( async () => {
 
     if (token) {
-       getAllProduct(dispatch)
-      getAllBrand(dispatch)
+       await getAllProduct(dispatch)
+      await getAllBrand(dispatch)
       const user = jwt_decode(token).user
       dispatch(getUserInfo(user))
       if (user.roleId.name == "admin") {

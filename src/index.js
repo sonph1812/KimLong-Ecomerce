@@ -7,13 +7,13 @@ import { ContextProvider } from './contexts/ContextProvider';
 import {Provider} from "react-redux";
 import store from "./reducer/store";
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
       <ContextProvider>
           <Provider store={store}>
               <App />
           </Provider>
-      </ContextProvider>
+      </ContextProvider>,
 
-  </React.StrictMode>,
+  // </React.StrictMode>,
   document.getElementById('root'),
 );

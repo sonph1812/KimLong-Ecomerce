@@ -3,7 +3,7 @@ import React from 'react';
 const TestSwiper = () => {
     return (
         <div>
-            <img src={"assets/iphone14.jpeg"} alt=""/>
+            <img className="w-full min-h-fit" src={"assets/iphone.png"} alt=""/>
         </div>
     );
 };

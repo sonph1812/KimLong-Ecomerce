@@ -61,6 +61,7 @@ const Products = () => {
                 <td className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Price</td>
                 <td className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Description</td>
                 <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Rating</td>
+                <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Image</td>
                 <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Stock</td>
                 <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Brand</td>
                 <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Category</td>
@@ -74,6 +75,7 @@ const Products = () => {
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.price} $</td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.description}</td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.rating} </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"><img src={product.image}/> </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.stock} </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.brandId?.name}</td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.categoryId?.name} </td>
