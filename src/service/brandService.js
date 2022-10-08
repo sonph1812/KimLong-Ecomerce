@@ -17,13 +17,19 @@ export const getAllBrand = async (dispatch) => {
 }
 export const createBrand = async (data,dispatch) => {
     const res = await customAxios.post(`${baseURL}/brand`)
-    dispatch(createBrandSlice(res.data))
+    dispatch(createBrandSlice(data))
 }
 export const deleteBrand = async (dispatch,id) => {
-    const res = await customAxios.delete(`${baseURL}/brand/${id}`)
-    dispatch(deleteBrandSlice(id))
+    const deleteConfirm = window.confirm('Bạn muốn xóa chứ!!!')
+    if(deleteConfirm){
+        const res = await customAxios.delete(`${baseURL}/brand/${id}`)
+        dispatch(deleteBrandSlice(id))
+        }
 }
 export const updateBrand = async (dispatch,props) => {
     const res = await customAxios.put(`${baseURL}/brand/${props.id}`,props.brand)
-    dispatch(updateBrandSlice())
+    dispatch(updateBrandSlice());
+    if (res){
+        window.location.reload();
+    }
 }

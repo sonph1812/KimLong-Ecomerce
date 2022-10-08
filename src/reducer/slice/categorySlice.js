@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-
 const initialState = {
     categories : [],
     category : {},
@@ -20,6 +19,7 @@ const categorySlice = createSlice({
             state.categories = state.categories.filter((arrow) => arrow._id !== action.payload)
         },
         updateCategorySlice: (state, action) => {
+            
 
         },
         getDetailCategorySlice: (state, action) => {

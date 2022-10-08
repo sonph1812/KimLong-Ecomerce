@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {Header} from "../components";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import { createCategory } from '../service/categoryService';
+import { createCategory, updateCategory} from '../service/categoryService';
 
-const CreateCategory = () => {
+const EditCategories = () => {
     const categories = useSelector(s => s.categoryReducer.categories)
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -18,11 +18,11 @@ const CreateCategory = () => {
             [e.target.name]: e.target.value
         })
     };
-    const handlerCreate = async (e) => {
+    const handlerUpdate = async (e) => {
         if(addCategories == null || addCategories == "") {
             setIsTrue(true)
         }  else {
-            createCategory(addCategories, dispatch)
+            updateCategory(addCategories, dispatch)
             navigate("/admin/categories")
 
         }
@@ -53,7 +53,7 @@ const CreateCategory = () => {
                         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                             <button
                                     className="inline-flex justify-center rounded-md border border-transparent bg-yellow-300 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                    onClick={()=>{handlerCreate()}}>CREATE
+                                    onClick={()=>{handlerUpdate()}}>Update
                             </button>
                         </div>
                     </div>
@@ -65,4 +65,4 @@ const CreateCategory = () => {
 
 };
 
-export default CreateCategory;
+export default EditCategories;

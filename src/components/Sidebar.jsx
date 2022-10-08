@@ -12,6 +12,7 @@ import { IoMdContacts } from 'react-icons/io';
 import { RiContactsLine } from 'react-icons/ri';
 import {  AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiFillAppstore } from 'react-icons/ai';
+import {AiFillSketchCircle} from 'react-icons/ai'
 
 
 const Sidebar = () => {
@@ -43,6 +44,11 @@ const Sidebar = () => {
         name : 'categories',
         icon : <AiFillAppstore />,
         role : 'admin'
+      },
+      {
+      name : "brands",
+      icon : <AiFillSketchCircle />,
+      role : 'admin'
       }
 
     ]

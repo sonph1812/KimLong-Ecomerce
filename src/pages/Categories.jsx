@@ -5,12 +5,21 @@ import { deleteCategory, getDetailCategory, updateCategorys } from "../service/c
 import { useNavigate } from 'react-router-dom';
 
 const Categories = () => {
-  const categoryList = useSelector(state => state.categoryReducer.categories);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const handlerCreate = (data) => {
+const categoryList = useSelector(state => state.categoryReducer.categories);
+const dispatch = useDispatch();
+const navigate = useNavigate();
+const handlerCreate = (data) => {
     navigate('/admin/addCategory')
   }
+const handlerDelete = (id) => {
+    deleteCategory(dispatch,id)
+  }
+  
+const handleUpdate = (id) => {
+    getDetailCategory(dispatch,id)
+    navigate(`/admin/editCategories/${id}`)
+}
+
  
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -31,10 +40,10 @@ const Categories = () => {
               <tr key={category._id}>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {category.name}</td>
-                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm" >  <button style={{ position: "relative", left: "100px" }} class="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm" >  <button style={{ position: "relative", left: "100px" }} class="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => {handleUpdate(category._id)}}>
                   Update
                 </button> </td>
-                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button style={{ position: "relative", left: "10px" }} class="bg-yellow-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full">
+                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button style={{ position: "relative", left: "10px" }} class="bg-yellow-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full" onClick={() => {handlerDelete(category._id)}}>
                   Delete
                 </button> </td>
               </tr>

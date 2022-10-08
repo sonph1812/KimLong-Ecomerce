@@ -25,7 +25,9 @@ import SingleProductPage from "./pages/SingleProductPage";
 import {getAllCategory} from "./service/categoryService";
 import  CreateCategory from './pages/CreateCategory';
 import Categories from './pages/Categories';
-
+import EditCategories from './pages/EditCategories';
+import Brands from './pages/brand/Brand';
+import CreateBrand from './pages/brand/EditBrand';
 
 
 
@@ -86,6 +88,14 @@ element={<SingleProductPage/>} ></Route>
           <Route path="customers" element={(<Customers />)} />
           <Route path="categories" element={(<Categories/>)} />
           <Route path='addCategory' element={(<CreateCategory/>)} />
+          <Route path="editCategories/:id" element={<EditCategories></EditCategories>} />
+          <Route path ="brands" element = {<Brands />} />;
+          <Route path='addBrands' element = {(<CreateBrand />)} />
+
+          
+
+          
+
           {/*<Route path="orders" element={<Orders />} />*/}
           {/*<Route path="kanban" element={<Kanban />} />*/}
           {/*<Route path="calendar" element={<Calendar />} />*/}
