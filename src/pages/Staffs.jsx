@@ -3,7 +3,10 @@ import { Header } from '../components';
 import { useSelector, useDispatch } from "react-redux";
 import { addStaff ,deleteUser } from '../service/userService';
 import {useNavigate} from "react-router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Search from '../components/Search';
+
 
 
 function Staffs() {
@@ -21,7 +24,10 @@ function Staffs() {
   const handleDelete = (id) => { 
      let confirmDelete = window.confirm("Bạn muốn xóa chứ !")
      if(confirmDelete){
+      toast("Xoá thành công!");
       deleteUser(id, dispatch);
+     }else{
+      toast("Xoá thất bại!");
      }
      navigate(`/admin/staffs`);
   }
@@ -65,7 +71,9 @@ function Staffs() {
                     </button> </td>
                     <td onClick={()=>{handleDelete(user._id)}} className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full"  >
                       Delete
-                    </button> </td>
+                    </button>
+                    <ToastContainer />
+                     </td>
                   </tr>
                 ))
               }
