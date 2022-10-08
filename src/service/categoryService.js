@@ -25,12 +25,16 @@ export const deleteCategory = async (dispatch,id) => {
     dispatch(deleteCategorySlice(id))
     }
 }
-export const updateCategory = async (dispatch, props) => {
-    const res = await customAxios.put(`${baseURL}/category${props.id}`,props.category)
-    dispatch(updateCategorySlice());
-    if (res){
-        window.location.reload();
-    }
+export const updateCategory = async (id, data , dispatch) => {
+    customAxios.put(`${baseURL}/category/${id}`,{name:data}).then((res)=>{
+        console.log(res.data);
+    }).catch((err)=>{
+        console.log(err);
+    })
+    dispatch(updateCategorySlice({id,data}));
+    // if (res){
+    //     window.location.reload();
+    // }
 }
 export const getDetailCategory = async (dispatch, id) => {
     const res = await customAxios.get(`${baseURL}/category/${id}`)

@@ -23,7 +23,7 @@ const CreateBrand = () => {
     };
     const handlePreviewAvatar = (e) => {
         const file = e.target.files[0];
-        // file.preview = URL.createObjectURL(file);
+        file.preview = URL.createObjectURL(file);
         setImage(file);
     };
     const handlerCreate = async (e) => {
