@@ -25,6 +25,8 @@ import SingleProductPage from "./pages/user/SingleProductPage";
 import { getAllCategory } from "./service/categoryService";
 import CartPage from "./pages/user/CartPage";
 import ShippingPage from "./pages/user/ShippingPage";
+import { getDetailCart } from './service/cartService';
+import HomeUser1 from './pages/home/HomeUser1';
 
 
 
@@ -42,9 +44,11 @@ const App = () => {
       if (user.roleId.name == "admin") {
         getAllStaff(dispatch)
         getAllUser(dispatch)
-      } else if (user.roleId.name == "seller" || user.roleId.name == "user") {
+      } else if (user.roleId.name == "seller") {
         // getAllProduct(dispatch)
         // getAllBrand(dispatch)
+      } else if (user.roleId.name == "user") {
+        getDetailCart(user.cartId, dispatch)
       }
     }
   }, [token]);
@@ -58,16 +62,24 @@ const App = () => {
         <Route path="/home" element={<HomeUser />}></Route>
 
         <Route >
-         <Route path="" element={<HomeUser />}></Route>
+          <Route path="" element={<HomeUser />}></Route>
           <Route path="products" element={<ProductList />} />
           <Route
-              path="/product/:id"
-              element={<SingleProductPage />} ></Route>
-          <Route path="cart" element={<CartPage/>}></Route>
-          <Route  path="shipping" element={<ShippingPage/>}></Route>
+            path="/product/:id"
+            element={<SingleProductPage />} ></Route>
+          <Route path="cart" element={<CartPage />}></Route>
+          <Route path="shipping" element={<ShippingPage />}></Route>
         </Route>
-
-
+        {/*  */}
+        <Route path="/user" element={<HomeUser1></HomeUser1>}>
+          <Route path="products" element={<ProductList />} />
+          <Route
+            path="product/:id"
+            element={<SingleProductPage />} ></Route>
+          <Route path="cart" element={<CartPage />}></Route>
+          <Route path="shipping" element={<ShippingPage />}></Route>
+        </Route>
+        {/*  */}
         <Route path="/admin" element={<Admin></Admin>}>
           <Route path="editor" element={<Editor />} />
           <Route path="products" element={<Products />} />

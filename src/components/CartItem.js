@@ -1,17 +1,22 @@
-import React from 'react';
-// import { useCartContext } from '../context/cart_context';
+import React, { useState } from 'react';
 import { formatPrice } from '../utils/helpers';
+import { useDispatch } from "react-redux"
+import { deleteItem } from '../service/cartService';
 
-const CartItem = ({ amount, id, image, name, price }) => {
-  const { removeItem, toggleAmount } = useCartContext();
+const CartItem = ({item,idCart}) => {
+  const [amount,setAmount] = useState(item.amount)
 
-  const increase = () => {
-    toggleAmount(id, 'inc');
+  const increase = (id) => {
+    changeAmountItem(idCart,id,data,dispatch)
   };
-  const decrease = () => {
-    toggleAmount(id, 'dec');
+  const decrease = (id) => {
+    changeAmountItem(idCart,id,data,dispatch)
   };
 
+  const dispatch = useDispatch()
+  const handelDelete = ( idItem) => {
+    deleteItem(idCart,idItem,dispatch)
+  }
   return (
     <div className="flex flex-wrap items-center -mx-4  border-b py-5">
       {/* Item img, info*/}
@@ -20,17 +25,17 @@ const CartItem = ({ amount, id, image, name, price }) => {
           <div className="w-full md:w-1/3 px-4 mb-3">
             {/* img */}
             <div className="flex items-center justify-center w-full md:w-24 h-32 bg-gray-100">
-              <img className="h-full object-contain" src={image} alt={name} />
+              <img className="h-full object-contain" src={item.productId.image} alt={item.productId.name} />
             </div>
           </div>
           <div className="w-full md:w-2/3 px-4  text-left">
-            <h3 className="mb-2 text-xl font-bold ">{name}</h3>
-            <p className="text-gray-500">{name}</p>
+            <h3 className="mb-2 text-xl font-bold ">{item.productId.name}</h3>
+            <p className="text-gray-500">{item.productId.name}</p>
 
             {/* remove item btn */}
             <button
               className="text-secondary-700 text-base w-4 h-4 md:w-5 md:h-5 mt-3 md:mt-4 "
-              onClick={() => removeItem(id)}
+              onClick={() => handelDelete(item._id)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +53,7 @@ const CartItem = ({ amount, id, image, name, price }) => {
       {/* Price*/}
       <div className="hidden lg:block lg:w-2/12 px-4">
         <p className="text-lg text-tertiary-500 font-bold">
-          {formatPrice(price)}
+          {formatPrice(item.productId.price)}
         </p>
       </div>
 
@@ -56,7 +61,10 @@ const CartItem = ({ amount, id, image, name, price }) => {
       <div className="w-auto md:w-1/6 lg:w-2/12 px-4">
         <div className="inline-flex items-center px-4 font-semibold text-gray-500 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md">
           {/* minus btn */}
-          <button className="py-2 hover:text-gray-700" onClick={decrease}>
+          <button className="py-2 hover:text-gray-700"
+
+          onClick={()=>{decrease(item._id)}}
+          >
             <svg
               width="12"
               height="2"
@@ -80,7 +88,9 @@ const CartItem = ({ amount, id, image, name, price }) => {
           </p>
 
           {/* plus btn */}
-          <button className="py-2 hover:text-gray-700" onClick={increase}>
+          <button className="py-2 hover:text-gray-700"
+          onClick={()=>{increase(item._id)}}
+          >
             <svg
               width="12"
               height="12"
@@ -107,7 +117,7 @@ const CartItem = ({ amount, id, image, name, price }) => {
       {/* Subtotal */}
       <div className="w-auto md:w-1/6 lg:w-2/12 px-4 text-right">
         <p className="text-lg text-tertiary-500 font-bold">
-          {formatPrice(price * amount)}
+          {formatPrice(item.productId.price * item.amount)}
         </p>
       </div>
     </div>

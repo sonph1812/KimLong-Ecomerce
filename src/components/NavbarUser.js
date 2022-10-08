@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logOut } from '../reducer/slice/userSlice';
 import CartBtn from "./CartBtn";
 // import UserMenu from './UserMenu';
 // import AdminMenu from './AdminMenu';
@@ -10,7 +12,10 @@ const NavbarUser = () => {
   // const { isMenuOpen, openMenu, closeMenu } = useProductsContext();
   // const { loginUser} = useUserContext();
   const role = localStorage.getItem('role')
-  console.log(role);
+  const dispatch = useDispatch()
+  const logOutHome = () => {
+    dispatch(logOut())
+  }
   return (
     <div>
       <div className="section-center  bg-white py-5">
@@ -124,7 +129,7 @@ const NavbarUser = () => {
                   aria-label="Log in"
                   title="Log in"
                   className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                // onClick={closeMenu}
+                onClick={()=>{logOutHome()}}
                 >
                   Log out
                 </Link>
