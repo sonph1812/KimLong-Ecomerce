@@ -22,11 +22,14 @@ function RegisterForm() {
 
     const validate = (values) => {
         const errors = {};
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const regexPhone = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
         if (!values.userName) {
             errors.userName = 'Username is required!';
         } else if (values.userName.length < 4) {
             errors.password = 'UserName must be more than 4 characters';
+        } else if (values.userName.length > 10) {
+            errors.password = 'Username up to 10 characters';
         }
         if (!values.password) {
             errors.password = 'Password is required';
@@ -35,17 +38,25 @@ function RegisterForm() {
         }
         if (!values.confirmPassword) {
             errors.confirmPassword = 'ConfirmPassword is required';
+        }else if(values.confirmPassword != values.password){
+            errors.confirmPassword = 'Re-enter wrong password';
         }
         if (!values.name) {
             errors.name = 'Name is required!';
+        }else if (values.name.length < 4) {
+            errors.password = 'UserName must be more than 4 characters';
         }
         if (!values.email) {
             errors.email = 'Email is required';
-        } else if (!regex.test(values.email)) {
+        } else if (!regexEmail.test(values.email)) {
             errors.email = 'This is not a valid email format!';
         }
         if (!values.phone) {
             errors.phone = 'Phone is required';
+        }else if (!regexPhone.test(values.phone)) {
+            errors.email = 'This is not a valid phone format!';
+        }else if (values.phone.length > 10) {
+            errors.password = 'Phone up to 10 characters';
         }
         if (!values.address) {
             errors.address = 'Address is required';
@@ -58,10 +69,14 @@ function RegisterForm() {
 
     const register = (e) => {
         e.preventDefault();
-        console.warn(registerForm);
+        console.warn('req.boy',registerForm);
+        const valid = validate(registerForm);
+        // console.log('valid',valid);
+        // console.log(valid.userName);
         setFormErrors(validate(registerForm));
-
-        axios
+        // console.log('formerr',formErrors);
+        if((valid.userName== undefined)&&(valid.password== undefined)&&(valid.confirmPassword== undefined)&&(valid.name== undefined)&&(valid.email== undefined)&&(valid.phone== undefined)&&(valid.address== undefined)){
+            axios
             .post(`${apiUrl}/register`, registerForm)
             .then(function (response) {
                 console.log(response.data);
@@ -73,6 +88,8 @@ function RegisterForm() {
                 console.log(error.response.data.message);
                 document.getElementById('err').innerHTML = error.response.data.message;
             });
+        }
+        
     };
 
     return (
@@ -257,7 +274,7 @@ function RegisterForm() {
                                             aria-hidden="true"
                                         />
                                     </span>
-                                    <div >Register</div>
+                                    <div>Register</div>
                                 </button>
                             </div>
                         </form>
