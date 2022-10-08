@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Staffs ,Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
+import { Staffs, Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
 import CreateStaff from './pages/staffs/CreateStaff';
 import UpdateStaff from './pages/staffs/UpdateStaff';
 import './App.css';
@@ -19,10 +19,12 @@ import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
 import { getAllProduct } from "./service/productService";
 import { getAllBrand } from "./service/brandService";
-import HomeUser from "./pages/HomeUser";
-import ProductList from "./pages/ProductList";
-import SingleProductPage from "./pages/SingleProductPage";
-import {getAllCategory} from "./service/categoryService";
+import HomeUser from "./pages/user/HomeUser";
+import ProductList from "./pages/user/ProductList";
+import SingleProductPage from "./pages/user/SingleProductPage";
+import { getAllCategory } from "./service/categoryService";
+import CartPage from "./pages/user/CartPage";
+import ShippingPage from "./pages/user/ShippingPage";
 
 
 
@@ -53,12 +55,18 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<LoginForm />}></Route>
         <Route path="/register" element={<RegisterForm />}></Route>
-        <Route path="/home" element={<HomeUser/>}></Route>
-        <Route path="/" element={<HomeUser/>}></Route>
-        <Route path="products" element={<ProductList />} />
-        <Route
-            path="/product/:id"
-element={<SingleProductPage/>} ></Route>
+        <Route path="/home" element={<HomeUser />}></Route>
+
+        <Route >
+         <Route path="" element={<HomeUser />}></Route>
+          <Route path="products" element={<ProductList />} />
+          <Route
+              path="/product/:id"
+              element={<SingleProductPage />} ></Route>
+          <Route path="cart" element={<CartPage/>}></Route>
+          <Route  path="shipping" element={<ShippingPage/>}></Route>
+        </Route>
+
 
         <Route path="/admin" element={<Admin></Admin>}>
           <Route path="editor" element={<Editor />} />
@@ -69,8 +77,8 @@ element={<SingleProductPage/>} ></Route>
 
 
           <Route path="staffs" element={<Staffs />} />
-          <Route path='staffs/create' element={<CreateStaff/>}/>
-          <Route path='staffs/update' element={<UpdateStaff/>}/>
+          <Route path='staffs/create' element={<CreateStaff />} />
+          <Route path='staffs/update' element={<UpdateStaff />} />
 
 
 

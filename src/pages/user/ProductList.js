@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import NavbarUser from "../components/NavbarUser";
-import PageHero from "../components/PageHero";
+import NavbarUser from "../../components/NavbarUser";
+import PageHero from "../../components/PageHero";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {formatPrice} from "../utils/helpers";
+import {formatPrice} from "../../utils/helpers";
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
-import Btn from "../components/Btn";
-import {setProductSort} from "../reducer/slice/productSlice";
+import Btn from "../../components/Btn";
+import {setProductSort} from "../../reducer/slice/productSlice";
 
 
 
@@ -31,6 +31,7 @@ const ProductList = () => {
         dispatch(setProductSort([]))
         setProductSort(products)
     }
+
 
     return (
         <>
