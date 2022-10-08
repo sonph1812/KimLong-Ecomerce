@@ -257,7 +257,7 @@ function RegisterForm() {
                                             aria-hidden="true"
                                         />
                                     </span>
-                                    <div text-lg>Register</div>
+                                    <div >Register</div>
                                 </button>
                             </div>
                         </form>
