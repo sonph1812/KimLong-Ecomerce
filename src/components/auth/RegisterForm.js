@@ -262,6 +262,7 @@ function RegisterForm() {
                                 <p className="text-red-700">{formErrors.address}</p>
                             </div>
                             <p className="text-red-700" id="err"></p>
+                            <div><a href="login">Do you already have an account? Log in</a></div>
                             <div>
                                 <button
                                     type="submit"
