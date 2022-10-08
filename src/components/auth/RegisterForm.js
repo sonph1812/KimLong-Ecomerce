@@ -27,9 +27,9 @@ function RegisterForm() {
         if (!values.userName) {
             errors.userName = 'Username is required!';
         } else if (values.userName.length < 4) {
-            errors.password = 'UserName must be more than 4 characters';
+            errors.userName = 'UserName must be more than 4 characters';
         } else if (values.userName.length > 10) {
-            errors.password = 'Username up to 10 characters';
+            errors.userName = 'Username up to 10 characters';
         }
         if (!values.password) {
             errors.password = 'Password is required';
@@ -44,7 +44,7 @@ function RegisterForm() {
         if (!values.name) {
             errors.name = 'Name is required!';
         }else if (values.name.length < 4) {
-            errors.password = 'UserName must be more than 4 characters';
+            errors.password = 'Name must be more than 4 characters';
         }
         if (!values.email) {
             errors.email = 'Email is required';
@@ -98,11 +98,6 @@ function RegisterForm() {
                 <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                     <div className="w-full max-w-md space-y-8">
                         <div>
-                            <img
-                                className="mx-auto h-12 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                alt="Your Company"
-                            />
                             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
                                 Sign up for an account
                             </h2>
@@ -142,6 +137,7 @@ function RegisterForm() {
                             <div className="-space-y-px rounded-md shadow-sm">
                                 <div className="flex b-4">
                                     <div className="w-1/2 mr-0">
+                                        <label>User name:</label>
                                         <div>
                                             <input
                                                 id="user-Name"
@@ -157,6 +153,7 @@ function RegisterForm() {
                                         <p className="text-red-700">{formErrors.userName}</p>
                                     </div>
                                     <div className="w-1/2 ml-0">
+                                    <label>Name:</label>
                                         <div>
                                             <input
                                                 id="name"
@@ -176,6 +173,7 @@ function RegisterForm() {
 
                                 <div className="flex b-4">
                                     <div className="w-1/2 mr-0">
+                                    <label>Password:</label>
                                         <div>
                                             <input
                                                 id="password"
@@ -192,6 +190,7 @@ function RegisterForm() {
                                         <p className="text-red-700">{formErrors.password}</p>
                                     </div>
                                     <div className="w-1/2 ml-0">
+                                        <label>Confirm Password:</label>
                                         <div>
                                             <input
                                                 id="confirmPassword"
@@ -210,8 +209,8 @@ function RegisterForm() {
                                 </div>
 
                                 <div>
-                                    <label htmlFor="password" className="sr-only">
-                                        Email
+                                    <label >
+                                        Email:
                                     </label>
                                     <input
                                         id="email"
@@ -227,8 +226,8 @@ function RegisterForm() {
                                 </div>
                                 <p className="text-red-700">{formErrors.email}</p>
                                 <div>
-                                    <label htmlFor="password" className="sr-only">
-                                        Phone
+                                    <label >
+                                        Phone:
                                     </label>
                                     <input
                                         id="phone"
@@ -244,8 +243,8 @@ function RegisterForm() {
                                 </div>
                                 <p className="text-red-700">{formErrors.phone}</p>
                                 <div>
-                                    <label htmlFor="password" className="sr-only">
-                                        Address
+                                    <label >
+                                        Address:
                                     </label>
                                     <input
                                         id="address"
