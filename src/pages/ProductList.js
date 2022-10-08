@@ -1,15 +1,37 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import NavbarUser from "../components/NavbarUser";
 import PageHero from "../components/PageHero";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {formatPrice} from "../utils/helpers";
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import Btn from "../components/Btn";
+import {setProductSort} from "../reducer/slice/productSlice";
+
 
 
 const ProductList = () => {
+    const dispatch = useDispatch()
+
     const products = useSelector(state => state.productReducer.products)
+    const sorts = useSelector(state => state.productReducer.product)
+    console.log(sorts)
+    const [sort,setSort] =useState([])
+    useEffect(()  =>{
+        if (sorts){
+            setSort(sort)
+        }
+    },[sorts])
+
+    useEffect(()=>{
+        setSort(products)
+    },[products])
+
+    const handleSort = () =>{
+        dispatch(setProductSort([]))
+        setProductSort(products)
+    }
+
     return (
         <>
             <NavbarUser/>
@@ -25,7 +47,7 @@ const ProductList = () => {
                         </option>
                         <option value="price-highest" className="text-gray-500 block px-4 py-2">Price: High to Low
                         </option>
-                        <option value="name-a" className="text-gray-500 block px-4 py-2">Name: A-Z</option>
+                        <option value="name-a" className="text-gray-500 block px-4 py-2" onClick={() => { handleSort() }}>Name: A-Z</option>
                         <option value="name-z" className="text-gray-500 block px-4 py-2">Name: Z-A</option>
                     </select></form>
                     <div className="flex justify-between ">

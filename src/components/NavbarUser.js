@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import CartBtn from "./CartBtn";
 // import UserMenu from './UserMenu';
 // import AdminMenu from './AdminMenu';
 // import { useProductsContext } from '../context/products_context';
@@ -84,7 +85,7 @@ KIM LONG            </span>
           {/* Right links */}
           <ul className="items-center hidden ml-auto space-x-8 lg:flex">
             <li>
-              {/*<CartBtn />*/}
+              <CartBtn />
             </li>
             {/*{loginUser ? (*/}
               <>
