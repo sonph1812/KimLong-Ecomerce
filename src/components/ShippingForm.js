@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Btn from './Btn';
 
 const ShippingForm = () => {
-// const navigate = Use
-// const { saveShippingAddress } = useCartContext();
 
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
