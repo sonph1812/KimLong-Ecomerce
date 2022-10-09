@@ -17,7 +17,7 @@ import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
-import { getAllProduct } from "./service/productService";
+import {getAllProduct, getProductByBrand, getProductByCate} from "./service/productService";
 import { getAllBrand } from "./service/brandService";
 import HomeUser from "./pages/user/HomeUser";
 import ProductList from "./pages/user/ProductList";
@@ -25,6 +25,7 @@ import SingleProductPage from "./pages/user/SingleProductPage";
 import { getAllCategory } from "./service/categoryService";
 import CartPage from "./pages/user/CartPage";
 import ShippingPage from "./pages/user/ShippingPage";
+import NewProducts2 from "./components/appleWatch";
 
 
 
@@ -36,6 +37,8 @@ const App = () => {
     getAllProduct(dispatch)
     getAllBrand(dispatch)
     getAllCategory(dispatch)
+
+
     if (token) {
       const user = jwt_decode(token).user
       dispatch(getUserInfo(user))
@@ -56,6 +59,7 @@ const App = () => {
         <Route path="/login" element={<LoginForm />}></Route>
         <Route path="/register" element={<RegisterForm />}></Route>
         <Route path="/home" element={<HomeUser />}></Route>
+        <Route path="/cate" element={<NewProducts2 />}></Route>
 
         <Route >
          <Route path="" element={<HomeUser />}></Route>

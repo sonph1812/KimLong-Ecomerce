@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import CartBtn from "./CartBtn";
+import Search from "./Search";
 // import UserMenu from './UserMenu';
 // import AdminMenu from './AdminMenu';
 // import { useProductsContext } from '../context/products_context';
@@ -7,8 +8,8 @@ import CartBtn from "./CartBtn";
 // import CartBtn from './CartBtn';
 
 const NavbarUser = () => {
-  // const { isMenuOpen, openMenu, closeMenu } = useProductsContext();
-  // const { loginUser} = useUserContext();
+
+
   const role = localStorage.getItem('role')
   console.log(role);
   return (
@@ -84,6 +85,7 @@ const NavbarUser = () => {
           </a>
 
           {/* Right links */}
+
           <ul className="items-center hidden ml-auto space-x-8 lg:flex">
             <li>
               <CartBtn />

@@ -8,69 +8,18 @@ import Loading from '../../components/Loading';
 import Error from '../../components/Error';
 import NavbarUser from "../../components/NavbarUser";
 import {useSelector} from "react-redux";
+import {getDetailProduct} from "../../service/productService";
 
 const SingleProductPage = () => {
-    const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState('');
-    const [title, setTitle] = useState('');
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const product = useSelector(state => state.productReducer.product)
+    console.log(product,'11')
 
 
 
-    const Product = useSelector(state => state.productReducer.products)
-    console.log(Product,'11')
-    // useEffect(() => {
-    //         navigate('/products');
-    //
-    //     }, 2000);
-
-
-    // useEffect(() => {
-    //     fetchSingleProduct(singleProductUrl);
-    //     if (createdProductReview) {
-    //         setRating(0);
-    //         setComment('');
-    //         setTitle('');
-    //     }
-    // }, [id, createdProductReview]);
-    //
-    // useEffect(() => {
-    //     if (error || createProductReviewError) {
-    //         setTimeout(() => {
-    //             history.push('/products');
-    //             fetchSingleProductsReset();
-    //             createReviewReset();
-    //         }, 2000);
-    //     }
-    // }, [error, createProductReviewError]);
-
-    // const submitHandler = e => {
-    //     e.preventDefault();
-    //     const review = {
-    //         rating: +rating,
-    //         title,
-    //         comment,
-    //         product: id,
-    //     };
-    //     createProductReview(review);
-    // };
-
-    // const {
-    //     name,
-    //     brand,
-    //     image,
-    //     description,
-    //     stock,
-    //     reviews,
-    //     numReviews,
-    //     averageRating: stars,
-    // } = product;
     return (
         <>
             <NavbarUser/>
             <PageHero title={name} product />
-
             <section className=" py-10 section-center">
                 {/*{Loading ? (*/}
                 {/*    <Loading />*/}
@@ -90,7 +39,7 @@ const SingleProductPage = () => {
                                     {/*{brand}*/}
                                 </h2>
                                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                                    {Product.name}  </h1>
+                                    {product.name}</h1>
 
                                 {/*<Stars stars={stars} />*/}
                                 <p className="leading-relaxed mt-4">
