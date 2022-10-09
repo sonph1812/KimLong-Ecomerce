@@ -120,7 +120,7 @@ const CartItem = ({item,idCart}) => {
       {/* Subtotal */}
       <div className="w-auto md:w-1/6 lg:w-2/12 px-4 text-right">
         <p className="text-lg text-tertiary-500 font-bold">
-          {formatPrice(item.productId?(item.productId.price * item.amount):"")}
+          {formatPrice(item.productId?(item.productId.price * amount):"")}
         </p>
       </div>
     </div>

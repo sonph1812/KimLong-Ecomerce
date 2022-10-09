@@ -30,16 +30,7 @@ const cartSlice = createSlice({
         },
         changeAmountItemSlice: (state,action) => {
             state.totals = action.payload.totals
-            console.log(action.payload.idItem);
-            console.log(state.items[action.payload.idItem]);
-            state.items = [
-                ...state.items,
-                state.items[action.payload.idItem] = {
-                    ... state.items[action.payload.idItem],
-                    amount: action.payload.amount,
-                    total: action.payload.amount * state.items[action.payload.idItem].productId.price
-                }
-            ]
+           
         }
     }
 })

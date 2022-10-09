@@ -10,7 +10,8 @@ const CartContent = () => {
   const dispatch = useDispatch()
   const items = useSelector(s => s.cartReducer.items)
   const totals = useSelector(s => s.cartReducer.totals)
- const handelClear = () => {
+
+  const handelClear = () => {
     clearCart(cartId,dispatch)
  }
   return (
