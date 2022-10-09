@@ -17,7 +17,7 @@ import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
-import { getAllProduct } from "./service/productService";
+import {getAllProduct, getProductByBrand, getProductByCate} from "./service/productService";
 import { getAllBrand } from "./service/brandService";
 import HomeUser from "./pages/user/HomeUser";
 import ProductList from "./pages/user/ProductList";
@@ -41,6 +41,8 @@ const App = () => {
     getAllProduct(dispatch)
     getAllBrand(dispatch)
     getAllCategory(dispatch)
+
+
     if (token) {
       const user = jwt_decode(token).user
       dispatch(getUserInfo(user))

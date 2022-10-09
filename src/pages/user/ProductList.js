@@ -2,35 +2,39 @@ import React, {useEffect, useState} from 'react';
 import NavbarUser from "../../components/NavbarUser";
 import PageHero from "../../components/PageHero";
 import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {formatPrice} from "../../utils/helpers";
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import Btn from "../../components/Btn";
-import {setProductSort} from "../../reducer/slice/productSlice";
+import {filterReducer, setProductSort} from "../../reducer/slice/productSlice";
+import {getDetailProduct, getProductByCate} from "../../service/productService";
 
 
 
 const ProductList = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
+    useEffect(()=>{
+        getProductByCate(dispatch)
+    },[])
+    const productFilter = useSelector(state => state.productReducer.productByCate)
 
     const products = useSelector(state => state.productReducer.products)
-    const sorts = useSelector(state => state.productReducer.product)
-    console.log(sorts)
-    const [sort,setSort] =useState([])
-    useEffect(()  =>{
-        if (sorts){
-            setSort(sort)
-        }
-    },[sorts])
-
-    useEffect(()=>{
-        setSort(products)
-    },[products])
-
-    const handleSort = () =>{
-        dispatch(setProductSort([]))
-        setProductSort(products)
+    const brands = useSelector(s => s.brandReducer.brands)
+    const categories = useSelector(s => s.categoryReducer.categories)
+    const handlerChange = (e) => {
+        setProducts({
+            ...products,
+            [e.target.name]: e.target.value
+        })
     }
+    const handleGetDetail = (id) => {
+        getDetailProduct(dispatch,id)
+        navigate(`product/${id}`)
+
+    }
+
+
 
 
     return (
@@ -48,7 +52,7 @@ const ProductList = () => {
                         </option>
                         <option value="price-highest" className="text-gray-500 block px-4 py-2">Price: High to Low
                         </option>
-                        <option value="name-a" className="text-gray-500 block px-4 py-2" onClick={() => { handleSort() }}>Name: A-Z</option>
+                        <option value="name-a" className="text-gray-500 block px-4 py-2" >Name: A-Z</option>
                         <option value="name-z" className="text-gray-500 block px-4 py-2">Name: Z-A</option>
                     </select></form>
                     <div className="flex justify-between ">
@@ -84,11 +88,41 @@ const ProductList = () => {
            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
 
 
-<div className="hidden lg:block "><h1>chỗ này đổ filter</h1></div>
+<div className="hidden lg:block "><h1>chỗ này đổ filter</h1>
+    <div>
+        <label htmlFor="states" className="sr-only">Brand</label>
+        <select id="brandId"
+                name = "brandId"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                onChange={(e)=>{handlerChange(e)}}
+        >
+            <option selected>Brand</option>
+            {brands && brands.map((brand)=>(
+                <option value={brand._id}>{brand.name}</option>
+            ))}
+        </select>
+    </div>
+    <div>
+        <label htmlFor="states" className="sr-only">Category</label>
+        <select id="categoryId"
+                name = "categoryId"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                onChange={(e)=>{handlerChange(e)}}
+        >
+            <option selected>Category</option>
+            {categories && categories.map((category)=>(
+                <option value={category._id}>{category.name}</option>
+            ))}
+        </select>
+    </div>
+    <button>Filter</button>
+
+
+</div>
                <div className="lg:col-span-3">
                    <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mb-10 place-items-center">
                        {products?.map((product, index) => (
-                           <Link to={`product/${product._id}`} className="group">
+                           <Link to={`product/${product._id}`} onClick={()=>{handleGetDetail(product._id)}} className="group">
                                <div className="w-full  max-w-sm aspect-square rounded-lg overflow-hidden  bg-tertiary-50">
                                    <img
                                        src={product.image}

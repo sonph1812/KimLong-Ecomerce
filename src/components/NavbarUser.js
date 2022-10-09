@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logOut } from '../reducer/slice/userSlice';
 import CartBtn from "./CartBtn";
+import Search from "./Search";
 // import UserMenu from './UserMenu';
 // import AdminMenu from './AdminMenu';
 // import { useProductsContext } from '../context/products_context';
@@ -9,8 +10,8 @@ import CartBtn from "./CartBtn";
 // import CartBtn from './CartBtn';
 
 const NavbarUser = () => {
-  // const { isMenuOpen, openMenu, closeMenu } = useProductsContext();
-  // const { loginUser} = useUserContext();
+
+
   const role = localStorage.getItem('role')
   const dispatch = useDispatch()
   const logOutHome = () => {
@@ -89,6 +90,7 @@ const NavbarUser = () => {
           </a>
 
           {/* Right links */}
+
           <ul className="items-center hidden ml-auto space-x-8 lg:flex">
             <li>
               <CartBtn />

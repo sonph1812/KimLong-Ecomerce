@@ -1,31 +1,24 @@
 import SectionTitle from '../components/SectionTitle';
-// import NewProduct from './NewProduct';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import Btn from "../components/Btn";
 import {formatPrice} from "../utils/helpers";
-import {getDetailProduct} from "../service/productService";
-// import React from "react"
-// import { useProductsContext } from '../context/products_context';
+import {useEffect} from "react";
+import {getProductByCate} from "../service/productService";
 
-const NewProducts = () => {
-    const navigate = useNavigate()
+const AppleWatch = () => {
     const dispatch = useDispatch()
-    const handleGetDetail = (id) => {
-    getDetailProduct(dispatch,id)
-    navigate(`product/${id}`)
-
-}
-
-    const products = useSelector(state => state.productReducer.products)
-
+    useEffect(()=>{
+        getProductByCate(dispatch)
+    },[])
+    const products = useSelector(state => state.productReducer.productByCate)
   return (
     <section id="new" className="py-24">
       <div className="max-w-2xl mx-auto  px-4  sm:px-6 lg:max-w-7xl lg:px-8 text-center ">
-        <SectionTitle title="New Products" />
-        <div  className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10    place-items-center ">
+        <SectionTitle title="Apple watch" />
+        <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10    place-items-center">
             {products?.map((product, index) => (
-                <Link to={`product/${product._id}`}  onClick={()=>{handleGetDetail(product._id)}}className="group">
+                <Link to={`product/${product._id}`} className="group">
                     <div className="w-full  max-w-sm aspect-square rounded-lg overflow-hidden  bg-tertiary-50">
                         <img
                             src={product.image}
@@ -44,11 +37,11 @@ const NewProducts = () => {
 
         </div>
         <Link to="/products">
-          <Btn name="Xem tất cả sản phẩm" />
+          <Btn name="Xem tất cả Apple watch" />
         </Link>
       </div>
     </section>
   );
 };
 
-export default NewProducts;
+export default AppleWatch;
