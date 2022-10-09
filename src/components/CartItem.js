@@ -2,22 +2,25 @@ import React, { useState } from 'react';
 import { formatPrice } from '../utils/helpers';
 import { useDispatch } from "react-redux"
 import { deleteItem, changeAmountItem } from '../service/cartService';
+import { changeTotals } from '../reducer/slice/cartSlice';
 
-const CartItem = ({item,idCart}) => {
-  let [amount,setAmount] = useState(item.amount)
+const CartItem = ({ item, idCart }) => {
+  let [amount, setAmount] = useState(item.amount)
+  const dispatch = useDispatch()
 
   const increase = (id) => {
-    setAmount(amount+1)
-    changeAmountItem(idCart,id,(amount+1),dispatch)
+    setAmount(amount + 1)
+    dispatch(changeTotals({ oldTotal: item.productId.price * amount, newTotal: item.productId.price * (amount + 1) }))
+    changeAmountItem(idCart, id, (amount + 1), dispatch)
   };
   const decrease = (id) => {
-    setAmount(amount-1)
-
-    changeAmountItem(idCart,id,(amount-1),dispatch)
+    setAmount(amount - 1)
+    dispatch(changeTotals({ oldTotal: item.productId.price * amount, newTotal: item.productId.price * (amount - 1) }))
+    changeAmountItem(idCart, id, (amount - 1), dispatch)
   };
-  const dispatch = useDispatch()
-  const handelDelete = ( idItem) => {
-    deleteItem(idCart,idItem,dispatch)
+
+  const handelDelete = (idItem) => {
+    deleteItem(idCart, idItem, dispatch)
   }
 
   return (
@@ -32,8 +35,8 @@ const CartItem = ({item,idCart}) => {
             </div>
           </div>
           <div className="w-full md:w-2/3 px-4  text-left">
-            <h3 className="mb-2 text-xl font-bold ">{item.productId?item.productId.name:"Product not found !"}</h3>
-            <p className="text-gray-500">{item.productId?item.productId.name:"Please remove item !"}</p>
+            <h3 className="mb-2 text-xl font-bold ">{item.productId ? item.productId.name : "Product not found !"}</h3>
+            <p className="text-gray-500">{item.productId ? item.productId.name : "Please remove item !"}</p>
 
             {/* remove item btn */}
             <button
@@ -56,7 +59,7 @@ const CartItem = ({item,idCart}) => {
       {/* Price*/}
       <div className="hidden lg:block lg:w-2/12 px-4">
         <p className="text-lg text-tertiary-500 font-bold">
-          {formatPrice(item.productId?item.productId.price:"")}
+          {formatPrice(item.productId ? item.productId.price : "")}
         </p>
       </div>
 
@@ -66,7 +69,7 @@ const CartItem = ({item,idCart}) => {
           {/* minus btn */}
           <button className="py-2 hover:text-gray-700"
 
-          onClick={()=>{decrease(item._id)}}
+            onClick={() => { decrease(item._id) }}
           >
             <svg
               width="12"
@@ -92,7 +95,7 @@ const CartItem = ({item,idCart}) => {
 
           {/* plus btn */}
           <button className="py-2 hover:text-gray-700"
-          onClick={()=>{increase(item._id)}}
+            onClick={() => { increase(item._id) }}
           >
             <svg
               width="12"
@@ -120,7 +123,7 @@ const CartItem = ({item,idCart}) => {
       {/* Subtotal */}
       <div className="w-auto md:w-1/6 lg:w-2/12 px-4 text-right">
         <p className="text-lg text-tertiary-500 font-bold">
-          {formatPrice(item.productId?(item.productId.price * amount):"")}
+          {formatPrice(item.productId ? (item.productId.price * amount) : "")}
         </p>
       </div>
     </div>
