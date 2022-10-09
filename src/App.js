@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Staffs ,Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
+import { Staffs, Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
 import CreateStaff from './pages/staffs/CreateStaff';
 import UpdateStaff from './pages/staffs/UpdateStaff';
 import './App.css';
@@ -23,35 +23,35 @@ import HomeUser from "./pages/HomeUser";
 import ProductList from "./pages/ProductList";
 import SingleProductPage from "./pages/SingleProductPage";
 import {getAllCategory} from "./service/categoryService";
+import CartPage from "./pages/user/CartPage";
+import ShippingPage from "./pages/user/ShippingPage";
+import { getDetailCart } from './service/cartService';
+import HomeUser1 from './pages/home/HomeUser1';
 import  CreateCategory from './pages/CreateCategory';
 import Categories from './pages/Categories';
 import EditCategories from './pages/EditCategories';
 import Brands from './pages/brand/Brand';
 import CreateBrand from './pages/brand/EditBrand';
 
-
-
-
 const App = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
-
+  const userInfo = useSelector(s => s.userReducer.userInfo)
   useEffect(() => {
-
+    getAllProduct(dispatch)
+    getAllBrand(dispatch)
+    getAllCategory(dispatch)
     if (token) {
-      getAllProduct(dispatch)
-      getAllBrand(dispatch)
-      getAllCategory(dispatch)
       const user = jwt_decode(token).user
       dispatch(getUserInfo(user))
       if (user.roleId.name == "admin") {
         getAllStaff(dispatch)
         getAllUser(dispatch)
-        getAllProduct(dispatch)
-
-      } else if (user.roleId.name == "seller" || user.roleId.name == "user") {
-        getAllProduct(dispatch)
-        getAllBrand(dispatch)
+      } else if (user.roleId.name == "seller") {
+        // getAllProduct(dispatch)
+        // getAllBrand(dispatch)
+      } else if (user.roleId.name == "user") {
+        getDetailCart(user.cartId, dispatch)
       }
     }
   }, [token]);
@@ -62,13 +62,27 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<LoginForm />}></Route>
         <Route path="/register" element={<RegisterForm />}></Route>
-        <Route path="/home" element={<HomeUser/>}></Route>
-        <Route path="/" element={<HomeUser/>}></Route>
-        <Route path="products" element={<ProductList />} />
-        <Route
-            path="/product/:id"
-element={<SingleProductPage/>} ></Route>
+        <Route path="/home" element={<HomeUser />}></Route>
 
+        <Route >
+          <Route path="" element={<HomeUser />}></Route>
+          <Route path="products" element={<ProductList />} />
+          <Route
+            path="/product/:id"
+            element={<SingleProductPage />} ></Route>
+          <Route path="cart" element={<CartPage />}></Route>
+          <Route path="shipping" element={<ShippingPage />}></Route>
+        </Route>
+        {/*  */}
+        <Route path="/user" element={<HomeUser1></HomeUser1>}>
+          <Route path="products" element={<ProductList />} />
+          <Route
+            path="product/:id"
+            element={<SingleProductPage />} ></Route>
+          <Route path="cart" element={<CartPage />}></Route>
+          <Route path="shipping" element={<ShippingPage />}></Route>
+        </Route>
+        {/*  */}
         <Route path="/admin" element={<Admin></Admin>}>
           <Route path="editor" element={<Editor />} />
           <Route path="products" element={<Products />} />
@@ -78,8 +92,8 @@ element={<SingleProductPage/>} ></Route>
 
 
           <Route path="staffs" element={<Staffs />} />
-          <Route path='staffs/create' element={<CreateStaff/>}/>
-          <Route path='staffs/update' element={<UpdateStaff/>}/>
+          <Route path='staffs/create' element={<CreateStaff />} />
+          <Route path='staffs/update' element={<UpdateStaff />} />
 
 
 

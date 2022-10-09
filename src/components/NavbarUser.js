@@ -1,4 +1,7 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logOut } from '../reducer/slice/userSlice';
+import CartBtn from "./CartBtn";
 // import UserMenu from './UserMenu';
 // import AdminMenu from './AdminMenu';
 // import { useProductsContext } from '../context/products_context';
@@ -8,7 +11,11 @@ import { Link } from 'react-router-dom';
 const NavbarUser = () => {
   // const { isMenuOpen, openMenu, closeMenu } = useProductsContext();
   // const { loginUser} = useUserContext();
-
+  const role = localStorage.getItem('role')
+  const dispatch = useDispatch()
+  const logOutHome = () => {
+    dispatch(logOut())
+  }
   return (
     <div>
       <div className="section-center  bg-white py-5">
@@ -78,45 +85,55 @@ const NavbarUser = () => {
               <rect x="14" y="11" width="7" height="12" />
             </svg>
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-KIM LONG            </span>
+              KIM LONG            </span>
           </a>
 
           {/* Right links */}
           <ul className="items-center hidden ml-auto space-x-8 lg:flex">
             <li>
-              {/*<CartBtn />*/}
+              <CartBtn />
             </li>
             {/*{loginUser ? (*/}
-              <>
-                <li className="bg-black text-white">
-                  {/*{loginUser.role === 'admin' ? <AdminMenu /> : <UserMenu />}*/}
-                </li>
-              </>
+            <>
+              <li className="bg-black text-white">
+                {/*{loginUser.role === 'admin' ? <AdminMenu /> : <UserMenu />}*/}
+              </li>
+            </>
             {/*) : (*/}
-              <>
-                <li>
-                  <Link
-                    to="/login"
-                    aria-label="Log in"
-                    title="Log in"
-                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                    // onClick={closeMenu}
-                  >
-                    Log in
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/register"
-                    aria-label="Register"
-                    title="Register"
-                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                    // onClick={closeMenu}
-                  >
-                    Register
-                  </Link>
-                </li>
-              </>
+           {!role? <>
+              <li>
+                <Link
+                  to="/login"
+                  aria-label="Log in"
+                  title="Log in"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                // onClick={closeMenu}
+                >
+                  Log in
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/register"
+                  aria-label="Register"
+                  title="Register"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                // onClick={closeMenu}
+                >
+                  Register
+                </Link>
+              </li>
+            </>: <li>
+                <Link
+                  to="/login"
+                  aria-label="Log in"
+                  title="Log in"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                onClick={()=>{logOutHome()}}
+                >
+                  Log out
+                </Link>
+              </li>}
             {/*)}*/}
           </ul>
 

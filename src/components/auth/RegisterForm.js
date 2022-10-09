@@ -22,11 +22,14 @@ function RegisterForm() {
 
     const validate = (values) => {
         const errors = {};
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const regexPhone = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
         if (!values.userName) {
             errors.userName = 'Username is required!';
         } else if (values.userName.length < 4) {
-            errors.password = 'UserName must be more than 4 characters';
+            errors.userName = 'UserName must be more than 4 characters';
+        } else if (values.userName.length > 10) {
+            errors.userName = 'Username up to 10 characters';
         }
         if (!values.password) {
             errors.password = 'Password is required';
@@ -35,17 +38,25 @@ function RegisterForm() {
         }
         if (!values.confirmPassword) {
             errors.confirmPassword = 'ConfirmPassword is required';
+        }else if(values.confirmPassword != values.password){
+            errors.confirmPassword = 'Re-enter wrong password';
         }
         if (!values.name) {
             errors.name = 'Name is required!';
+        }else if (values.name.length < 4) {
+            errors.password = 'Name must be more than 4 characters';
         }
         if (!values.email) {
             errors.email = 'Email is required';
-        } else if (!regex.test(values.email)) {
+        } else if (!regexEmail.test(values.email)) {
             errors.email = 'This is not a valid email format!';
         }
         if (!values.phone) {
             errors.phone = 'Phone is required';
+        }else if (!regexPhone.test(values.phone)) {
+            errors.email = 'This is not a valid phone format!';
+        }else if (values.phone.length > 10) {
+            errors.password = 'Phone up to 10 characters';
         }
         if (!values.address) {
             errors.address = 'Address is required';
@@ -58,10 +69,14 @@ function RegisterForm() {
 
     const register = (e) => {
         e.preventDefault();
-        console.warn(registerForm);
+        console.warn('req.boy',registerForm);
+        const valid = validate(registerForm);
+        // console.log('valid',valid);
+        // console.log(valid.userName);
         setFormErrors(validate(registerForm));
-
-        axios
+        // console.log('formerr',formErrors);
+        if((valid.userName== undefined)&&(valid.password== undefined)&&(valid.confirmPassword== undefined)&&(valid.name== undefined)&&(valid.email== undefined)&&(valid.phone== undefined)&&(valid.address== undefined)){
+            axios
             .post(`${apiUrl}/register`, registerForm)
             .then(function (response) {
                 console.log(response.data);
@@ -73,6 +88,8 @@ function RegisterForm() {
                 console.log(error.response.data.message);
                 document.getElementById('err').innerHTML = error.response.data.message;
             });
+        }
+        
     };
 
     return (
@@ -81,11 +98,6 @@ function RegisterForm() {
                 <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                     <div className="w-full max-w-md space-y-8">
                         <div>
-                            <img
-                                className="mx-auto h-12 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                alt="Your Company"
-                            />
                             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
                                 Sign up for an account
                             </h2>
@@ -125,6 +137,7 @@ function RegisterForm() {
                             <div className="-space-y-px rounded-md shadow-sm">
                                 <div className="flex b-4">
                                     <div className="w-1/2 mr-0">
+                                        <label>User name:</label>
                                         <div>
                                             <input
                                                 id="user-Name"
@@ -140,6 +153,7 @@ function RegisterForm() {
                                         <p className="text-red-700">{formErrors.userName}</p>
                                     </div>
                                     <div className="w-1/2 ml-0">
+                                    <label>Name:</label>
                                         <div>
                                             <input
                                                 id="name"
@@ -159,6 +173,7 @@ function RegisterForm() {
 
                                 <div className="flex b-4">
                                     <div className="w-1/2 mr-0">
+                                    <label>Password:</label>
                                         <div>
                                             <input
                                                 id="password"
@@ -175,6 +190,7 @@ function RegisterForm() {
                                         <p className="text-red-700">{formErrors.password}</p>
                                     </div>
                                     <div className="w-1/2 ml-0">
+                                        <label>Confirm Password:</label>
                                         <div>
                                             <input
                                                 id="confirmPassword"
@@ -193,8 +209,8 @@ function RegisterForm() {
                                 </div>
 
                                 <div>
-                                    <label htmlFor="password" className="sr-only">
-                                        Email
+                                    <label >
+                                        Email:
                                     </label>
                                     <input
                                         id="email"
@@ -210,8 +226,8 @@ function RegisterForm() {
                                 </div>
                                 <p className="text-red-700">{formErrors.email}</p>
                                 <div>
-                                    <label htmlFor="password" className="sr-only">
-                                        Phone
+                                    <label >
+                                        Phone:
                                     </label>
                                     <input
                                         id="phone"
@@ -227,8 +243,8 @@ function RegisterForm() {
                                 </div>
                                 <p className="text-red-700">{formErrors.phone}</p>
                                 <div>
-                                    <label htmlFor="password" className="sr-only">
-                                        Address
+                                    <label >
+                                        Address:
                                     </label>
                                     <input
                                         id="address"
@@ -245,6 +261,7 @@ function RegisterForm() {
                                 <p className="text-red-700">{formErrors.address}</p>
                             </div>
                             <p className="text-red-700" id="err"></p>
+                            <div><a href="login">Do you already have an account? Log in</a></div>
                             <div>
                                 <button
                                     type="submit"
@@ -257,7 +274,7 @@ function RegisterForm() {
                                             aria-hidden="true"
                                         />
                                     </span>
-                                    <div text-lg>Register</div>
+                                    <div>Register</div>
                                 </button>
                             </div>
                         </form>

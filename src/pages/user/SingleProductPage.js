@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
-import Btn from '../components/Btn';
-import PageHero from '../components/PageHero';
-import SingleReview from '../components/SingleReview';
-import Stars from '../components/Stars';
-import Loading from '../components/Loading';
-import Error from '../components/Error';
-import NavbarUser from "../components/NavbarUser";
+import {Link, useHistory, useNavigate, useParams} from 'react-router-dom';
+import Btn from '../../components/Btn';
+import PageHero from '../../components/PageHero';
+import SingleReview from '../../components/SingleReview';
+import Stars from '../../components/Stars';
+import Loading from '../../components/Loading';
+import Error from '../../components/Error';
+import NavbarUser from "../../components/NavbarUser";
 import {useSelector} from "react-redux";
 
 const SingleProductPage = () => {
@@ -14,26 +14,17 @@ const SingleProductPage = () => {
     const [comment, setComment] = useState('');
     const [title, setTitle] = useState('');
     const { id } = useParams();
-    // const history = useHistory();
+    const navigate = useNavigate();
 
-    // const {
-    //     fetchSingleProduct,
-    //     single_product_loading: loading,
-    //     single_product_error: error,
-    //     single_product: product,
-    //     fetchSingleProductsReset,
-    //
-    //     // reviews
-    //     createdProductReview,
-    //     createProductReview,
-    //     createProductReviewLoading,
-    //     createProductReviewError,
-    //     createReviewReset,
-    // } = useProductsContext();
-    // const { loginUser } = useUserContext();
+
 
     const Product = useSelector(state => state.productReducer.products)
     console.log(Product,'11')
+    // useEffect(() => {
+    //         navigate('/products');
+    //
+    //     }, 2000);
+
 
     // useEffect(() => {
     //     fetchSingleProduct(singleProductUrl);

@@ -14,6 +14,8 @@ function Search({ list, model }) {
             dispatch(setListSearch(list.filter(isSearch)))
         } else if (model === 'product') {
             dispatch(setProductSearch(list.filter(isSearch)))
+        }else if (model === 'staff'){
+            // dispatch(setStaffSearch(list.filter(isSearch)))
         }
     }
     const isSearch = (item) => {

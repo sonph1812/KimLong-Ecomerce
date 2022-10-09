@@ -20,7 +20,6 @@ const Products = () => {
     }
   }, [listSearch])
 
-
   useEffect(() => {
     setProduct(list)
   }, [list])
@@ -51,7 +50,7 @@ const Products = () => {
               </div>
       </div>
 
-      <Search list={products} model="product" ></Search>
+      <Search list={list} model="product" ></Search>
 
 
       <table className="min-w-full leading-normal ">

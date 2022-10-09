@@ -5,7 +5,8 @@ const initialState = {
     products: [],
     product: {},
     loading: false,
-    listSearch:null
+    listSearch:null,
+    sortProducts:[]
 }
 const productSlice = createSlice({
     name: 'products',
@@ -33,6 +34,9 @@ const productSlice = createSlice({
         setProductSearch: (state, action) => {
             state.listSearch = action.payload
 
+        },
+        setProductSort : (state, action) =>{
+            state.sortProducts = action.payload
         }
 
 
@@ -40,5 +44,5 @@ const productSlice = createSlice({
     }
 })
 
-export const {setProductSearch, getAllProductSlice, createProductSlice, deleteProductSlice, updateProductSlice, getDetailProductSlice } = productSlice.actions;
+export const {setProductSort,setProductSearch, getAllProductSlice, createProductSlice, deleteProductSlice, updateProductSlice, getDetailProductSlice } = productSlice.actions;
 export default productSlice.reducer;
