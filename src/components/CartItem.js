@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import { formatPrice } from '../utils/helpers';
 import { useDispatch } from "react-redux"
-import { deleteItem } from '../service/cartService';
+import { deleteItem, changeAmountItem } from '../service/cartService';
 
 const CartItem = ({item,idCart}) => {
-  const [amount,setAmount] = useState(item.amount)
+  let [amount,setAmount] = useState(item.amount)
 
   const increase = (id) => {
-    changeAmountItem(idCart,id,data,dispatch)
+    setAmount(amount+1)
+    changeAmountItem(idCart,id,(amount+1),dispatch)
   };
   const decrease = (id) => {
-    changeAmountItem(idCart,id,data,dispatch)
-  };
+    setAmount(amount-1)
 
+    changeAmountItem(idCart,id,(amount-1),dispatch)
+  };
   const dispatch = useDispatch()
   const handelDelete = ( idItem) => {
     deleteItem(idCart,idItem,dispatch)
   }
+
   return (
     <div className="flex flex-wrap items-center -mx-4  border-b py-5">
       {/* Item img, info*/}
@@ -25,12 +28,12 @@ const CartItem = ({item,idCart}) => {
           <div className="w-full md:w-1/3 px-4 mb-3">
             {/* img */}
             <div className="flex items-center justify-center w-full md:w-24 h-32 bg-gray-100">
-              <img className="h-full object-contain" src={item.productId.image} alt={item.productId.name} />
+              <img className="h-full object-contain" src={item.productId?.image} alt={item.productId?.name} />
             </div>
           </div>
           <div className="w-full md:w-2/3 px-4  text-left">
-            <h3 className="mb-2 text-xl font-bold ">{item.productId.name}</h3>
-            <p className="text-gray-500">{item.productId.name}</p>
+            <h3 className="mb-2 text-xl font-bold ">{item.productId?item.productId.name:"Product not found !"}</h3>
+            <p className="text-gray-500">{item.productId?item.productId.name:"Please remove item !"}</p>
 
             {/* remove item btn */}
             <button
@@ -53,12 +56,12 @@ const CartItem = ({item,idCart}) => {
       {/* Price*/}
       <div className="hidden lg:block lg:w-2/12 px-4">
         <p className="text-lg text-tertiary-500 font-bold">
-          {formatPrice(item.productId.price)}
+          {formatPrice(item.productId?item.productId.price:"")}
         </p>
       </div>
 
       {/* Amount btns*/}
-      <div className="w-auto md:w-1/6 lg:w-2/12 px-4">
+      {item.productId && <div className="w-auto md:w-1/6 lg:w-2/12 px-4">
         <div className="inline-flex items-center px-4 font-semibold text-gray-500 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md">
           {/* minus btn */}
           <button className="py-2 hover:text-gray-700"
@@ -112,12 +115,12 @@ const CartItem = ({item,idCart}) => {
             </svg>
           </button>
         </div>
-      </div>
+      </div>}
 
       {/* Subtotal */}
       <div className="w-auto md:w-1/6 lg:w-2/12 px-4 text-right">
         <p className="text-lg text-tertiary-500 font-bold">
-          {formatPrice(item.productId.price * item.amount)}
+          {formatPrice(item.productId?(item.productId.price * item.amount):"")}
         </p>
       </div>
     </div>

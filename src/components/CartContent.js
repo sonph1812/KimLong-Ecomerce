@@ -6,12 +6,12 @@ import {  useDispatch, useSelector } from "react-redux"
 import { clearCart } from '../service/cartService';
 
 const CartContent = () => {
-  const cart = useSelector(s => s.cartReducer.cart)
-  const idCart = cart._id
+  const cartId = useSelector(s => s.cartReducer.cartId)
   const dispatch = useDispatch()
   const items = useSelector(s => s.cartReducer.items)
+  const totals = useSelector(s => s.cartReducer.totals)
  const handelClear = () => {
-    clearCart(idCart,dispatch)
+    clearCart(cartId,dispatch)
  }
   return (
     <>
@@ -40,7 +40,7 @@ const CartContent = () => {
             {/* Products rows*/}
             <div className="mb-12  border-t  border-gray-200">
               {items?.map(item => {
-               return <CartItem key={item._id} item = {item} idCart={idCart}/>;
+               return ( <CartItem key={item._id} item = {item} idCart={cartId}/>);
               })}
             </div>
 
@@ -69,7 +69,7 @@ const CartContent = () => {
           </div>
 
           {/* Cart totals */}
-          <CartTotals name="Proceed to checkout" to="/shipping" />
+          <CartTotals name="Proceed to checkout" to="/shipping" totals = {totals}/>
         </div>
       </section>
     </>

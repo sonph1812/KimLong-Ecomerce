@@ -27,6 +27,9 @@ export const clearCart = async (id, dispatch) => {
     dispatch(clearCartSlice(res.data))
 }
 export const changeAmountItem = async (id, idItem,data, dispatch) => {
-    const res = await customAxios.put(`${baseURL}/cart/${id}/${idItem}`,data)
-    dispatch(changeAmountItemSlice(data))
+    // const res = await customAxios.put(`${baseURL}/cart/${id}/${idItem}`,{data})
+    dispatch(changeAmountItemSlice({
+        amount:data,
+        idItem:idItem
+    }))
 }

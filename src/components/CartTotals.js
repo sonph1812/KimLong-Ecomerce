@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { formatPrice } from '../utils/helpers';
 
-const CartTotals = ({ name, to }) => {
+const CartTotals = ({ name, to, totals }) => {
   const userInfo = useSelector(s => s.userReducer.userInfo)
-
+  
   const total_amount = 10;
   const shipping_fee = 10;
 
@@ -16,7 +16,7 @@ const CartTotals = ({ name, to }) => {
         <div className="flex mb-8 items-center justify-between pb-5 border-b border-blue-100">
           <span className="font-bold text-lg">Subtotal</span>
           <span className="text-xl font-bold  text-secondary-200">
-            {formatPrice(total_amount)}
+            {formatPrice(totals)}
           </span>
         </div>
         <h4 className="mb-2 font-bold text-left text-lg">Shipping</h4>
@@ -33,7 +33,7 @@ const CartTotals = ({ name, to }) => {
         <div className="flex mb-10 justify-between items-center ">
           <span className="text-lg sm:text-2xl font-bold ">Order total</span>
           <span className="text-xl font-bold  text-secondary-200">
-            {formatPrice(total_amount + shipping_fee)}
+            {formatPrice(totals + shipping_fee)}
           </span>
         </div>
         {userInfo.name ? (
