@@ -16,7 +16,7 @@ const CartContent = () => {
  }
   return (
     <>
-      <section className="section-center text-center py-14">
+      <section className="container mx-auto text-center py-14">
         <h2 className="mb-10 text-4xl md:text-5xl font-bold ">Your cart</h2>
 
         <div className="flex flex-wrap items-center -mx-4">
@@ -57,7 +57,7 @@ const CartContent = () => {
                 </span>
               </button>
 
-              <Link to="/products">
+              <Link to="/user/products">
                 <button className="relative inline-block px-4 py-2 font-medium group">
                   <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                   <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>

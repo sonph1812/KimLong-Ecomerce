@@ -94,7 +94,7 @@ const AddtoCart = ({ product }) => {
           {/*{formatPrice(product.price)}*/}
         </span>
         <Link
-          to="/cart"
+          to="/user/cart"
           className="flex ml-auto text-white bg-yellow-300 border-0 py-2 px-6 focus:outline-none hover:bg-secondary-900 rounded"
           onClick={() => addToCart(id, mainColor, amount, product)}
         >

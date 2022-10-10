@@ -29,7 +29,7 @@ const SingleProductPage = () => {
 
 
             <PageHero title={name} product />
-            <section className="  px-10  justify-center bg-white py-20 ">
+            <section className="  px-20  justify-center bg-white py-10 ">
                 {/*{Loading ? (*/}
                 {/*    <Loading />*/}
                 {/*) : error ? (*/}

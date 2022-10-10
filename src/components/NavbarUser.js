@@ -25,7 +25,7 @@ const NavbarUser = () => {
           <ul className="items-stretch hidden space-x-8 lg:flex">
             <li>
               <Link
-                to="/"
+                to="/user/home"
                 aria-label="HomePage"
                 title="HomePage"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
@@ -55,7 +55,7 @@ const NavbarUser = () => {
             </li>
             <li>
               <Link
-                to="/products"
+                to="/user/products"
                 aria-label="All products"
                 title="All products"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"

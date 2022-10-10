@@ -13,7 +13,7 @@ const NewProducts = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const handleGetDetail = (id) => {
-    navigate(`product/${id}`)
+    navigate(`/user/product/${id}`)
 
 }
 
