@@ -46,12 +46,9 @@ const Products = () => {
     return (
 
         <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-
+            <Header category="Page" title="Products" />
       <div onClick={() => { handelProduct() }}>
-        <Header category="Page" title="Products" />
-              <div>
-                  <button className="col-span-2 sm:col-span-3 absolute px-3 bg-yellow-200 opacity-50 rounded-full row hover:bg-green-800 focus:outline-none rounded" onClick={() => { handlerCreate() }}>Create</button>
-              </div>
+
       </div>
 
             <Search list={list} model="product"></Search>
@@ -69,7 +66,7 @@ const Products = () => {
                     <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Stock</td>
                     <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Brand</td>
                     <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Category</td>
-                    <td colSpan={3}
+                    <td colSpan={4}
                         className=" text-center px-8 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider colSpan={'2'}">Action
                     </td>
                 </tr>
@@ -110,9 +107,9 @@ const Products = () => {
                     </tr>
                 ))}
 
-                </tbody>
-            </table>
-        </div>
-    );
+        </tbody>
+      </table>
+    </div>
+  );
 };
 export default Products;

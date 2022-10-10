@@ -78,16 +78,7 @@ const App = () => {
           <Route path="cart" element={<CartPage />}></Route>
           <Route path="shipping" element={<ShippingPage />}></Route>
         </Route>
-        {/*  */}
-        <Route path="/user" element={<HomeUser1></HomeUser1>}>
-          <Route path="products" element={<ProductList />} />
-          <Route
-            path="product/:id"
-            element={<SingleProductPage />} ></Route>
-          <Route path="cart" element={<CartPage />}></Route>
-          <Route path="shipping" element={<ShippingPage />}></Route>
-        </Route>
-        {/*  */}
+
         <Route path="/admin" element={<Admin></Admin>}>
           <Route path="editor" element={<Editor />} />
           <Route path="products" element={<Products />} />
