@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { formatPrice } from '../utils/helpers';
 import { useDispatch } from "react-redux"
 import { deleteItem, changeAmountItem } from '../service/cartService';
@@ -7,7 +7,6 @@ import { changeTotals } from '../reducer/slice/cartSlice';
 const CartItem = ({ item, idCart }) => {
   let [amount, setAmount] = useState(item.amount)
   const dispatch = useDispatch()
-
   const increase = (id) => {
     if (amount >= 10) {
       return;
@@ -25,7 +24,9 @@ const CartItem = ({ item, idCart }) => {
   const handelDelete = (idItem) => {
     deleteItem(idCart, idItem, dispatch)
   }
-
+  useEffect(()=>{
+    setAmount(item.amount)
+  },[item])
   return (
     <div className="flex flex-wrap items-center -mx-4  border-b py-5">
       {/* Item img, info*/}

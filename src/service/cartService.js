@@ -31,11 +31,10 @@ export const clearCart = async (id, dispatch) => {
     const res = await customAxios.delete(`${baseURL}/cart/${id}`)
     dispatch(clearCartSlice(res.data))
 }
-export const changeAmountItem = async (id, idItem, data,totals, dispatch,key) => {
+export const changeAmountItem = async (id, idItem, data,totals, dispatch,navigate) => {
     const res = await customAxios.put(`${baseURL}/cart/${id}/${idItem}`, { data })
-    if(key){
-        dispatch(changeInAddToCart({idItem,data,totals}))
-    }else{
-        dispatch(changeTotals(totals))
+    dispatch(changeInAddToCart({idItem,data,totals}))
+    if(navigate){
+        navigate('/cart')
     }
 }

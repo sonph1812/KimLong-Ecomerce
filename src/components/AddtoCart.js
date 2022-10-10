@@ -6,7 +6,7 @@ import { formatPrice } from '../utils/helpers';
 import { changeAmountItem } from '../service/cartService';
 const AddtoCart = ({ product }) => {
   const navigate = useNavigate()
-  const { _id, stock, colors, price } = product;
+  const { _id, price } = product;
   const [amount, setAmount] = useState(1);
   
   const cartId = useSelector(s => s.cartReducer.cartId)
@@ -32,10 +32,10 @@ const AddtoCart = ({ product }) => {
 
         if (item.amount + amount > 10) {
           const newTotal = item.productId.price * 10
-          changeAmountItem(cartId, item._id, 10, { oldTotal, newTotal }, dispatch,'addtocart')
+          changeAmountItem(cartId, item._id, 10, { oldTotal, newTotal }, dispatch,navigate)
         } else {
           const newTotal = item.productId.price * (item.amount + amount)
-          changeAmountItem(cartId, item._id, (item.amount + amount), { oldTotal, newTotal }, dispatch,'addtocart')
+          changeAmountItem(cartId, item._id, (item.amount + amount), { oldTotal, newTotal }, dispatch,navigate)
         }
         return;
       }
@@ -111,13 +111,13 @@ const AddtoCart = ({ product }) => {
         <span className="title-font font-medium text-2xl text-gray-900">
           {formatPrice(price)}
         </span>
-        <Link
-          to="/cart"
+        <p
+          // to="/cart"
           className="flex ml-auto bg-secondary-800 border-0 py-2 px-6 focus:outline-none hover:bg-secondary-900 rounded"
           onClick={() => { addToCart(_id) }}
         >
           Add to cart
-        </Link>
+        </p>
 
       </div>
     </>
