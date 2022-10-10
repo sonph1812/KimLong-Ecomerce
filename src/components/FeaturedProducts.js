@@ -20,13 +20,12 @@ import TestSwiper from "./testSwiper";
 
 const FeaturedProducts = () => {
     const list = useSelector(state => state.productReducer.products)
-    console.log(123,list)
     return (
         <Swiper
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, A11y]}
-            spaceBetween={50}
-            slidesPerView={1}
+            spaceBetween={2}
+            slidesPerView={2}
             navigation
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}

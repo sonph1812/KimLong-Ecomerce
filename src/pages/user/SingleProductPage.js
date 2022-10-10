@@ -10,6 +10,7 @@ import NavbarUser from "../../components/NavbarUser";
 import {useDispatch, useSelector} from "react-redux";
 import {getDetailProduct} from "../../service/productService";
 import AddtoCart from "../../components/AddtoCart";
+import {formatPrice} from "../../utils/helpers";
 
 const SingleProductPage = () => {
     const dispatch = useDispatch()
@@ -24,9 +25,9 @@ const SingleProductPage = () => {
 
     return (
         <>
-            <NavbarUser/>
+            {/*<NavbarUser/>*/}
             <PageHero title={name} product />
-            <section className=" py-10 px-10 section-center">
+            <section className="  px-10  justify-center bg-white py-20 ">
                 {/*{Loading ? (*/}
                 {/*    <Loading />*/}
                 {/*) : error ? (*/}
@@ -47,41 +48,41 @@ const SingleProductPage = () => {
                                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                                     {product.name}  </h1>
 
-                                {/*<Stars stars={stars} />*/}
+                                <Stars  />
                                 <p className="leading-relaxed mt-4">
                                     {product.description}
                                 </p>
-                                {product.stock > 0 && <AddtoCart product={product} />}
+                                {product.stock > 0 && <AddtoCart />}
                             </div>
                         </div>
 
-                        {/* Product reviews */}
-                        <div className="max-w-screen-xl  py-8 mx-auto  ">
-                            <h2 className="text-xl font-bold sm:text-2xl">
-                                Customer Reviews
-                            </h2>
+                        {/*/!* Product reviews *!/*/}
+                        {/*<div className="max-w-screen-xl  py-8 mx-auto  ">*/}
+                        {/*    <h2 className="text-xl font-bold sm:text-2xl">*/}
+                        {/*        Customer Reviews*/}
+                        {/*    </h2>*/}
 
-                            <div className="flex items-center mt-4">
-                                <p className="text-3xl font-medium">
-                                    {/*{stars}*/}
-                                    <span className="sr-only"> Average review score </span>
-                                </p>
+                        {/*    <div className="flex items-center mt-4">*/}
+                        {/*        <p className="text-3xl font-medium">*/}
+                        {/*            /!*{stars}*!/*/}
+                        {/*            <span className="sr-only"> Average review score </span>*/}
+                        {/*        </p>*/}
 
-                                <div className="ml-4">
-                                    <Stars />
+                        {/*        <div className="ml-4">*/}
+                        {/*            <Stars />*/}
 
-                                    <p className="mt-0.5 text-xs text-gray-500">
-                                        {/*Based on {numReviews} reviews*/}
-                                    </p>
-                                </div>
-                            </div>
+                        {/*            <p className="mt-0.5 text-xs text-gray-500">*/}
+                        {/*                /!*Based on {numReviews} reviews*!/*/}
+                        {/*            </p>*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
 
-                            <div className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12">
-                                {/*{reviews?.map(review => {*/}
-                                {/*    return <SingleReview key={review._id} review={review} />;*/}
-                                {/*})}*/}
-                            </div>
-                        </div>
+                        {/*    <div className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12">*/}
+                        {/*        /!*{reviews?.map(review => {*!/*/}
+                        {/*        /!*    return <SingleReview key={review._id} review={review} />;*!/*/}
+                        {/*        /!*})}*!/*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
 
                         {/*/!* Review form*!/*/}
                         {/*<div className="max-w-screen-xl  py-8 mx-auto  ">*/}

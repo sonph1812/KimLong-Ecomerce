@@ -35,6 +35,7 @@ import CreateBrand from './pages/brand/EditBrand';
 import { getAllOrder } from './service/orderService';
 import ProductDetail from "./pages/ProductDetail";
 import UserDetail from "./pages/UserDetail";
+import User from "./pages/user/User";
 const App = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
@@ -69,11 +70,11 @@ const App = () => {
         <Route path="/register" element={<RegisterForm />}></Route>
         <Route path="/home" element={<HomeUser />}></Route>
 
-        <Route >
+        <Route path="/user" element={<User/>} >
           <Route path="" element={<HomeUser />}></Route>
           <Route path="products" element={<ProductList />} />
           <Route
-            path="/product/:id"
+            path="product/:id"
             element={<SingleProductPage />} ></Route>
           <Route path="cart" element={<CartPage />}></Route>
           <Route path="shipping" element={<ShippingPage />}></Route>
