@@ -24,14 +24,14 @@ const NavbarUser = () => {
           {/* Left links */}
           <ul className="items-center hidden space-x-8 lg:flex">
             <li>
-              <a
-                href="/"
+              <Link
+                to="/"
                 aria-label="HomePage"
                 title="HomePage"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <a

@@ -29,7 +29,6 @@ const productSlice = createSlice({
 
         },
         getDetailProductSlice : (state,action) => {
-            console.log(action.payload)
             state.product = action.payload
         },
         setProductSearch: (state, action) => {

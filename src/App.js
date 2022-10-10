@@ -22,12 +22,12 @@ import { getAllBrand } from "./service/brandService";
 import HomeUser from "./pages/user/HomeUser";
 import ProductList from "./pages/user/ProductList";
 import SingleProductPage from "./pages/user/SingleProductPage";
-import {getAllCategory} from "./service/categoryService";
+import { getAllCategory } from "./service/categoryService";
 import CartPage from "./pages/user/CartPage";
 import ShippingPage from "./pages/user/ShippingPage";
 import { getDetailCart } from './service/cartService';
 import HomeUser1 from './pages/home/HomeUser1';
-import  CreateCategory from './pages/CreateCategory';
+import CreateCategory from './pages/CreateCategory';
 import Categories from './pages/Categories';
 import EditCategories from './pages/EditCategories';
 import Brands from './pages/brand/Brand';
@@ -73,7 +73,7 @@ const App = () => {
           <Route path="" element={<HomeUser />}></Route>
           <Route path="products" element={<ProductList />} />
           <Route
-            path="/product/:id"
+            path="home/product/:id"
             element={<SingleProductPage />} ></Route>
           <Route path="cart" element={<CartPage />}></Route>
           <Route path="shipping" element={<ShippingPage />}></Route>
@@ -83,8 +83,8 @@ const App = () => {
           <Route path="editor" element={<Editor />} />
           <Route path="products" element={<Products />} />
           <Route path="editProducts/:id" element={<EditProducts></EditProducts>} />
-<Route path="productDetail/:id" element={<ProductDetail/>}></Route>
-<Route path="userDetail/:id" element={<UserDetail/>}></Route>
+          <Route path="productDetail/:id" element={<ProductDetail />}></Route>
+          <Route path="userDetail/:id" element={<UserDetail />}></Route>
 
 
 
@@ -97,15 +97,15 @@ const App = () => {
 
           {/*<Route path="" element={(<Ecommerce />)} />*/}
           <Route path="customers" element={(<Customers />)} />
-          <Route path="categories" element={(<Categories/>)} />
-          <Route path='addCategory' element={(<CreateCategory/>)} />
+          <Route path="categories" element={(<Categories />)} />
+          <Route path='addCategory' element={(<CreateCategory />)} />
           <Route path="editCategories/:id" element={<EditCategories></EditCategories>} />
-          <Route path ="brands" element = {<Brands />} />;
-          <Route path='addBrands' element = {(<CreateBrand />)} />
+          <Route path="brands" element={<Brands />} />;
+          <Route path='addBrands' element={(<CreateBrand />)} />
 
-          
 
-          
+
+
 
           <Route path="orders" element={<Orders />} />
           {/*<Route path="kanban" element={<Kanban />} />*/}
