@@ -32,6 +32,8 @@ import Categories from './pages/Categories';
 import EditCategories from './pages/EditCategories';
 import Brands from './pages/brand/Brand';
 import CreateBrand from './pages/brand/EditBrand';
+import ProductDetail from "./pages/ProductDetail";
+import UserDetail from "./pages/UserDetail";
 
 const App = () => {
   const dispatch = useDispatch()
@@ -89,7 +91,8 @@ const App = () => {
           <Route path="editor" element={<Editor />} />
           <Route path="products" element={<Products />} />
           <Route path="editProducts/:id" element={<EditProducts></EditProducts>} />
-
+<Route path="productDetail/:id" element={<ProductDetail/>}></Route>
+<Route path="userDetail/:id" element={<UserDetail/>}></Route>
 
 
 

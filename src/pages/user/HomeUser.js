@@ -28,7 +28,7 @@ const HomePage = () => {
             <div>
                 {categories.map((item)=>{
                     let list = products.filter(item1=>{
-                        return (item1.categoryId.name === item.name)
+                        // return (item1.categoryId.name === item.name)
                     })
                     return(
 

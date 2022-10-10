@@ -16,10 +16,10 @@ export const getAllProduct = async (dispatch) => {
     const res = await customAxios.get(`${baseURL}/admin/products`)
     dispatch(getAllProductSlice(res.data))
 }
-export const getDetailProduct = async (dispatch, id) => {
-    console.log(id)
+export const getDetailProduct = async (dispatch,id) => {
     const res = await customAxios.get(`${baseURL}/admin/products/${id}`)
-    dispatch(getDetailProductSlice(res.data.product))
+        dispatch(getDetailProductSlice(res.data))
+
 }
 export const createProduct = async (data, dispatch) => {
     const res = await customAxios.post(`${baseURL}/admin/products/create`,data)

@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Btn from "../components/Btn";
 import {formatPrice} from "../utils/helpers";
 import {getDetailProduct} from "../service/productService";
+import {getDetailProductSlice} from "../reducer/slice/productSlice";
 // import React from "react"
 // import { useProductsContext } from '../context/products_context';
 
@@ -12,7 +13,6 @@ const NewProducts = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const handleGetDetail = (id) => {
-    getDetailProduct(dispatch,id)
     navigate(`product/${id}`)
 
 }
@@ -25,7 +25,7 @@ const NewProducts = () => {
         <SectionTitle title="New Products" />
         <div  className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10    place-items-center ">
             {products?.map((product, index) => (
-                <Link to={`product/${product._id}`}  onClick={()=>{handleGetDetail(product._id)}}className="group">
+                <div onClick={()=>{handleGetDetail(product._id)}} className="group">
                     <div className="w-full  max-w-sm aspect-square rounded-lg overflow-hidden  bg-tertiary-50">
                         <img
                             src={product.image}
@@ -39,7 +39,7 @@ const NewProducts = () => {
                             {formatPrice(product.price)}
                         </p>
                     </div>
-                </Link>
+                </div>
             ))}
 
         </div>

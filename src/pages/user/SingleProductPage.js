@@ -7,12 +7,17 @@ import Stars from '../../components/Stars';
 import Loading from '../../components/Loading';
 import Error from '../../components/Error';
 import NavbarUser from "../../components/NavbarUser";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getDetailProduct} from "../../service/productService";
 
 const SingleProductPage = () => {
+    const dispatch = useDispatch()
+    const params = useParams()
     const product = useSelector(state => state.productReducer.product)
-    console.log(product,'11')
+    useEffect(()=>{
+        getDetailProduct(dispatch,params.id)
+
+    },[])
 
 
 
@@ -20,30 +25,30 @@ const SingleProductPage = () => {
         <>
             <NavbarUser/>
             <PageHero title={name} product />
-            <section className=" py-10 section-center">
+            <section className=" py-10 px-10 section-center">
                 {/*{Loading ? (*/}
                 {/*    <Loading />*/}
                 {/*) : error ? (*/}
                 {/*    <Error title={error} />*/}
                 {/*) : (*/}
-                    <>
+                {product &&  <>
                         {/* Product details */}
                         <div className=" mx-auto flex flex-wrap ">
                             <img
                                 alt="ecommerce-product"
                                 className=" w-full h-full sm:w-2/3 sm:h-2/3 lg:w-1/2 lg:h-1/2 object-cover object-center rounded border border-gray-200 "
-                                src={"assets/iphone14.jpeg"}
+                                src={product.image}
                             />
                             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                                 <h2 className="text-sm title-font text-gray-500 tracking-widest uppercase">
                                     {/*{brand}*/}
                                 </h2>
                                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                                    {product.name}</h1>
+                                    {product.name}  </h1>
 
                                 {/*<Stars stars={stars} />*/}
                                 <p className="leading-relaxed mt-4">
-                                    {/*{description}*/}
+                                    {product.description}
                                 </p>
                                 {/*{stock > 0 && <AddtoCart product={product} />}*/}
                             </div>
@@ -62,7 +67,7 @@ const SingleProductPage = () => {
                                 </p>
 
                                 <div className="ml-4">
-                                    {/*<Stars stars={stars} />*/}
+                                    {/*<Stars />*/}
 
                                     <p className="mt-0.5 text-xs text-gray-500">
                                         {/*Based on {numReviews} reviews*/}
@@ -153,8 +158,8 @@ const SingleProductPage = () => {
                         {/*        </Link>*/}
                         {/*    )}*/}
                         {/*</div>*/}
-                    </>
-                )}
+                    </>}
+                {/*)}*/}
             </section>
         </>
     );
