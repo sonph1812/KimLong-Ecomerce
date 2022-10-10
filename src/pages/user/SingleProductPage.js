@@ -25,11 +25,9 @@ const SingleProductPage = () => {
 
     return (
         <>
-<<<<<<< HEAD
             {/*<NavbarUser/>*/}
-=======
-            <NavbarUser />
->>>>>>> origin/dev
+
+
             <PageHero title={name} product />
             <section className="  px-10  justify-center bg-white py-20 ">
                 {/*{Loading ? (*/}
@@ -37,7 +35,6 @@ const SingleProductPage = () => {
                 {/*) : error ? (*/}
                 {/*    <Error title={error} />*/}
                 {/*) : (*/}
-<<<<<<< HEAD
                 {product &&  <>
                         {/* Product details */}
                         <div className=" mx-auto flex flex-wrap ">
@@ -88,58 +85,9 @@ const SingleProductPage = () => {
                         {/*        /!*})}*!/*/}
                         {/*    </div>*/}
                         {/*</div>*/}
-=======
-                {product && <>
-                    {/* Product details */}
-                    <div className=" mx-auto flex flex-wrap ">
-                        <img
-                            alt="ecommerce-product"
-                            className=" w-full h-full sm:w-2/3 sm:h-2/3 lg:w-1/2 lg:h-1/2 object-cover object-center rounded border border-gray-200 "
-                            src={product.image}
-                        />
-                        <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                            <h2 className="text-sm title-font text-gray-500 tracking-widest uppercase">
-                                {product.brand}
-                            </h2>
-                            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                                {product.name}  </h1>
 
-                            {/*<Stars stars={stars} />*/}
-                            <p className="leading-relaxed mt-4">
-                                {product.description}
-                            </p>
-                            <AddtoCart product={product} />
-                        </div>
-                    </div>
 
-                    {/* Product reviews */}
-                    <div className="max-w-screen-xl  py-8 mx-auto  ">
-                        <h2 className="text-xl font-bold sm:text-2xl">
-                            Customer Reviews
-                        </h2>
 
-                        <div className="flex items-center mt-4">
-                            <p className="text-3xl font-medium">
-                                {/*{stars}*/}
-                                <span className="sr-only"> Average review score </span>
-                            </p>
-
-                            <div className="ml-4">
-                                <Stars />
-
-                                <p className="mt-0.5 text-xs text-gray-500">
-                                    {/*Based on {numReviews} reviews*/}
-                                </p>
-                            </div>
-                        </div>
->>>>>>> origin/dev
-
-                        <div className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12">
-                            {/*{reviews?.map(review => {*/}
-                            {/*    return <SingleReview key={review._id} review={review} />;*/}
-                            {/*})}*/}
-                        </div>
-                    </div>
 
                     {/*/!* Review form*!/*/}
                     {/*<div className="max-w-screen-xl  py-8 mx-auto  ">*/}

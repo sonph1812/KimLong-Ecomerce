@@ -38,12 +38,11 @@ import {getAllBrand} from "./service/brandService";
 import HomeUser from "./pages/user/HomeUser";
 import ProductList from "./pages/user/ProductList";
 import SingleProductPage from "./pages/user/SingleProductPage";
-<<<<<<< HEAD
+
 import {getAllCategory} from "./service/categoryService";
 import Profile from './pages/Profile';
-=======
-import { getAllCategory } from "./service/categoryService";
->>>>>>> origin/dev
+
+
 import CartPage from "./pages/user/CartPage";
 import ShippingPage from "./pages/user/ShippingPage";
 import {getDetailCart} from './service/cartService';
@@ -93,7 +92,7 @@ const App = () => {
                 <Route path="/register" element={<RegisterForm/>}></Route>
                 <Route path="home" element={<HomeUser/>}></Route>
 
-<<<<<<< HEAD
+
                 <Route path="/user" element={<User/>}>
                     <Route path="" element={<HomeUser/>}></Route>
                     <Route path="products" element={<ProductList/>}/>
@@ -111,24 +110,7 @@ const App = () => {
                     <Route path="productDetail/:id" element={<ProductDetail/>}></Route>
                     <Route path="userDetail/:id" element={<UserDetail/>}></Route>
                     <Route path='profile' element={<Profile/>}/>
-=======
-        <Route >
-          <Route path="" element={<HomeUser />}></Route>
-          <Route path="products" element={<ProductList />} />
-          <Route
-            path="home/product/:id"
-            element={<SingleProductPage />} ></Route>
-          <Route path="cart" element={<CartPage />}></Route>
-          <Route path="shipping" element={<ShippingPage />}></Route>
-        </Route>
 
-        <Route path="/admin" element={<Admin></Admin>}>
-          <Route path="editor" element={<Editor />} />
-          <Route path="products" element={<Products />} />
-          <Route path="editProducts/:id" element={<EditProducts></EditProducts>} />
-          <Route path="productDetail/:id" element={<ProductDetail />}></Route>
-          <Route path="userDetail/:id" element={<UserDetail />}></Route>
->>>>>>> origin/dev
 
 
                     <Route path="staffs" element={<Staffs/>}/>
@@ -145,23 +127,7 @@ const App = () => {
                     <Route path='addBrands' element={(<CreateBrand/>)}/>
 
 
-<<<<<<< HEAD
-                    <Route path="orders" element={<Orders/>}/>
-                    {/*<Route path="kanban" element={<Kanban />} />*/}
-                    {/*<Route path="calendar" element={<Calendar />} />*/}
-                    {/*<Route path="color-picker" element={<ColorPicker />} />*/}
-                    {/*<Route path="line" element={<Line />} />*/}
-                    {/*<Route path="area" element={<Area />} />*/}
-                    {/*<Route path="bar" element={<Bar />} />*/}
-                    {/*<Route path="pie" element={<Pie />} />*/}
-                    {/*<Route path="financial" element={<Financial />} />*/}
-                    {/*<Route path="color-mapping" element={<ColorMapping />} />*/}
-                    {/*<Route path="pyramid" element={<Pyramid />} />*/}
-                    {/*<Route path="stacked" element={<Stacked />} />*/}
 
-                </Route>
-            </Routes>
-=======
           {/*<Route path="" element={(<Ecommerce />)} />*/}
           <Route path="customers" element={(<Customers />)} />
           <Route path="categories" element={(<Categories />)} />
@@ -189,7 +155,6 @@ const App = () => {
 
         </Route>
       </Routes>
->>>>>>> origin/dev
 
 
         </BrowserRouter>
