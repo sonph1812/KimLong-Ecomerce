@@ -125,10 +125,10 @@ const ShippingForm = () => {
           />
         </div>
 
-        <Link
-
+        <p
+          
           onClick={() => { handelSupmit() }}
-        ><Btn name="Next" /></Link>
+        ><Btn name="Next" /></p>
       </div>
     </div>
   );

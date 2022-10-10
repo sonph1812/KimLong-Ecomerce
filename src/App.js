@@ -52,11 +52,12 @@ import Categories from './pages/Categories';
 import EditCategories from './pages/EditCategories';
 import Brands from './pages/brand/Brand';
 import CreateBrand from './pages/brand/EditBrand';
-import { getAllOrder } from './service/orderService';
+import { getAllOrder, myOrders } from './service/orderService';
 import ProductDetail from "./pages/ProductDetail";
 import UserDetail from "./pages/UserDetail";
 import User from "./pages/user/User";
-
+import OrderPage from './pages/OrderPage';
+import MyOrderPage from './pages/MyOrderPage';
 
 const App = () => {
     const dispatch = useDispatch()
@@ -80,6 +81,7 @@ const App = () => {
                 // getAllBrand(dispatch)
             } else if (user.roleId.name == "user") {
                 getDetailCart(user.cartId, dispatch)
+                myOrders(user._id,dispatch)
             }
         }
     }, [token]);
@@ -101,6 +103,9 @@ const App = () => {
                         element={<SingleProductPage />}></Route>
                     <Route path="cart" element={<CartPage />}></Route>
                     <Route path="shipping" element={<ShippingPage />}></Route>
+                    <Route path="order" element={<OrderPage />}></Route>
+                    <Route path="myOrder" element={<MyOrderPage />}></Route>
+                    
                 </Route>
                 
                 <Route path="/admin" element={<Admin></Admin>}>

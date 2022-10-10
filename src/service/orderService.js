@@ -8,15 +8,17 @@ export const getAllOrder = async (dispatch) => {
 }
 export const addOrder = async (data,dispatch) => {
     const res = await customAxios.post(`${baseURL}/order`, data)
-    console.log(res.data);
     dispatch(addOrderSlice(res.data))
 }
-export const deleteOrder = async (id,dispatch) => {
+export const deleteOrder = async (id,index,dispatch) => {
     const res = await customAxios.delete(`${baseURL}/order/${id}`)
-    dispatch(deleteOrderSlice(res.data))
+    dispatch(deleteOrderSlice(index))
 }
 export const myOrders = async (idUser, dispatch) => {
-    const res = await customAxios.get(`${baseURL}/order/user/${id}`)
+    const res = await customAxios.get(`${baseURL}/order/user/${idUser}`)
     dispatch(myOrdersSlice(res.data))
 
+}
+export const sendOrder = async () => {
+    
 }

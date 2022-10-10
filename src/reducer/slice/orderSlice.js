@@ -15,9 +15,13 @@ const orderSlice = createSlice({
             state.order = action.payload
         },
         deleteOrderSlice: (state, action) => {
+            state.orders.splice(action.payload,1)
         },
         myOrdersSlice: (state, action) =>{
             state.orders = action.payload
+        },
+        sendOrderSlice: (state,action) => {
+            
         }
     }
 })
