@@ -28,15 +28,37 @@ const cartSlice = createSlice({
             state.totals = action.payload.totals
             state.items = action.payload.itemId
         },
-        // changeAmountItemSlice: (state,action) => {
-        //     // state.totals = action.payload.totals
-           
-        // },
         changeTotals : (state,action) => {
-            state.totals = action.payload.totals
-            // state.items = action.payload.itemId
+            state.totals = state.totals - action.payload.oldTotal + action.payload.newTotal
+        },
+        changeInAddToCart: (state,action) => {
+            let item = state.items.find(item => item._id == action.payload.idItem)
+            // state.items = state.items.filter(item => item._id != action.payload.idItem)
+            // state.items = [
+            //     ...state.items,
+            //     item = {
+            //         ...item,
+            //         amount  action.payload.data
+            //     }
+            // ]
+            let arr = []
+            for(let item of state.items){
+                if(item._id == action.payload.idItem){
+                    let item1 = {
+                        ...item,
+                        amount: action.payload.data,
+                        total: action.payload.totals.newTotal
+                    }
+                    arr.push(item1)
+                }else{
+                arr.push(item)
+                }
+            }
+            state.items = arr
+            state.totals = state.totals - action.payload.totals.oldTotal + action.payload.totals.newTotal
         }
+
     }
 })
-export const {getDetailCartSlice,addItemSlice, deleteItemSlice,clearCartSlice,changeAmountItemSlice,changeTotals} = cartSlice.actions
+export const {changeInAddToCart,getDetailCartSlice,addItemSlice, deleteItemSlice,clearCartSlice,changeAmountItemSlice,changeTotals} = cartSlice.actions
 export default  cartSlice.reducer;

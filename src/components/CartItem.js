@@ -9,14 +9,17 @@ const CartItem = ({ item, idCart }) => {
   const dispatch = useDispatch()
 
   const increase = (id) => {
+    if (amount >= 10) {
+      return;
+    }
     setAmount(amount + 1)
-    dispatch(changeTotals({ oldTotal: item.productId.price * amount, newTotal: item.productId.price * (amount + 1) }))
-    changeAmountItem(idCart, id, (amount + 1), dispatch)
-  };
+    changeAmountItem(idCart, id, (amount + 1), { oldTotal: item.productId.price * amount, newTotal: item.productId.price * (amount + 1) }, dispatch) };
   const decrease = (id) => {
+    if (amount <= 1) {
+      return;
+    }
     setAmount(amount - 1)
-    dispatch(changeTotals({ oldTotal: item.productId.price * amount, newTotal: item.productId.price * (amount - 1) }))
-    changeAmountItem(idCart, id, (amount - 1), dispatch)
+    changeAmountItem(idCart, id, (amount - 1),{ oldTotal: item.productId.price * amount, newTotal: item.productId.price * (amount - 1) }, dispatch)
   };
 
   const handelDelete = (idItem) => {

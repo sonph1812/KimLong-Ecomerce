@@ -3,7 +3,7 @@ import {
     getDetailCartSlice,
     deleteItemSlice,
     clearCartSlice,
-    changeAmountItemSlice,
+    changeInAddToCart,
     changeTotals
 } from "../reducer/slice/cartSlice";
 import { customAxios } from "./tokenHeader";
@@ -31,7 +31,11 @@ export const clearCart = async (id, dispatch) => {
     const res = await customAxios.delete(`${baseURL}/cart/${id}`)
     dispatch(clearCartSlice(res.data))
 }
-export const changeAmountItem = async (id, idItem, data,totals, dispatch) => {
+export const changeAmountItem = async (id, idItem, data,totals, dispatch,key) => {
     const res = await customAxios.put(`${baseURL}/cart/${id}/${idItem}`, { data })
-    dispatch(changeTotals(res.data))
+    if(key){
+        dispatch(changeInAddToCart({idItem,data,totals}))
+    }else{
+        dispatch(changeTotals(totals))
+    }
 }

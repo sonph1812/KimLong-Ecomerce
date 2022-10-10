@@ -32,10 +32,10 @@ const AddtoCart = ({ product }) => {
 
         if (item.amount + amount > 10) {
           const newTotal = item.productId.price * 10
-          changeAmountItem(cartId, item._id, 10, { oldTotal, newTotal }, dispatch)
+          changeAmountItem(cartId, item._id, 10, { oldTotal, newTotal }, dispatch,'addtocart')
         } else {
           const newTotal = item.productId.price * (item.amount + amount)
-          changeAmountItem(cartId, item._id, (item.amount + amount), { oldTotal, newTotal }, dispatch)
+          changeAmountItem(cartId, item._id, (item.amount + amount), { oldTotal, newTotal }, dispatch,'addtocart')
         }
         return;
       }
