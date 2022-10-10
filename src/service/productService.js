@@ -1,10 +1,12 @@
 import {customAxios} from "./tokenHeader";
 import {
+    filterProduct,
     createProductSlice,
     deleteProductSlice,
     getAllProductSlice,
     getDetailProductSlice,
-    updateProductSlice
+    updateProductSlice, getProByCate, getProByBrand,
+
 } from "../reducer/slice/productSlice";
 
 
@@ -14,9 +16,10 @@ export const getAllProduct = async (dispatch) => {
     const res = await customAxios.get(`${baseURL}/admin/products`)
     dispatch(getAllProductSlice(res.data))
 }
-export const getDetailProduct = async (dispatch, id) => {
-    const res = await customAxios.get(`${baseURL}/admin/products/633e82a1c92cb75ee2e5e0e7`)
-    dispatch(getDetailProductSlice(res.data.product))
+export const getDetailProduct = async (dispatch,id) => {
+    const res = await customAxios.get(`${baseURL}/admin/products/${id}`)
+        dispatch(getDetailProductSlice(res.data))
+
 }
 export const createProduct = async (data, dispatch) => {
     const res = await customAxios.post(`${baseURL}/admin/products/create`,data)
@@ -35,4 +38,12 @@ export const updateProducts = async (dispatch, props) => {
     if (res){
         window.location.reload();
     }
+}
+export const getProductByCate = async (dispatch) => {
+    const res = await customAxios.get(`${baseURL}/admin/filterByCategory/63351fd083ce9c34ebdee0fb`)
+    dispatch(getProByCate(res.data))
+}
+export const getProductByBrand = async (dispatch) => {
+    const res = await customAxios.get(`${baseURL}/admin/filterByBrand/63412ee41284300171ff611b`)
+    dispatch(getProByBrand(res.data))
 }

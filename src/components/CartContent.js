@@ -1,11 +1,19 @@
 import React from 'react';
 import CartTotals from './CartTotals';
-// import { useCartContext } from '../context/cart_context';
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
+import {  useDispatch, useSelector } from "react-redux"
+import { clearCart } from '../service/cartService';
 
 const CartContent = () => {
-  // const {  clearCart,cart } = useCartContext();
+  const cartId = useSelector(s => s.cartReducer.cartId)
+  const dispatch = useDispatch()
+  const items = useSelector(s => s.cartReducer.items)
+  const totals = useSelector(s => s.cartReducer.totals)
+
+  const handelClear = () => {
+    clearCart(cartId,dispatch)
+ }
   return (
     <>
       <section className="section-center text-center py-14">
@@ -32,14 +40,14 @@ const CartContent = () => {
 
             {/* Products rows*/}
             <div className="mb-12  border-t  border-gray-200">
-              {/*{cart?.map(item => {*/}
-              {/*  return <CartItem key={item.id} {...item} />;*/}
-              {/*})}*/}
+              {items?.map(item => {
+               return ( <CartItem key={item._id} item = {item} idCart={cartId}/>);
+              })}
             </div>
 
             <div className="flex justify-between flex-wrap items-center lg:-mb-4">
               <button
-                // onClick={clearCart}
+                onClick={handelClear}
                 className="relative inline-block px-4 py-2 font-medium group"
               >
                 <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
@@ -62,7 +70,7 @@ const CartContent = () => {
           </div>
 
           {/* Cart totals */}
-          <CartTotals name="Proceed to checkout" to="/shipping" />
+          <CartTotals name="Proceed to checkout" to="/shipping" totals = {totals}/>
         </div>
       </section>
     </>

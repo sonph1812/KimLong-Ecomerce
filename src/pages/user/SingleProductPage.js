@@ -7,94 +7,48 @@ import Stars from '../../components/Stars';
 import Loading from '../../components/Loading';
 import Error from '../../components/Error';
 import NavbarUser from "../../components/NavbarUser";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getDetailProduct} from "../../service/productService";
 
 const SingleProductPage = () => {
-    const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState('');
-    const [title, setTitle] = useState('');
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const params = useParams()
+    const product = useSelector(state => state.productReducer.product)
+    useEffect(()=>{
+        getDetailProduct(dispatch,params.id)
+
+    },[])
 
 
 
-    const Product = useSelector(state => state.productReducer.products)
-    console.log(Product,'11')
-    // useEffect(() => {
-    //         navigate('/products');
-    //
-    //     }, 2000);
-
-
-    // useEffect(() => {
-    //     fetchSingleProduct(singleProductUrl);
-    //     if (createdProductReview) {
-    //         setRating(0);
-    //         setComment('');
-    //         setTitle('');
-    //     }
-    // }, [id, createdProductReview]);
-    //
-    // useEffect(() => {
-    //     if (error || createProductReviewError) {
-    //         setTimeout(() => {
-    //             history.push('/products');
-    //             fetchSingleProductsReset();
-    //             createReviewReset();
-    //         }, 2000);
-    //     }
-    // }, [error, createProductReviewError]);
-
-    // const submitHandler = e => {
-    //     e.preventDefault();
-    //     const review = {
-    //         rating: +rating,
-    //         title,
-    //         comment,
-    //         product: id,
-    //     };
-    //     createProductReview(review);
-    // };
-
-    // const {
-    //     name,
-    //     brand,
-    //     image,
-    //     description,
-    //     stock,
-    //     reviews,
-    //     numReviews,
-    //     averageRating: stars,
-    // } = product;
     return (
         <>
             <NavbarUser/>
             <PageHero title={name} product />
-
-            <section className=" py-10 section-center">
+            <section className=" py-10 px-10 section-center">
                 {/*{Loading ? (*/}
                 {/*    <Loading />*/}
                 {/*) : error ? (*/}
                 {/*    <Error title={error} />*/}
                 {/*) : (*/}
-                    <>
+                {product &&  <>
                         {/* Product details */}
                         <div className=" mx-auto flex flex-wrap ">
                             <img
                                 alt="ecommerce-product"
                                 className=" w-full h-full sm:w-2/3 sm:h-2/3 lg:w-1/2 lg:h-1/2 object-cover object-center rounded border border-gray-200 "
-                                src={"assets/iphone14.jpeg"}
+                                src={product.image}
                             />
                             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                                 <h2 className="text-sm title-font text-gray-500 tracking-widest uppercase">
                                     {/*{brand}*/}
                                 </h2>
                                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                                    {Product.name}  </h1>
+                                    {product.name}  </h1>
 
                                 {/*<Stars stars={stars} />*/}
                                 <p className="leading-relaxed mt-4">
-                                    {/*{description}*/}
+                                    {product.description}
                                 </p>
                                 {/*{stock > 0 && <AddtoCart product={product} />}*/}
                             </div>
@@ -113,7 +67,7 @@ const SingleProductPage = () => {
                                 </p>
 
                                 <div className="ml-4">
-                                    {/*<Stars stars={stars} />*/}
+                                    {/*<Stars />*/}
 
                                     <p className="mt-0.5 text-xs text-gray-500">
                                         {/*Based on {numReviews} reviews*/}
@@ -204,8 +158,8 @@ const SingleProductPage = () => {
                         {/*        </Link>*/}
                         {/*    )}*/}
                         {/*</div>*/}
-                    </>
-                )}
+                    </>}
+                {/*)}*/}
             </section>
         </>
     );

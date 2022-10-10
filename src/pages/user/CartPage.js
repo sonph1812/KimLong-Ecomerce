@@ -7,7 +7,6 @@ import PageHero from '../../components/PageHero'
 
 
 const CartPage = () => {
-
   // if (cart.length < 1) {
   //   return (
   //     <div className=" h-screen ">
