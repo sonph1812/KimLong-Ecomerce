@@ -1,6 +1,5 @@
 import {customAxios} from "./tokenHeader";
 import {
-    filterProduct,
     createProductSlice,
     deleteProductSlice,
     getAllProductSlice,

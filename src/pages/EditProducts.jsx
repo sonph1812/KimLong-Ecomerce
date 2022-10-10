@@ -17,7 +17,6 @@ const EditProducts =  () => {
     useEffect(()=>{
         getDetailProduct(dispatch,id)
     },[])
-
     useEffect(()=>{
        setProduct(item)
     },[item])
