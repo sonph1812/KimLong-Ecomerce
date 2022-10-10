@@ -1,12 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
-import products from "../../pages/Products";
 
 const initialState = {
     products: [],
     product: {},
     loading: false,
     listSearch:null,
-    sortProducts:[]
+    productByCate:[],
+    productByBrand:[]
 }
 const productSlice = createSlice({
     name: 'products',
@@ -29,20 +29,28 @@ const productSlice = createSlice({
 
         },
         getDetailProductSlice : (state,action) => {
+            console.log(action.payload)
             state.product = action.payload
         },
         setProductSearch: (state, action) => {
             state.listSearch = action.payload
 
         },
-        setProductSort : (state, action) =>{
-            state.sortProducts = action.payload
+        getProByCate: (state, action) => {
+            state.productByCate = action.payload
+        },
+        getProByBrand: (state, action) => {
+            state.productByBrand = action.payload
         }
 
 
 
-    }
+        }
+
+
+
+
 })
 
-export const {setProductSort,setProductSearch, getAllProductSlice, createProductSlice, deleteProductSlice, updateProductSlice, getDetailProductSlice } = productSlice.actions;
+export const {setProductSearch, getAllProductSlice, createProductSlice, deleteProductSlice, updateProductSlice, getDetailProductSlice, getProByCate, getProByBrand } = productSlice.actions;
 export default productSlice.reducer;

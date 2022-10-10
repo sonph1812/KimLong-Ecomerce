@@ -11,11 +11,13 @@ const EditProducts =  () => {
     const dispatch = useDispatch();
     const products = useSelector((state)=> state.productReducer.products)
     const brands = useSelector(s => s.brandReducer.brands)
-    const categories = useSelector(s => s.categoryReducer.category)
-    // console.log(categories)
+    const categories = useSelector(s => s.categoryReducer.categories)
+    console.log(categories)
+    console.log(products)
     let productItem = products.filter(item =>(
         item._id === id
     ))
+    console.log(productItem)
     const [product, setProduct] = useState({
         name: productItem[0].name,
         description: productItem[0].description,

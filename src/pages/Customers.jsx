@@ -6,6 +6,7 @@ import Search from '../components/Search';
 import { setListSearch } from '../reducer/slice/userSlice';
 import { deleteUser , addUser } from '../service/userService';
 import {useNavigate} from "react-router";
+import {IoAddCircleOutline, IoInformationCircleOutline, IoReloadOutline, IoTrashOutline} from "react-icons/io5";
 const Customers = () => {
   const list = useSelector(state => state.userReducer.users)
   const listSearch = useSelector (s => s.userReducer.listSearch)
@@ -34,7 +35,11 @@ const handleDelete = (id) => {
   if(confirmDelete){
     deleteUser(id, dispatch);
   }
+
 }
+  const handleGetDetail = (id) => {
+    navigate(`userDetail/${id}`)
+  }
 
   return (
     // <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -58,25 +63,23 @@ const handleDelete = (id) => {
     // </div>
 
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <div onClick = {()=>{handelUser()}}><Header category="Page" title="Custommer" /></div>
+      <div onClick={() => { handelUser() }}><Header category="Page" title="Custommer" /></div>
       <Search list={list} model="user" ></Search>
       <table className="min-w-full leading-normal ">
         <thead>
           <tr>
             <td className="px-5 py-2 border-b-2  border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Name</td>
-            <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Email</td>
-            <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Phone</td>
-            <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Dob</td>
-            <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Gender</td>
-            <td className="px-2 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Address</td>
-            <td colSpan={2} className=" text-center px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider colSpan={'2'}"  >Action</td>
+            <td className="px-5 py-2 w-80 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Email</td>
+            <td className="px-5 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Phone</td>
+            <td className="px-5 py-2 w-40 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Address</td>
+            <td colSpan={2} className=" w-40 text-center px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"  >Action</td>
           </tr>
         </thead>
         <tbody>
           {role &&
             users.map((user, index) => (
               <tr key={user._id}>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <td className=" items-center px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   <img
                     style={{
                       width: "40px",
@@ -89,12 +92,17 @@ const handleDelete = (id) => {
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.dob} </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.gender} </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.address} </td>
-                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm" >  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                  Update
-                </button> </td>
-                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">  <button style={{ position: "relative", left: "10px" }} className="bg-yellow-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-full"  onClick={()=>{handleDelete(user._id)}}>
-                  Delete
-                </button> </td>
+                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
+                  <IoReloadOutline  ></IoReloadOutline>
+                </td>
+                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
+                  <IoTrashOutline onClick={()=>{handleDelete(user._id)}}></IoTrashOutline>
+                </td>
+                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
+                  <IoInformationCircleOutline onClick={()=>{handleGetDetail(user._id)}}>
+
+                  </IoInformationCircleOutline>
+                </td>
               </tr>
             ))
           }

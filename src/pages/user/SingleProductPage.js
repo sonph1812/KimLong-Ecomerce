@@ -1,141 +1,88 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
-import Btn from '../components/Btn';
-import PageHero from '../components/PageHero';
-import SingleReview from '../components/SingleReview';
-import Stars from '../components/Stars';
-import Loading from '../components/Loading';
-import Error from '../components/Error';
-import NavbarUser from "../components/NavbarUser";
-import {useSelector} from "react-redux";
+import {Link, useHistory, useNavigate, useParams} from 'react-router-dom';
+import Btn from '../../components/Btn';
+import PageHero from '../../components/PageHero';
+import SingleReview from '../../components/SingleReview';
+import Stars from '../../components/Stars';
+import Loading from '../../components/Loading';
+import Error from '../../components/Error';
+import NavbarUser from "../../components/NavbarUser";
+import {useDispatch, useSelector} from "react-redux";
+import {getDetailProduct} from "../../service/productService";
+import AddtoCart from "../../components/AddtoCart";
+import {formatPrice} from "../../utils/helpers";
 
 const SingleProductPage = () => {
-    const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState('');
-    const [title, setTitle] = useState('');
-    const { id } = useParams();
-    // const history = useHistory();
+    const dispatch = useDispatch()
+    const params = useParams()
+    const product = useSelector(state => state.productReducer.product)
+    useEffect(()=>{
+        getDetailProduct(dispatch,params.id)
 
-    // const {
-    //     fetchSingleProduct,
-    //     single_product_loading: loading,
-    //     single_product_error: error,
-    //     single_product: product,
-    //     fetchSingleProductsReset,
-    //
-    //     // reviews
-    //     createdProductReview,
-    //     createProductReview,
-    //     createProductReviewLoading,
-    //     createProductReviewError,
-    //     createReviewReset,
-    // } = useProductsContext();
-    // const { loginUser } = useUserContext();
+    },[])
 
-    const Product = useSelector(state => state.productReducer.products)
-    console.log(Product,'11')
 
-    // useEffect(() => {
-    //     fetchSingleProduct(singleProductUrl);
-    //     if (createdProductReview) {
-    //         setRating(0);
-    //         setComment('');
-    //         setTitle('');
-    //     }
-    // }, [id, createdProductReview]);
-    //
-    // useEffect(() => {
-    //     if (error || createProductReviewError) {
-    //         setTimeout(() => {
-    //             history.push('/products');
-    //             fetchSingleProductsReset();
-    //             createReviewReset();
-    //         }, 2000);
-    //     }
-    // }, [error, createProductReviewError]);
 
-    // const submitHandler = e => {
-    //     e.preventDefault();
-    //     const review = {
-    //         rating: +rating,
-    //         title,
-    //         comment,
-    //         product: id,
-    //     };
-    //     createProductReview(review);
-    // };
-
-    // const {
-    //     name,
-    //     brand,
-    //     image,
-    //     description,
-    //     stock,
-    //     reviews,
-    //     numReviews,
-    //     averageRating: stars,
-    // } = product;
     return (
         <>
-            <NavbarUser/>
+            {/*<NavbarUser/>*/}
             <PageHero title={name} product />
-
-            <section className=" py-10 section-center">
+            <section className="  px-10  justify-center bg-white py-20 ">
                 {/*{Loading ? (*/}
                 {/*    <Loading />*/}
                 {/*) : error ? (*/}
                 {/*    <Error title={error} />*/}
                 {/*) : (*/}
-                    <>
+                {product &&  <>
                         {/* Product details */}
                         <div className=" mx-auto flex flex-wrap ">
                             <img
                                 alt="ecommerce-product"
                                 className=" w-full h-full sm:w-2/3 sm:h-2/3 lg:w-1/2 lg:h-1/2 object-cover object-center rounded border border-gray-200 "
-                                src={"assets/iphone14.jpeg"}
+                                src={product.image}
                             />
                             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                                 <h2 className="text-sm title-font text-gray-500 tracking-widest uppercase">
                                     {/*{brand}*/}
                                 </h2>
                                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                                    {Product.name}  </h1>
+                                    {product.name}  </h1>
 
-                                {/*<Stars stars={stars} />*/}
+                                <Stars  />
                                 <p className="leading-relaxed mt-4">
-                                    {/*{description}*/}
+                                    {product.description}
                                 </p>
-                                {/*{stock > 0 && <AddtoCart product={product} />}*/}
+                                {product.stock > 0 && <AddtoCart />}
                             </div>
                         </div>
 
-                        {/* Product reviews */}
-                        <div className="max-w-screen-xl  py-8 mx-auto  ">
-                            <h2 className="text-xl font-bold sm:text-2xl">
-                                Customer Reviews
-                            </h2>
+                        {/*/!* Product reviews *!/*/}
+                        {/*<div className="max-w-screen-xl  py-8 mx-auto  ">*/}
+                        {/*    <h2 className="text-xl font-bold sm:text-2xl">*/}
+                        {/*        Customer Reviews*/}
+                        {/*    </h2>*/}
 
-                            <div className="flex items-center mt-4">
-                                <p className="text-3xl font-medium">
-                                    {/*{stars}*/}
-                                    <span className="sr-only"> Average review score </span>
-                                </p>
+                        {/*    <div className="flex items-center mt-4">*/}
+                        {/*        <p className="text-3xl font-medium">*/}
+                        {/*            /!*{stars}*!/*/}
+                        {/*            <span className="sr-only"> Average review score </span>*/}
+                        {/*        </p>*/}
 
-                                <div className="ml-4">
-                                    {/*<Stars stars={stars} />*/}
+                        {/*        <div className="ml-4">*/}
+                        {/*            <Stars />*/}
 
-                                    <p className="mt-0.5 text-xs text-gray-500">
-                                        {/*Based on {numReviews} reviews*/}
-                                    </p>
-                                </div>
-                            </div>
+                        {/*            <p className="mt-0.5 text-xs text-gray-500">*/}
+                        {/*                /!*Based on {numReviews} reviews*!/*/}
+                        {/*            </p>*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
 
-                            <div className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12">
-                                {/*{reviews?.map(review => {*/}
-                                {/*    return <SingleReview key={review._id} review={review} />;*/}
-                                {/*})}*/}
-                            </div>
-                        </div>
+                        {/*    <div className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12">*/}
+                        {/*        /!*{reviews?.map(review => {*!/*/}
+                        {/*        /!*    return <SingleReview key={review._id} review={review} />;*!/*/}
+                        {/*        /!*})}*!/*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
 
                         {/*/!* Review form*!/*/}
                         {/*<div className="max-w-screen-xl  py-8 mx-auto  ">*/}
@@ -213,8 +160,8 @@ const SingleProductPage = () => {
                         {/*        </Link>*/}
                         {/*    )}*/}
                         {/*</div>*/}
-                    </>
-                )}
+                    </>}
+                {/*)}*/}
             </section>
         </>
     );
