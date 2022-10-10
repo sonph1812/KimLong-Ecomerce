@@ -8,6 +8,7 @@ import {
     updateProductSlice, getProByCate, getProByBrand,
 
 } from "../reducer/slice/productSlice";
+import Swal from "sweetalert2";
 
 
 const baseURL = "http://localhost:3000";
@@ -26,18 +27,29 @@ export const createProduct = async (data, dispatch) => {
     dispatch(createProductSlice(res.data));
 }
 export const deleteProduct = async (dispatch, id) => {
-    const deleteConfirm = window.confirm('Bạn muốn xóa chứ!!!')
-    if(deleteConfirm){
-        const res = await customAxios.delete(`${baseURL}/admin/products/${id}`)
-        dispatch(deleteProductSlice(id))
-    }
+Swal.fire({
+        title: 'Bạn Muốn Xóa Chứ?',
+        text: "Hãy Suy Nghĩ Cẩn Thận Khi Xóa!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Vâng, Xóa Đi!'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            const res = await customAxios.delete(`${baseURL}/admin/products/${id}`)
+            dispatch(deleteProductSlice(id))
+            Swal.fire(
+                'Xóa!',
+                'Bạn Đã Xóa Thành Công.',
+                'success'
+            )
+        }
+    })
 }
 export const updateProducts = async (dispatch, props) => {
     const res = await customAxios.put(`${baseURL}/admin/products/${props.id}`,props.product)
     dispatch(updateProductSlice());
-    if (res){
-        window.location.reload();
-    }
 }
 export const getProductByCate = async (dispatch,id) => {
     const res = await customAxios.get(`${baseURL}/admin/filterByCategory/${id}`)

@@ -26,17 +26,13 @@ const Editor = () => {
             const imageRef = ref(storage, `images/${imageUpload?.name}`);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
-                    // console.log(url);
                     products.image = url;
-                    console.log(products)
-                    createProduct(products, dispatch)
-                ;
+                    createProduct(products, dispatch);
                 });
             });
         }
         navigate('/admin/products')
     }
-
 const handlePreviewAvatar = (e) => {
     const file = e.target.files[0];
     // file.preview = URL.createObjectURL(file);

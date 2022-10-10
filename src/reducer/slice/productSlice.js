@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+
 const initialState = {
     products: [],
     product: {},
@@ -23,17 +24,15 @@ const productSlice = createSlice({
             state.products = state.products.filter((arrow) => arrow._id !== action.payload)
         },
         updateProductSlice: (state, action) => {
-            // console.log(action.payload)
-            // state.products.splice(action.payload)
-            // state.loading = false
-
+            state.products = state.products.map((product) => product.id === action.payload.product.id
+                ? product = action.payload.product : product)
+            console.log(action.payload)
         },
         getDetailProductSlice : (state,action) => {
             state.product = action.payload
         },
         setProductSearch: (state, action) => {
             state.listSearch = action.payload
-
         },
         getProByCate: (state, action) => {
             state.productByCate = action.payload

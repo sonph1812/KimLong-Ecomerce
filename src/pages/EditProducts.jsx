@@ -13,17 +13,20 @@ const EditProducts =  () => {
     const brands = useSelector(s => s.brandReducer.brands)
     const categories = useSelector(s => s.categoryReducer.categories)
     const [product, setProduct] = useState(item)
+
     useEffect(()=>{
         getDetailProduct(dispatch,id)
     },[])
+
     useEffect(()=>{
        setProduct(item)
-    },[])
+    },[item])
 
 
     const handeEdit = () => {
         updateProducts(dispatch,{product: product,id: id})
         navigate('/admin/products')
+        getAllProduct(dispatch)
     }
     return (
         <div>
