@@ -23,7 +23,7 @@ const Sidebar = () => {
       {
         name: 'orders',
         icon: <AiOutlineShoppingCart />,
-        role: ""
+        role: "admin"
       },
       {
         name: 'products',

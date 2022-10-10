@@ -17,7 +17,7 @@ import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import Products from "./pages/Products";
 import EditProducts from "./pages/EditProducts";
-import {getAllProduct, getProductByBrand, getProductByCate} from "./service/productService";
+import { getAllProduct } from "./service/productService";
 import { getAllBrand } from "./service/brandService";
 import HomeUser from "./pages/user/HomeUser";
 import ProductList from "./pages/user/ProductList";
@@ -32,9 +32,9 @@ import Categories from './pages/Categories';
 import EditCategories from './pages/EditCategories';
 import Brands from './pages/brand/Brand';
 import CreateBrand from './pages/brand/EditBrand';
+import { getAllOrder } from './service/orderService';
 import ProductDetail from "./pages/ProductDetail";
 import UserDetail from "./pages/UserDetail";
-
 const App = () => {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
@@ -51,6 +51,7 @@ const App = () => {
       if (user.roleId.name == "admin") {
         getAllStaff(dispatch)
         getAllUser(dispatch)
+        getAllOrder(dispatch)
       } else if (user.roleId.name == "seller") {
         // getAllProduct(dispatch)
         // getAllBrand(dispatch)
@@ -115,7 +116,7 @@ const App = () => {
 
           
 
-          {/*<Route path="orders" element={<Orders />} />*/}
+          <Route path="orders" element={<Orders />} />
           {/*<Route path="kanban" element={<Kanban />} />*/}
           {/*<Route path="calendar" element={<Calendar />} />*/}
           {/*<Route path="color-picker" element={<ColorPicker />} />*/}

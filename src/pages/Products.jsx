@@ -47,12 +47,12 @@ const Products = () => {
 
         <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
 
-            <div onClick={() => {
-                handelProduct()
-            }}>
-                <Header category="Page" title="Products"/>
-
-            </div>
+      <div onClick={() => { handelProduct() }}>
+        <Header category="Page" title="Products" />
+              <div>
+                  <button className="col-span-2 sm:col-span-3 absolute px-3 bg-yellow-200 opacity-50 rounded-full row hover:bg-green-800 focus:outline-none rounded" onClick={() => { handlerCreate() }}>Create</button>
+              </div>
+      </div>
 
             <Search list={list} model="product"></Search>
 
