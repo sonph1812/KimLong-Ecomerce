@@ -32,6 +32,7 @@ import Categories from './pages/Categories';
 import EditCategories from './pages/EditCategories';
 import Brands from './pages/brand/Brand';
 import CreateBrand from './pages/brand/EditBrand';
+import { getAllOrder } from './service/orderService';
 
 const App = () => {
   const dispatch = useDispatch()
@@ -47,6 +48,7 @@ const App = () => {
       if (user.roleId.name == "admin") {
         getAllStaff(dispatch)
         getAllUser(dispatch)
+        getAllOrder(dispatch)
       } else if (user.roleId.name == "seller") {
         // getAllProduct(dispatch)
         // getAllBrand(dispatch)
@@ -110,7 +112,7 @@ const App = () => {
 
           
 
-          {/*<Route path="orders" element={<Orders />} />*/}
+          <Route path="orders" element={<Orders />} />
           {/*<Route path="kanban" element={<Kanban />} />*/}
           {/*<Route path="calendar" element={<Calendar />} />*/}
           {/*<Route path="color-picker" element={<ColorPicker />} />*/}
