@@ -23,6 +23,8 @@ import HomeUser from "./pages/HomeUser";
 import ProductList from "./pages/ProductList";
 import SingleProductPage from "./pages/SingleProductPage";
 import {getAllCategory} from "./service/categoryService";
+import Profile from './pages/Profile';
+
 
 
 
@@ -56,6 +58,7 @@ const App = () => {
         <Route path="/home" element={<HomeUser/>}></Route>
         <Route path="/" element={<HomeUser/>}></Route>
         <Route path="products" element={<ProductList />} />
+        <Route path='profile' element={<Profile/>}/>
         <Route
             path="/product/:id"
 element={<SingleProductPage/>} ></Route>
