@@ -1,61 +1,79 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-// import { useCartContext } from '../context/cart_context';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { addItem } from '../service/cartService';
 import { formatPrice } from '../utils/helpers';
-
+import { changeAmountItem } from '../service/cartService';
 const AddtoCart = ({ product }) => {
-  // const { _id: id, stock, colors, price } = product;
+  const navigate = useNavigate()
+  const { _id, stock, colors, price } = product;
   const [amount, setAmount] = useState(1);
-
+  
+  const cartId = useSelector(s => s.cartReducer.cartId)
+  const items = useSelector(s => s.cartReducer.items)
+  const dispatch = useDispatch()
   const increase = () => {
-    setAmount(oldAmount => {
-      let tempAmount = oldAmount + 1;
-      if (tempAmount > product.stock) {
-        tempAmount = product.stock;
-      }
-      return tempAmount;
-    });
+    if (amount >= 10) {
+      return;
+    }
+    setAmount(amount + 1);
   };
   const decrease = () => {
-    setAmount(oldAmount => {
-      let tempAmount = oldAmount - 1;
-      if (tempAmount < 1) {
-        tempAmount = 1;
-      }
-      return tempAmount;
-    });
+    if (amount <= 1) {
+      return;
+    }
+    setAmount(amount - 1);
   };
+  const addToCart = (id) => {
+    for (let item of items) {
+      if (item.productId._id == id) {
+        console.log('change amount');
+        const oldTotal = item.total;
+
+        if (item.amount + amount > 10) {
+          const newTotal = item.productId.price * 10
+          changeAmountItem(cartId, item._id, 10, { oldTotal, newTotal }, dispatch)
+        } else {
+          const newTotal = item.productId.price * (item.amount + amount)
+          changeAmountItem(cartId, item._id, (item.amount + amount), { oldTotal, newTotal }, dispatch)
+        }
+        return;
+      }
+    }
+    console.log('add item');
+    addItem(cartId, { id, amount }, dispatch)
+  }
 
   return (
     <>
       {/* Colors + Amount btns */}
       <div className="flex-col mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
         {/* Colors */}
-        {/*<div className="flex mb-3 ">*/}
-        {/*  <span className="mr-3">Color: </span>*/}
-        {/*  /!*{colors?.map((color, index) => {*!/*/}
-        {/*    return (*/}
-        {/*      <button*/}
-        {/*        // style={{ backgroundColor: color }}*/}
-        {/*        // key={index}*/}
-        {/*        className={`border-2 border-gray-300 rounded-full mr-1 w-6 h-6 focus:outline-none flex items-center justify-center`}*/}
-        {/*        // onClick={() => setMainColor(color)}*/}
-        {/*      >*/}
-        {/*        /!*{mainColor === color ? (*!/*/}
-        {/*          <svg*/}
-        {/*            xmlns="http://www.w3.org/2000/svg"*/}
-        {/*            className="h-6 w-6"*/}
-        {/*            fill="none"*/}
-        {/*            viewBox="0 0 24 24"*/}
-        {/*            stroke="#fff"*/}
-        {/*          >*/}
-        {/*            <path d="M5 13l4 4L19 7" />*/}
-        {/*          </svg>*/}
-        {/*        /!*) : null}*!/*/}
-        {/*      </button>*/}
-        {/*    );*/}
-        {/*  })}*/}
-        {/*</div>*/}
+        {/* <div className="flex mb-3 ">
+          <span className="mr-3">Color: </span>
+          {colors?.map((color, index) => {
+            return (
+              <button
+                style={{ backgroundColor: color }}
+                key={index}
+                className={`border-2 border-gray-300 rounded-full mr-1 w-6 h-6 focus:outline-none flex items-center justify-center`}
+                onClick={() => setMainColor(color)}
+              >
+                {mainColor === color ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="#fff"
+                  >
+                    <path d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : null}
+              </button>
+            );
+          })}
+        </div> */}
 
         {/* Amount btns */}
         <div className="flex justify-start items-center w-32 text-2xl lg:text-3xl py-5">
@@ -90,18 +108,18 @@ const AddtoCart = ({ product }) => {
 
       {/* Add to cart btn */}
       <div className="flex items-center">
-        <span className="title-font font-medium text-2xl text-yellow-300">
-          {/*{formatPrice(product.price)}*/}
+        <span className="title-font font-medium text-2xl text-gray-900">
+          {formatPrice(price)}
         </span>
         <Link
           to="/cart"
-          className="flex ml-auto text-white bg-yellow-300 border-0 py-2 px-6 focus:outline-none hover:bg-secondary-900 rounded"
-          onClick={() => addToCart(id, mainColor, amount, product)}
+          className="flex ml-auto bg-secondary-800 border-0 py-2 px-6 focus:outline-none hover:bg-secondary-900 rounded"
+          onClick={() => { addToCart(_id) }}
         >
           Add to cart
         </Link>
-      </div>
 
+      </div>
     </>
   );
 };

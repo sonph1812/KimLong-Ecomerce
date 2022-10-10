@@ -33,8 +33,8 @@ const cartSlice = createSlice({
            
         // },
         changeTotals : (state,action) => {
-            console.log(action.payload);
-            state.totals = state.totals - action.payload.oldTotal + action.payload.newTotal
+            state.totals = action.payload.totals
+            // state.items = action.payload.itemId
         }
     }
 })
