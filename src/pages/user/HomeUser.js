@@ -32,8 +32,12 @@ const HomePage = () => {
                         return (item1.categoryId.name === item.name)
                                  })
                     return(
+<<<<<<< HEAD
 
                         list[0] &&  <CategoryDetail list={list} category={item}></CategoryDetail>
+=======
+                    <CategoryDetail list={list}></CategoryDetail>
+>>>>>>> origin/dev
                 )})}
             </div>
             <FooterUser/>

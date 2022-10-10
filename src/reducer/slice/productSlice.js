@@ -4,9 +4,9 @@ const initialState = {
     products: [],
     product: {},
     loading: false,
-    listSearch:null,
-    productByCate:[],
-    productByBrand:[]
+    listSearch: null,
+    productByCate: [],
+    productByBrand: []
 }
 const productSlice = createSlice({
     name: 'products',
@@ -15,21 +15,20 @@ const productSlice = createSlice({
         getAllProductSlice: (state, action) => {
             state.products = action.payload
         },
-        createProductSlice:(state, action) => {
+        createProductSlice: (state, action) => {
             state.products.push(action.payload)
             state.loading = false
         },
-        deleteProductSlice:(state, action) => {
+        deleteProductSlice: (state, action) => {
             state.products = state.products.filter((arrow) => arrow._id !== action.payload)
         },
-        updateProductSlice : (state,action) => {
+        updateProductSlice: (state, action) => {
             // console.log(action.payload)
             // state.products.splice(action.payload)
             // state.loading = false
 
         },
         getDetailProductSlice : (state,action) => {
-            console.log(action.payload)
             state.product = action.payload
         },
         setProductSearch: (state, action) => {
@@ -42,15 +41,19 @@ const productSlice = createSlice({
         getProByBrand: (state, action) => {
             state.productByBrand = action.payload
         }
-
-
-
-        }
-
-
+    }
 
 
 })
 
-export const {setProductSearch, getAllProductSlice, createProductSlice, deleteProductSlice, updateProductSlice, getDetailProductSlice, getProByCate, getProByBrand } = productSlice.actions;
+export const {
+    setProductSearch,
+    getAllProductSlice,
+    createProductSlice,
+    deleteProductSlice,
+    updateProductSlice,
+    getDetailProductSlice,
+    getProByCate,
+    getProByBrand
+} = productSlice.actions;
 export default productSlice.reducer;

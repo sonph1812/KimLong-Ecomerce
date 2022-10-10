@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Header from "../components/Header";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,25 +9,17 @@ const EditProducts =  () => {
     let navigate = useNavigate()
     let {id} = useParams();
     const dispatch = useDispatch();
-    const products = useSelector((state)=> state.productReducer.products)
+    const item = useSelector((state)=> state.productReducer.product)
     const brands = useSelector(s => s.brandReducer.brands)
     const categories = useSelector(s => s.categoryReducer.categories)
-    console.log(categories)
-    console.log(products)
-    let productItem = products.filter(item =>(
-        item._id === id
-    ))
-    console.log(productItem)
-    const [product, setProduct] = useState({
-        name: productItem[0].name,
-        description: productItem[0].description,
-        price: productItem[0].price,
-        rating: productItem[0].rating,
-        stock : productItem[0].stock,
-        brandId : productItem[0].brand,
-        categoryId : productItem[0].category
-    })
-    // console.log(productItem[0].category)
+    const [product, setProduct] = useState(item)
+    useEffect(()=>{
+        getDetailProduct(dispatch,id)
+    },[])
+    useEffect(()=>{
+       setProduct(item)
+    },[])
+
 
     const handeEdit = () => {
         updateProducts(dispatch,{product: product,id: id})
