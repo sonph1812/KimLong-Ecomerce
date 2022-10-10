@@ -31,7 +31,6 @@ const HomePage = () => {
                         // return (item1.categoryId.name === item.name)
                     })
                     return(
-
                     <CategoryDetail list={list}></CategoryDetail>
                 )})}
             </div>

@@ -39,11 +39,11 @@ export const updateProducts = async (dispatch, props) => {
         window.location.reload();
     }
 }
-export const getProductByCate = async (dispatch) => {
-    const res = await customAxios.get(`${baseURL}/admin/filterByCategory/63351fd083ce9c34ebdee0fb`)
+export const getProductByCate = async (dispatch,id) => {
+    const res = await customAxios.get(`${baseURL}/admin/filterByCategory/${id}`)
     dispatch(getProByCate(res.data))
 }
-export const getProductByBrand = async (dispatch) => {
-    const res = await customAxios.get(`${baseURL}/admin/filterByBrand/63412ee41284300171ff611b`)
+export const getProductByBrand = async (dispatch,id) => {
+    const res = await customAxios.get(`${baseURL}/admin/filterByBrand/${id}`)
     dispatch(getProByBrand(res.data))
 }
