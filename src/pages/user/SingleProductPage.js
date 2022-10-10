@@ -9,6 +9,7 @@ import Error from '../../components/Error';
 import NavbarUser from "../../components/NavbarUser";
 import {useDispatch, useSelector} from "react-redux";
 import {getDetailProduct} from "../../service/productService";
+import AddtoCart from "../../components/AddtoCart";
 
 const SingleProductPage = () => {
     const dispatch = useDispatch()
@@ -50,7 +51,7 @@ const SingleProductPage = () => {
                                 <p className="leading-relaxed mt-4">
                                     {product.description}
                                 </p>
-                                {/*{stock > 0 && <AddtoCart product={product} />}*/}
+                                {product.stock > 0 && <AddtoCart product={product} />}
                             </div>
                         </div>
 
@@ -67,7 +68,7 @@ const SingleProductPage = () => {
                                 </p>
 
                                 <div className="ml-4">
-                                    {/*<Stars />*/}
+                                    <Stars />
 
                                     <p className="mt-0.5 text-xs text-gray-500">
                                         {/*Based on {numReviews} reviews*/}

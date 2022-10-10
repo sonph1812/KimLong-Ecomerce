@@ -24,6 +24,7 @@ export const getAllStaff = async (dispatch) => {
     dispatch(getAllStaffSlice(res.data))
 }
 export const getDetailUser = async (id, dispatch) => {
+    console.log(res)
     const res = await customAxios.get(`${baseURL}/user/${id}`)
     dispatch(getDetailUserSlice(res.data))
 }
