@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from '../reducer/slice/userSlice';
 import { useNavigate } from 'react-router-dom';
 
-const UserProfile = ({userInfo}) => {
+const  UserProfile = ({userInfo}) => {
   const { currentColor } = useStateContext();
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -38,7 +38,11 @@ const UserProfile = ({userInfo}) => {
       </div>
       <div>
         {userProfileData.map((item, index) => (
-          <div key={index} className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
+           <div key={index}
+           onClick={()=>{
+            console.log(item.link);
+            navigate(`${item.link}`)}}
+           className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
             <button
               type="button"
               style={{ color: item.iconColor, backgroundColor: item.iconBg }}

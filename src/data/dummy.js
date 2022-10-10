@@ -808,6 +808,7 @@ export const themeColors = [
 
 export const userProfileData = [
   {
+    link:'/admin/profile',
     icon: <BsCurrencyDollar />,
     title: 'My Profile',
     desc: 'Account Settings',
@@ -815,13 +816,14 @@ export const userProfileData = [
     iconBg: '#E5FAFB',
   },
   {
+    link:'',
     icon: <BsShield />,
     title: 'My Inbox',
     desc: 'Messages & Emails',
     iconColor: 'rgb(0, 194, 146)',
     iconBg: 'rgb(235, 250, 242)',
   },
-  {
+  {link:'',
     icon: <FiCreditCard />,
     title: 'My Tasks',
     desc: 'To-do and Daily Tasks',

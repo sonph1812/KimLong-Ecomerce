@@ -39,7 +39,6 @@ const userSlice = createSlice({
         deleteUserSlice: (state, action) => {
             state.users = state.users.filter((arrow) => arrow._id !== action.payload)
             state.staffs = state.staffs.filter((arrow) => arrow._id !== action.payload)
-            // console.log('action',action)
         },
         updateRoleUserSlice: (state, action) => {
 
