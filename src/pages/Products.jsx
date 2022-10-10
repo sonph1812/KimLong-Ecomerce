@@ -40,7 +40,7 @@ const Products = () => {
         navigate(`/admin/editProducts/${id}`)
     }
     const handleGetDetail = (id) => {
-        navigate(`/productDetail/${id}`)
+        navigate(`/admin/productDetail/${id}`)
     }
 
     return (
