@@ -12,6 +12,7 @@ const cartSlice = createSlice({
     initialState,
     reducers:{
         getDetailCartSlice: (state,action) => {
+            state.cart = action.payload
             state.cartId = action.payload._id
             state.totals = action.payload.totals
             state.items = action.payload.itemId
@@ -32,15 +33,6 @@ const cartSlice = createSlice({
             state.totals = state.totals - action.payload.oldTotal + action.payload.newTotal
         },
         changeInAddToCart: (state,action) => {
-            let item = state.items.find(item => item._id == action.payload.idItem)
-            // state.items = state.items.filter(item => item._id != action.payload.idItem)
-            // state.items = [
-            //     ...state.items,
-            //     item = {
-            //         ...item,
-            //         amount  action.payload.data
-            //     }
-            // ]
             let arr = []
             for(let item of state.items){
                 if(item._id == action.payload.idItem){
