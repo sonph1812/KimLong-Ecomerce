@@ -33,7 +33,6 @@ const ProductList = () => {
 
     return (
         <>
-            <NavbarUser/>
             <PageHero title="Products" className="bg-amber-200"/>
 
             <div

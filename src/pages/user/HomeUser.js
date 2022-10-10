@@ -11,31 +11,35 @@ import IPad from "../../components/iPad";
 import Airpod from "../../components/Airpod";
 import {useSelector} from "react-redux";
 import CategoryDetail from "../../components/CategoryDetail";
+import {logBase} from "@syncfusion/ej2-react-charts";
 // import NewProducts2 from "../../components/appleWatch";
 
 const HomePage = () => {
     const categories = useSelector(state=>state.categoryReducer.categories)
     const products = useSelector(state=>state.productReducer.products)
+    console.log(categories)
     return (
-        <>
-            <p className="flex h-10 items-center justify-center bg-yellow-200 px-4 text-sm font-medium text-black sm:px-6 lg:px-8">Get free delivery on orders over $999</p>
-            <NavbarUser/>
+        <><div className="relative min-h-screen">
+        <p className="flex h-10 items-center justify-center bg-yellow-200 px-4 text-sm font-medium text-black sm:px-6 lg:px-8">Get free delivery on orders over $999</p>
             {/*<Hero />*/}
             <FeaturedProducts />
             {/*<Promo />*/}
             <NewProducts />
-            <AppleWatch/>
+            {/*<AppleWatch/>*/}
             <div>
-                {categories.map((item)=>{
+                {categories && categories.map((item)=>{
                     let list = products.filter(item1=>{
-                        // return (item1.categoryId.name === item.name)
-                    })
+                        return (item1.categoryId.name === item.name)
+                                 })
                     return(
-                    <CategoryDetail list={list}></CategoryDetail>
+
+
+                        list[0] &&  <CategoryDetail list={list} category={item}></CategoryDetail>
+
                 )})}
             </div>
             <FooterUser/>
-
+</div>
         </>
     );
 };

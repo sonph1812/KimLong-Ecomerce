@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { formatPrice } from '../utils/helpers';
 
 const AddtoCart = ({ product }) => {
-  const { _id: id, stock, colors, price } = product;
+  // const { _id: id, stock, colors, price } = product;
   const [amount, setAmount] = useState(1);
 
   const increase = () => {
     setAmount(oldAmount => {
       let tempAmount = oldAmount + 1;
-      if (tempAmount > stock) {
-        tempAmount = stock;
+      if (tempAmount > product.stock) {
+        tempAmount = product.stock;
       }
       return tempAmount;
     });
@@ -31,31 +31,31 @@ const AddtoCart = ({ product }) => {
       {/* Colors + Amount btns */}
       <div className="flex-col mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
         {/* Colors */}
-        <div className="flex mb-3 ">
-          <span className="mr-3">Color: </span>
-          {colors?.map((color, index) => {
-            return (
-              <button
-                style={{ backgroundColor: color }}
-                key={index}
-                className={`border-2 border-gray-300 rounded-full mr-1 w-6 h-6 focus:outline-none flex items-center justify-center`}
-                onClick={() => setMainColor(color)}
-              >
-                {mainColor === color ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="#fff"
-                  >
-                    <path d="M5 13l4 4L19 7" />
-                  </svg>
-                ) : null}
-              </button>
-            );
-          })}
-        </div>
+        {/*<div className="flex mb-3 ">*/}
+        {/*  <span className="mr-3">Color: </span>*/}
+        {/*  /!*{colors?.map((color, index) => {*!/*/}
+        {/*    return (*/}
+        {/*      <button*/}
+        {/*        // style={{ backgroundColor: color }}*/}
+        {/*        // key={index}*/}
+        {/*        className={`border-2 border-gray-300 rounded-full mr-1 w-6 h-6 focus:outline-none flex items-center justify-center`}*/}
+        {/*        // onClick={() => setMainColor(color)}*/}
+        {/*      >*/}
+        {/*        /!*{mainColor === color ? (*!/*/}
+        {/*          <svg*/}
+        {/*            xmlns="http://www.w3.org/2000/svg"*/}
+        {/*            className="h-6 w-6"*/}
+        {/*            fill="none"*/}
+        {/*            viewBox="0 0 24 24"*/}
+        {/*            stroke="#fff"*/}
+        {/*          >*/}
+        {/*            <path d="M5 13l4 4L19 7" />*/}
+        {/*          </svg>*/}
+        {/*        /!*) : null}*!/*/}
+        {/*      </button>*/}
+        {/*    );*/}
+        {/*  })}*/}
+        {/*</div>*/}
 
         {/* Amount btns */}
         <div className="flex justify-start items-center w-32 text-2xl lg:text-3xl py-5">
@@ -90,17 +90,18 @@ const AddtoCart = ({ product }) => {
 
       {/* Add to cart btn */}
       <div className="flex items-center">
-        <span className="title-font font-medium text-2xl text-gray-900">
-          {formatPrice(price)}
+        <span className="title-font font-medium text-2xl text-yellow-300">
+          {/*{formatPrice(product.price)}*/}
         </span>
         <Link
           to="/cart"
-          className="flex ml-auto text-white bg-secondary-800 border-0 py-2 px-6 focus:outline-none hover:bg-secondary-900 rounded"
+          className="flex ml-auto text-white bg-yellow-300 border-0 py-2 px-6 focus:outline-none hover:bg-secondary-900 rounded"
           onClick={() => addToCart(id, mainColor, amount, product)}
         >
           Add to cart
         </Link>
       </div>
+
     </>
   );
 };

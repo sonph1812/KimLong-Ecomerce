@@ -18,11 +18,11 @@ const NavbarUser = () => {
     dispatch(logOut())
   }
   return (
-    <div>
-      <div className="section-center  bg-white py-5">
-        <div className="relative grid items-center  grid-cols-2 lg:grid-cols-3">
+      <div>
+      <div className=" flex justify-around bg-white py-5 ">
+        <div className=" grid items-stretch  grid-cols-2 lg:grid-cols-3">
           {/* Left links */}
-          <ul className="items-center hidden space-x-8 lg:flex">
+          <ul className="items-stretch hidden space-x-8 lg:flex">
             <li>
               <Link
                 to="/"
