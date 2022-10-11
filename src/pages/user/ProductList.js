@@ -29,116 +29,188 @@ const ProductList = () => {
             [e.target.name]: e.target.value
         })
     }
+    const handleGetDetail = (id) => {
+        navigate(`/user/product/${id}`)
+
+    }
 
 
     return (
         <>
             <PageHero title="Products" className="bg-amber-200"/>
+            <section>
+                <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-start">
+                        <div className="lg:sticky lg:top-4">
+                            <details open className="overflow-hidden rounded border border-gray-200">
+                                <summary
+                                    className="flex items-center justify-between bg-gray-100 px-5 py-3 lg:hidden"
+                                >
+                                    <svg
+                                        className="h-5 w-5"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M4 6h16M4 12h16M4 18h16"
+                                        />
+                                    </svg>
+                                </summary>
 
-            <div
-                className=" z-10 flex flex-col  sm:flex-row items-baseline justify-between pt-24 pb-6 border-b border-gray-200 ">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900 mb-6">{products.length} Products</h2>
-                <div className="flex flex-col sm:flex-row sm:items-start ">
-                    <form className="relative inline-block text-left -mr-2 sm:mr-4 mb-6 "><label
-                        className="text-gray-700" htmlFor="sort"></label><select id="sort" className="py-1 ">
-                        <option value="price-lowest" className="text-gray-500 block px-4 py-2">Price: Low to High
-                        </option>
-                        <option value="price-highest" className="text-gray-500 block px-4 py-2">Price: High to Low
-                        </option>
-                        <option value="name-a" className="text-gray-500 block px-4 py-2" >Name: A-Z</option>
-                        <option value="name-z" className="text-gray-500 block px-4 py-2">Name: Z-A</option>
-                    </select></form>
-                    <div className="flex justify-between ">
-                        <button type="button"
-                                className="p-2 sm:p-2  sm:ml-5 text-gray-400 hover:text-gray-500 bg-tertiary-100"><span
-                            className="sr-only">Grid view</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 " aria-hidden="true" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor">
-                                <path
-                                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
-                            </svg>
-                        </button>
-                        <button type="button"
-                                className="p-2 sm:p-2  sm:ml-5 text-gray-400 hover:text-gray-500 bg-tertiary-100"><span
-                            className="sr-only">List view</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" aria-hidden="true" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor">
-                                <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                            </svg>
-                        </button>
-                        <button type="button"
-                                className="p-2 sm:p-2  sm:ml-5 text-gray-400 hover:text-gray-500 lg:hidden bg-tertiary-100">
-                            <span className="sr-only">Filters</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" aria-hidden="true" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor">
-                                <path
-                                    d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
-                            </svg>
-                        </button>
+                                <form className="border-t border-gray-200 lg:border-t-0">
+                                    <fieldset>
+                                        <legend
+                                            className="block w-full bg-gray-50 px-5 py-3 text-xs font-medium"
+                                        >
+                                            Type
+                                        </legend>
+
+                                        <div className="space-y-2 px-5 py-6">
+                                            <div className="flex items-center">
+                                                <input
+                                                    id="game"
+                                                    type="checkbox"
+                                                    name="type[game]"
+                                                    className="h-5 w-5 rounded border-gray-300"
+                                                />
+
+                                                <label htmlFor="game" className="ml-3 text-sm font-medium">
+                                                    Game
+                                                </label>
+                                            </div>
+
+                                            <div className="flex items-center">
+                                                <input
+                                                    id="outdoor"
+                                                    type="checkbox"
+                                                    name="type[outdoor]"
+                                                    className="h-5 w-5 rounded border-gray-300"
+                                                />
+
+                                                <label htmlFor="outdoor" className="ml-3 text-sm font-medium">
+                                                    Outdoor
+                                                </label>
+                                            </div>
+
+                                            <div className="pt-2">
+                                                <button type="button" className="text-xs text-gray-500 underline">
+                                                    Reset Type
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+
+                                    <div
+                                        className="flex justify-between border-t border-gray-200 px-5 py-3"
+                                    >
+                                        <button
+                                            name="reset"
+                                            type="button"
+                                            className="rounded text-xs font-medium text-gray-600 underline"
+                                        >
+                                            Reset All
+                                        </button>
+
+                                        <button
+                                            name="commit"
+                                            type="button"
+                                            className="rounded bg-green-600 px-5 py-3 text-xs font-medium text-white"
+                                        >
+                                            Apply Filters
+                                        </button>
+                                    </div>
+                                </form>
+                            </details>
+                        </div>
+
+                        <div className="lg:col-span-3">
+                            <div className="flex items-center justify-between">
+                                <p className="text-sm text-gray-500">
+                                    <span className="hidden sm:inline"> Showing </span>
+                                    {product.length} Products
+                                </p>
+
+                                <div className="ml-4">
+                                    <label htmlFor="SortBy" className="sr-only"> Sort </label>
+
+                                    <select
+                                        id="SortBy"
+                                        name="sort_by"
+                                        className="rounded border-gray-100 text-sm"
+                                    >
+                                        <option readonly>Sort</option>
+                                        <option value="title-asc">Title, A-Z</option>
+                                        <option value="title-desc">Title, Z-A</option>
+                                        <option value="price-asc">Price, Low-High</option>
+                                        <option value="price-desc">Price, High-Low</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div
+                                className="mt-4 grid grid-cols-1 gap-px border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-3"
+                            >
+
+                                {products?.map((product, index) => (
+                                    <a href="#" className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                                        <img
+                                            alt="Toy"
+                                            src={product.image}
+
+                                            className="h-56 w-full object-contain lg:h-72"
+                                        />
+
+                                        <div className="p-6">
+              {/*<span*/}
+              {/*    className="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"*/}
+              {/*>*/}
+              {/*  New*/}
+              {/*</span>*/}
+
+                                            <h5 className="mt-4 text-lg font-bold">{product.name}</h5>
+
+                                            <p className="mt-2 text-sm font-medium text-gray-600">{product.price}</p>
+
+                                            <button
+                                                type="button"
+                                                name="wishlist"
+                                                className="absolute right-4 bottom-3 rounded-3xl bg-yellow-200 p-2 text-white hover:scale-105"
+                                            >
+                                                <svg
+                                                    className=" h-5 w-5"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </a>
+                                ))}
+
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-           <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
+            </section>
 
 
-<div className="hidden lg:block "><h1>chỗ này đổ filter</h1>
-    <div>
-        <label htmlFor="states" className="sr-only">Brand</label>
-        <select id="brandId"
-                name = "brandId"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                onChange={(e)=>{handlerChange(e)}}
-        >
-            <option selected>Brand</option>
-            {brands && brands.map((brand)=>(
-                <option value={brand._id}>{brand.name}</option>
-            ))}
-        </select>
-    </div>
-    <div>
-        <label htmlFor="states" className="sr-only">Category</label>
-        <select id="categoryId"
-                name = "categoryId"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                onChange={(e)=>{handlerChange(e)}}
-        >
-            <option selected>Category</option>
-            {categories && categories.map((category)=>(
-                <option value={category._id}>{category.name}</option>
-            ))}
-        </select>
-    </div>
-    <button>Filter</button>
 
 
-</div>
-               <div className="lg:col-span-3">
-                   <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mb-10 place-items-center">
-                       {products?.map((product, index) => (
-                           <div  className="group">
-                               <div className="w-full  max-w-sm aspect-square rounded-lg overflow-hidden  bg-tertiary-50">
-                                   <img
-                                       src={product.image}
-                                       // alt={name}
-                                       className="w-40 h-40 object-center object-cover group-hover:opacity-75"
-                                   />
-                               </div>
-                               <div className="flex-col items-center justify-center">
-                                   <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-                                   <p className="mt-1 text-lg font-medium text-gray-900">
-                                       {formatPrice(product.price)}
-                                   </p>
-                               </div>
-                           </div>
-                       ))}
-                   </div>
-
-               <div/>
-
-</div>
-
-
-</div>
 
         </>
     );

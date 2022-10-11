@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Btn from '../../components/Btn'
 import CartContent from '../../components/CartContent';
@@ -7,7 +8,9 @@ import PageHero from '../../components/PageHero'
 
 
 const CartPage = () => {
-  // if (cart.length < 1) {
+  const items = useSelector(s => s.cartReducer.items)
+
+  // if (items.length < 1) {
   //   return (
   //     <div className=" h-screen ">
   //       <section className="section-center  text-center py-20">
