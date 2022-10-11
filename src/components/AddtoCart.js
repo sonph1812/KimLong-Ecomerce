@@ -41,8 +41,7 @@ const AddtoCart = ({ product }) => {
       }
     }
     console.log('add item');
-    navigate('/user/cart')
-    addItem(cartId, { id, amount }, dispatch)
+    addItem(cartId, { id, amount }, dispatch,navigate)
   }
 
   return (
