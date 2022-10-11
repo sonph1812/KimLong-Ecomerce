@@ -1,26 +1,27 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    cart:{},
-    items:[],
-    totals:0,
-    cartId : ''
+    cart: {},
+    items: [],
+    totals: 0,
+    cartId: ''
 
 }
 const cartSlice = createSlice({
     name: "cart",
     initialState,
-    reducers:{
-        getDetailCartSlice: (state,action) => {
+    reducers: {
+        getDetailCartSlice: (state, action) => {
+            state.cart = action.payload
             state.cartId = action.payload._id
             state.totals = action.payload.totals
             state.items = action.payload.itemId
         },
-        addItemSlice: (state,action) => {
+        addItemSlice: (state, action) => {
             state.totals = action.payload.totals
             state.items = action.payload.itemId
         },
-        deleteItemSlice: (state,action) => {
+        deleteItemSlice: (state, action) => {
             state.totals = action.payload.totals
             state.items = action.payload.itemId
         },
@@ -28,15 +29,28 @@ const cartSlice = createSlice({
             state.totals = action.payload.totals
             state.items = action.payload.itemId
         },
-        // changeAmountItemSlice: (state,action) => {
-        //     // state.totals = action.payload.totals
-           
-        // },
-        changeTotals : (state,action) => {
-            console.log(action.payload);
+        changeTotals: (state, action) => {
             state.totals = state.totals - action.payload.oldTotal + action.payload.newTotal
+        },
+        changeInAddToCart: (state, action) => {
+            let array = []
+            for (let item of state.items) {
+                if (item._id == action.payload.idItem) {
+                    let item1 = {
+                        ...item,
+                        amount: action.payload.data,
+                        total: action.payload.totals.newTotal
+                    }
+                    array.push(item1)
+                } else {
+                    array.push(item)
+                }
+            }
+            state.items = array
+            state.totals = state.totals - action.payload.totals.oldTotal + action.payload.totals.newTotal
         }
+
     }
 })
-export const {getDetailCartSlice,addItemSlice, deleteItemSlice,clearCartSlice,changeAmountItemSlice,changeTotals} = cartSlice.actions
-export default  cartSlice.reducer;
+export const { changeInAddToCart, getDetailCartSlice, addItemSlice, deleteItemSlice, clearCartSlice, changeAmountItemSlice, changeTotals } = cartSlice.actions
+export default cartSlice.reducer;

@@ -29,6 +29,10 @@ const ProductList = () => {
             [e.target.name]: e.target.value
         })
     }
+    const handleGetDetail = (id) => {
+        navigate(`/user/product/${id}`)
+
+    }
 
 
     return (
@@ -112,10 +116,10 @@ const ProductList = () => {
 
 
 </div>
-               <div className="lg:col-span-3">
+               <div  className="lg:col-span-3">
                    <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mb-10 place-items-center">
                        {products?.map((product, index) => (
-                           <div  className="group">
+                           <div  onClick={()=>{handleGetDetail(product._id)}} className="group">
                                <div className="w-full  max-w-sm aspect-square rounded-lg overflow-hidden  bg-tertiary-50">
                                    <img
                                        src={product.image}

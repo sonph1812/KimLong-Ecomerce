@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Search from '../components/Search';
 import { setListSearch } from '../reducer/slice/userSlice';
 import { deleteUser , addUser } from '../service/userService';
-import {useNavigate} from "react-router";
+import {useNavigate} from "react-router-dom";
 import {IoAddCircleOutline, IoInformationCircleOutline, IoReloadOutline, IoTrashOutline} from "react-icons/io5";
 const Customers = () => {
   const list = useSelector(state => state.userReducer.users)
@@ -26,10 +26,7 @@ const Customers = () => {
     setUsers(list)
   } 
   const navigate = useNavigate();
-  const handleCreateCustomer = (data) => {
-    addUser(data, dispatch);
-    navigate(`/admin/customers/create`);
-}
+
 const handleDelete = (id) => {
   const confirmDelete =   window.confirm("Bạn muốn xóa chứ !")
   if(confirmDelete){
@@ -58,7 +55,7 @@ const handleDelete = (id) => {
         </thead>
         <tbody>
           {role &&
-            users.map((user, index) => (
+            users.map((user) => (
               <tr key={user._id}>
                 <td className=" items-center px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   <img
