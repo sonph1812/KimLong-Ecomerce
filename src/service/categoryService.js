@@ -21,6 +21,8 @@ export const createCategory = async (data,dispatch) =>{
 export const deleteCategory = async (dispatch,id) => {
     const deleteConfirm = window.confirm('Bạn muốn xóa chứ!!!')
     if(deleteConfirm){
+    console.log(id);
+
     const res = await customAxios.delete(`${baseURL}/category/${id}`)
     dispatch(deleteCategorySlice(id))
     }
@@ -32,9 +34,7 @@ export const updateCategory = async (id, data , dispatch) => {
         console.log(err);
     })
     dispatch(updateCategorySlice({id,data}));
-    // if (res){
-    //     window.location.reload();
-    // }
+   
 }
 export const getDetailCategory = async (dispatch, id) => {
     const res = await customAxios.get(`${baseURL}/category/${id}`)
