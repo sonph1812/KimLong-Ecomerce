@@ -44,7 +44,7 @@ const userSlice = createSlice({
 
         },
         updateUserSlice: (state, action) => {
-
+        
         },
         searchUserSlice: (state, action) => {
 
