@@ -56,7 +56,7 @@ const userSlice = createSlice({
         setListSearch: (state,action) => {
             state.listSearch = action.payload
         },
-        setListSearch: (state,action) => {
+        setStaffSearch: (state,action) => {
             state.staffSearch = action.payload
         }
 
@@ -76,7 +76,8 @@ export const {
     searchStaffSlice,
     getUserInfo,
     logOut,
-    setListSearch
+    setListSearch,
+    setStaffSearch
 } = userSlice.actions;
 
 export default userSlice.reducer;
