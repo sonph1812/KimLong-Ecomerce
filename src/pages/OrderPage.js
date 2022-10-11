@@ -11,6 +11,8 @@
 
 import { useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import Steps from "../components/Steps";
+import React from "react";
 
 // const OrderPage = () => {
 
@@ -305,6 +307,7 @@ function OrderPage () {
 
   return (
     <div>
+        <Steps/>
 
 
         <div className="section-center py-12 md:py-16 lg:py-20 ">

@@ -19,25 +19,27 @@ const ProductList = () => {
         getProductByCate(dispatch)
     }, [])
     const productFilter = useSelector(state => state.productReducer.productByCate)
+
     const products = useSelector(state => state.productReducer.products)
     const product = useSelector(state => state.productReducer.product)
-
+    const brands = useSelector(s => s.brandReducer.brands)
+    const categories = useSelector(s => s.categoryReducer.categories)
+    const handlerChange = (e) => {
+        setProducts({
+            ...products,
+            [e.target.name]: e.target.value
+        })
+    }
+    const handleGetDetail = (id) => {
+        navigate(`/user/product/${id}`)
+    }
 
     const [currentPage, setCurrentPage] = useState(1)
     const [productsPerPage] = useState(9)
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstPage = indexOfLastProduct - productsPerPage;
     const currentProducts = products.slice(indexOfFirstPage,indexOfLastProduct)
-    console.log(currentProducts)
 
-
-    console.log(product)
-    // const brands = useSelector(s => s.brandReducer.brands)
-    // const categories = useSelector(s => s.categoryReducer.categories)
-    // const handleGetDetail = (id) => {
-    //     navigate(`/user/product/${id}`)
-    //
-    // }
     const paginate = (page) => {
         setCurrentPage(page)
     }
@@ -166,7 +168,7 @@ const ProductList = () => {
                             >
 
                                 {currentProducts?.map((product, index) => (
-                                    <a href="#"
+                                    <a  onClick={()=>(handleGetDetail(product._id))} className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                                        className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                                         <img
                                             alt="Toy"
@@ -213,7 +215,6 @@ const ProductList = () => {
                         </div>
                     </div>
                 </div>
-                <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
             </section>
 
         </>

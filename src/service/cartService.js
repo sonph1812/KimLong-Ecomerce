@@ -36,6 +36,6 @@ export const changeAmountItem = async (id, idItem, data,totals, dispatch,navigat
     const res = await customAxios.put(`${baseURL}/cart/${id}/${idItem}`, { data })
     dispatch(changeInAddToCart({idItem,data,totals}))
     if(navigate){
-        navigate('/user/cart')
+        navigate('/cart')
     }
 }
