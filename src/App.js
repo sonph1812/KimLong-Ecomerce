@@ -54,8 +54,10 @@ import Brands from './pages/brand/Brand';
 import CreateBrand from './pages/brand/EditBrand';
 import {getAllOrder} from './service/orderService';
 import ProductDetail from "./pages/ProductDetail";
-import UserDetail from "./pages/UserDetail";
 import User from "./pages/user/User";
+import SwiperTest from "./components/home/swiper";
+import UserDetail from "./pages/UserDetail";
+import BC from "./components/SwiperTest";
 
 
 const App = () => {
@@ -90,6 +92,7 @@ const App = () => {
             <Routes>
                 <Route path="/login" element={<LoginForm/>}></Route>
                 <Route path="/register" element={<RegisterForm/>}></Route>
+                <Route path="/test" element={<SwiperTest/>}></Route>
 
 
                 <Route path="/user" element={<User/>}>

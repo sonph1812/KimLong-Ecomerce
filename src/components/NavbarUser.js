@@ -1,15 +1,21 @@
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logOut } from '../reducer/slice/userSlice';
 import CartBtn from "./CartBtn";
 import Search from "./Search";
+import {UserProfile} from "./index";
+import React, {useState} from "react";
 // import UserMenu from './UserMenu';
 // import AdminMenu from './AdminMenu';
 // import { useProductsContext } from '../context/products_context';
-// import { useUserContext } from '../context/user_context';
+import { useStateContext } from '../contexts/ContextProvider';
 // import CartBtn from './CartBtn';
 
 const NavbarUser = () => {
+  const userInfo = useSelector(s => s.userReducer.userInfo)
+  console.log(userInfo,"sontest")
+  const [isClicked, setIsClicked] = useState(false);
+  const handleClick = (clicked) => setIsClicked(  {userProfile:true,[clicked]:true });
 
 
   const role = localStorage.getItem('role')
@@ -25,7 +31,7 @@ const NavbarUser = () => {
           <ul className="items-stretch hidden space-x-8 lg:flex">
             <li>
               <Link
-                to="/user/home"
+                to="/user"
                 aria-label="HomePage"
                 title="HomePage"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
@@ -95,10 +101,14 @@ const NavbarUser = () => {
             <li>
               <CartBtn />
             </li>
-            {/*{loginUser ? (*/}
+            <div onClick={handleClick}>
+              {role && <span  className="text-dark font-bold ml-1 text-14">
+                Hi,  {userInfo.name ? userInfo.name : ""}
+              </span>}
+            </div>
             <>
               <li className="bg-black text-white">
-                {/*{loginUser.role === 'admin' ? <AdminMenu /> : <UserMenu />}*/}
+                {isClicked.userProfile && (<UserProfile userInfo = {userInfo}/>)}
               </li>
             </>
             {/*) : (*/}
@@ -126,15 +136,15 @@ const NavbarUser = () => {
                 </Link>
               </li>
             </>: <li>
-                <Link
-                  to="/login"
-                  aria-label="Log in"
-                  title="Log in"
-                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                onClick={()=>{logOutHome()}}
-                >
-                  Log out
-                </Link>
+                {/*<Link*/}
+                {/*  to="/login"*/}
+                {/*  aria-label="Log in"*/}
+                {/*  title="Log in"*/}
+                {/*  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"*/}
+                {/*onClick={()=>{logOutHome()}}*/}
+                {/*>*/}
+                {/*  Log out*/}
+                {/*</Link>*/}
               </li>}
             {/*)}*/}
           </ul>
