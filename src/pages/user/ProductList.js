@@ -214,6 +214,7 @@ const ProductList = () => {
                         </div>
                     </div>
                 </div>
+                <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
             </section>
 
         </>
