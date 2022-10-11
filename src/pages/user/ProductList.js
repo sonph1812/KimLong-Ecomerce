@@ -30,7 +30,7 @@ const ProductList = () => {
         })
     }
     const handleGetDetail = (id) => {
-        navigate(`/user/product/${id}`)
+        navigate(`/product/${id}`)
 
     }
 
@@ -153,7 +153,7 @@ const ProductList = () => {
                                 </div>
                             </div>
 
-                            <div
+                            <div onClick={()=>(handleGetDetail(id))}
                                 className="mt-4 grid grid-cols-1 gap-px border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-3"
                             >
 

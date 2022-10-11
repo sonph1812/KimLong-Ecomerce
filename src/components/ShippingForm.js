@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Btn from './Btn';
 import { Link, useNavigate } from "react-router-dom"
 import { addOrder } from '../service/orderService';
+import Steps from "./Steps";
 const ShippingForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
