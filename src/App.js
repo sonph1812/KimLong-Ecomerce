@@ -41,6 +41,7 @@ import SingleProductPage from "./pages/user/SingleProductPage";
 
 import { getAllCategory } from "./service/categoryService";
 import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile';
 
 
 import CartPage from "./pages/user/CartPage";
@@ -115,13 +116,13 @@ const App = () => {
                 </Route>
 
                 <Route path="/admin" element={<Admin></Admin>}>
-                    <Route path="editor" element={<Editor />} />
-                    <Route path="products" element={<Products />} />
-                    <Route path="editProducts/:id" element={<EditProducts></EditProducts>} />
-                    <Route path="productDetail/:id" element={<ProductDetail />}></Route>
-                    <Route path="userDetail/:id" element={<UserDetail />}></Route>
-                    <Route path='profile' element={<Profile />} />
-
+                    <Route path="editor" element={<Editor/>}/>
+                    <Route path="products" element={<Products/>}/>
+                    <Route path="editProducts/:id" element={<EditProducts></EditProducts>}/>
+                    <Route path="productDetail/:id" element={<ProductDetail/>}></Route>
+                    <Route path="userDetail/:id" element={<UserDetail/>}></Route>
+                    <Route path='profile' element={<Profile/>}/>
+                    <Route path='profile/update' element={<EditProfile/>}/>
 
 
                     <Route path="staffs" element={<Staffs />} />
