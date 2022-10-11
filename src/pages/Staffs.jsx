@@ -11,7 +11,7 @@ import Search from '../components/Search';
 
 function Staffs() {
   const list = useSelector(state => state.userReducer.staffs)
-  const listSearch = useSelector (s => s.userReducer.listSearch)
+  const listSearch = useSelector (s => s.userReducer.staffSearch)
   const [staffs, setStaffs] = useState(list);
   const role = localStorage.getItem('role')
   const dispatch = useDispatch();
@@ -26,7 +26,9 @@ function Staffs() {
     }
   },[listSearch])
   useEffect(() => {
-    setStaffs(list)
+    if(!listSearch){
+      setStaffs(list)
+    }
   }, [list])
 
   const handleDelete = (id) => {

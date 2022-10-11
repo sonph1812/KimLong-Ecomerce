@@ -19,7 +19,9 @@ const Customers = () => {
     }
   },[listSearch])
   useEffect(() => {
-    setUsers(list)
+    if(!listSearch){
+      setUsers(list)
+    }
   }, [list])
   const handelUser = () => {
     dispatch(setListSearch(null))
