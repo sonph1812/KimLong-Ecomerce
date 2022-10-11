@@ -3,7 +3,8 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
     categories : [],
     category : {},
-    loading : false
+    loading : false,
+    listSearch:null
 }
 const categorySlice = createSlice({
     name: "categories",
@@ -24,8 +25,11 @@ const categorySlice = createSlice({
         },
         getDetailCategorySlice: (state, action) => {
             state.category = action.payload
+        },
+        setCategorySearch: (state, action) => {
+            state.listSearch = action.payload
         }
     }
 })
-export const {getAllCategorySlice,createCategorySlice,deleteCategorySlice,updateCategorySlice,getDetailCategorySlice} = categorySlice.actions
+export const {setCategorySearch,getAllCategorySlice,createCategorySlice,deleteCategorySlice,updateCategorySlice,getDetailCategorySlice} = categorySlice.actions
 export default  categorySlice.reducer;

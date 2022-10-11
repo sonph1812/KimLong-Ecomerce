@@ -11,6 +11,7 @@ import Search from '../components/Search';
 
 function Staffs() {
   const list = useSelector(state => state.userReducer.staffs)
+  const listSearch = useSelector (s => s.userReducer.staffSearch)
   const [staffs, setStaffs] = useState(list);
   const role = localStorage.getItem('role')
   const dispatch = useDispatch();
@@ -19,7 +20,16 @@ function Staffs() {
     addStaff(data, dispatch);
     navigate(`/admin/staffs/create`);
   }
-
+  useEffect (()=>{
+    if(listSearch){
+      setStaffs(listSearch)
+    }
+  },[listSearch])
+  useEffect(() => {
+    if(!listSearch){
+      setStaffs(list)
+    }
+  }, [list])
 
   const handleDelete = (id) => {
     let confirmDelete = window.confirm("Bạn muốn xóa chứ !")

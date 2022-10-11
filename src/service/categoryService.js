@@ -47,10 +47,8 @@ export const updateCategory = async (id, index, data, dispatch) => {
     }).catch((err) => {
         console.log(err);
     })
-    dispatch(updateCategorySlice({ index, data }));
-    // if (res){
-    //     window.location.reload();
-    // }
+    dispatch(updateCategorySlice({id,data}));
+  
 }
 export const getDetailCategory = async (dispatch, id) => {
     const res = await customAxios.get(`${baseURL}/category/${id}`)

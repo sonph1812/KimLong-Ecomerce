@@ -5,7 +5,8 @@ const initialState = {
     users: [],
     user: {},
     userInfo:{},
-    listSearch:null
+    listSearch:null,
+    staffSearch:null
 }
 const userSlice = createSlice({
     name: 'users',
@@ -54,8 +55,11 @@ const userSlice = createSlice({
         },
         setListSearch: (state,action) => {
             state.listSearch = action.payload
-            
+        },
+        setListSearch: (state,action) => {
+            state.staffSearch = action.payload
         }
+
     }
 })
 
