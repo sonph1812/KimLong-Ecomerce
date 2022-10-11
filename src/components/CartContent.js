@@ -10,13 +10,14 @@ const CartContent = () => {
   const dispatch = useDispatch()
   const items = useSelector(s => s.cartReducer.items)
   const totals = useSelector(s => s.cartReducer.totals)
+  console.log(totals)
 
   const handelClear = () => {
     clearCart(cartId,dispatch)
  }
   return (
     <>
-      <section className="section-center text-center py-14">
+      <section className="container mx-auto text-center py-14">
         <h2 className="mb-10 text-4xl md:text-5xl font-bold ">Your cart</h2>
 
         <div className="flex flex-wrap items-center -mx-4">
@@ -71,6 +72,7 @@ const CartContent = () => {
 
           {/* Cart totals */}
           <CartTotals name="Proceed to checkout" to="/shipping" totals = {totals}/>
+
         </div>
       </section>
     </>

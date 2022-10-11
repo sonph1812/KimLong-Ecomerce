@@ -110,7 +110,7 @@ return (
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         onChange={(e)=>{handlerChange(e)}}
                                         >
-                                    <option selected>Brand</option>
+                                    <option>Brand</option>
                                     {brands && brands.map((brand)=>(
                                         <option value={brand._id}>{brand.name}</option>
                                     ))}
@@ -123,14 +123,13 @@ return (
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         onChange={(e)=>{handlerChange(e)}}
                                 >
-                                    <option selected>Category</option>
+                                    <option>Category</option>
                                     {categories && categories.map((category)=>(
                                         <option value={category._id}>{category.name}</option>
                                     ))}
                                 </select>
                             </div>
                             <br/>
-
                         </div>
                     </div>
                         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">

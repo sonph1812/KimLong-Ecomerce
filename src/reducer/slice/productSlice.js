@@ -24,11 +24,15 @@ const productSlice = createSlice({
             state.products = state.products.filter((arrow) => arrow._id !== action.payload)
         },
         updateProductSlice: (state, action) => {
-            state.products = state.products.map((product) => product.id === action.payload.product.id
-                ? product = action.payload.product : product)
-            console.log(action.payload)
+            state.products = state.products.map((item) => {
+                if(item._id == action.payload.id) {
+                    return action.payload.product
+                }
+                return item;
+            })
+
         },
-        getDetailProductSlice : (state,action) => {
+        getDetailProductSlice: (state, action) => {
             state.product = action.payload
         },
         setProductSearch: (state, action) => {

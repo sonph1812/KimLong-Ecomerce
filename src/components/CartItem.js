@@ -1,28 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { formatPrice } from '../utils/helpers';
 import { useDispatch } from "react-redux"
 import { deleteItem, changeAmountItem } from '../service/cartService';
 import { changeTotals } from '../reducer/slice/cartSlice';
 
 const CartItem = ({ item, idCart }) => {
+  
   let [amount, setAmount] = useState(item.amount)
   const dispatch = useDispatch()
-
   const increase = (id) => {
+    if (amount >= 10) {
+      return;
+    }
     setAmount(amount + 1)
-    dispatch(changeTotals({ oldTotal: item.productId.price * amount, newTotal: item.productId.price * (amount + 1) }))
-    changeAmountItem(idCart, id, (amount + 1), dispatch)
-  };
+    changeAmountItem(idCart, id, (amount + 1), { oldTotal: item.productId.price * amount, newTotal: item.productId.price * (amount + 1) }, dispatch) };
   const decrease = (id) => {
+    if (amount <= 1) {
+      return;
+    }
     setAmount(amount - 1)
-    dispatch(changeTotals({ oldTotal: item.productId.price * amount, newTotal: item.productId.price * (amount - 1) }))
-    changeAmountItem(idCart, id, (amount - 1), dispatch)
+    changeAmountItem(idCart, id, (amount - 1),{ oldTotal: item.productId.price * amount, newTotal: item.productId.price * (amount - 1) }, dispatch)
   };
 
   const handelDelete = (idItem) => {
     deleteItem(idCart, idItem, dispatch)
   }
-
+  useEffect(()=>{
+    setAmount(item.amount)
+  },[item])
   return (
     <div className="flex flex-wrap items-center -mx-4  border-b py-5">
       {/* Item img, info*/}

@@ -7,14 +7,27 @@ import {useNavigate} from "react-router-dom";
 import Search from '../components/Search';
 import {setProductSearch} from "../reducer/slice/productSlice"
 import {IoAddCircleOutline, IoInformationCircleOutline, IoReloadOutline, IoTrashOutline} from "react-icons/io5";
+import Pagination from "../components/Pagination";
 
-const Products = () => {
+const Products = ({currentItems,itemsPerPage}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const list = useSelector(state => state.productReducer.products)
     const listSearch = useSelector(s => s.productReducer.listSearch)
-    const [products, setProduct] = useState([])
+    const [products, setProduct] = useState(list)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [productsPerPage] = useState(5)
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstPage = indexOfLastProduct - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstPage,indexOfLastProduct)
+
+
+    const paginate = (page) => {
+        setCurrentPage(page)
+    }
+
     const role = localStorage.getItem('role')
+    // console.log(list)
     useEffect(() => {
         if (listSearch) {
             setProduct(listSearch)
@@ -34,13 +47,12 @@ const Products = () => {
     const handlerCreate = () => {
         navigate('/admin/editor')
     }
-    const handleUpdate = (id) => {
+    const handleUpdate = (id, index) => {
         navigate(`/admin/editProducts/${id}`)
     }
     const handleGetDetail = (id) => {
         navigate(`/admin/productDetail/${id}`)
     }
-
     return (
 
         <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -61,14 +73,13 @@ const Products = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {role && products.map((product, index) => (
+                {products && role &&  currentProducts.map((product, index) => (
                     <tr key={product._id}>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.name}</td>
                         {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.price} $</td>*/}
                         {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.description}</td>*/}
                         {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.rating} </td>*/}
                         {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"><img src={product.image}/>*/}
-                        {/*</td>*/}
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.stock} </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.brandId?.name}</td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.categoryId?.name} </td>
@@ -79,8 +90,8 @@ const Products = () => {
                             }}></IoAddCircleOutline>
                         </td>
                         <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
-                            <IoReloadOutline  onClick={() => {
-                                handleUpdate(product._id)
+                            <IoReloadOutline  onClick={(    ) => {
+                                handleUpdate(product._id, index)
                             }}></IoReloadOutline>
                         </td>
                         <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
@@ -89,14 +100,14 @@ const Products = () => {
                             }}></IoTrashOutline>
                         </td>
                         <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
-                            <IoInformationCircleOutline onClick={()=>{handleGetDetail(product._id)}}>
-
+                            <IoInformationCircleOutline
+                                onClick={()=>{handleGetDetail(product._id)}}>
                             </IoInformationCircleOutline>
                         </td>
                     </tr>
                 ))}
-
         </tbody>
+                <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
       </table>
     </div>
   );

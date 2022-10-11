@@ -1,7 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
     orders:[],
-    myOrders:[],
     order:{},
     listOrder:null
 }
@@ -11,8 +10,20 @@ const orderSlice = createSlice({
     reducers:{
         getAllOrderSlice:(state,action)=>{
             state.orders = action.payload
+        },
+        addOrderSlice : (state,action) => {
+            state.order = action.payload
+        },
+        deleteOrderSlice: (state, action) => {
+            state.orders.splice(action.payload,1)
+        },
+        myOrdersSlice: (state, action) =>{
+            state.orders = action.payload
+        },
+        sendOrderSlice: (state,action) => {
+            
         }
     }
 })
-export const {getAllOrderSlice} = orderSlice.actions;
+export const {getAllOrderSlice, addOrderSlice, deleteOrderSlice, myOrdersSlice} = orderSlice.actions;
 export default orderSlice.reducer

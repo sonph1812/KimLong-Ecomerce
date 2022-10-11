@@ -21,7 +21,6 @@ function CreateStaff() {
   };
 
   const handleCreate = (e) => {
-    console.log(staff);
     e.preventDefault();
     addStaff(staff, dispatch);
     navigate("/admin/staffs");
