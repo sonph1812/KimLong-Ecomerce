@@ -298,7 +298,7 @@ function OrderPage () {
     const order = useSelector(s => s.orderReducer.order)
     const navigate = useNavigate()
     const handelBuy = () => {
-
+      
       navigate('/myOrder')
     }
 

@@ -60,7 +60,9 @@ import OrderPage from './pages/OrderPage';
 import MyOrderPage from './pages/MyOrderPage';
 import SwiperTest from "./components/home/swiper";
 import BC from "./components/SwiperTest";
-
+// import { socket } from './socket.io/roomSocket';
+import socketIO from 'socket.io-client';
+export const socket = socketIO().connect('http://localhost:3000');
 const App = () => {
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
@@ -69,7 +71,7 @@ const App = () => {
         getAllProduct(dispatch)
         getAllBrand(dispatch)
         getAllCategory(dispatch)
-
+        // const x = socket
 
         if (token) {
             const user = jwt_decode(token).user

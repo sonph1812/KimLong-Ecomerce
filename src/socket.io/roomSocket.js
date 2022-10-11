@@ -1,2 +1,3 @@
-// import socketIO from 'socket.io-client';
-// const socket = socketIO.connect('http://localhost:3000');
+import socketIO from 'socket.io-client';
+export const socket = socketIO().connect('http://localhost:3000');
+
