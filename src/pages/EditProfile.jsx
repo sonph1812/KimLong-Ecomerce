@@ -1,19 +1,20 @@
 import Header from "../components/Header";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../service/userService";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import {storage} from "../firebase/config";
 
 
 function EditProfile() {
   const navigate = useNavigate();
-  const [image, setImage] = useState();
   const dispatch = useDispatch()
   const userUpdate = useSelector(s => s.userReducer.userInfo)
   const userId = userUpdate._id
-  console.log('id',userId);
+  // console.log('id',userId);
   const [user, setUser] = useState(userUpdate);
+  const [avatar, setAvatar] = useState();
   const handleChange = (e) => {
     setUser({
       ...user,
@@ -25,29 +26,25 @@ function EditProfile() {
   }, [userUpdate])
 
   const handleUpdate = async (e) => {
-    // let imageUpload = image;
-    //     if (imageUpload) {
-    //         const imageRef = ref(storage, `images/${imageUpload?.name}`);
-    //         await uploadBytes(imageRef, imageUpload).then(async(snapshot) => {
-    //             await getDownloadURL(snapshot.ref).then((url) => {
-    //                 editProfile.image = url;
-    //                 updateUser(userId,editProfile,dispatch)
-    //             });
-    //         });
-    //     }else{
-    //       updateUser(userId,editProfile,dispatch)
-    //     }
-    updateUser(userId,user,dispatch)
-    navigate("/admin/profile");
-
-
+    e.preventDefault()
+        let imageUpload = avatar;
+        if (imageUpload) {
+            const imageRef = ref(storage, `image/${imageUpload?.name}`);
+            uploadBytes(imageRef, imageUpload).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    user.avatar = url;
+                    updateUser(userId,user,dispatch)
+                    navigate("/admin/profile");
+                });
+            });
+        }
   };
 
-  // const handlePreviewAvatar = (e) => {
-  //   const file = e.target.files[0];
-  //   // file.preview = URL.createObjectURL(file);
-  //   setImage(file);
-  // };
+  const handlePreviewAvatar = (e) => {
+    const file = e.target.files[0];
+    // file.preview = URL.createObjectURL(file);
+    setAvatar(file);
+  };
   console.log('user',user);
   return (
     <div>
@@ -178,9 +175,9 @@ function EditProfile() {
                   Upload avatar
                 </label>
                 <input
-                  // onChange={(e) => {
-                  //   handlePreviewAvatar(e);
-                  // }}
+                  onChange={(e) => {
+                    handlePreviewAvatar(e);
+                  }}
                   type="file"
                   name="file"
                   id="rating"
