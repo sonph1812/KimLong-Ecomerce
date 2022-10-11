@@ -59,7 +59,6 @@ import User from "./pages/user/User";
 import OrderPage from './pages/OrderPage';
 import MyOrderPage from './pages/MyOrderPage';
 import SwiperTest from "./components/home/swiper";
-import UserDetail from "./pages/UserDetail";
 import BC from "./components/SwiperTest";
 
 const App = () => {
