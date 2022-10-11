@@ -10,6 +10,7 @@ import NavbarUser from "../../components/NavbarUser";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailProduct } from "../../service/productService";
 import AddtoCart from "../../components/AddtoCart";
+import {formatPrice} from "../../utils/helpers";
 
 const SingleProductPage = () => {
     const dispatch = useDispatch()
@@ -24,9 +25,11 @@ const SingleProductPage = () => {
 
     return (
         <>
-            <NavbarUser />
+            {/*<NavbarUser/>*/}
+
+
             <PageHero title={name} product />
-            <section className=" py-10 px-10 section-center">
+            <section className="  px-20  justify-center bg-white py-10 ">
                 {/*{Loading ? (*/}
                 {/*    <Loading />*/}
                 {/*) : error ? (*/}

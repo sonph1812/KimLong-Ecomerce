@@ -58,6 +58,9 @@ import UserDetail from "./pages/UserDetail";
 import User from "./pages/user/User";
 import OrderPage from './pages/OrderPage';
 import MyOrderPage from './pages/MyOrderPage';
+import SwiperTest from "./components/home/swiper";
+import UserDetail from "./pages/UserDetail";
+import BC from "./components/SwiperTest";
 
 const App = () => {
     const dispatch = useDispatch()
@@ -90,14 +93,14 @@ const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/login" element={<LoginForm />}></Route>
-                <Route path="/register" element={<RegisterForm />}></Route>
-                <Route path="home" element={<HomeUser />}></Route>
+                <Route path="/login" element={<LoginForm/>}></Route>
+                <Route path="/register" element={<RegisterForm/>}></Route>
+                <Route path="/test" element={<SwiperTest/>}></Route>
 
 
-                <Route path="/" element={<User />}>
-                    <Route path="" element={<HomeUser />}></Route>
-                    <Route path="products" element={<ProductList />} />
+                <Route path="/user" element={<User/>}>
+                    <Route path="" element={<HomeUser/>}></Route>
+                    <Route path="products" element={<ProductList/>}/>
                     <Route
                         path="product/:id"
                         element={<SingleProductPage />}></Route>
@@ -105,9 +108,9 @@ const App = () => {
                     <Route path="shipping" element={<ShippingPage />}></Route>
                     <Route path="order" element={<OrderPage />}></Route>
                     <Route path="myOrder" element={<MyOrderPage />}></Route>
-                    
+
                 </Route>
-                
+
                 <Route path="/admin" element={<Admin></Admin>}>
                     <Route path="editor" element={<Editor />} />
                     <Route path="products" element={<Products />} />

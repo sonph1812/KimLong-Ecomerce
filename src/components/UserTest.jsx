@@ -22,7 +22,6 @@ const  UserProfile = ({userInfo}) => {
           bgHoverColor="light-gray"
           size="2xl"
           borderRadius="50%"
-
         />
       </div>
       <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
@@ -62,7 +61,7 @@ const  UserProfile = ({userInfo}) => {
       <div className="mt-5"
         onClick={()=>{
           dispatch (logOut())
-          navigate('/user')
+          navigate('/user/home')
         }}
       >
         <Button

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Header } from '../components';
 import { useSelector, useDispatch } from "react-redux";
 import { addStaff, deleteUser } from '../service/userService';
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Search from '../components/Search';

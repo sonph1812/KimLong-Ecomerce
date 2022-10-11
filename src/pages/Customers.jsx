@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Search from '../components/Search';
 import { setListSearch } from '../reducer/slice/userSlice';
 import { deleteUser , addUser } from '../service/userService';
-import {useNavigate} from "react-router";
+import {useNavigate} from "react-router-dom";
 import {IoAddCircleOutline, IoInformationCircleOutline, IoReloadOutline, IoTrashOutline} from "react-icons/io5";
 const Customers = () => {
   const list = useSelector(state => state.userReducer.users)
