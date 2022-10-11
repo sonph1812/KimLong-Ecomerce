@@ -13,41 +13,13 @@ const NewProducts = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const handleGetDetail = (id) => {
-    navigate(`/user/product/${id}`)
+    navigate(`/product/${id}`)
 
 }
 
     const products = useSelector(state => state.productReducer.products)
 
   return (
-    // <section id="new" className="py-24">
-    //   <div className="max-w-2xl mx-auto  px-4  sm:px-6 lg:max-w-7xl lg:px-8 text-center ">
-    //     <SectionTitle title="New Products" />
-    //     <div  className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10    place-items-center ">
-    //         {products?.map((product, index) => (
-    //             <div onClick={()=>{handleGetDetail(product._id)}} className="group">
-    //                 <div className="w-full  max-w-sm aspect-square rounded-lg overflow-hidden  bg-tertiary-50">
-    //                     <img
-    //                         src={product.image}
-    //                         // alt={name}
-    //                         className="w-40 h-40 object-center object-cover group-hover:opacity-75"
-    //                     />
-    //                 </div>
-    //                 <div className="flex-col items-center justify-center">
-    //                     <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
-    //                     <p className="mt-1 text-lg font-medium text-gray-900">
-    //                         {formatPrice(product.price)}
-    //                     </p>
-    //                 </div>
-    //             </div>
-    //         ))}
-    //
-    //     </div>
-    //     <Link to="/products">
-    //       <Btn name="Xem tất cả sản phẩm" />
-    //     </Link>
-    //   </div>
-    // </section>
       <section>
           <div className="mx-auto max-w-screen-xl px-4 py-8 bg-white ">
               <div className="relative mx-auto max-w-3xl text-center">
@@ -64,7 +36,7 @@ Có Thể Bạn Sẽ Thích                  </h2>
               <div className=" mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 rounded-2xl ">
                           {products?.map((product, index) => (
 
-                  <a href="#" className=" hover:scale-105 shadow-amber-700relative block rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                  <a onClick={()=>(handleGetDetail(product._id))} className=" hover:scale-105 shadow-amber-700relative block rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                       <img
                           alt="Toy"
                           src={product.image}

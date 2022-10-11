@@ -153,14 +153,14 @@ const ProductList = () => {
                                 </div>
                             </div>
 
-                            <div onClick={()=>(handleGetDetail(id))}
+                            <div
                                 className="mt-4 grid grid-cols-1 gap-px border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-3"
                             >
 
                                 {products?.map((product, index) => (
-                                    <a href="#" className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                                    <a  onClick={()=>(handleGetDetail(product._id))} className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                                         <img
-                                            alt="Toy"
+                                            // alt="Toy"
                                             src={product.image}
 
                                             className="h-56 w-full object-contain lg:h-72"
