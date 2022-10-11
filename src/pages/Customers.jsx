@@ -50,7 +50,7 @@ const handleDelete = (id) => {
             <td className="px-5 py-2 w-80 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Email</td>
             <td className="px-5 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Phone</td>
             <td className="px-5 py-2 w-40 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Address</td>
-            <td colSpan={2} className=" w-40 text-center px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"  >Action</td>
+            <td colSpan={4} className=" w-40 text-center px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"  >Action</td>
           </tr>
         </thead>
         <tbody>
@@ -67,9 +67,8 @@ const handleDelete = (id) => {
                   {user.name}</td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.email}</td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.phone} </td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.dob} </td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.gender} </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{user.address} </td>
+                <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm"></td>
                 <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                   <IoReloadOutline  ></IoReloadOutline>
                 </td>
