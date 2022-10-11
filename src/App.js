@@ -60,6 +60,7 @@ import OrderPage from './pages/OrderPage';
 import MyOrderPage from './pages/MyOrderPage';
 import SwiperTest from "./components/home/swiper";
 import BC from "./components/SwiperTest";
+import CategoryDetail1 from "./components/CategoryDetail1";
 
 const App = () => {
     const dispatch = useDispatch()
@@ -94,7 +95,7 @@ const App = () => {
             <Routes>
                 <Route path="/login" element={<LoginForm/>}></Route>
                 <Route path="/register" element={<RegisterForm/>}></Route>
-                <Route path="/test" element={<SwiperTest/>}></Route>
+                <Route path="/test" element={<CategoryDetail1/>}></Route>
 
 
                 <Route path="/user" element={<User/>}>

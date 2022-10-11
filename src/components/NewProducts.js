@@ -49,7 +49,7 @@ const NewProducts = () => {
     //   </div>
     // </section>
       <section>
-          <div className="mx-auto max-w-screen-xl px-4 py-8">
+          <div className="mx-auto max-w-screen-xl px-4 py-8 bg-white ">
               <div className="relative mx-auto max-w-3xl text-center">
       <span
           className="absolute  rounded inset-x-0 top-1/2 h-px -translate-y-1/2 bg-black/10"
@@ -58,68 +58,44 @@ const NewProducts = () => {
                   <h2
                       className="relative inline-block bg-white px-4 text-center text-2xl font-bold"
                   >
-                      Recently Viewed
-                  </h2>
+Có Thể Bạn Sẽ Thích                  </h2>
               </div>
 
-              <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 rounded-2xl">
+              <div className=" mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 rounded-2xl ">
                           {products?.map((product, index) => (
 
-                  <a href="#" className="relative block border border-gray-100">
-                      <button
-                          type="button"
-                          name="wishlist"
-                          className="absolute right-4 top-4 rounded-full bg-black p-2 text-white"
-                      >
-                          <svg
-                              className="h-4 w-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
-                          >
-                              <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
-                                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                              ></path>
-                          </svg>
-                      </button>
-
+                  <a href="#" className=" hover:scale-105 shadow-amber-700relative block border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                       <img
                           alt="Toy"
                           src={product.image}
-                          className="h-56 w-full object-contain"
+                          className="h-56 w-full object-contain "
                       />
 
                       <div className="p-6">
-                          <p className="text-sm font-medium text-gray-600">$14.99</p>
+                          <p className="text-sm font-medium text-gray-600">${product.price}</p>
 
                           <h5 className="mt-1 text-lg font-bold">{product.name}</h5>
 
-                          {/*<button*/}
-                          {/*    name="add"*/}
-                          {/*    type="button"*/}
-                          {/*    className="mt-4 flex w-full items-center justify-center rounded-sm bg-yellow-300 px-8 py-4"*/}
-                          {/*>*/}
-                          {/*    <span className="text-sm font-medium"> Add to Cart </span>*/}
-
-                          {/*    <svg*/}
-                          {/*        className="ml-1.5 h-5 w-5"*/}
-                          {/*        xmlns="http://www.w3.org/2000/svg"*/}
-                          {/*        fill="none"*/}
-                          {/*        viewBox="0 0 24 24"*/}
-                          {/*        stroke="currentColor"*/}
-                          {/*    >*/}
-                          {/*        <path*/}
-                          {/*            stroke-linecap="round"*/}
-                          {/*            stroke-linejoin="round"*/}
-                          {/*            stroke-width="2"*/}
-                          {/*            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"*/}
-                          {/*        />*/}
-                          {/*    </svg>*/}
-                          {/*</button>*/}
+                          <button
+                              type="button"
+                              name="wishlist"
+                              className="absolute right-4 bottom-3 rounded-full bg-yellow-200 p-2 text-white hover:scale-105"
+                          >
+                              <svg
+                                  className="h-4 w-4"
+                                  fill="none"
+                                  stroke="black"
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                              >
+                                  <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                  ></path>
+                              </svg>
+                          </button>
                       </div>
                   </a>
                           ))}
