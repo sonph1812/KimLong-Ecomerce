@@ -5,6 +5,7 @@ import { deleteItem, changeAmountItem } from '../service/cartService';
 import { changeTotals } from '../reducer/slice/cartSlice';
 
 const CartItem = ({ item, idCart }) => {
+  
   let [amount, setAmount] = useState(item.amount)
   const dispatch = useDispatch()
   const increase = (id) => {

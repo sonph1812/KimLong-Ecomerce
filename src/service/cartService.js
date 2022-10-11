@@ -16,6 +16,7 @@ export const getDetailCart = async (id, dispatch) => {
     dispatch(getDetailCartSlice(res.data))
 }
 export const addItem = async (id, data, dispatch) => {
+    
     const res = await customAxios.put(`${baseURL}/cart/${id}`,
         {
             productId: data.id,
