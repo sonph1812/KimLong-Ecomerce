@@ -56,6 +56,7 @@ import {getAllOrder} from './service/orderService';
 import ProductDetail from "./pages/ProductDetail";
 import UserDetail from "./pages/UserDetail";
 import User from "./pages/user/User";
+import EditBrand from './pages/brand/EditBrand';
 
 
 const App = () => {
@@ -124,7 +125,7 @@ const App = () => {
                     <Route path='addCategory' element={(<CreateCategory/>)}/>
                     <Route path="editCategories/:id" element={<EditCategories></EditCategories>}/>
                     <Route path="brands" element={<Brands/>}/>;
-                    <Route path='addBrands' element={(<CreateBrand/>)}/>
+                    <Route path='addBrands' element={(<EditBrand/>)}/>
 
 
 
@@ -133,8 +134,8 @@ const App = () => {
           <Route path="categories" element={(<Categories />)} />
           <Route path='addCategory' element={(<CreateCategory />)} />
           <Route path="editCategories/:id" element={<EditCategories></EditCategories>} />
-          <Route path="brands" element={<Brands />} />;
-          <Route path='addBrands' element={(<CreateBrand />)} />
+          {/* <Route path="brands" element={<Brands />} />; */}
+          {/* <Route path='addBrands' element={(<CreateBrand />)} /> */}
 
 
 

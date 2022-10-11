@@ -48,12 +48,12 @@ const handleUpdate = (id) => {
                 
                   <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                       <IoReloadOutline  onClick={() => {
-                                  handleUpdate(brand._id, brand.name,index)
+                          handleUpdate(brand._id, brand.name,index)
                       }}></IoReloadOutline>
                     </td>
                   <td  className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                         <IoTrashOutline onClick={() => {
-                                  handlerDelete(brand._id)
+                          handlerDelete(brand._id)
                         }}></IoTrashOutline>
                    </td>
                 </tr>
