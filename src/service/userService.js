@@ -45,7 +45,9 @@ export const updateRoleUser = async (id, dispatch) => {
     dispatch(updateRoleUserSlice(res.data))
 }
 export const updateUser = async (id,data, dispatch) => {
-    const res = await customAxios.put(`${baseURL}/user/${id}`,data)
+    console.log('id',id);
+    console.log('data',data);
+    const res = await customAxios.put(`${baseURL}/user/update/${id}`,data)
     dispatch(updateUserSlice(res.data))
 }
 export const searchUser = async (data, dispatch) => {

@@ -10,9 +10,10 @@ function EditProfile() {
   const navigate = useNavigate();
   const [image, setImage] = useState();
   const dispatch = useDispatch()
-  const user1 = useSelector(s => s.userReducer.userInfo)
-  // const userId = user1._id
-  const [user, setUser] = useState(user1);
+  const userUpdate = useSelector(s => s.userReducer.userInfo)
+  const userId = userUpdate._id
+  console.log('id',userId);
+  const [user, setUser] = useState(userUpdate);
   const handleChange = (e) => {
     setUser({
       ...user,
@@ -20,8 +21,8 @@ function EditProfile() {
     });
   };
   useEffect(() => {
-    setUser(user1)
-  }, [user1])
+    setUser(userUpdate)
+  }, [userUpdate])
 
   const handleUpdate = async (e) => {
     // let imageUpload = image;
@@ -36,17 +37,18 @@ function EditProfile() {
     //     }else{
     //       updateUser(userId,editProfile,dispatch)
     //     }
-    // navigate("/admin/profile");
+    updateUser(userId,user,dispatch)
+    navigate("/admin/profile");
 
 
   };
 
-  const handlePreviewAvatar = (e) => {
-    const file = e.target.files[0];
-    // file.preview = URL.createObjectURL(file);
-    setImage(file);
-  };
-  console.log(user);
+  // const handlePreviewAvatar = (e) => {
+  //   const file = e.target.files[0];
+  //   // file.preview = URL.createObjectURL(file);
+  //   setImage(file);
+  // };
+  console.log('user',user);
   return (
     <div>
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -176,9 +178,9 @@ function EditProfile() {
                   Upload avatar
                 </label>
                 <input
-                  onChange={(e) => {
-                    handlePreviewAvatar(e);
-                  }}
+                  // onChange={(e) => {
+                  //   handlePreviewAvatar(e);
+                  // }}
                   type="file"
                   name="file"
                   id="rating"
