@@ -125,7 +125,7 @@ const App = () => {
                     <Route path='staffs/update' element={<UpdateStaff />} />
 
 
-                    {/*<Route path="" element={(<Ecommerce />)} />*/}
+                    <Route path="" element={(<Ecommerce />)} />
                     <Route path="customers" element={(<Customers/>)}/>
                     <Route path="categories" element={(<Categories/>)}/>
                     <Route path='addCategory' element={(<CreateCategory/>)}/>
