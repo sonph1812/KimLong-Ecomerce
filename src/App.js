@@ -41,6 +41,7 @@ import SingleProductPage from "./pages/user/SingleProductPage";
 
 import {getAllCategory} from "./service/categoryService";
 import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile';
 
 
 import CartPage from "./pages/user/CartPage";
@@ -110,6 +111,7 @@ const App = () => {
                     <Route path="productDetail/:id" element={<ProductDetail/>}></Route>
                     <Route path="userDetail/:id" element={<UserDetail/>}></Route>
                     <Route path='profile' element={<Profile/>}/>
+                    <Route path='profile/update' element={<EditProfile/>}/>
 
 
 

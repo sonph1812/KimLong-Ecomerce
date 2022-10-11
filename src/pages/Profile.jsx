@@ -1,8 +1,12 @@
 import { useSelector } from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 function Profile() {
   const userInfo = useSelector((s) => s.userReducer.userInfo);
-  console.log(userInfo);
+  const navigate = useNavigate();
+  const editProfile = ()=>{
+    navigate(`/admin/profile/update`);
+  }
   return (
     <div class="md:flex no-wrap md:-mx-2 ">
       <div class="w-full md:w-3/12 md:mx-2">
@@ -74,8 +78,8 @@ function Profile() {
               </div>
             </div>
           </div>
-          <button class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-            Show Full Information
+          <button onClick={editProfile} class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+            Edit Profile
           </button>
         </div>
       </div>

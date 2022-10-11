@@ -195,7 +195,7 @@ function CreateStaff() {
                     onChange={(e) => {
                       handleChange(e);
                     }}
-                    type="text"
+                    type="date"
                     name="dob"
                     id="dob"
                     autoComplete="given-name"
