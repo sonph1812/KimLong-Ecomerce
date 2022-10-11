@@ -147,7 +147,7 @@ function EditProfile() {
                     handleChange(e);
                   }}
                 >
-                  <option value="Name">Nam</option>
+                  <option value="Nam">Nam</option>
                   <option value="Nữ">Nữ</option>
                 </select>
               </div>
