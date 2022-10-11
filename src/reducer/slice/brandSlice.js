@@ -21,6 +21,8 @@ const brandSlice = createSlice({
             state.brands = state.brands.filter((arrow) => arrow._id !== action.payload)
         },
         updateBrandSlice : (state, action) => {
+            state.categories[action.payload.index].name = action.payload.data
+
         },
         getDetailBrandSlice : (state, action) => {
             state.product = action.payload

@@ -18,8 +18,7 @@ const handlerDelete = (id) => {
   }
   
 const handleUpdate = (id) => {
-    // getDetailBrand(dispatch,id)
-    navigate(`/admin/editBrand/${id}`)
+    navigate(`/admin/updateBrand/${id}`)
 }
 
     return (

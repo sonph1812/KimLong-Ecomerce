@@ -44,9 +44,10 @@ export const deleteBrand = async (dispatch,id) => {
 }
    
 export const updateBrand = async (dispatch,props) => {
-    const res = await customAxios.put(`${baseURL}/brand/${props.id}`,props.brand)
-    dispatch(updateBrandSlice());
-    if (res){
-        window.location.reload();
-    }
+    customAxios.put(`${baseURL}/brand/${id}`, { name: data }).then((res) => {
+    }).catch((err) => {
+        console.log(err);
+    })
+    dispatch(updateBrandSlice({ index, data }));
+   
 }

@@ -57,6 +57,7 @@ import ProductDetail from "./pages/ProductDetail";
 import UserDetail from "./pages/UserDetail";
 import User from "./pages/user/User";
 import EditBrand from './pages/brand/EditBrand';
+import UpdateBrand from './pages/brand/UpdateBrand';
 
 
 const App = () => {
@@ -126,6 +127,7 @@ const App = () => {
                     <Route path="editCategories/:id" element={<EditCategories></EditCategories>}/>
                     <Route path="brands" element={<Brands/>}/>;
                     <Route path='addBrands' element={(<EditBrand/>)}/>
+                    <Route path='updateBrand' element ={(<UpdateBrand />)} />
 
 
 
