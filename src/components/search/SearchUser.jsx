@@ -50,9 +50,12 @@ function SearchUser({ products, categories, brands }) {
                 class="p-1 focus:outline-none focus:shadow-outline">
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" class="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </button>
+            <button onClick={() => {
+                    handelClick()
+                }}>Click</button>
             {search !== "" && <div className="absolute right-20 z-10 w-96  origin-top-right bg-white border border-gray-100 rounded-md shadow-lg">
                
-                <div>
+                <div className = "w-40">
                     {
                     arr.map((item, index) => {
                         let list = []
@@ -64,7 +67,7 @@ function SearchUser({ products, categories, brands }) {
                             list = brands.filter(isSearch)
                         }
                         return (
-                           list[0] && <div key = {index}>
+                           list[0] && <div key = {index} >
                                 <p>{item}</p>
                                 {list.map((i,index2) => (
                                     <div key = {index2}>{i.name}</div>
