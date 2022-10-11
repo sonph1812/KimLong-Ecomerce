@@ -4,34 +4,42 @@ import PageHero from "../../components/PageHero";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {formatPrice} from "../../utils/helpers";
-import { Dialog, Disclosure, Transition } from '@headlessui/react';
+import {Dialog, Disclosure, Transition} from '@headlessui/react';
 import Btn from "../../components/Btn";
 import {filterReducer, setProductSort} from "../../reducer/slice/productSlice";
 import {getDetailProduct, getProductByCate} from "../../service/productService";
-
+import pagination from "../../components/Pagination";
+import Pagination from "../../components/Pagination";
 
 
 const ProductList = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    useEffect(()=>{
+    useEffect(() => {
         getProductByCate(dispatch)
-    },[])
+    }, [])
     const productFilter = useSelector(state => state.productReducer.productByCate)
-
     const products = useSelector(state => state.productReducer.products)
     const product = useSelector(state => state.productReducer.product)
-    const brands = useSelector(s => s.brandReducer.brands)
-    const categories = useSelector(s => s.categoryReducer.categories)
-    const handlerChange = (e) => {
-        setProducts({
-            ...products,
-            [e.target.name]: e.target.value
-        })
-    }
-    const handleGetDetail = (id) => {
-        navigate(`/user/product/${id}`)
 
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const [productsPerPage] = useState(9)
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstPage = indexOfLastProduct - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstPage,indexOfLastProduct)
+    console.log(currentProducts)
+
+
+    console.log(product)
+    // const brands = useSelector(s => s.brandReducer.brands)
+    // const categories = useSelector(s => s.categoryReducer.categories)
+    // const handleGetDetail = (id) => {
+    //     navigate(`/user/product/${id}`)
+    //
+    // }
+    const paginate = (page) => {
+        setCurrentPage(page)
     }
 
 
@@ -157,8 +165,9 @@ const ProductList = () => {
                                 className="mt-4 grid grid-cols-1 gap-px border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-3"
                             >
 
-                                {products?.map((product, index) => (
-                                    <a href="#" className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                                {currentProducts?.map((product, index) => (
+                                    <a href="#"
+                                       className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                                         <img
                                             alt="Toy"
                                             src={product.image}
@@ -167,11 +176,11 @@ const ProductList = () => {
                                         />
 
                                         <div className="p-6">
-              {/*<span*/}
-              {/*    className="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"*/}
-              {/*>*/}
-              {/*  New*/}
-              {/*</span>*/}
+                                            {/*<span*/}
+                                            {/*    className="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"*/}
+                                            {/*>*/}
+                                            {/*  New*/}
+                                            {/*</span>*/}
 
                                             <h5 className="mt-4 text-lg font-bold">{product.name}</h5>
 
@@ -200,17 +209,12 @@ const ProductList = () => {
                                         </div>
                                     </a>
                                 ))}
-
-
                             </div>
                         </div>
                     </div>
                 </div>
+                <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
             </section>
-
-
-
-
 
         </>
     );
