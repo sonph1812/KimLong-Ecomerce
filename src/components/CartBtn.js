@@ -7,7 +7,7 @@ const CartBtn = () => {
 
   return (
     <Link
-      to="/user/cart"
+      to="/cart"
       aria-label="Cart"
       title="Cart"
       className="font-medium tracking-wide transition-colors duration-200 hover:text-teal-accent-400"

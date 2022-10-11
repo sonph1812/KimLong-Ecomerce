@@ -77,8 +77,8 @@ const ShippingForm = () => {
 
           >
             <option selected="selected" disabled="disabled">Shipping</option>
-            <option value={'Grapt'}>Grapt</option>
-            <option value={''}></option>
+            <option value={'Grab'}>Grab</option>
+            <option value={'ViettelPost'}>Viettel Post</option>
             <option value={''}></option>
           </select>
         </div>
@@ -100,8 +100,10 @@ const ShippingForm = () => {
 
           >
             <option selected="selected" disabled="disabled">Payment</option>
-            <option value={'bank'}>Bank</option>
-            <option value={''}></option>
+            <option value={'bank'}>
+              Chuyển Khoản Ngân Hàng
+            </option>
+            <option value={'done'}>Thanh toán khi nhận hàng </option>
             <option value={''}></option>
           </select>
         </div>

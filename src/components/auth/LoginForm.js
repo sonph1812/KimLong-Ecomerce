@@ -43,7 +43,7 @@ function LoginForm() {
         const role = decode.user.roleId.name;
         localStorage.setItem("role", role);
         if (role == "user") {
-          navigate("/user/home");
+          navigate("/");
         } else if (
           role === "admin" ||
           role === "seller" ||

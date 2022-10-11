@@ -64,7 +64,7 @@ Có Thể Bạn Sẽ Thích                  </h2>
               <div className=" mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 rounded-2xl ">
                           {products?.map((product, index) => (
 
-                  <a href="#" className=" hover:scale-105 shadow-amber-700relative block border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                  <a href="#" className=" hover:scale-105 shadow-amber-700relative block rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                       <img
                           alt="Toy"
                           src={product.image}
@@ -79,7 +79,7 @@ Có Thể Bạn Sẽ Thích                  </h2>
                           <button
                               type="button"
                               name="wishlist"
-                              className="absolute right-4 bottom-3 rounded-full bg-yellow-200 p-2 text-white hover:scale-105"
+                              className="absolute right-4 bottom-3 rounded-full rounded-fit bg-yellow-200 p-4 text-white hover:scale-105"
                           >
                               <svg
                                   className="h-4 w-4"

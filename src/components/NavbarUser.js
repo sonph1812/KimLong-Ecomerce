@@ -31,7 +31,7 @@ const NavbarUser = () => {
           <ul className="items-stretch hidden space-x-8 lg:flex">
             <li>
               <Link
-                to="/user"
+                to="/"
                 aria-label="HomePage"
                 title="HomePage"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
@@ -61,7 +61,7 @@ const NavbarUser = () => {
             </li>
             <li>
               <Link
-                to="/user/products"
+                to="/products"
                 aria-label="All products"
                 title="All products"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
@@ -129,7 +129,7 @@ const NavbarUser = () => {
                   to="/register"
                   aria-label="Register"
                   title="Register"
-                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  className="font-medium  text-center tracking-wide text-gray-700 pr-2 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 // onClick={closeMenu}
                 >
                   Register
