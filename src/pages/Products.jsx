@@ -90,7 +90,7 @@ const Products = ({currentItems,itemsPerPage}) => {
                             }}></IoAddCircleOutline>
                         </td>
                         <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
-                            <IoReloadOutline  onClick={(    ) => {
+                            <IoReloadOutline  onClick={() => {
                                 handleUpdate(product._id, index)
                             }}></IoReloadOutline>
                         </td>

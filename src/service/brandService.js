@@ -7,6 +7,8 @@ import {
     updateBrandSlice,
     getDetailBrandSlice
 } from "../reducer/slice/brandSlice";
+import Swal from "sweetalert2";
+import {deleteProductSlice} from "../reducer/slice/productSlice";
 
 
 const baseURL = "http://localhost:3000";
@@ -20,11 +22,26 @@ export const createBrand = async (data,dispatch) => {
     dispatch(createBrandSlice(data))
 }
 export const deleteBrand = async (dispatch,id) => {
-    const deleteConfirm = window.confirm('Bạn muốn xóa chứ!!!')
-    if(deleteConfirm){
-        const res = await customAxios.delete(`${baseURL}/brand/${id}`)
-        dispatch(deleteBrandSlice(id))
+
+    Swal.fire({
+        title: 'Bạn Muốn Xóa Chứ?',
+        text: "Hãy Suy Nghĩ Cẩn Thận Khi Xóa!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Vâng, Xóa Đi!'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            const res = await customAxios.delete(`${baseURL}/brand/${id}`)
+            dispatch(deleteBrandSlice(id))
+            Swal.fire(
+                'Xóa!',
+                'Bạn Đã Xóa Thành Công.',
+                'success'
+            )
         }
+    })
 }
 export const updateBrand = async (dispatch,props) => {
     const res = await customAxios.put(`${baseURL}/brand/${props.id}`,props.brand)
