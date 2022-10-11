@@ -13,7 +13,7 @@ const Products = () => {
     const dispatch = useDispatch()
     const list = useSelector(state => state.productReducer.products)
     const listSearch = useSelector(s => s.productReducer.listSearch)
-    const [products, setProduct] = useState([])
+    const [products, setProduct] = useState(list)
     const role = localStorage.getItem('role')
     useEffect(() => {
         if (listSearch) {
@@ -34,13 +34,12 @@ const Products = () => {
     const handlerCreate = () => {
         navigate('/admin/editor')
     }
-    const handleUpdate = (id) => {
+    const handleUpdate = (id, index) => {
         navigate(`/admin/editProducts/${id}`)
     }
     const handleGetDetail = (id) => {
         navigate(`/admin/productDetail/${id}`)
     }
-
     return (
 
         <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -61,7 +60,7 @@ const Products = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {role && products.map((product, index) => (
+                {products && role &&  products.map((product, index) => (
                     <tr key={product._id}>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.name}</td>
                         {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.price} $</td>*/}
@@ -79,8 +78,8 @@ const Products = () => {
                             }}></IoAddCircleOutline>
                         </td>
                         <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
-                            <IoReloadOutline  onClick={() => {
-                                handleUpdate(product._id)
+                            <IoReloadOutline  onClick={(    ) => {
+                                handleUpdate(product._id, index)
                             }}></IoReloadOutline>
                         </td>
                         <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
@@ -89,13 +88,12 @@ const Products = () => {
                             }}></IoTrashOutline>
                         </td>
                         <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
-                            <IoInformationCircleOutline onClick={()=>{handleGetDetail(product._id)}}>
-
+                            <IoInformationCircleOutline
+                                onClick={()=>{handleGetDetail(product._id)}}>
                             </IoInformationCircleOutline>
                         </td>
                     </tr>
                 ))}
-
         </tbody>
       </table>
     </div>

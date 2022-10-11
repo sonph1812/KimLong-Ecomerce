@@ -5,10 +5,8 @@ import {
     getAllProductSlice,
     getDetailProductSlice,
     updateProductSlice, getProByCate, getProByBrand,
-
 } from "../reducer/slice/productSlice";
 import Swal from "sweetalert2";
-
 
 const baseURL = "http://localhost:3000";
 
@@ -48,7 +46,8 @@ Swal.fire({
 }
 export const updateProducts = async (dispatch, props) => {
     const res = await customAxios.put(`${baseURL}/admin/products/${props.id}`,props.product)
-    dispatch(updateProductSlice());
+    dispatch(updateProductSlice(props));
+
 }
 export const getProductByCate = async (dispatch,id) => {
     const res = await customAxios.get(`${baseURL}/admin/filterByCategory/${id}`)
