@@ -19,13 +19,8 @@ const categorySlice = createSlice({
             state.categories = state.categories.filter((arrow) => arrow._id !== action.payload)
         },
         updateCategorySlice: (state, action) => {
-            state.categories = [
-                ...state.categories,
-                state.categories[action.payload.id] = {
-                    ...state.categories[action.payload.id],
-                    name : action.payload.data
-                }
-            ]
+            state.categories[action.payload.index].name = action.payload.data
+        
         },
         getDetailCategorySlice: (state, action) => {
             state.category = action.payload

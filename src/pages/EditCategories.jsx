@@ -9,6 +9,7 @@ const EditCategories = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { state } = useLocation()
+    console.log(state);
     const [addCategories, setAddCategories] = useState(state.name)
     const [isTrue, setIsTrue] = useState(false);
     const param = useParams()
@@ -20,8 +21,8 @@ const EditCategories = () => {
         if (addCategories == null || addCategories == "") {
             setIsTrue(true)
         } else {
-            updateCategory(id,addCategories, dispatch)
-            // navigate("/admin/categories")
+            updateCategory(id,state.index,addCategories, dispatch)
+            navigate("/admin/categories")
 
         }
     };
