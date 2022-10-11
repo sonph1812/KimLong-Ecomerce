@@ -169,7 +169,6 @@ const ProductList = () => {
 
                                 {currentProducts?.map((product, index) => (
                                     <a  onClick={()=>(handleGetDetail(product._id))} className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
-                                       className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                                         <img
                                             alt="Toy"
                                             src={product.image}
