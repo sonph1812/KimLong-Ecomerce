@@ -7,14 +7,27 @@ import {useNavigate} from "react-router-dom";
 import Search from '../components/Search';
 import {setProductSearch} from "../reducer/slice/productSlice"
 import {IoAddCircleOutline, IoInformationCircleOutline, IoReloadOutline, IoTrashOutline} from "react-icons/io5";
+import Pagination from "../components/Pagination";
 
-const Products = () => {
+const Products = ({currentItems,itemsPerPage}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const list = useSelector(state => state.productReducer.products)
     const listSearch = useSelector(s => s.productReducer.listSearch)
     const [products, setProduct] = useState(list)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [productsPerPage] = useState(5)
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstPage = indexOfLastProduct - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstPage,indexOfLastProduct)
+
+
+    const paginate = (page) => {
+        setCurrentPage(page)
+    }
+
     const role = localStorage.getItem('role')
+    // console.log(list)
     useEffect(() => {
         if (listSearch) {
             setProduct(listSearch)
@@ -60,7 +73,7 @@ const Products = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {products && role &&  products.map((product, index) => (
+                {products && role &&  currentProducts.map((product, index) => (
                     <tr key={product._id}>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.name}</td>
                         {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.price} $</td>*/}
@@ -94,6 +107,7 @@ const Products = () => {
                     </tr>
                 ))}
         </tbody>
+                <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
       </table>
     </div>
   );
