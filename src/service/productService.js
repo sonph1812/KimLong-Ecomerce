@@ -44,6 +44,7 @@ Swal.fire({
         }
     })
 }
+
 export const updateProducts = async (dispatch, props) => {
     const res = await customAxios.put(`${baseURL}/admin/products/${props.id}`,props.product)
     getAllProduct(dispatch)

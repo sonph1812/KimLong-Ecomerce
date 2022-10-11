@@ -39,12 +39,7 @@ const UserDetail = () => {
                 <p className="leading-relaxed mt-4">
                     Description: {user.description}
                 </p>
-                {/*<p className="leading-relaxed mt-4">*/}
-                {/*    Price: {formatPrice(product.price)}*/}
-                {/*</p>*/}
-                {/*<p className="leading-relaxed mt-4">*/}
-                {/*    Stock: {product.stock}*/}
-                {/*</p>*/}
+
                 <Stars/>
                 {/*{stock > 0 && <AddtoCart product={product} />}*/}
             </div>
