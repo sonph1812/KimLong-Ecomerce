@@ -2,17 +2,21 @@ import React, {useEffect} from "react";
 import Header from "../components/Header";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getAllProduct, getDetailProduct, updateProducts} from "../service/productService";
+import {createProduct, getAllProduct, getDetailProduct, updateProducts} from "../service/productService";
 import {useNavigate, useParams} from "react-router-dom";
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
+import {storage} from "../firebase/config";
 
 const EditProducts = () => {
     let navigate = useNavigate()
     let {id} = useParams();
     const dispatch = useDispatch();
+    const [image, setImage] = useState();
     const item = useSelector((state) => state.productReducer.product)
     const brands = useSelector(s => s.brandReducer.brands)
     const categories = useSelector(s => s.categoryReducer.categories)
     const [product, setProduct] = useState(item)
+    console.log(product)
 
     useEffect(() => {
         getDetailProduct(dispatch, id)
@@ -21,12 +25,26 @@ const EditProducts = () => {
         setProduct(item)
     }, [item])
 
-
     const handeEdit = () => {
-        updateProducts(dispatch, {product: product, id: id})
+        let imageUpload = image;
+        if (imageUpload) {
+            const imageRef = ref(storage, `image/${imageUpload?.name}`);
+            uploadBytes(imageRef, imageUpload).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    product.image = url;
+                    updateProducts(dispatch, {product: product, id: id})
+                });
+            });
+        }
+
         navigate('/admin/products')
 
     }
+    const handlePreviewAvatar = (e) => {
+        const file = e.target.files[0];
+        // file.preview = URL.createObjectURL(file);
+        setImage(file);
+    };
     return (
         <div>
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -82,9 +100,11 @@ const EditProducts = () => {
                                 <div className="col-span-6 sm:col-span-3">
                                     <label
                                         className="block text-sm font-medium text-neutral-900">Upload file</label>
-                                    <input onChange={(e) => setProduct({...product, image: e.target.value})}
-
+                                    <input onChange={(e) => {
+                                        handlePreviewAvatar(e)
+                                    }}
                                            type="file" name="file" id="rating" autoComplete="given-name"
+                                           // value={product?.image}
                                            className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                                 </div>
 
