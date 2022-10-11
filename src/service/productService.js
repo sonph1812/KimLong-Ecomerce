@@ -46,8 +46,8 @@ Swal.fire({
 }
 export const updateProducts = async (dispatch, props) => {
     const res = await customAxios.put(`${baseURL}/admin/products/${props.id}`,props.product)
-    dispatch(updateProductSlice(props));
-
+    getAllProduct(dispatch)
+    getDetailProduct(dispatch, props.id)
 }
 export const getProductByCate = async (dispatch,id) => {
     const res = await customAxios.get(`${baseURL}/admin/filterByCategory/${id}`)

@@ -10,9 +10,7 @@ import {getDetailUser} from "../service/userService";
 const UserDetail = () => {
     const dispatch = useDispatch()
     const params = useParams()
-    console.log(params)
     const product = useSelector(state => state.userReducer.user)
-    console.log(product,"1213")
     useEffect(()=>{
         getDetailUser(dispatch,params.id)
 

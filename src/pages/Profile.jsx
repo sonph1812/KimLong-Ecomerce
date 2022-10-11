@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 function Profile() {
   const userInfo = useSelector((s) => s.userReducer.userInfo);
-  console.log(userInfo);
   return (
     <div class="md:flex no-wrap md:-mx-2 ">
       <div class="w-full md:w-3/12 md:mx-2">

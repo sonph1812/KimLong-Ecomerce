@@ -67,7 +67,6 @@ const Products = () => {
                         {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.description}</td>*/}
                         {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.rating} </td>*/}
                         {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"><img src={product.image}/>*/}
-                        {/*</td>*/}
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.stock} </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.brandId?.name}</td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{product.categoryId?.name} </td>

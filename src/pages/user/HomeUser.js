@@ -17,7 +17,6 @@ import {logBase} from "@syncfusion/ej2-react-charts";
 const HomePage = () => {
     const categories = useSelector(state=>state.categoryReducer.categories)
     const products = useSelector(state=>state.productReducer.products)
-    console.log(categories)
     return (
         <><div className="relative min-h-screen">
         <p className="flex h-10 items-center justify-center bg-yellow-200 px-4 text-sm font-medium text-black sm:px-6 lg:px-8">Get free delivery on orders over $999</p>

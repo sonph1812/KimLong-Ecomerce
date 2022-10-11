@@ -16,7 +16,6 @@ const EditProducts = () => {
     const brands = useSelector(s => s.brandReducer.brands)
     const categories = useSelector(s => s.categoryReducer.categories)
     const [product, setProduct] = useState(item)
-    console.log(product)
 
     useEffect(() => {
         getDetailProduct(dispatch, id)
@@ -25,7 +24,8 @@ const EditProducts = () => {
         setProduct(item)
     }, [item])
 
-    const handeEdit = () => {
+    const handeEdit = (e) => {
+        e.preventDefault()
         let imageUpload = image;
         if (imageUpload) {
             const imageRef = ref(storage, `image/${imageUpload?.name}`);
@@ -33,11 +33,11 @@ const EditProducts = () => {
                 getDownloadURL(snapshot.ref).then((url) => {
                     product.image = url;
                     updateProducts(dispatch, {product: product, id: id})
+                    navigate('/admin/products')
                 });
             });
         }
 
-        navigate('/admin/products')
 
     }
     const handlePreviewAvatar = (e) => {
