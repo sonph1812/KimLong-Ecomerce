@@ -8,7 +8,7 @@ const initialState = {
     productByCate: [],
     productByBrand: [],
     comments:[],
-    star: 0
+    star: 5
 
 }
 const productSlice = createSlice({

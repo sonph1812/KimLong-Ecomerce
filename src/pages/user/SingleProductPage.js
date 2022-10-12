@@ -26,7 +26,6 @@ const SingleProductPage = () => {
         getDetailProduct(dispatch, params.id)
 
     }, [])
-
     useEffect(() => {
         if (product && product.stars) {
             for (let star of product.stars) {
@@ -49,10 +48,10 @@ const SingleProductPage = () => {
     const handelDelete = (idReview, index) => {
         deleteComment(index, product._id, idReview, dispatch)
     }
-    const handelEdit = (idReview, index) => {
+    // const handelEdit = (idReview, index) => {
 
-    }
-
+    // }
+    console.log(product);
 
     // const ratingChanged = (newRating) => {
     //     dispatch(checkStar(newRating))
@@ -66,7 +65,7 @@ const SingleProductPage = () => {
     //     activeColor: "#ffd700",
     //     value: star
     // }
-    console.log(star);
+
     return (
         <>
 
@@ -107,7 +106,7 @@ const SingleProductPage = () => {
                             {/* <ReactStars
                                {...sD}
                             /> */}
-                            <Rating star = {star}></Rating>
+                            <Rating star = {star} idProduct = {product._id} idUser = {userInfo._id}></Rating>
                              
                         </div>
 
