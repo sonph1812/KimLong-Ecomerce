@@ -8,6 +8,7 @@ import {
     getDetailCategorySlice
 } from "../reducer/slice/categorySlice";
 import Swal from "sweetalert2";
+import {deleteProductSlice} from "../reducer/slice/productSlice";
 
 
 const baseURL = "http://localhost:3000";
@@ -48,7 +49,7 @@ export const updateCategory = async (id, index, data, dispatch) => {
         console.log(err);
     })
     dispatch(updateCategorySlice({id,data}));
-  
+
 }
 export const getDetailCategory = async (dispatch, id) => {
     const res = await customAxios.get(`${baseURL}/category/${id}`)

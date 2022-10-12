@@ -8,7 +8,7 @@ import {
     getDetailBrandSlice
 } from "../reducer/slice/brandSlice";
 import Swal from "sweetalert2";
-
+import {deleteProductSlice} from "../reducer/slice/productSlice";
 
 
 const baseURL = "http://localhost:3000";
@@ -22,6 +22,7 @@ export const createBrand = async (data,dispatch) => {
     dispatch(createBrandSlice(data))
 }
 export const deleteBrand = async (dispatch,id) => {
+
     Swal.fire({
         title: 'Bạn Muốn Xóa Chứ?',
         text: "Hãy Suy Nghĩ Cẩn Thận Khi Xóa!",
@@ -42,7 +43,6 @@ export const deleteBrand = async (dispatch,id) => {
         }
     })
 }
-   
 export const updateBrand = async (dispatch,props) => {
     const res = await customAxios.put(`${baseURL}/brand/${props.id}`,props.brand)
     dispatch(updateBrandSlice());

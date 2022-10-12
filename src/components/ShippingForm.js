@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Btn from './Btn';
 import { Link, useNavigate } from "react-router-dom"
 import { addOrder } from '../service/orderService';
+import Steps from "./Steps";
 const ShippingForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -48,11 +49,11 @@ const ShippingForm = () => {
             htmlFor="address"
             className="block mb-2 text-sm font-medium text-gray-900 "
           >
-            Address
+            Địa chỉ nhận Hàng:
           </label>
           <input
             type="text"
-            placeholder="Enter address"
+            placeholder="Nhập địa chỉ"
             id="address"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             required
@@ -65,20 +66,21 @@ const ShippingForm = () => {
         <div className="mb-6">
           <label
             htmlFor="city"
+            placeholder="Chọn"
             className="block mb-2 text-sm font-medium text-gray-900 "
           >
-            Shipping
+            Phương thức vận chuyển:
           </label>
           <select
             value={shipping}
             onChange={e => setShipping(e.target.value)}
-            name="shipping"
+            name="Chọn Phương thức"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 "
 
           >
             <option selected="selected" disabled="disabled">Shipping</option>
-            <option value={'Grapt'}>Grapt</option>
-            <option value={''}></option>
+            <option value={'Grab'}>Grab</option>
+            <option value={'ViettelPost'}>Viettel Post</option>
             <option value={''}></option>
           </select>
         </div>
@@ -88,20 +90,25 @@ const ShippingForm = () => {
           <label
             htmlFor="postalCode"
             className="block mb-2 text-sm font-medium text-gray-900 "
+
           >
-            Payment
+            Phương thức thanh toán
           </label>
 
           <select
             value={payment}
             onChange={e => setPayment(e.target.value)}
-            name="payment"
+            name="Phương thức thanh toán"
+
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 "
 
           >
-            <option selected="selected" disabled="disabled">Payment</option>
-            <option value={'bank'}>Bank</option>
-            <option value={''}></option>
+            <option selected="selected"
+                    disabled="disabled">Payment</option>
+            <option value={'bank'}>
+              Chuyển Khoản Ngân Hàng
+            </option>
+            <option value={'done'}>Thanh toán khi nhận hàng </option>
             <option value={''}></option>
           </select>
         </div>
@@ -112,11 +119,11 @@ const ShippingForm = () => {
             htmlFor="country"
             className="block mb-2 text-sm font-medium text-gray-900 "
           >
-            Discount
+            Mã giảm giá
           </label>
           <input
             type="text"
-            placeholder="Enter country"
+            placeholder="Nhập mã"
             id="country"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             required

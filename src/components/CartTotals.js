@@ -11,7 +11,7 @@ const CartTotals = ({ name, to, totals }) => {
 
   return (
     <div className="w-1/2 xl:w-1/3 px-4">
-      <div className="p-6 md:p-12 bg-yellow-200 text-black-400">
+      <div className="p-6 md:p-12 bg-black text-white">
         <h2 className="mb-6 text-4xl font-bold">Cart totals</h2>
         <div className="flex mb-8 items-center justify-between pb-5 border-b border-blue-100">
           <span className="font-bold text-lg">Subtotal</span>
@@ -38,13 +38,13 @@ const CartTotals = ({ name, to, totals }) => {
         </div>
         {userInfo.name ? (
           <Link to={to}>
-            <button className="block w-full py-4 bg-secondary-500 hover:bg-secondary-200 hover:text-secondary-900 text-center  font-bold  uppercase rounded-md transition duration-200 text-secondary-50">
+            <button className="block w-full py-4 bg-yellow-300 hover:bg-yellow-200 hover:text-secondary-900 text-center  font-bold  uppercase rounded-md transition duration-200 text-secondary-50">
               {name}
             </button>
           </Link>
         ) : (
           <Link to="/login">
-            <button className="block w-full py-4 bg-white-500 hover:bg-secondary-200 hover:text-secondary-900 text-center  font-bold uppercase rounded-md transition duration-200 text-secondary-50">
+            <button className="block w-full py-4 bg--500 hover:bg-secondary-200 hover:text-secondary-900 text-center  font-bold uppercase rounded-md transition duration-200 text-secondary-50">
               Login
             </button>
           </Link>

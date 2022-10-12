@@ -76,7 +76,8 @@ const SingleProductPage = () => {
                             <p className="leading-relaxed mt-4">
                                 {product.description}
                             </p>
-                            <AddtoCart product={product} />
+                            {product.stock > 0
+                                && <AddtoCart product={product} />}
                         </div>
                     </div>
 

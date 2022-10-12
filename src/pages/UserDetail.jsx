@@ -10,9 +10,7 @@ import {getDetailUser} from "../service/userService";
 const UserDetail = () => {
     const dispatch = useDispatch()
     const params = useParams()
-    console.log(params)
-    const product = useSelector(state => state.userReducer.user)
-    console.log(product,"1213")
+    const user = useSelector(state => state.userReducer.user)
     useEffect(()=>{
         getDetailUser(dispatch,params.id)
 
@@ -41,12 +39,7 @@ const UserDetail = () => {
                 <p className="leading-relaxed mt-4">
                     Description: {user.description}
                 </p>
-                {/*<p className="leading-relaxed mt-4">*/}
-                {/*    Price: {formatPrice(product.price)}*/}
-                {/*</p>*/}
-                {/*<p className="leading-relaxed mt-4">*/}
-                {/*    Stock: {product.stock}*/}
-                {/*</p>*/}
+
                 <Stars/>
                 {/*{stock > 0 && <AddtoCart product={product} />}*/}
             </div>

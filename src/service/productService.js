@@ -13,8 +13,6 @@ import {
 
 } from "../reducer/slice/productSlice";
 import Swal from "sweetalert2";
-import { async } from "@firebase/util";
-
 
 const baseURL = "http://localhost:3000";
 
@@ -52,15 +50,17 @@ export const deleteProduct = async (dispatch, id) => {
         }
     })
 }
+
 export const updateProducts = async (dispatch, props) => {
-    const res = await customAxios.put(`${baseURL}/admin/products/${props.id}`, props.product)
-    dispatch(updateProductSlice());
+    const res = await customAxios.put(`${baseURL}/admin/products/${props.id}`,props.product)
+    getAllProduct(dispatch)
+    getDetailProduct(dispatch, props.id)
 }
-export const getProductByCate = async (dispatch, id) => {
+export const getProductByCate = async (dispatch,id) => {
     const res = await customAxios.get(`${baseURL}/admin/filterByCategory/${id}`)
     dispatch(getProByCate(res.data))
 }
-export const getProductByBrand = async (dispatch, id) => {
+export const getProductByBrand = async (dispatch,id) => {
     const res = await customAxios.get(`${baseURL}/admin/filterByBrand/${id}`)
     dispatch(getProByBrand(res.data))
 }

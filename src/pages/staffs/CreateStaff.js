@@ -9,10 +9,6 @@ function CreateStaff() {
     const navigate = useNavigate();
   const dispatch = useDispatch();
   const [staff, setStaff] = useState({
-    avatar: {
-      public_id: "a",
-      url: "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2021/11/20/975861/5-Giong-Cho-Long-Xu-.jpg",
-    },
     gender: "Nam",
     role: "seller"
   });
@@ -25,7 +21,6 @@ function CreateStaff() {
   };
 
   const handleCreate = (e) => {
-    console.log(staff);
     e.preventDefault();
     addStaff(staff, dispatch);
     navigate("/admin/staffs");
@@ -195,7 +190,7 @@ function CreateStaff() {
                     onChange={(e) => {
                       handleChange(e);
                     }}
-                    type="text"
+                    type="date"
                     name="dob"
                     id="dob"
                     autoComplete="given-name"
