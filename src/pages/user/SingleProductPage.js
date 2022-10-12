@@ -8,21 +8,43 @@ import Loading from '../../components/Loading';
 import Error from '../../components/Error';
 import NavbarUser from "../../components/NavbarUser";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailProduct } from "../../service/productService";
+import { addComment, deleteComment, getDetailProduct } from "../../service/productService";
 import AddtoCart from "../../components/AddtoCart";
-import {formatPrice} from "../../utils/helpers";
+import { formatPrice } from "../../utils/helpers";
 
 const SingleProductPage = () => {
     const dispatch = useDispatch()
     const params = useParams()
     const product = useSelector(state => state.productReducer.product)
+    const comments = useSelector(s => s.productReducer.comments)
+    const role = localStorage.getItem('role')
+    const userInfo = useSelector(s => s.userReducer.userInfo)
+    const [comment, setComment] = useState('')
+    const user = useSelector(s => s.userReducer.userInfo)
+    const [rating,setRating] = useState(1)
     useEffect(() => {
         getDetailProduct(dispatch, params.id)
 
     }, [])
 
+    const handelSubmit = (e) => {
+        e.preventDefault()
+        if (comment.trim(true) != "") {
+            addComment({ user, comment }, product._id, dispatch)
+        } else {
+            console.log('điền gì đó đi');
+        }
+    }
+    const handelDelete = (idReview, index) => {
+        deleteComment(index, product._id, idReview, dispatch)
+    }
+    const handelEdit = (idReview, index) => {
 
+    }
 
+    const addStar = () => {
+
+    }
     return (
         <>
             {/*<NavbarUser/>*/}
@@ -50,7 +72,7 @@ const SingleProductPage = () => {
                             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                                 {product.name}  </h1>
 
-                            {/*<Stars stars={stars} />*/}
+                            <Stars stars={5} />
                             <p className="leading-relaxed mt-4">
                                 {product.description}
                             </p>
@@ -66,7 +88,7 @@ const SingleProductPage = () => {
 
                         <div className="flex items-center mt-4">
                             <p className="text-3xl font-medium">
-                                {/*{stars}*/}
+                                {5}
                                 <span className="sr-only"> Average review score </span>
                             </p>
 
@@ -79,91 +101,114 @@ const SingleProductPage = () => {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12">
-                            {/*{reviews?.map(review => {*/}
-                            {/*    return <SingleReview key={review._id} review={review} />;*/}
-                            {/*})}*/}
-                        </div>
+                        {/* <div className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12">
+                            {reviews?.map(review => {
+                               return <SingleReview key={review._id} review={review} />;
+                            })}
+                        </div> */}
                     </div>
 
-                    {/*/!* Review form*!/*/}
-                    {/*<div className="max-w-screen-xl  py-8 mx-auto  ">*/}
-                    {/*    <h2 className="text-xl font-bold sm:text-2xl mb-5">*/}
-                    {/*        Write a review*/}
-                    {/*    </h2>*/}
-                    {/*    {createProductReviewLoading && <Loading />}*/}
-                    {/*    {createProductReviewError && (*/}
-                    {/*        <Error title={createProductReviewError} />*/}
-                    {/*    )}*/}
-                    {/*    {loginUser ? (*/}
-                    {/*        <>*/}
-                    {/*            <form onSubmit={submitHandler}>*/}
-                    {/*                /!* Rating *!/*/}
-                    {/*                <label*/}
-                    {/*                    htmlFor="rating"*/}
-                    {/*                    className="block mb-2 text-sm font-medium text-gray-900 "*/}
-                    {/*                >*/}
-                    {/*                    Rating*/}
-                    {/*                </label>*/}
-                    {/*                <select*/}
-                    {/*                    name="rating"*/}
-                    {/*                    value={rating}*/}
-                    {/*                    onChange={e => setRating(e.target.value)}*/}
-                    {/*                    id="rating"*/}
-                    {/*                    className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"*/}
-                    {/*                >*/}
-                    {/*                    <option value="">Select...</option>*/}
-                    {/*                    <option value="1">1 - Poor</option>*/}
-                    {/*                    <option value="2">2 - Fair</option>*/}
-                    {/*                    <option value="3">3 - Good</option>*/}
-                    {/*                    <option value="4">4 - Very Good</option>*/}
-                    {/*                    <option value="5">5 - Excellent</option>*/}
-                    {/*                </select>*/}
+                    {/* /!* Review form*!/ */}
+                    <div className="max-w-screen-xl  py-8 mx-auto  ">
+                        <h2 className="text-xl font-bold sm:text-2xl mb-5">
+                            {/* Write a review */}
+                        </h2>
+                        {/* {createProductReviewLoading && <Loading />}
+                       {createProductReviewError && (
+                           <Error title={createProductReviewError} />
+                       )} */}
+                        {role ? (
+                            <>
+                                <form>
+                                    {/* /!* Rating *!/ */}
+                                    <label
+                                        htmlFor="rating"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Rating
+                                    </label>
+                                    <select
+                                        name="rating"
+                                           onChange={e => setRating(e.target.value)}
+                                        id="rating"
+                                        className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    >
+                                        <option value="">Select...</option>
+                                        <option value="1">1 - Poor</option>
+                                        <option value="2">2 - Fair</option>
+                                        <option value="3">3 - Good</option>
+                                        <option value="4">4 - Very Good</option>
+                                        <option value="5">5 - Excellent</option>
+                                    </select>
 
-                    {/*                /!* Title *!/*/}
-                    {/*                <label*/}
-                    {/*                    htmlFor="title"*/}
-                    {/*                    className="block my-2 text-sm font-medium text-gray-900 "*/}
-                    {/*                >*/}
-                    {/*                    Title*/}
-                    {/*                </label>*/}
-                    {/*                <input*/}
-                    {/*                    type="text"*/}
-                    {/*                    value={title}*/}
-                    {/*                    onChange={e => setTitle(e.target.value)}*/}
-                    {/*                    id="title"*/}
-                    {/*                    placeholder="Leave a title..."*/}
-                    {/*                    className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "*/}
-                    {/*                />*/}
+                                    {/*                /!* Title *!/*/}
+                                    <label
+                                        htmlFor="title"
+                                        className="block my-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Title
+                                    </label>
+                                    <input
+                                        type="text"
+                                        //    value={title}
+                                        //    onChange={e => setTitle(e.target.value)}
+                                        id="title"
+                                        placeholder="Leave a title..."
+                                        className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
+                                    />
 
-                    {/*                /!* Message *!/*/}
-                    {/*                <label*/}
-                    {/*                    htmlFor="message"*/}
-                    {/*                    className="block my-2 text-sm font-medium text-gray-900 "*/}
-                    {/*                >*/}
-                    {/*                    Your message*/}
-                    {/*                </label>*/}
-                    {/*                <textarea*/}
-                    {/*                    id="message"*/}
-                    {/*                    value={comment}*/}
-                    {/*                    onChange={e => setComment(e.target.value)}*/}
-                    {/*                    rows="4"*/}
-                    {/*                    className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500  mb-5"*/}
-                    {/*                    placeholder="Leave a comment..."*/}
-                    {/*                ></textarea>*/}
+                                    {/*                /!* Message *!/*/}
+                                    <label
+                                        htmlFor="message"
+                                        className="block my-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Your message
+                                    </label>
+                                    <textarea
+                                        id="message"
+                                        onChange={e => setComment(e.target.value)}
+                                        rows="4"
+                                        className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500  mb-5"
+                                        placeholder="Leave a comment..."
+                                    ></textarea>
 
-                    {/*                /!* Submit btn *!/*/}
-                    {/*                <Btn name="Submit" />*/}
-                    {/*            </form>*/}
-                    {/*        </>*/}
-                    {/*    ) : (*/}
-                    {/*        <Link to="/login">*/}
-                    {/*            <Btn name="Login" />*/}
-                    {/*        </Link>*/}
-                    {/*    )}*/}
-                    {/*</div>*/}
+                                    {/* /!* Submit btn *!/ */}
+                                    <p
+                                        onClick={(e) => { handelSubmit(e) }}
+                                    ><Btn name="Submit" /></p>
+                                </form>
+                            </>
+                        ) : (
+                            <Link to="/login">
+                                <Btn name="Login" />
+                            </Link>
+                        )}
+                        <div>
+                            {
+                                comments[0] && comments.map((item, index) => {
+
+                                    return (
+                                        item.userId._id == userInfo._id ? <div key={index}>
+                                            <p>{item.userId.name}</p>
+                                            <p>{item.comment}</p>
+
+                                            <button
+                                                onClick={() => { handelDelete(item._id, index) }}
+                                            >delete</button>
+                                            <button
+                                                onClick={() => { handelEdit(item._id, index) }}
+                                            >Edit</button>
+                                        </div> : <div key={index}>
+                                            <p>{item.userId.name}</p>
+                                            <p>{item.comment}</p>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
                 </>}
-                {/*)}*/}
+                {/* )} */}
             </section>
         </>
     );
