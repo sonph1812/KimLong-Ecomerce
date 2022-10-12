@@ -20,7 +20,7 @@ const ShippingForm = () => {
   const [discount, setDiscount] = useState('');
 
   const handelSupmit = (e) => {
-    if (address == '' || payment == '' || shipping == '' || discount == '') {
+    if (address == '' || payment == '' || shipping == '') {
       alert('điền đầy đủ thông tin')
     } else {
       addOrder({
