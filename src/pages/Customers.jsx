@@ -78,7 +78,6 @@ const handleDelete = (id) => {
                 </td>
                 <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                   <IoInformationCircleOutline onClick={()=>{handleGetDetail(user._id)}}>
-
                   </IoInformationCircleOutline>
                 </td>
               </tr>
@@ -86,7 +85,6 @@ const handleDelete = (id) => {
           }
         </tbody>
       </table>
-
     </div>
   );
 };

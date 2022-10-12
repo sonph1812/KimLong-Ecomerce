@@ -42,16 +42,16 @@ function Profile() {
                 />
               </svg>
             </span>
-            <span className="tracking-wide">About</span>
+            <span className="tracking-wide">Hồ Sơ</span>
           </div>
           <div className="text-gray-700">
             <div className="grid md:grid-cols-1 text-sm">
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">User Name</div>
+                <div className="px-4 py-2 font-semibold">Tên tài khoản</div>
                 <div className="px-4 py-2">{userInfo.userName}</div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Name</div>
+                <div className="px-4 py-2 font-semibold">Tên</div>
                 <div className="px-4 py-2">{userInfo.name}</div>
               </div>
               <div className="grid grid-cols-2">
@@ -59,11 +59,11 @@ function Profile() {
                 <div className="px-4 py-2">{userInfo.gender}</div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Birthday</div>
+                <div className="px-4 py-2 font-semibold">Ngày sinh nhật</div>
                 <div className="px-4 py-2">{userInfo.dob}</div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold">Phone</div>
+                <div className="px-4 py-2 font-semibold">Số điện thoại</div>
                 <div className="px-4 py-2">{userInfo.phone}</div>
               </div>
               <div className="grid grid-cols-2">
@@ -73,13 +73,13 @@ function Profile() {
                 </div>
               </div>
               <div className="grid grid-cols-2">
-                <div className="px-4 py-2 font-semibold"> Address</div>
+                <div className="px-4 py-2 font-semibold">Địa chỉ</div>
                 <div className="px-4 py-2">{userInfo.address}</div>
               </div>
             </div>
           </div>
           <button onClick={editProfile} className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-            Edit Profile
+            Chỉnh sửa hồ sơ
           </button>
         </div>
       </div>
