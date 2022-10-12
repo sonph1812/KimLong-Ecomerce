@@ -19,9 +19,7 @@ const Categories = () => {
   const handlerDelete = (id) => {
     deleteCategory(dispatch, id)
   }
-  // useEffect(()=>{
-  //   setCategoriesList(categoryList)
-  // },[list])
+  
   const handleUpdate = (id, name, index) => {
     navigate(`/admin/editCategories/${id}`, { state: { name: `${name}`,index:index } })
   }

@@ -47,7 +47,6 @@ import EditProfile from './pages/EditProfile';
 import CartPage from "./pages/user/CartPage";
 import ShippingPage from "./pages/user/ShippingPage";
 import { getDetailCart } from './service/cartService';
-import HomeUser1 from './pages/home/HomeUser1';
 import CreateCategory from './pages/CreateCategory';
 import Categories from './pages/Categories';
 import EditCategories from './pages/EditCategories';

@@ -12,7 +12,7 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         getDetailCartSlice: (state, action) => {
-            state.cart = action.payload.reverse()
+            state.cart = action.payload
             state.cartId = action.payload._id
             state.totals = action.payload.totals
             state.items = action.payload.itemId

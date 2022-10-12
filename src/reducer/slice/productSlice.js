@@ -16,7 +16,7 @@ const productSlice = createSlice({
     initialState,
     reducers: {
         getAllProductSlice: (state, action) => {
-            state.products = action.payload
+            state.products = action.payload.reverse()
         },
         createProductSlice: (state, action) => {
             state.products.unshift(action.payload)

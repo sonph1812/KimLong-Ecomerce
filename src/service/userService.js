@@ -13,7 +13,6 @@ import {
     searchStaffSlice
 } from "../reducer/slice/userSlice";
 import Swal from "sweetalert2";
-import {deleteProductSlice} from "../reducer/slice/productSlice";
 
 const baseURL = "http://localhost:3000";
 

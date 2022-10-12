@@ -13,15 +13,12 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 const NavbarUser = () => {
   const userInfo = useSelector(s => s.userReducer.userInfo)
-  console.log(userInfo, "sontest")
   const { handleClick, isClicked } = useStateContext();
 
 
   const role = localStorage.getItem('role')
   const dispatch = useDispatch()
-  const logOutHome = () => {
-    dispatch(logOut())
-  }
+  
   return (
     <div className="bg-white">
       <div className="container mx-auto py-5 ">
@@ -120,7 +117,7 @@ const NavbarUser = () => {
               </div>
             </TooltipComponent>}
             {isClicked.userProfile && (<UserProfile userInfo={userInfo} />)}
-            {/*) : (*/}
+
             {!role && <>
               <li>
                 <Link
@@ -128,7 +125,6 @@ const NavbarUser = () => {
                   aria-label="Log in"
                   title="Log in"
                   className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                // onClick={closeMenu}
                 >
                   Đăng nhập
                 </Link>
@@ -139,7 +135,6 @@ const NavbarUser = () => {
                   aria-label="Register"
                   title="Register"
                   className="font-medium  text-center tracking-wide text-gray-700 pr-2 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                // onClick={closeMenu}
                 >
                   Đăng kí
                 </Link>

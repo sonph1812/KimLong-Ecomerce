@@ -18,13 +18,13 @@ const userSlice = createSlice({
             
         },
         getUserInfo: (state, action) => {
-            state.userInfo = action.payload.reverse()
+            state.userInfo = action.payload
         },
         getAllStaffSlice: (state, action) => {
-            state.staffs = action.payload
+            state.staffs = action.payload.reverse()
         },
         getAllUserSlice: (state, action) => {
-            state.users = action.payload
+            state.users = action.payload.reverse()
         },
         getDetailUserSlice: (state, action) => {
             state.user = action.payload
