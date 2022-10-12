@@ -34,7 +34,7 @@ function EditProfile() {
                 getDownloadURL(snapshot.ref).then((url) => {
                     user.avatar = url;
                     updateUser(userId,user,dispatch)
-                    navigate("/admin/profile");
+                    navigate("/");
                 });
             });
         }

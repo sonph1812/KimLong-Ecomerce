@@ -111,15 +111,14 @@ const App = () => {
                     <Route path="myOrder" element={<MyOrderPage />}></Route>
 
                 </Route>
-
+                <Route path='profile' element={<Profile/>}/>
+                <Route path='profile/update' element={<EditProfile/>}/>
                 <Route path="/admin" element={<Admin></Admin>}>
                     <Route path="editor" element={<Editor/>}/>
                     <Route path="products" element={<Products/>}/>
                     <Route path="editProducts/:id" element={<EditProducts></EditProducts>}/>
                     <Route path="productDetail/:id" element={<ProductDetail/>}></Route>
                     <Route path="userDetail/:id" element={<UserDetail/>}></Route>
-                    <Route path='profile' element={<Profile/>}/>
-                    <Route path='profile/update' element={<EditProfile/>}/>
 
 
 

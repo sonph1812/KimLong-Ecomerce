@@ -808,7 +808,7 @@ export const themeColors = [
 
 export const userProfileData = [
   {
-    link:'/admin/profile',
+    link:'/profile',
     icon: <BsCurrencyDollar />,
     title: 'My Profile',
     desc: 'Account Settings',

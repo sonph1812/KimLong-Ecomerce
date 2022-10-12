@@ -5,7 +5,7 @@ function Profile() {
   const userInfo = useSelector((s) => s.userReducer.userInfo);
   const navigate = useNavigate();
   const editProfile = ()=>{
-    navigate(`/admin/profile/update`);
+    navigate(`/profile/update`);
   }
   return (
     <div className="md:flex no-wrap md:-mx-2 ">
