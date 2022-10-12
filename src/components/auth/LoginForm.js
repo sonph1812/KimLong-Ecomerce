@@ -64,7 +64,7 @@ function LoginForm() {
         <div className="h-full md:h-auto md:w-1/2">
           <img
             className="mt-8 space-y-6 px-5 py-5   rounded-lg"
-            src="https://source.unsplash.com/user/erondu/1600x900"
+            src={"assets/banner/kimlong-wellcome.png"}
             alt="img"
           />
         </div>
