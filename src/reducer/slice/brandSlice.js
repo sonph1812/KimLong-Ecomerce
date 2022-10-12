@@ -12,10 +12,10 @@ const brandSlice = createSlice({
     initialState,
     reducers : {
         getAllBrandSlice : (state,action)=>{
-            state.brands = action.payload
+            state.brands = action.payload.reverse()
         },
         createBrandSlice : (state, action) => {
-            state.brands.push(action.payload)
+            state.brands.unshift(action.payload)
             state.loading = false;
         },
         deleteBrandSlice : (state, action) => {

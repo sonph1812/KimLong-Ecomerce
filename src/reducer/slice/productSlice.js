@@ -19,7 +19,7 @@ const productSlice = createSlice({
             state.products = action.payload
         },
         createProductSlice: (state, action) => {
-            state.products.push(action.payload)
+            state.products.unshift(action.payload)
             state.loading = false
         },
         deleteProductSlice: (state, action) => {

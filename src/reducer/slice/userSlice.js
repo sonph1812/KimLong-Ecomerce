@@ -18,7 +18,7 @@ const userSlice = createSlice({
             
         },
         getUserInfo: (state, action) => {
-            state.userInfo = action.payload
+            state.userInfo = action.payload.reverse()
         },
         getAllStaffSlice: (state, action) => {
             state.staffs = action.payload
@@ -30,7 +30,7 @@ const userSlice = createSlice({
             state.user = action.payload
         },
         addStaffSlice: (state, action) => {
-            state.staffs.push(action.payload[0])
+            state.staffs.unshift(action.payload[0])
             console.log('actionne',action)
         },
         addUserSlice: (state, action) => {

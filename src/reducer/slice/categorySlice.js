@@ -11,10 +11,10 @@ const categorySlice = createSlice({
     initialState,
     reducers: {
         getAllCategorySlice: (state, action) => {
-            state.categories = action.payload
+            state.categories = action.payload.reverse()
         },
         createCategorySlice: (state, action) => {
-            state.categories.push(action.payload)
+            state.categories.unshift(action.payload)
         },
         deleteCategorySlice: (state, action) => {
             state.categories = state.categories.filter((arrow) => arrow._id !== action.payload)
