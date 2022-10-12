@@ -1,34 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import NavbarUser from "../../components/NavbarUser";
 import PageHero from "../../components/PageHero";
-import {useDispatch, useSelector} from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
-import {formatPrice} from "../../utils/helpers";
-import {Dialog, Disclosure, Transition} from '@headlessui/react';
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { formatPrice } from "../../utils/helpers";
+import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import Btn from "../../components/Btn";
-import {filterReducer, setProductSort} from "../../reducer/slice/productSlice";
-import {getDetailProduct, getProductByCate} from "../../service/productService";
-import pagination from "../../components/Pagination";
+import { filterReducer, setProductSort } from "../../reducer/slice/productSlice";
+import { getDetailProduct, getProductByCate } from "../../service/productService";
 import Pagination from "../../components/Pagination";
 
 
 const ProductList = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-    useEffect(() => {
-        getProductByCate(dispatch)
-    }, [])
+    // const dispatch = useDispatch()
+    // useEffect(() => {
+    //     getProductByCate(dispatch)
+    // }, [])
     const productFilter = useSelector(state => state.productReducer.productByCate)
     const products = useSelector(state => state.productReducer.products)
-    const product = useSelector(state => state.productReducer.product)
     const brands = useSelector(s => s.brandReducer.brands)
     const categories = useSelector(s => s.categoryReducer.categories)
-    const handlerChange = (e) => {
-        setProducts({
-            ...products,
-            [e.target.name]: e.target.value
-        })
-    }
+    // const handlerChange = (e) => {
+    //     setProducts({
+    //         ...products,
+    //         [e.target.name]: e.target.value
+    //     })
+    // }
     const handleGetDetail = (id) => {
         navigate(`/product/${id}`)
     }
@@ -37,25 +35,46 @@ const ProductList = () => {
     const [productsPerPage] = useState(9)
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstPage = indexOfLastProduct - productsPerPage;
-    const currentProducts = products.slice(indexOfFirstPage,indexOfLastProduct)
-    console.log(currentProducts)
+    const currentProducts = products.slice(indexOfFirstPage, indexOfLastProduct)
+    const [list, setList] = useState(currentProducts)
+    const [x, setX] = useState(false)
+    const [cate, setCate] = useState([])
+    const [list1, setList1] = useState([])
+    useEffect(() => {
+        setList(currentProducts)
+    }, [x, products])
 
 
-    console.log(product)
-    // const brands = useSelector(s => s.brandReducer.brands)
-    // const categories = useSelector(s => s.categoryReducer.categories)
-    // const handleGetDetail = (id) => {
-    //     navigate(`/user/product/${id}`)
-    //
-    // }
     const paginate = (page) => {
+        setX(!x)
         setCurrentPage(page)
+    }
+    const handelClick = (e) => {
+        for (let i = 0; i < cate.length; i++) {
+            if (e.target.value == cate[i]) {
+                setCate(cate.filter(item => item !== cate[i]))
+                setList1([...list1.filter(i => { return (i.categoryId._id !== e.target.value) })])
+                return;
+            }
+        }
+        setCate([...cate, e.target.value])
+        setList1([...list1, ...products.filter(i => { return (i.categoryId._id == e.target.value) })])
+    }
+    // const handelApply = () => {
+    //     setList([])
+    //     cate.map((item) => {
+    //         let x = products.filter(i =>{ return (i.categoryId._id == item )})
+    //         setList([cate,...x])
+    //     })
+    // }
+    const handelApply = () => {
+        setList(list1)
     }
 
 
     return (
         <>
-            <PageHero title="Sản phẩm" className="bg-amber-200"/>
+            <PageHero title="Sản phẩm" className="bg-amber-200" />
             <section>
                 <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-start">
@@ -89,34 +108,33 @@ const ProductList = () => {
                                         </legend>
 
                                         <div className="space-y-2 px-5 py-6">
-                                            <div className="flex items-center">
-                                                <input
-                                                    id="game"
-                                                    type="checkbox"
-                                                    name="type[game]"
-                                                    className="h-5 w-5 rounded border-gray-300"
-                                                />
+                                            {
+                                                categories && categories.map((item) => (
+                                                    <div className="flex items-center">
+                                                        <input
+                                                            id="game"
+                                                            type="checkbox"
+                                                            name="type[game]"
+                                                            className="h-5 w-5 rounded border-gray-300"
+                                                            value={item._id}
+                                                            onClick={(e) => { handelClick(e) }}
+                                                        />
 
-                                                <label htmlFor="game" className="ml-3 text-sm font-medium">
-                                                    Điện thoại
-                                                </label>
-                                            </div>
+                                                        <label htmlFor="game" className="ml-3 text-sm font-medium">
+                                                            {item.name}
+                                                        </label>
+                                                    </div>
+                                                ))
+                                            }
 
-                                            <div className="flex items-center">
-                                                <input
-                                                    id="outdoor"
-                                                    type="checkbox"
-                                                    name="type[outdoor]"
-                                                    className="h-5 w-5 rounded border-gray-300"
-                                                />
 
-                                                <label htmlFor="outdoor" className="ml-3 text-sm font-medium">
-                                                    Máy tính
-                                                </label>
-                                            </div>
+
 
                                             <div className="pt-2">
-                                                <button type="button" className="text-xs text-gray-500 underline">
+                                                <button className="text-xs text-gray-500 underline"
+                                                    onClick={() => { setCate([]) }}
+                                                    type="reset"
+                                                >
                                                     Reset Type
                                                 </button>
                                             </div>
@@ -129,8 +147,9 @@ const ProductList = () => {
                                     >
                                         <button
                                             name="reset"
-                                            type="button"
+                                            type="reset"
                                             className="rounded text-xs font-medium text-gray-600 underline"
+                                            onClick={() => { setList(currentProducts) }}
                                         >
                                             Reset All
                                         </button>
@@ -139,6 +158,7 @@ const ProductList = () => {
                                             name="commit"
                                             type="button"
                                             className="rounded bg-green-600 px-5 py-3 text-xs font-medium text-white"
+                                            onClick={() => { handelApply() }}
                                         >
                                             Apply Filters
                                         </button>
@@ -151,7 +171,7 @@ const ProductList = () => {
                             <div className="flex items-center justify-between">
                                 <p className="text-sm text-gray-500">
                                     <span className="hidden sm:inline"> Trang:  </span>
-                                    <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
+                                    <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate} />
                                 </p>
 
                                 <div className="ml-4">
@@ -175,8 +195,8 @@ const ProductList = () => {
                                 className="mt-4 grid grid-cols-1 gap-px border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-3"
                             >
 
-                                {currentProducts?.map((product, index) => (
-                                    <a  onClick={()=>(handleGetDetail(product._id))} className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                                {list && list.map((product, index) => (
+                                    <a onClick={() => (handleGetDetail(product._id))} className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                                         <img
                                             // alt="Toy"
                                             src={product.image}
@@ -185,11 +205,11 @@ const ProductList = () => {
                                         />
 
                                         <div className="p-6">
-              {/*<span*/}
-              {/*    className="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"*/}
-              {/*>*/}
-              {/*  New*/}
-              {/*</span>*/}
+                                            {/*<span*/}
+                                            {/*    className="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"*/}
+                                            {/*>*/}
+                                            {/*  New*/}
+                                            {/*</span>*/}
 
                                             <h5 className="mt-4 text-lg font-bold">{product.name}</h5>
 
