@@ -25,41 +25,41 @@ function RegisterForm() {
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const regexPhone = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
         if (!values.userName) {
-            errors.userName = 'Username is required!';
+            errors.userName = 'Tên người dùng là bắt buộc!';
         } else if (values.userName.length < 4) {
-            errors.userName = 'UserName must be more than 4 characters';
+            errors.userName = 'Tên người dùng phải có nhiều hơn 4 ký tự';
         } else if (values.userName.length > 10) {
-            errors.userName = 'Username up to 10 characters';
+            errors.userName = 'Tên người dùng tối đa 10 ký tự';
         }
         if (!values.password) {
-            errors.password = 'Password is required';
+            errors.password = 'Mật khẩu là bắt buộc!';
         } else if (values.password.length < 4) {
-            errors.password = 'Password must be more than 4 characters';
+            errors.password = 'Mật khẩu phải nhiều hơn 4 ký tự';
         }
         if (!values.confirmPassword) {
-            errors.confirmPassword = 'ConfirmPassword is required';
+            errors.confirmPassword = 'Xác nhận mật khẩu là bắt buộc!';
         }else if(values.confirmPassword != values.password){
-            errors.confirmPassword = 'Re-enter wrong password';
+            errors.confirmPassword = 'Nhập lại mật khẩu sai';
         }
         if (!values.name) {
-            errors.name = 'Name is required!';
+            errors.name = 'Tên là bắt buộc!';
         }else if (values.name.length < 4) {
-            errors.password = 'Name must be more than 4 characters';
+            errors.password = 'Tên phải nhiều hơn 4 ký tự';
         }
         if (!values.email) {
-            errors.email = 'Email is required';
+            errors.email = 'Email là bắt buộc!';
         } else if (!regexEmail.test(values.email)) {
-            errors.email = 'This is not a valid email format!';
+            errors.email = 'Đây không phải là một định dạng email hợp lệ!';
         }
         if (!values.phone) {
-            errors.phone = 'Phone is required';
+            errors.phone = 'Điện thoại là bắt buộc!';
         }else if (!regexPhone.test(values.phone)) {
-            errors.email = 'This is not a valid phone format!';
+            errors.email = 'Đây không phải là định dạng điện thoại hợp lệ!';
         }else if (values.phone.length > 10) {
-            errors.password = 'Phone up to 10 characters';
+            errors.password = 'Điện thoại lên đến 10 ký tự';
         }
         if (!values.address) {
-            errors.address = 'Address is required';
+            errors.address = 'Địa chỉ là bắt buộc!';
         }
         return errors;
     };
@@ -99,7 +99,7 @@ function RegisterForm() {
                     <div className="w-full max-w-md space-y-8">
                         <div>
                             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                                Sign up for an account
+                                Đăng kí một tài khoản
                             </h2>
                         </div>
                         <form className="mt-8 space-y-6" action="#" method="POST">
@@ -118,7 +118,7 @@ function RegisterForm() {
                                         d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
                                     />
                                 </svg>
-                                Continue with Facebook
+                                Tiếp tục với Facebook
                             </div>
                             <div className=" bg-blue-400 px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center">
                                 <svg
@@ -131,13 +131,13 @@ function RegisterForm() {
                                         d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
                                     />
                                 </svg>
-                                Continue with Twitter
+                                Tiếp tục với Twitter
                             </div>
                             <input type="hidden" name="remember" defaultValue="true" />
                             <div className="-space-y-px rounded-md shadow-sm">
                                 <div className="flex b-4">
                                     <div className="w-1/2 mr-0">
-                                        <label>User name:</label>
+                                        <label>Tên tài khoản:</label>
                                         <div>
                                             <input
                                                 id="user-Name"
@@ -145,7 +145,7 @@ function RegisterForm() {
                                                 type="text"
                                                 required
                                                 className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                                placeholder="User name"
+                                                placeholder="Tên tài khoản"
                                                 value={userName}
                                                 onChange={onChangeRegisterForm}
                                             />
@@ -153,7 +153,7 @@ function RegisterForm() {
                                         <p className="text-red-700">{formErrors.userName}</p>
                                     </div>
                                     <div className="w-1/2 ml-0">
-                                    <label>Name:</label>
+                                    <label>Tên:</label>
                                         <div>
                                             <input
                                                 id="name"
@@ -162,7 +162,7 @@ function RegisterForm() {
                                                 autoComplete="current-password"
                                                 required
                                                 className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                                placeholder="Name"
+                                                placeholder="Tên"
                                                 value={name}
                                                 onChange={onChangeRegisterForm}
                                             />
@@ -173,7 +173,7 @@ function RegisterForm() {
 
                                 <div className="flex b-4">
                                     <div className="w-1/2 mr-0">
-                                    <label>Password:</label>
+                                    <label>Mật khẩu:</label>
                                         <div>
                                             <input
                                                 id="password"
@@ -182,7 +182,7 @@ function RegisterForm() {
                                                 autoComplete="current-password"
                                                 required
                                                 className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                                placeholder="Password"
+                                                placeholder="Mật khẩu"
                                                 value={password}
                                                 onChange={onChangeRegisterForm}
                                             />
@@ -190,7 +190,7 @@ function RegisterForm() {
                                         <p className="text-red-700">{formErrors.password}</p>
                                     </div>
                                     <div className="w-1/2 ml-0">
-                                        <label>Confirm Password:</label>
+                                        <label>Xác nhận mật khẩu:</label>
                                         <div>
                                             <input
                                                 id="confirmPassword"
@@ -199,7 +199,7 @@ function RegisterForm() {
                                                 autoComplete="current-password"
                                                 required
                                                 className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                                placeholder="Confirm Password"
+                                                placeholder="Xác nhận mật khẩu"
                                                 value={confirmPassword}
                                                 onChange={onChangeRegisterForm}
                                             />
@@ -227,7 +227,7 @@ function RegisterForm() {
                                 <p className="text-red-700">{formErrors.email}</p>
                                 <div>
                                     <label >
-                                        Phone:
+                                        Điện thoại:
                                     </label>
                                     <input
                                         id="phone"
@@ -236,7 +236,7 @@ function RegisterForm() {
                                         autoComplete="current-password"
                                         required
                                         className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                        placeholder="Phone"
+                                        placeholder="Điện thoại"
                                         value={phone}
                                         onChange={onChangeRegisterForm}
                                     />
@@ -244,7 +244,7 @@ function RegisterForm() {
                                 <p className="text-red-700">{formErrors.phone}</p>
                                 <div>
                                     <label >
-                                        Address:
+                                        Địa chỉ:
                                     </label>
                                     <input
                                         id="address"
@@ -253,7 +253,7 @@ function RegisterForm() {
                                         autoComplete="current-password"
                                         required
                                         className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                        placeholder="Address"
+                                        placeholder="Địa chỉ"
                                         value={address}
                                         onChange={onChangeRegisterForm}
                                     />
@@ -261,7 +261,7 @@ function RegisterForm() {
                                 <p className="text-red-700">{formErrors.address}</p>
                             </div>
                             <p className="text-red-700" id="err"></p>
-                            <div><a href="login">Do you already have an account? Log in</a></div>
+                            <div><a href="login">Bạn đã có tài khoản chưa? Đăng nhập</a></div>
                             <div>
                                 <button
                                     type="submit"
@@ -274,7 +274,7 @@ function RegisterForm() {
                                             aria-hidden="true"
                                         />
                                     </span>
-                                    <div>Register</div>
+                                    <div>Đăng ký</div>
                                 </button>
                             </div>
                         </form>
