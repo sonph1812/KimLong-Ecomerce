@@ -26,7 +26,7 @@ const Orders = () => {
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{index + 1}</td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"><Link>{order?.ID}</Link></td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{order.userId.name}</td>
-                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">${order.content.totals}</td>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">${order.content?.totals}</td>
 
                             <td className="px-4 py-2 border-b border-gray-200 bg-white text-sm">
                                 <button className="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md" >
