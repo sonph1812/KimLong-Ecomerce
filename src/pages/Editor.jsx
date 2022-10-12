@@ -19,6 +19,7 @@ const Editor = () => {
             [e.target.name]: e.target.value
         })
     }
+
     const handlerCreate = async (e) => {
         e.preventDefault()
         let imageUpload = image;
@@ -32,6 +33,7 @@ const Editor = () => {
             });
         }
         navigate('/admin/products')
+
     }
 const handlePreviewAvatar = (e) => {
     const file = e.target.files[0];
@@ -94,15 +96,7 @@ return (
                                        type="text" name="stock" id="stock" autoComplete="given-name"
                                        className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                             </div>
-                            <div className="col-span-6 sm:col-span-3">
-                                <label
-                                    className="block text-sm font-medium text-neutral-900">Upload file</label>
-                                <input onChange={(e) => {
-                                    handlePreviewAvatar(e)
-                                }}
-                                       type="file" name="file" id="rating" autoComplete="given-name"
-                                       className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
-                            </div>
+
                             <div>
                                 <label htmlFor="states" className="sr-only">Brand</label>
                                 <select id="brandId"
@@ -110,7 +104,7 @@ return (
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         onChange={(e)=>{handlerChange(e)}}
                                         >
-                                    <option selected>Brand</option>
+                                    <option>Brand</option>
                                     {brands && brands.map((brand)=>(
                                         <option value={brand._id}>{brand.name}</option>
                                     ))}
@@ -123,14 +117,13 @@ return (
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         onChange={(e)=>{handlerChange(e)}}
                                 >
-                                    <option selected>Category</option>
+                                    <option>Category</option>
                                     {categories && categories.map((category)=>(
                                         <option value={category._id}>{category.name}</option>
                                     ))}
                                 </select>
                             </div>
                             <br/>
-
                         </div>
                     </div>
                         <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">

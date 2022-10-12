@@ -5,6 +5,7 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { createCategory, updateCategory } from '../service/categoryService';
 
 const EditCategories = () => {
+
     const categories = useSelector(s => s.categoryReducer.categories)
     const navigate = useNavigate();
     const dispatch = useDispatch();

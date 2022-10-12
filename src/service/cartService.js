@@ -23,7 +23,7 @@ export const addItem = (id, data, dispatch, navigate) => {
             amount: data.amount
         }).then((res) => {
             dispatch(addItemSlice(res.data))
-            navigate('/user/cart')
+            navigate('/cart')
 
         }).catch((err) => {
             alert('product not found')
@@ -43,7 +43,7 @@ export const changeAmountItem = async (id, idItem, data, totals, dispatch, navig
     const res = await customAxios.put(`${baseURL}/cart/${id}/${idItem}`, { data })
     if (navigate) {
         dispatch(changeInAddToCart({ idItem, data, totals }))
-        navigate('/user/cart')
+        navigate('/cart')
     } else {
         dispatch(changeTotals(totals))
     }

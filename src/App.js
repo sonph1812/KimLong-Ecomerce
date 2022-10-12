@@ -62,9 +62,9 @@ import MyOrderPage from './pages/MyOrderPage';
 import SwiperTest from "./components/home/swiper";
 import BC from "./components/SwiperTest";
 // import { socket } from './socket.io/roomSocket';
-import socketIO from 'socket.io-client';
-import SearchPage from './components/search/SearchPage';
-export const socket = socketIO().connect('http://localhost:3000');
+// import socketIO from 'socket.io-client';
+// import SearchPage from './components/search/SearchPage';
+// export const socket = socketIO().connect('http://localhost:3000');
 const App = () => {
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
@@ -96,14 +96,14 @@ const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/login" element={<LoginForm />}></Route>
-                <Route path="/register" element={<RegisterForm />}></Route>
-                <Route path="/test" element={<SwiperTest />}></Route>
+                <Route path="/login" element={<LoginForm/>}></Route>
+                <Route path="/register" element={<RegisterForm/>}></Route>
+                {/*<Route path="/test" element={<CategoryDetail1/>}></Route>*/}
 
 
-                <Route path="/" element={<User />}>
-                    <Route path="" element={<HomeUser />}></Route>
-                    <Route path="products" element={<ProductList />} />
+                <Route path="" element={<User/>}>
+                    <Route path="" element={<HomeUser/>}></Route>
+                    <Route path="products" element={<ProductList/>}/>
                     <Route
                         path="product/:id"
                         element={<SingleProductPage />}></Route>
@@ -111,7 +111,7 @@ const App = () => {
                     <Route path="shipping" element={<ShippingPage />}></Route>
                     <Route path="order" element={<OrderPage />}></Route>
                     <Route path="myOrder" element={<MyOrderPage />}></Route>
-                    <Route path="/user/search" element={<SearchPage></SearchPage>}></Route>
+                    <Route path="/search" element={<SearchPage></SearchPage>}></Route>
 
                 </Route>
 
@@ -138,15 +138,6 @@ const App = () => {
                     <Route path="brands" element={<Brands />} />;
                     <Route path='addBrands' element={(<CreateBrand />)} />
 
-
-
-                    {/*<Route path="" element={(<Ecommerce />)} />*/}
-                    <Route path="customers" element={(<Customers />)} />
-                    <Route path="categories" element={(<Categories />)} />
-                    <Route path='addCategory' element={(<CreateCategory />)} />
-                    <Route path="editCategories/:id" element={<EditCategories></EditCategories>} />
-                    <Route path="brands" element={<Brands />} />;
-                    <Route path='addBrands' element={(<CreateBrand />)} />
 
 
 

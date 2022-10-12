@@ -24,19 +24,19 @@ const NavbarUser = () => {
     dispatch(logOut())
   }
   return (
-      <div>
-      <div className=" flex justify-around bg-white py-5 ">
-        <div className=" grid items-stretch  grid-cols-2 lg:grid-cols-3">
+      <div className="bg-white">
+      <div className="container mx-auto py-5 ">
+        <div className="items-center flex justify-between">
           {/* Left links */}
           <ul className="items-stretch hidden space-x-8 lg:flex">
             <li>
               <Link
-                to="/user"
+                to="/"
                 aria-label="HomePage"
                 title="HomePage"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
               >
-                Home
+                Trang chủ
               </Link>
             </li>
             <li>
@@ -61,12 +61,12 @@ const NavbarUser = () => {
             </li>
             <li>
               <Link
-                to="/user/products"
+                to="/products"
                 aria-label="All products"
                 title="All products"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
               >
-                Products
+                Sản phẩm
               </Link>
             </li>
           </ul>
@@ -76,7 +76,7 @@ const NavbarUser = () => {
             href="/"
             aria-label="HomePage"
             title="HomePage"
-            className="inline-flex items-center lg:mx-auto"
+            className="inline-flex justify-between mr-36"
           >
             <svg
               className="w-8 text-deep-purple-accent-400"
@@ -97,7 +97,7 @@ const NavbarUser = () => {
 
           {/* Right links */}
 
-          <ul className="items-center hidden ml-auto space-x-8 lg:flex">
+          <ul className="items-center space-x-1 lg:flex justify-end">
             <li>
               <CartBtn />
             </li>
@@ -121,7 +121,7 @@ const NavbarUser = () => {
                   className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 // onClick={closeMenu}
                 >
-                  Log in
+                  Đăng nhập
                 </Link>
               </li>
               <li>
@@ -129,10 +129,10 @@ const NavbarUser = () => {
                   to="/register"
                   aria-label="Register"
                   title="Register"
-                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  className="font-medium  text-center tracking-wide text-gray-700 pr-2 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 // onClick={closeMenu}
                 >
-                  Register
+                  Đăng kí
                 </Link>
               </li>
             </>: <li>

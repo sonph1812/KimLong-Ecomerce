@@ -21,7 +21,6 @@ function UpdateStaff() {
   };
 
   const handleCreate = (e) => {
-    console.log(staff);
   };
 
     return ( 

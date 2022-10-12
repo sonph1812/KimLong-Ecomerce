@@ -28,12 +28,16 @@ const HomePage = () => {
             {/*<AppleWatch/>*/}
             <SearchUser products = {products} categories = {categories} brands = {brands}></SearchUser>
             <div>
-                {categories && categories.map((item) => {
-                    let list = products.filter(item1 => {
-                        return (item1.categoryId.name === item.name)
-                    })
-                    return (
-                        list[0] && <CategoryDetail list={list} category={item}></CategoryDetail>
+                {categories && categories.map((item)=>{
+                    let list = products.filter(item1=>{
+                        if(item1.categoryId != null){
+                            return (item1.categoryId.name === item.name)
+                        }
+                                 })
+                    return(
+
+
+                        list[0] &&  <CategoryDetail list={list} category={item}></CategoryDetail>
 
                     )
                 })}

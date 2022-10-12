@@ -12,7 +12,7 @@ const PageHero = ({ title, product }) => {
                             className="text-secondary-400
             hover:text-secondary-300 mr-2"
                         >
-                            Home
+                            Trang chủ
                         </Link>
                     </li>
                     {product && (

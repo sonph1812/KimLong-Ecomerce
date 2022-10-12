@@ -1,36 +1,60 @@
 import SectionTitle from '../components/SectionTitle';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import Btn from "../components/Btn";
 import {formatPrice} from "../utils/helpers";
 import {useEffect} from "react";
 import {getProductByCate} from "../service/productService";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {Navigation, Pagination} from "swiper";
+import React from "react";
 
 const CateGoryDetail = ({list,category}) => {
+    const navigate = useNavigate()
+    const handleGetDetail = (id) => {
+        navigate(`/product/${id}`)
+    }
 
     return (
-        <section id="new" className="py-24">
+        <section id="new" className="mx-auto max-w-screen-xl px-4 py-8  bg-white">
             <div className="max-w-2xl mx-auto  px-4  sm:px-6 lg:max-w-7xl lg:px-8 text-center ">
                 <SectionTitle title={category.name} />
+                <>
+                    <Swiper
+                        slidesPerView={4}
+                        spaceBetween={10}
+                        loop={true}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        navigation={true}
+                        modules={[Pagination, Navigation]}
+                        className="bg-white"
+                    >
+                        {list?.map((product, index) => (
 
-                <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10    place-items-center">
-                    {
-                        list?.map((product) => (
+                            <SwiperSlide  className="p-6">
+                                <div className="  gap-x-4 gap-y-8  rounded-2xl ">
 
-                            <div className="w-full  max-w-sm aspect-square rounded-lg overflow-hidden  bg-tertiary-50">
+                                        <a  onClick={()=>(handleGetDetail(product._id))} className="  rounded-2xl hover:scale-90 shadow-amber-700relative block border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                                            <img
+                                                alt="Toy"
+                                                src={product.image}
+                                                className="h-56 w-full object-contain "
+                                            />
 
-                                <img
-                                    src={product.image}
+                                            <div className="p-6">
+                                            </div>
+                                        </a>
+                                </div>
 
-                                    className="w-40 h-40 object-center object-cover group-hover:opacity-75"
-                                />
+                            </SwiperSlide>
 
-                            </div>
-                        ))
+                        ))}
 
+                    </Swiper>
+                    </>
 
-                    }
-                </div>
 
                 <Link to="/products">
                     <Btn name="Xem tất cả phụ kiện chính hãng"/>
