@@ -61,6 +61,7 @@ import OrderPage from './pages/OrderPage';
 import MyOrderPage from './pages/MyOrderPage';
 import SwiperTest from "./components/home/swiper";
 import BC from "./components/SwiperTest";
+import SearchPage from "./components/search/SearchPage";
 // import { socket } from './socket.io/roomSocket';
 // import socketIO from 'socket.io-client';
 // import SearchPage from './components/search/SearchPage';
