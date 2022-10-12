@@ -54,7 +54,7 @@ this product is sponsored By KIM LONG
           <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
           <div>
           <p className="font-semibold tracking-wide text-teal-accent-400">
-          Category
+          Công Nghệ Sử Dụng
           </p>
           <ul className="mt-2 space-y-2">
           <li>
@@ -62,7 +62,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          News
+          GitHub
           </a>
           </li>
           <li>
@@ -70,7 +70,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          World
+          MoongoDB
           </a>
           </li>
           <li>
@@ -78,7 +78,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Games
+          TaiWind CSS
           </a>
           </li>
           <li>
@@ -86,14 +86,14 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          References
+          React
           </a>
           </li>
           </ul>
           </div>
           <div>
           <p className="font-semibold tracking-wide text-teal-accent-400">
-          Cherry
+          Tên Thành Viên Nhóm
           </p>
           <ul className="mt-2 space-y-2">
           <li>
@@ -101,7 +101,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Web
+          Nguyễn Văn Thu
           </a>
           </li>
           <li>
@@ -109,7 +109,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          eCommerce
+          Nguyễn Anh Tuân
           </a>
           </li>
           <li>
@@ -117,7 +117,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Business
+          Phạm Hồng Sơn
           </a>
           </li>
           <li>
@@ -125,7 +125,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Entertainment
+          Ngô Nguyễn Gia Bảo
           </a>
           </li>
           <li>
@@ -133,14 +133,14 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Portfolio
+          Đoàn Nhật Hưng
           </a>
           </li>
           </ul>
           </div>
           <div>
           <p className="font-semibold tracking-wide text-teal-accent-400">
-          Apples
+          Nhà Tài Trợ
           </p>
           <ul className="mt-2 space-y-2">
           <li>
@@ -148,7 +148,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Media
+          Công Ty Media
           </a>
           </li>
           <li>
@@ -156,7 +156,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Brochure
+          Tập Đoàn Vingroup
           </a>
           </li>
           <li>
@@ -164,7 +164,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Nonprofit
+          Tập Đoàn T&G
           </a>
           </li>
           <li>
@@ -172,7 +172,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Educational
+          Tập Đoàn FPT
           </a>
           </li>
           <li>
@@ -180,14 +180,14 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Projects
+          Tập Đoàn CEO
           </a>
           </li>
           </ul>
           </div>
           <div>
           <p className="font-semibold tracking-wide text-teal-accent-400">
-          Business
+          Đối Tác
           </p>
           <ul className="mt-2 space-y-2">
           <li>
@@ -195,7 +195,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Infopreneur
+          Tập Đoàn NextTech
           </a>
           </li>
           <li>
@@ -203,7 +203,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Personal
+              Tập Đoàn Dầu khí Việt Nam
           </a>
           </li>
           <li>
@@ -211,7 +211,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Wiki
+          Công ty TNHH Bosch
           </a>
           </li>
           <li>
@@ -219,7 +219,7 @@ this product is sponsored By KIM LONG
           href="/"
           className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
           >
-          Forum
+          Ntea Group
           </a>
           </li>
           </ul>

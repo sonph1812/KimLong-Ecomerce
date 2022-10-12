@@ -26,41 +26,41 @@ function RegisterForm() {
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const regexPhone = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g;
         if (!values.userName) {
-            errors.userName = 'Username is required!';
+            errors.userName = 'Hãy Nhập Tên Tài Khoản!';
         } else if (values.userName.length < 4) {
-            errors.userName = 'UserName must be more than 4 characters';
+            errors.userName = 'Tên người dùng phải có nhiều hơn 4 ký tự !';
         } else if (values.userName.length > 10) {
-            errors.userName = 'Username up to 10 characters';
+            errors.userName = 'Tên người dùng tối đa 10 ký tự !';
         }
         if (!values.password) {
-            errors.password = 'Password is required';
+            errors.password = 'Hãy Nhập Mật Khẩu !';
         } else if (values.password.length < 4) {
-            errors.password = 'Password must be more than 4 characters';
+            errors.password = 'Mật khẩu phải nhiều hơn 4 ký tự !';
         }
         if (!values.confirmPassword) {
-            errors.confirmPassword = 'ConfirmPassword is required';
+            errors.confirmPassword = 'Xác nhận Lại mật khẩu !';
         }else if(values.confirmPassword != values.password){
-            errors.confirmPassword = 'Re-enter wrong password';
+            errors.confirmPassword = 'Nhập lại mật khẩu sai !';
         }
         if (!values.name) {
-            errors.name = 'Name is required!';
+            errors.name = 'Hãy Nhập Tên Người Dùng!';
         }else if (values.name.length < 4) {
-            errors.password = 'Name must be more than 4 characters';
+            errors.password = 'Tên phải nhiều hơn 4 ký tự !';
         }
         if (!values.email) {
-            errors.email = 'Email is required';
+            errors.email = 'Hãy Nhập Email !';
         } else if (!regexEmail.test(values.email)) {
-            errors.email = 'This is not a valid email format!';
+            errors.email = 'Đây không phải là một định dạng email hợp lệ!';
         }
         if (!values.phone) {
-            errors.phone = 'Phone is required';
+            errors.phone = 'Hãy Nhập Số Điên Thoại !';
         }else if (!regexPhone.test(values.phone)) {
-            errors.email = 'This is not a valid phone format!';
+            errors.email = 'Đây không phải là định dạng điện thoại hợp lệ!';
         }else if (values.phone.length > 10) {
-            errors.password = 'Phone up to 10 characters';
+            errors.password = 'Số Điện thoại lên đến 10 ký tự !';
         }
         if (!values.address) {
-            errors.address = 'Address is required';
+            errors.address = 'Hãy Nhập Địa Chỉ Của Bạn !';
         }
         return errors;
     };
@@ -72,21 +72,16 @@ function RegisterForm() {
         e.preventDefault();
         console.warn('req.boy',registerForm);
         const valid = validate(registerForm);
-        // console.log('valid',valid);
-        // console.log(valid.userName);
         setFormErrors(validate(registerForm));
-        // console.log('formerr',formErrors);
         if((valid.userName== undefined)&&(valid.password== undefined)&&(valid.confirmPassword== undefined)&&(valid.name== undefined)&&(valid.email== undefined)&&(valid.phone== undefined)&&(valid.address== undefined)){
             axios
             .post(`${apiUrl}/register`, registerForm)
             .then(function (response) {
-                console.log(response.data);
                 localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, response.data.accessToken);
                 navigate('/login');
                 return response.data;
             })
             .catch(function (error) {
-                console.log(error.response.data.message);
                 document.getElementById('err').innerHTML = error.response.data.message;
             });
         }
@@ -143,7 +138,7 @@ function RegisterForm() {
                 <div className="-space-y-px rounded-md shadow-sm">
                     <div className="flex b-4">
                         <div className="w-1/2 mr-0">
-                            <label>User name:</label>
+                            <label>Tên Tài Khoản :</label>
                             <div>
                                 <input
                                     id="user-Name"
@@ -159,7 +154,7 @@ function RegisterForm() {
                             <p className="text-red-700">{formErrors.userName}</p>
                         </div>
                         <div className="w-1/2 ml-0">
-                            <label>Name:</label>
+                            <label>Tên Người Dùng :</label>
                             <div>
                                 <input
                                     id="name"
@@ -179,7 +174,7 @@ function RegisterForm() {
 
                     <div className="flex b-4">
                         <div className="w-1/2 mr-0">
-                            <label>Password:</label>
+                            <label>Mật Khẩu :</label>
                             <div>
                                 <input
                                     id="password"
@@ -196,7 +191,7 @@ function RegisterForm() {
                             <p className="text-red-700">{formErrors.password}</p>
                         </div>
                         <div className="w-1/2 ml-0">
-                            <label>Confirm Password:</label>
+                            <label>Nhập Lại Mật Khẩu:</label>
                             <div>
                                 <input
                                     id="confirmPassword"
@@ -216,7 +211,7 @@ function RegisterForm() {
 
                     <div>
                         <label >
-                            Email:
+                            Email :
                         </label>
                         <input
                             id="email"
@@ -233,7 +228,7 @@ function RegisterForm() {
                     <p className="text-red-700">{formErrors.email}</p>
                     <div>
                         <label >
-                            Phone:
+                            Số Điện Thoại :
                         </label>
                         <input
                             id="phone"
@@ -250,7 +245,7 @@ function RegisterForm() {
                     <p className="text-red-700">{formErrors.phone}</p>
                     <div>
                         <label >
-                            Address:
+                            Địa Chỉ Liên Hệ  :
                         </label>
                         <input
                             id="address"
