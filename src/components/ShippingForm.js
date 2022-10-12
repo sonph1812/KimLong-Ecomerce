@@ -19,22 +19,32 @@ const ShippingForm = () => {
   const [shipping, setShipping] = useState('');
   const [discount, setDiscount] = useState('');
 
-  const handelSupmit = (e) => {
-    if (address == '' || payment == '' || shipping == '') {
-      alert('điền đầy đủ thông tin')
+  useEffect(() => {
+    if (!userInfo.name) {
+      navigate('/login')
+    }
+  }, [])
+
+  const handelSubmit = (e) => {
+    if (!items[0]) {
+      alert('không có sản phẩm trong cart')
     } else {
-      addOrder({
-        address: address,
-        userId: userInfo._id,
-        payment: payment,
-        shipping: shipping,
-        discount: discount,
-        content: {
-          item: items,
-          totals: totals
-        }
-      }, dispatch)
-      navigate('/order')
+      if (address == '' || payment == '' || shipping == '') {
+        alert('điền đầy đủ thông tin')
+      } else {
+        addOrder({
+          address: address,
+          userId: userInfo._id,
+          payment: payment,
+          shipping: shipping,
+          discount: discount,
+          content: {
+            item: items,
+            totals: totals
+          }
+        }, dispatch)
+        navigate('/order')
+      }
     }
   }
 
@@ -104,7 +114,7 @@ const ShippingForm = () => {
 
           >
             <option selected="selected"
-                    disabled="disabled">Payment</option>
+              disabled="disabled">Payment</option>
             <option value={'bank'}>
               Chuyển Khoản Ngân Hàng
             </option>
@@ -133,8 +143,8 @@ const ShippingForm = () => {
         </div>
 
         <p
-          
-          onClick={() => { handelSupmit() }}
+
+          onClick={() => { handelSubmit() }}
         ><Btn name="Next" /></p>
       </div>
     </div>
