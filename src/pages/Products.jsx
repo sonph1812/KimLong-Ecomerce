@@ -108,9 +108,10 @@ const Products = ({currentItems,itemsPerPage}) => {
                     </tr>
                 ))}
         </tbody>
-                <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
       </table>
-    </div>
+            <Pagination className = "justify-center"  productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
+
+        </div>
   );
 };
 export default Products;
