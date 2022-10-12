@@ -14,16 +14,29 @@ import {
   IoTrashOutline,
 } from "react-icons/io5";
 
+
+
 function Staffs() {
-  const list = useSelector((state) => state.userReducer.staffs);
+  const list = useSelector(state => state.userReducer.staffs)
+  const listSearch = useSelector (s => s.userReducer.staffSearch)
   const [staffs, setStaffs] = useState(list);
-  const role = localStorage.getItem("role");
+  const role = localStorage.getItem('role')
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleCreateStaffs = (data) => {
     addStaff(data, dispatch);
     navigate(`/admin/staffs/create`);
-  };
+  }
+  useEffect (()=>{
+    if(listSearch){
+      setStaffs(listSearch)
+    }
+  },[listSearch])
+  useEffect(() => {
+    if(!listSearch){
+      setStaffs(list)
+    }
+  }, [list])
 
   const handleDelete = (id) => {
     // let confirmDelete = window.confirm("Bạn muốn xóa chứ !");
@@ -92,8 +105,7 @@ function Staffs() {
           </tr>
         </thead>
         <tbody>
-          {role &&
-            staffs &&
+          {role && staffs &&
             staffs.map((user, index) => (
               <tr key={user._id}>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">

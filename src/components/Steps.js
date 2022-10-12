@@ -24,7 +24,7 @@ const Steps = ({ step1, step2, step3, step4 }) => {
                 <Link to="/login">
                   {' '}
                   <span className="ml-0 text-sm font-medium text-gray-700 md:ml-2">
-                    Login
+                    Đăng nhập
                   </span>
                 </Link>
               </>
@@ -41,7 +41,7 @@ const Steps = ({ step1, step2, step3, step4 }) => {
                 <button disabled>
                   {' '}
                   <span className="ml-0 text-sm font-medium text-gray-400 md:ml-2">
-                    Login
+                    Trang chủ
                   </span>
                 </button>
               </>
@@ -65,7 +65,7 @@ const Steps = ({ step1, step2, step3, step4 }) => {
                 <Link to="/shipping">
                   {' '}
                   <span className="ml-0 text-sm font-medium text-gray-700 md:ml-2">
-                    Shipping
+                    Vận chuyển
                   </span>
                 </Link>
               </>
@@ -82,7 +82,7 @@ const Steps = ({ step1, step2, step3, step4 }) => {
                 <button disabled>
                   {' '}
                   <span className="ml-0 text-sm font-medium text-gray-400 md:ml-2">
-                    Shipping
+                    Vận chuyển
                   </span>
                 </button>
               </>
@@ -106,7 +106,7 @@ const Steps = ({ step1, step2, step3, step4 }) => {
                 <Link to="/payment">
                   {' '}
                   <span className="ml-0 text-sm font-medium text-gray-700 md:ml-2">
-                    Payment
+                    Chi tiết đơn hàng
                   </span>
                 </Link>
               </>
@@ -123,7 +123,7 @@ const Steps = ({ step1, step2, step3, step4 }) => {
                 <button disabled>
                   {' '}
                   <span className="ml-0 text-sm font-medium text-gray-400 md:ml-2">
-                    Payment
+                    Chi tiết đơn hàng
                   </span>
                 </button>
               </>
@@ -147,7 +147,7 @@ const Steps = ({ step1, step2, step3, step4 }) => {
                 <Link to="/placeorder">
                   {' '}
                   <span className="ml-0 text-sm font-medium text-gray-700 md:ml-2">
-                    Place order
+                    Danh sách đơn hàng
                   </span>
                 </Link>
               </>
@@ -164,8 +164,7 @@ const Steps = ({ step1, step2, step3, step4 }) => {
                 <button disabled>
                   {' '}
                   <span className="ml-0 text-sm font-medium text-gray-400 md:ml-2">
-                    Place order
-                  </span>
+Danh sách đơn hàng                  </span>
                 </button>
               </>
             )}

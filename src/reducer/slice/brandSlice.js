@@ -3,7 +3,8 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
     brands : [],
     brand : {},
-    loading : false
+    loading : false,
+    listSearch:null
 
 }
 const brandSlice = createSlice({
@@ -25,10 +26,12 @@ const brandSlice = createSlice({
         },
         getDetailBrandSlice : (state, action) => {
             state.product = action.payload
-        }
-
+        },
+        setBrandSearch: (state, action) => {
+            state.listSearch = action.payload
+        },
 
     }
 })
-export const {getAllBrandSlice,createBrandSlice,deleteBrandSlice,getDetailBrandSlice,updateBrandSlice} = brandSlice.actions
+export const {setBrandSearch,getAllBrandSlice,createBrandSlice,deleteBrandSlice,getDetailBrandSlice,updateBrandSlice} = brandSlice.actions
 export default brandSlice.reducer;

@@ -7,7 +7,8 @@ const initialState = {
     loading: false,
     listSearch: null,
     productByCate: [],
-    productByBrand: []
+    productByBrand: [],
+    comments:[]
 }
 const productSlice = createSlice({
     name: 'products',
@@ -34,6 +35,8 @@ const productSlice = createSlice({
         },
         getDetailProductSlice: (state, action) => {
             state.product = action.payload
+            state.comments = action.payload.reviewId
+
         },
         setProductSearch: (state, action) => {
             state.listSearch = action.payload
@@ -43,6 +46,18 @@ const productSlice = createSlice({
         },
         getProByBrand: (state, action) => {
             state.productByBrand = action.payload
+        },
+        addCommentSlice: (state,action) => {
+            state.comments.push( {
+                userId:action.payload.user,
+                comment:action.payload.comment
+            })
+        },
+        deleteCommentSlice: (state,action) => {
+            state.comments.splice(action.payload, 1)
+        },
+        addStarSlice: (state,action) => {
+            
         }
     }
 
@@ -57,6 +72,8 @@ export const {
     updateProductSlice,
     getDetailProductSlice,
     getProByCate,
-    getProByBrand
+    getProByBrand,
+    addCommentSlice,
+    deleteCommentSlice
 } = productSlice.actions;
 export default productSlice.reducer;

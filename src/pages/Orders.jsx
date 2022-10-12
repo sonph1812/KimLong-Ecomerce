@@ -35,7 +35,8 @@ const Orders = () => {
                                     </svg>
 
                                     Cancel
-                                </button></td>
+                                </button>
+                            </td>
                         </tr>
                     ))}
 

@@ -57,12 +57,16 @@ import { getAllOrder, myOrders } from './service/orderService';
 import ProductDetail from "./pages/ProductDetail";
 import UserDetail from "./pages/UserDetail";
 import User from "./pages/user/User";
+import EditBrand from './pages/brand/EditBrand';
 import OrderPage from './pages/OrderPage';
 import MyOrderPage from './pages/MyOrderPage';
 import SwiperTest from "./components/home/swiper";
 import BC from "./components/SwiperTest";
-import CategoryDetail1 from "./components/CategoryDetail1";
-
+import SearchPage from "./components/search/SearchPage";
+// import { socket } from './socket.io/roomSocket';
+// import socketIO from 'socket.io-client';
+// import SearchPage from './components/search/SearchPage';
+// export const socket = socketIO().connect('http://localhost:3000');
 const App = () => {
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
@@ -71,7 +75,7 @@ const App = () => {
         getAllProduct(dispatch)
         getAllBrand(dispatch)
         getAllCategory(dispatch)
-
+        // const x = socket
 
         if (token) {
             const user = jwt_decode(token).user
@@ -85,7 +89,7 @@ const App = () => {
                 // getAllBrand(dispatch)
             } else if (user.roleId.name == "user") {
                 getDetailCart(user.cartId, dispatch)
-                myOrders(user._id,dispatch)
+                myOrders(user._id, dispatch)
             }
         }
     }, [token]);
@@ -109,6 +113,7 @@ const App = () => {
                     <Route path="shipping" element={<ShippingPage />}></Route>
                     <Route path="order" element={<OrderPage />}></Route>
                     <Route path="myOrder" element={<MyOrderPage />}></Route>
+                    <Route path="/search" element={<SearchPage></SearchPage>}></Route>
 
                 </Route>
                 <Route path='profile' element={<Profile/>}/>
@@ -119,6 +124,8 @@ const App = () => {
                     <Route path="editProducts/:id" element={<EditProducts></EditProducts>}/>
                     <Route path="productDetail/:id" element={<ProductDetail/>}></Route>
                     <Route path="userDetail/:id" element={<UserDetail/>}></Route>
+                    {/*<Route path='profile' element={<Profile/>}/>*/}
+                    {/*<Route path='profile/update' element={<EditProfile/>}/>*/}
 
 
 
@@ -127,23 +134,17 @@ const App = () => {
                     <Route path='staffs/update' element={<UpdateStaff />} />
 
 
-                    {/*<Route path="" element={(<Ecommerce />)} />*/}
-                    <Route path="customers" element={(<Customers />)} />
-                    <Route path="categories" element={(<Categories />)} />
-                    <Route path='addCategory' element={(<CreateCategory />)} />
-                    <Route path="editCategories/:id" element={<EditCategories></EditCategories>} />
-                    <Route path="brands" element={<Brands />} />;
-                    <Route path='addBrands' element={(<CreateBrand />)} />
+                    <Route path="" element={(<Ecommerce />)} />
+                    <Route path="customers" element={(<Customers/>)}/>
+                    <Route path="categories" element={(<Categories/>)}/>
+                    <Route path='addCategory' element={(<CreateCategory/>)}/>
+                    <Route path="editCategories/:id" element={<EditCategories></EditCategories>}/>
+                    <Route path="brands" element={<Brands/>}/>;
+                    <Route path='addBrands' element={(<CreateBrand/>)}/>
+                    {/*<Route path='addBrands' element={(<EditBrand/>)}/>*/}
 
 
 
-                    {/*<Route path="" element={(<Ecommerce />)} />*/}
-                    <Route path="customers" element={(<Customers />)} />
-                    <Route path="categories" element={(<Categories />)} />
-                    <Route path='addCategory' element={(<CreateCategory />)} />
-                    <Route path="editCategories/:id" element={<EditCategories></EditCategories>} />
-                    <Route path="brands" element={<Brands />} />;
-                    <Route path='addBrands' element={(<CreateBrand />)} />
 
 
 

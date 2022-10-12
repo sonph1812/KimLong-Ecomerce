@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { setListSearch } from "../reducer/slice/userSlice"
+import { setListSearch , setStaffSearch} from "../reducer/slice/userSlice"
 import { setProductSearch } from "../reducer/slice/productSlice"
+
 import { useDispatch } from "react-redux"
 function Search({ list, model }) {
     const [search, setSearch] = useState('')
@@ -15,7 +16,7 @@ function Search({ list, model }) {
         } else if (model === 'product') {
             dispatch(setProductSearch(list.filter(isSearch)))
         }else if (model === 'staff'){
-            // dispatch(setStaffSearch(list.filter(isSearch)))
+            dispatch(setStaffSearch(list.filter(isSearch)))
         }
     }
     const isSearch = (item) => {

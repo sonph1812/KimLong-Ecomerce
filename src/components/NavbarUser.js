@@ -36,7 +36,7 @@ const NavbarUser = () => {
                 title="HomePage"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
               >
-                Home
+                Trang chủ
               </Link>
             </li>
             <li>
@@ -66,7 +66,7 @@ const NavbarUser = () => {
                 title="All products"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
               >
-                Products
+                Sản phẩm
               </Link>
             </li>
           </ul>
@@ -121,7 +121,7 @@ const NavbarUser = () => {
                   className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 // onClick={closeMenu}
                 >
-                  Log in
+                  Đăng nhập
                 </Link>
               </li>
               <li>
@@ -132,7 +132,7 @@ const NavbarUser = () => {
                   className="font-medium  text-center tracking-wide text-gray-700 pr-2 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 // onClick={closeMenu}
                 >
-                  Register
+                  Đăng kí
                 </Link>
               </li>
             </>: <li>

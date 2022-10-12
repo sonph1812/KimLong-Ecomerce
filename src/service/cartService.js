@@ -15,14 +15,21 @@ export const getDetailCart = async (id, dispatch) => {
     const res = await customAxios.get(`${baseURL}/cart/${id}`)
     dispatch(getDetailCartSlice(res.data))
 }
-export const addItem = async (id, data, dispatch) => {
-    
-    const res = await customAxios.put(`${baseURL}/cart/${id}`,
+export const addItem = (id, data, dispatch, navigate) => {
+
+    customAxios.put(`${baseURL}/cart/${id}`,
         {
             productId: data.id,
             amount: data.amount
+        }).then((res) => {
+            dispatch(addItemSlice(res.data))
+            navigate('/cart')
+
+        }).catch((err) => {
+            alert('product not found')
+            // dispatch(addItemSlice(err.data.status))
         })
-    dispatch(addItemSlice(res.data))
+
 }
 export const deleteItem = async (id, idItem, dispatch) => {
     const res = await customAxios.delete(`${baseURL}/cart/${id}/${idItem}`)
@@ -32,10 +39,12 @@ export const clearCart = async (id, dispatch) => {
     const res = await customAxios.delete(`${baseURL}/cart/${id}`)
     dispatch(clearCartSlice(res.data))
 }
-export const changeAmountItem = async (id, idItem, data,totals, dispatch,navigate) => {
+export const changeAmountItem = async (id, idItem, data, totals, dispatch, navigate) => {
     const res = await customAxios.put(`${baseURL}/cart/${id}/${idItem}`, { data })
-    dispatch(changeInAddToCart({idItem,data,totals}))
-    if(navigate){
+    if (navigate) {
+        dispatch(changeInAddToCart({ idItem, data, totals }))
         navigate('/cart')
+    } else {
+        dispatch(changeTotals(totals))
     }
 }
