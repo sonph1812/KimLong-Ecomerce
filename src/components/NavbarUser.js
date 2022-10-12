@@ -1,21 +1,20 @@
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logOut } from '../reducer/slice/userSlice';
 import CartBtn from "./CartBtn";
 import Search from "./Search";
-import {UserProfile} from "./index";
-import React, {useState} from "react";
-// import UserMenu from './UserMenu';
-// import AdminMenu from './AdminMenu';
-// import { useProductsContext } from '../context/products_context';
+import { UserProfile } from "./index";
+import React, { useState } from "react";
+import { MdKeyboardArrowDown } from 'react-icons/md';
+
 import { useStateContext } from '../contexts/ContextProvider';
+import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 // import CartBtn from './CartBtn';
 
 const NavbarUser = () => {
   const userInfo = useSelector(s => s.userReducer.userInfo)
-  console.log(userInfo,"sontest")
-  const [isClicked, setIsClicked] = useState(false);
-  const handleClick = (clicked) => setIsClicked(  {userProfile:true,[clicked]:true });
+  console.log(userInfo, "sontest")
+  const { handleClick, isClicked } = useStateContext();
 
 
   const role = localStorage.getItem('role')
@@ -24,7 +23,7 @@ const NavbarUser = () => {
     dispatch(logOut())
   }
   return (
-      <div className="bg-white">
+    <div className="bg-white">
       <div className="container mx-auto py-5 ">
         <div className="items-center flex justify-between">
           {/* Left links */}
@@ -101,18 +100,28 @@ const NavbarUser = () => {
             <li>
               <CartBtn />
             </li>
-            <div onClick={handleClick}>
-              {role && <span  className="text-dark font-bold ml-1 text-14">
-                Hi,  {userInfo.name ? userInfo.name : ""}
-              </span>}
-            </div>
-            <>
-              <li className="bg-black text-white">
-                {isClicked.userProfile && (<UserProfile userInfo = {userInfo}/>)}
-              </li>
-            </>
+            {userInfo.name && <TooltipComponent content="Profile" position="BottomCenter">
+              <div
+                className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
+                onClick={() => handleClick('userProfile')}
+              >
+                <img
+                  className="rounded-full w-8 h-8"
+                  src={userInfo.avatar ? userInfo.avatar : "https://symbols.vn/wp-content/uploads/2022/01/Hinh-Anime-tho-trang-cuc-ky-ngo-nghinh.jpg"}
+                  alt="user-profile"
+                />
+                <p>
+                  <span className="text-gray-400 text-14">Hi,</span>{' '}
+                  <span className="text-gray-400 font-bold ml-1 text-14">
+                    {userInfo.name ? userInfo.name : ""}
+                  </span>
+                </p>
+                <MdKeyboardArrowDown className="text-gray-400 text-14" />
+              </div>
+            </TooltipComponent>}
+            {isClicked.userProfile && (<UserProfile userInfo={userInfo} />)}
             {/*) : (*/}
-           {!role? <>
+            {!role && <>
               <li>
                 <Link
                   to="/login"
@@ -135,17 +144,7 @@ const NavbarUser = () => {
                   Đăng kí
                 </Link>
               </li>
-            </>: <li>
-                {/*<Link*/}
-                {/*  to="/login"*/}
-                {/*  aria-label="Log in"*/}
-                {/*  title="Log in"*/}
-                {/*  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"*/}
-                {/*onClick={()=>{logOutHome()}}*/}
-                {/*>*/}
-                {/*  Log out*/}
-                {/*</Link>*/}
-              </li>}
+            </> }
             {/*)}*/}
           </ul>
 
