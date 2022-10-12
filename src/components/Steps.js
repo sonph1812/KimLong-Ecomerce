@@ -41,7 +41,7 @@ const Steps = ({ step1, step2, step3, step4 }) => {
                 <button disabled>
                   {' '}
                   <span className="ml-0 text-sm font-medium text-gray-400 md:ml-2">
-                    Đăng nhập
+                    Trang chủ
                   </span>
                 </button>
               </>
