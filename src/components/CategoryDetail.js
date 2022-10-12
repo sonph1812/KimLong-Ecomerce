@@ -1,5 +1,5 @@
 import SectionTitle from '../components/SectionTitle';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import Btn from "../components/Btn";
 import {formatPrice} from "../utils/helpers";
@@ -10,6 +10,10 @@ import {Navigation, Pagination} from "swiper";
 import React from "react";
 
 const CateGoryDetail = ({list,category}) => {
+    const navigate = useNavigate()
+    const handleGetDetail = (id) => {
+        navigate(`/product/${id}`)
+    }
 
     return (
         <section id="new" className="mx-auto max-w-screen-xl px-4 py-8  bg-white">
@@ -32,7 +36,7 @@ const CateGoryDetail = ({list,category}) => {
                             <SwiperSlide  className="p-6">
                                 <div className="  gap-x-4 gap-y-8  rounded-2xl ">
 
-                                        <a href="#" className="  rounded-2xl hover:scale-90 shadow-amber-700relative block border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                                        <a  onClick={()=>(handleGetDetail(product._id))} className="  rounded-2xl hover:scale-90 shadow-amber-700relative block border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                                             <img
                                                 alt="Toy"
                                                 src={product.image}

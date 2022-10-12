@@ -21,7 +21,17 @@ const ProductList = () => {
     const productFilter = useSelector(state => state.productReducer.productByCate)
     const products = useSelector(state => state.productReducer.products)
     const product = useSelector(state => state.productReducer.product)
-
+    const brands = useSelector(s => s.brandReducer.brands)
+    const categories = useSelector(s => s.categoryReducer.categories)
+    const handlerChange = (e) => {
+        setProducts({
+            ...products,
+            [e.target.name]: e.target.value
+        })
+    }
+    const handleGetDetail = (id) => {
+        navigate(`/product/${id}`)
+    }
 
     const [currentPage, setCurrentPage] = useState(1)
     const [productsPerPage] = useState(9)
@@ -45,7 +55,7 @@ const ProductList = () => {
 
     return (
         <>
-            <PageHero title="Products" className="bg-amber-200"/>
+            <PageHero title="Sản phẩm" className="bg-amber-200"/>
             <section>
                 <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-start">
@@ -75,7 +85,7 @@ const ProductList = () => {
                                         <legend
                                             className="block w-full bg-gray-50 px-5 py-3 text-xs font-medium"
                                         >
-                                            Type
+                                            Danh mục
                                         </legend>
 
                                         <div className="space-y-2 px-5 py-6">
@@ -88,7 +98,7 @@ const ProductList = () => {
                                                 />
 
                                                 <label htmlFor="game" className="ml-3 text-sm font-medium">
-                                                    Game
+                                                    Điện thoại
                                                 </label>
                                             </div>
 
@@ -101,7 +111,7 @@ const ProductList = () => {
                                                 />
 
                                                 <label htmlFor="outdoor" className="ml-3 text-sm font-medium">
-                                                    Outdoor
+                                                    Máy tính
                                                 </label>
                                             </div>
 
@@ -140,8 +150,8 @@ const ProductList = () => {
                         <div className="lg:col-span-3">
                             <div className="flex items-center justify-between">
                                 <p className="text-sm text-gray-500">
-                                    <span className="hidden sm:inline"> Showing </span>
-                                    {product.length} Products
+                                    <span className="hidden sm:inline"> Trang:  </span>
+                                    <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
                                 </p>
 
                                 <div className="ml-4">
@@ -166,21 +176,20 @@ const ProductList = () => {
                             >
 
                                 {currentProducts?.map((product, index) => (
-                                    <a href="#"
-                                       className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                                    <a  onClick={()=>(handleGetDetail(product._id))} className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                                         <img
-                                            alt="Toy"
+                                            // alt="Toy"
                                             src={product.image}
 
                                             className="h-56 w-full object-contain lg:h-72"
                                         />
 
                                         <div className="p-6">
-                                            {/*<span*/}
-                                            {/*    className="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"*/}
-                                            {/*>*/}
-                                            {/*  New*/}
-                                            {/*</span>*/}
+              {/*<span*/}
+              {/*    className="inline-block bg-yellow-400 px-3 py-1 text-xs font-medium"*/}
+              {/*>*/}
+              {/*  New*/}
+              {/*</span>*/}
 
                                             <h5 className="mt-4 text-lg font-bold">{product.name}</h5>
 
@@ -207,13 +216,16 @@ const ProductList = () => {
                                                 </svg>
                                             </button>
                                         </div>
+
                                     </a>
+
                                 ))}
                             </div>
+
                         </div>
+
                     </div>
                 </div>
-                <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
             </section>
 
         </>

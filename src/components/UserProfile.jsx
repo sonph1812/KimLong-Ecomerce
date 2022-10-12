@@ -62,7 +62,7 @@ const  UserProfile = ({userInfo}) => {
       <div className="mt-5"
         onClick={()=>{
           dispatch (logOut())
-          navigate('/user')
+          navigate('/')
         }}
       >
         <Button

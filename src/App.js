@@ -136,15 +136,6 @@ const App = () => {
 
 
 
-                    {/*<Route path="" element={(<Ecommerce />)} />*/}
-                    <Route path="customers" element={(<Customers />)} />
-                    <Route path="categories" element={(<Categories />)} />
-                    <Route path='addCategory' element={(<CreateCategory />)} />
-                    <Route path="editCategories/:id" element={<EditCategories></EditCategories>} />
-                    <Route path="brands" element={<Brands />} />;
-                    <Route path='addBrands' element={(<CreateBrand />)} />
-
-
 
 
 

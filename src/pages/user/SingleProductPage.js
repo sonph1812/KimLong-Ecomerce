@@ -54,7 +54,8 @@ const SingleProductPage = () => {
                             <p className="leading-relaxed mt-4">
                                 {product.description}
                             </p>
-                            <AddtoCart product={product} />
+                            {product.stock > 0
+                                && <AddtoCart product={product} />}
                         </div>
                     </div>
 
@@ -86,82 +87,82 @@ const SingleProductPage = () => {
                         </div>
                     </div>
 
-                    {/*/!* Review form*!/*/}
-                    {/*<div className="max-w-screen-xl  py-8 mx-auto  ">*/}
-                    {/*    <h2 className="text-xl font-bold sm:text-2xl mb-5">*/}
-                    {/*        Write a review*/}
-                    {/*    </h2>*/}
-                    {/*    {createProductReviewLoading && <Loading />}*/}
-                    {/*    {createProductReviewError && (*/}
-                    {/*        <Error title={createProductReviewError} />*/}
-                    {/*    )}*/}
-                    {/*    {loginUser ? (*/}
-                    {/*        <>*/}
-                    {/*            <form onSubmit={submitHandler}>*/}
-                    {/*                /!* Rating *!/*/}
-                    {/*                <label*/}
-                    {/*                    htmlFor="rating"*/}
-                    {/*                    className="block mb-2 text-sm font-medium text-gray-900 "*/}
-                    {/*                >*/}
-                    {/*                    Rating*/}
-                    {/*                </label>*/}
-                    {/*                <select*/}
-                    {/*                    name="rating"*/}
-                    {/*                    value={rating}*/}
-                    {/*                    onChange={e => setRating(e.target.value)}*/}
-                    {/*                    id="rating"*/}
-                    {/*                    className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"*/}
-                    {/*                >*/}
-                    {/*                    <option value="">Select...</option>*/}
-                    {/*                    <option value="1">1 - Poor</option>*/}
-                    {/*                    <option value="2">2 - Fair</option>*/}
-                    {/*                    <option value="3">3 - Good</option>*/}
-                    {/*                    <option value="4">4 - Very Good</option>*/}
-                    {/*                    <option value="5">5 - Excellent</option>*/}
-                    {/*                </select>*/}
+                    {/* Review form*/}
+                    <div className="max-w-screen-xl  py-8 mx-auto  ">
+                        <h2 className="text-xl font-bold sm:text-2xl mb-5">
+                            Write a review
+                        </h2>
+                        {/*{createProductReviewLoading && <Loading />}*/}
+                        {/*{createProductReviewError && (*/}
+                        {/*    <Error title={createProductReviewError} />*/}
+                        {/*)}*/}
+                        {/*{loginUser ? (*/}
+                            <>
+                                <form >
+                                    {/* Rating */}
+                                    <label
+                                        htmlFor="rating"
+                                        className="block mb-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Rating
+                                    </label>
+                                    <select
+                                        name="rating"
+                                        // value={rating}
+                                        // onChange={e => setRating(e.target.value)}
+                                        id="rating"
+                                        className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    >
+                                        <option value="">Select...</option>
+                                        <option value="1">1 - Poor</option>
+                                        <option value="2">2 - Fair</option>
+                                        <option value="3">3 - Good</option>
+                                        <option value="4">4 - Very Good</option>
+                                        <option value="5">5 - Excellent</option>
+                                    </select>
 
-                    {/*                /!* Title *!/*/}
-                    {/*                <label*/}
-                    {/*                    htmlFor="title"*/}
-                    {/*                    className="block my-2 text-sm font-medium text-gray-900 "*/}
-                    {/*                >*/}
-                    {/*                    Title*/}
-                    {/*                </label>*/}
-                    {/*                <input*/}
-                    {/*                    type="text"*/}
-                    {/*                    value={title}*/}
-                    {/*                    onChange={e => setTitle(e.target.value)}*/}
-                    {/*                    id="title"*/}
-                    {/*                    placeholder="Leave a title..."*/}
-                    {/*                    className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "*/}
-                    {/*                />*/}
+                                    {/* Title */}
+                                    <label
+                                        htmlFor="title"
+                                        className="block my-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Title
+                                    </label>
+                                    <input
+                                        type="text"
+                                        // value={title}
+                                        // onChange={e => setTitle(e.target.value)}
+                                        id="title"
+                                        placeholder="Leave a title..."
+                                        className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
+                                    />
 
-                    {/*                /!* Message *!/*/}
-                    {/*                <label*/}
-                    {/*                    htmlFor="message"*/}
-                    {/*                    className="block my-2 text-sm font-medium text-gray-900 "*/}
-                    {/*                >*/}
-                    {/*                    Your message*/}
-                    {/*                </label>*/}
-                    {/*                <textarea*/}
-                    {/*                    id="message"*/}
-                    {/*                    value={comment}*/}
-                    {/*                    onChange={e => setComment(e.target.value)}*/}
-                    {/*                    rows="4"*/}
-                    {/*                    className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500  mb-5"*/}
-                    {/*                    placeholder="Leave a comment..."*/}
-                    {/*                ></textarea>*/}
+                                    {/* Message */}
+                                    <label
+                                        htmlFor="message"
+                                        className="block my-2 text-sm font-medium text-gray-900 "
+                                    >
+                                        Your message
+                                    </label>
+                                    <textarea
+                                        id="message"
+                                        // value={comment}
+                                        // onChange={e => setComment(e.target.value)}
+                                        rows="4"
+                                        className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500  mb-5"
+                                        placeholder="Leave a comment..."
+                                    ></textarea>
 
-                    {/*                /!* Submit btn *!/*/}
-                    {/*                <Btn name="Submit" />*/}
-                    {/*            </form>*/}
-                    {/*        </>*/}
-                    {/*    ) : (*/}
-                    {/*        <Link to="/login">*/}
-                    {/*            <Btn name="Login" />*/}
-                    {/*        </Link>*/}
-                    {/*    )}*/}
-                    {/*</div>*/}
+                                    {/* Submit btn */}
+                                    <Btn name="Submit" />
+                                </form>
+                            </>
+                        // ) : (
+                        //     <Link to="/login">
+                        //         <Btn name="Login" />
+                        //     </Link>
+                        // )}
+                    </div>
                 </>}
                 {/*)}*/}
             </section>

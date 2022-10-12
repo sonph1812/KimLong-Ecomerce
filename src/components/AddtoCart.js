@@ -26,7 +26,10 @@ const AddtoCart = ({ product }) => {
   };
   const addToCart = (id) => {
     for (let item of items) {
-      if (item.productId._id == id) {
+      if(item.productId == null){
+        alert("Sản phẩm đã hết hàng")
+      }else if (item.productId._id == id) {
+
         console.log('change amount');
         const oldTotal = item.total;
 
@@ -41,7 +44,7 @@ const AddtoCart = ({ product }) => {
       }
     }
     console.log('add item');
-    navigate('/user/cart')
+    navigate('/cart')
     addItem(cartId, { id, amount }, dispatch)
   }
 
