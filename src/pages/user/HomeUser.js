@@ -8,12 +8,13 @@ import FooterUser from "../../FooterUser";
 
 import {useSelector} from "react-redux";
 import CategoryDetail from "../../components/CategoryDetail";
-import {logBase} from "@syncfusion/ej2-react-charts";
+// import {logBase} from "@syncfusion/ej2-react-charts";
 import Banner from "../../components/home/banner";
 import Card from "../../components/home/Card";
 
 const HomePage = () => {
     const categories = useSelector(state=>state.categoryReducer.categories)
+    console.log(categories)
     const products = useSelector(state=>state.productReducer.products)
     return (
         <><div className="relative min-h-screen">
@@ -27,7 +28,9 @@ const HomePage = () => {
             <div>
                 {categories && categories.map((item)=>{
                     let list = products.filter(item1=>{
-                        return (item1.categoryId.name === item.name)
+                        if(item1.categoryId != null){
+                            return (item1.categoryId.name === item.name)
+                        }
                                  })
                     return(
 

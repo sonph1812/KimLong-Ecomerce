@@ -94,15 +94,7 @@ return (
                                        type="text" name="stock" id="stock" autoComplete="given-name"
                                        className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
                             </div>
-                            <div className="col-span-6 sm:col-span-3">
-                                <label
-                                    className="block text-sm font-medium text-neutral-900">Upload file</label>
-                                <input onChange={(e) => {
-                                    handlePreviewAvatar(e)
-                                }}
-                                       type="file" name="file" id="rating" autoComplete="given-name"
-                                       className="mt-1 px-3 py-3 block w-full rounded-md border-neutral-900 shadow-sm focus:border-indigo-500 focus:ring-blue-500 sm:text-sm"/>
-                            </div>
+
                             <div>
                                 <label htmlFor="states" className="sr-only">Brand</label>
                                 <select id="brandId"
