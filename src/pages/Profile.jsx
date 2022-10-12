@@ -1,12 +1,16 @@
 import { useSelector } from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 function Profile() {
   const userInfo = useSelector((s) => s.userReducer.userInfo);
-  console.log(userInfo);
+  const navigate = useNavigate();
+  const editProfile = ()=>{
+    navigate(`/admin/profile/update`);
+  }
   return (
-    <div class="md:flex no-wrap md:-mx-2 ">
-      <div class="w-full md:w-3/12 md:mx-2">
-        <div class="bg-white p-3 border-t-4 border-green-400">
+    <div className="md:flex no-wrap md:-mx-2 ">
+      <div className="w-full md:w-3/12 md:mx-2">
+        <div className="bg-white p-3 border-t-4 border-green-400">
           <img
             className="h-auto w-full mx-auto"
             src={
@@ -17,14 +21,14 @@ function Profile() {
             alt="user-profile"
           />
         </div>
-        <div class="my-4"></div>
+        <div className="my-4"></div>
       </div>
-      <div class="w-full md:w-9/12 mx-2 h-64">
-        <div class="bg-white p-3 shadow-sm rounded-sm">
-          <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
-            <span clas="text-green-500">
+      <div className="w-full md:w-9/12 mx-2 h-64">
+        <div className="bg-white p-3 shadow-sm rounded-sm">
+          <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+            <span className="text-green-500">
               <svg
-                class="h-5"
+                className="h-5"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -38,44 +42,44 @@ function Profile() {
                 />
               </svg>
             </span>
-            <span class="tracking-wide">About</span>
+            <span className="tracking-wide">About</span>
           </div>
-          <div class="text-gray-700">
-            <div class="grid md:grid-cols-1 text-sm">
-              <div class="grid grid-cols-2">
-                <div class="px-4 py-2 font-semibold">User Name</div>
-                <div class="px-4 py-2">{userInfo.userName}</div>
+          <div className="text-gray-700">
+            <div className="grid md:grid-cols-1 text-sm">
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">User Name</div>
+                <div className="px-4 py-2">{userInfo.userName}</div>
               </div>
-              <div class="grid grid-cols-2">
-                <div class="px-4 py-2 font-semibold">Name</div>
-                <div class="px-4 py-2">{userInfo.name}</div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">Name</div>
+                <div className="px-4 py-2">{userInfo.name}</div>
               </div>
-              <div class="grid grid-cols-2">
-                <div class="px-4 py-2 font-semibold">Gender</div>
-                <div class="px-4 py-2">{userInfo.gender}</div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">Gender</div>
+                <div className="px-4 py-2">{userInfo.gender}</div>
               </div>
-              <div class="grid grid-cols-2">
-                <div class="px-4 py-2 font-semibold">Birthday</div>
-                <div class="px-4 py-2">{userInfo.dob}</div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">Birthday</div>
+                <div className="px-4 py-2">{userInfo.dob}</div>
               </div>
-              <div class="grid grid-cols-2">
-                <div class="px-4 py-2 font-semibold">Phone</div>
-                <div class="px-4 py-2">{userInfo.phone}</div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">Phone</div>
+                <div className="px-4 py-2">{userInfo.phone}</div>
               </div>
-              <div class="grid grid-cols-2">
-                <div class="px-4 py-2 font-semibold">Email.</div>
-                <div class="px-4 py-2">
-                  <div class="px-4 py-2">{userInfo.email}</div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold">Email.</div>
+                <div className="px-4 py-2">
+                  <div className="px-4 py-2">{userInfo.email}</div>
                 </div>
               </div>
-              <div class="grid grid-cols-2">
-                <div class="px-4 py-2 font-semibold"> Address</div>
-                <div class="px-4 py-2">{userInfo.address}</div>
+              <div className="grid grid-cols-2">
+                <div className="px-4 py-2 font-semibold"> Address</div>
+                <div className="px-4 py-2">{userInfo.address}</div>
               </div>
             </div>
           </div>
-          <button class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-            Show Full Information
+          <button onClick={editProfile} className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+            Edit Profile
           </button>
         </div>
       </div>

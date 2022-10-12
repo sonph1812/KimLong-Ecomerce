@@ -1,15 +1,21 @@
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logOut } from '../reducer/slice/userSlice';
 import CartBtn from "./CartBtn";
 import Search from "./Search";
+import {UserProfile} from "./index";
+import React, {useState} from "react";
 // import UserMenu from './UserMenu';
 // import AdminMenu from './AdminMenu';
 // import { useProductsContext } from '../context/products_context';
-// import { useUserContext } from '../context/user_context';
+import { useStateContext } from '../contexts/ContextProvider';
 // import CartBtn from './CartBtn';
 
 const NavbarUser = () => {
+  const userInfo = useSelector(s => s.userReducer.userInfo)
+  console.log(userInfo,"sontest")
+  const [isClicked, setIsClicked] = useState(false);
+  const handleClick = (clicked) => setIsClicked(  {userProfile:true,[clicked]:true });
 
 
   const role = localStorage.getItem('role')
@@ -18,9 +24,9 @@ const NavbarUser = () => {
     dispatch(logOut())
   }
   return (
-      <div>
-      <div className=" flex justify-around bg-white py-5 ">
-        <div className=" grid items-stretch  grid-cols-2 lg:grid-cols-3">
+      <div className="bg-white">
+      <div className="container mx-auto py-5 ">
+        <div className="items-center flex justify-between">
           {/* Left links */}
           <ul className="items-stretch hidden space-x-8 lg:flex">
             <li>
@@ -70,7 +76,7 @@ const NavbarUser = () => {
             href="/"
             aria-label="HomePage"
             title="HomePage"
-            className="inline-flex items-center lg:mx-auto"
+            className="inline-flex justify-between mr-36"
           >
             <svg
               className="w-8 text-deep-purple-accent-400"
@@ -91,14 +97,18 @@ const NavbarUser = () => {
 
           {/* Right links */}
 
-          <ul className="items-center hidden ml-auto space-x-8 lg:flex">
+          <ul className="items-center space-x-1 lg:flex justify-end">
             <li>
               <CartBtn />
             </li>
-            {/*{loginUser ? (*/}
+            <div onClick={handleClick}>
+              {role && <span  className="text-dark font-bold ml-1 text-14">
+                Hi,  {userInfo.name ? userInfo.name : ""}
+              </span>}
+            </div>
             <>
               <li className="bg-black text-white">
-                {/*{loginUser.role === 'admin' ? <AdminMenu /> : <UserMenu />}*/}
+                {isClicked.userProfile && (<UserProfile userInfo = {userInfo}/>)}
               </li>
             </>
             {/*) : (*/}
@@ -119,22 +129,22 @@ const NavbarUser = () => {
                   to="/register"
                   aria-label="Register"
                   title="Register"
-                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  className="font-medium  text-center tracking-wide text-gray-700 pr-2 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 // onClick={closeMenu}
                 >
                   Register
                 </Link>
               </li>
             </>: <li>
-                <Link
-                  to="/login"
-                  aria-label="Log in"
-                  title="Log in"
-                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                onClick={()=>{logOutHome()}}
-                >
-                  Log out
-                </Link>
+                {/*<Link*/}
+                {/*  to="/login"*/}
+                {/*  aria-label="Log in"*/}
+                {/*  title="Log in"*/}
+                {/*  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"*/}
+                {/*onClick={()=>{logOutHome()}}*/}
+                {/*>*/}
+                {/*  Log out*/}
+                {/*</Link>*/}
               </li>}
             {/*)}*/}
           </ul>
