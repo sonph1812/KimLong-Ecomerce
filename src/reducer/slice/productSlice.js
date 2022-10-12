@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-
 const initialState = {
     products: [],
     product: {},
@@ -8,7 +7,9 @@ const initialState = {
     listSearch: null,
     productByCate: [],
     productByBrand: [],
-    comments:[]
+    comments:[],
+    star: 0
+
 }
 const productSlice = createSlice({
     name: 'products',
@@ -57,7 +58,10 @@ const productSlice = createSlice({
             state.comments.splice(action.payload, 1)
         },
         addStarSlice: (state,action) => {
-            
+            state.product = action.payload
+        },
+        checkStar : (state,action) => {
+            state.star = action.payload
         }
     }
 
@@ -74,6 +78,8 @@ export const {
     getProByCate,
     getProByBrand,
     addCommentSlice,
-    deleteCommentSlice
+    deleteCommentSlice,
+    addStarSlice,
+    checkStar
 } = productSlice.actions;
 export default productSlice.reducer;

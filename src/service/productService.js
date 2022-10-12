@@ -9,7 +9,8 @@ import {
     getProByCate,
     getProByBrand,
     addCommentSlice,
-    deleteCommentSlice
+    deleteCommentSlice,
+    addStarSlice
 
 } from "../reducer/slice/productSlice";
 import Swal from "sweetalert2";
@@ -83,7 +84,8 @@ export const deleteComment  =  (index,idProduct,idReview,dispatch) => {
 
 // }
 export const addStar = async (idProduct,data,dispatch) => {
-   const res = await customAxios.put(`${baseURL}/admin/products/start/${idProduct}`,data)
-   dispatch ()
+   const res = await customAxios.put(`http://localhost:3000/admin/products/star/${idProduct}`,data)
+   
+   dispatch (addStarSlice(res.data))
 
 }

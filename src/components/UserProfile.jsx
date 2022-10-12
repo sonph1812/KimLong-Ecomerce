@@ -12,6 +12,7 @@ const  UserProfile = ({userInfo}) => {
   const { currentColor } = useStateContext();
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const role = localStorage.getItem('role')
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
       <div className="flex justify-between items-center">
@@ -25,7 +26,7 @@ const  UserProfile = ({userInfo}) => {
 
         />
       </div>
-      <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
+      {role && <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
         <img
           className="rounded-full h-24 w-24"
           src={userInfo.avatar ? userInfo.avatar : "https://symbols.vn/wp-content/uploads/2022/01/Hinh-Anime-tho-trang-cuc-ky-ngo-nghinh.jpg"}
@@ -36,7 +37,7 @@ const  UserProfile = ({userInfo}) => {
           <p className="text-gray-500 text-sm dark:text-gray-400">  {userInfo.roleId.name ? userInfo.roleId.name : ""}   </p>
           <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> {userInfo.email} </p>
         </div>
-      </div>
+      </div>}
       <div>
         {userProfileData.map((item, index) => (
            <div key={index}

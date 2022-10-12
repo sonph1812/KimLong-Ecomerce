@@ -4,13 +4,15 @@ import Btn from '../../components/Btn';
 import PageHero from '../../components/PageHero';
 import SingleReview from '../../components/SingleReview';
 import Stars from '../../components/Stars';
-import Loading from '../../components/Loading';
-import Error from '../../components/Error';
-import NavbarUser from "../../components/NavbarUser";
+// import Loading from '../../components/Loading';
+// import Error from '../../components/Error';
+// import NavbarUser from "../../components/NavbarUser";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment, deleteComment, getDetailProduct } from "../../service/productService";
+import { addComment, deleteComment, getDetailProduct, addStar } from "../../service/productService";
 import AddtoCart from "../../components/AddtoCart";
-import { formatPrice } from "../../utils/helpers";
+// import { formatPrice } from "../../utils/helpers";
+import ReactStars from "react-rating-stars-component";
+import { checkStar } from "../../reducer/slice/productSlice"
 
 const SingleProductPage = () => {
     const dispatch = useDispatch()
@@ -21,11 +23,26 @@ const SingleProductPage = () => {
     const userInfo = useSelector(s => s.userReducer.userInfo)
     const [comment, setComment] = useState('')
     const user = useSelector(s => s.userReducer.userInfo)
-    const [rating,setRating] = useState(1)
+    const star = useSelector(s => s.productReducer.star)
+
+    console.log(star);
     useEffect(() => {
+
         getDetailProduct(dispatch, params.id)
 
     }, [])
+    useEffect(() => {
+        if (product && product.stars) {
+            for (let star of product.stars) {
+                if (star.userId == userInfo._id) {
+                    console.log(star);
+                    dispatch(checkStar(star.text))
+                    console.log(star);
+
+                }
+            }
+        }
+    }, [product])
 
     const handelSubmit = (e) => {
         e.preventDefault()
@@ -42,9 +59,10 @@ const SingleProductPage = () => {
 
     }
 
-    const addStar = () => {
 
-    }
+    const ratingChanged = (newRating) => {
+        addStar(product._id, { text: newRating, userId: userInfo._id }, dispatch)
+    };
     return (
         <>
             {/*<NavbarUser/>*/}
@@ -72,7 +90,7 @@ const SingleProductPage = () => {
                             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                                 {product.name}  </h1>
 
-                            <Stars stars={5} />
+                            <Stars stars={Math.floor(product.rating)} />
                             <p className="leading-relaxed mt-4">
                                 {product.description}
                             </p>
@@ -88,18 +106,14 @@ const SingleProductPage = () => {
                         </h2>
 
                         <div className="flex items-center mt-4">
-                            <p className="text-3xl font-medium">
-                                {5}
-                                <span className="sr-only"> Average review score </span>
-                            </p>
 
-                            <div className="ml-4">
-                                <Stars />
-
-                                <p className="mt-0.5 text-xs text-gray-500">
-                                    {/*Based on {numReviews} reviews*/}
-                                </p>
-                            </div>
+                            <ReactStars
+                                count={5}
+                                onChange={ratingChanged}
+                                size={24}
+                                activeColor="#ffd700"
+                                value={star}
+                            />
                         </div>
 
                         {/* <div className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12">
@@ -121,29 +135,8 @@ const SingleProductPage = () => {
                         {role ? (
                             <>
                                 <form>
-                                    {/* /!* Rating *!/ */}
-                                    <label
-                                        htmlFor="rating"
-                                        className="block mb-2 text-sm font-medium text-gray-900 "
-                                    >
-                                        Rating
-                                    </label>
-                                    <select
-                                        name="rating"
-                                           onChange={e => setRating(e.target.value)}
-                                        id="rating"
-                                        className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                    >
-                                        <option value="">Select...</option>
-                                        <option value="1">1 - Poor</option>
-                                        <option value="2">2 - Fair</option>
-                                        <option value="3">3 - Good</option>
-                                        <option value="4">4 - Very Good</option>
-                                        <option value="5">5 - Excellent</option>
-                                    </select>
-
-                                    {/*                /!* Title *!/*/}
-                                    <label
+                                  
+                                    {/* <label
                                         htmlFor="title"
                                         className="block my-2 text-sm font-medium text-gray-900 "
                                     >
@@ -156,7 +149,7 @@ const SingleProductPage = () => {
                                         id="title"
                                         placeholder="Leave a title..."
                                         className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
-                                    />
+                                    /> */}
 
                                     {/*                /!* Message *!/*/}
                                     <label

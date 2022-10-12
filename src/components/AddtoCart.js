@@ -27,7 +27,7 @@ const AddtoCart = ({ product }) => {
   const addToCart = (id) => {
 
     for (let item of items) {
-      if(item.productId == null){
+      if(item.productId && item.productId == null){
         alert("Sản phẩm đã hết hàng")
       }else if (item.productId._id == id) {
 
