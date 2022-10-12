@@ -24,20 +24,19 @@ const SingleProductPage = () => {
     const [comment, setComment] = useState('')
     const user = useSelector(s => s.userReducer.userInfo)
     const star = useSelector(s => s.productReducer.star)
-
-    console.log(star);
+    // console.log(star);
     useEffect(() => {
 
         getDetailProduct(dispatch, params.id)
 
     }, [])
+
     useEffect(() => {
         if (product && product.stars) {
             for (let star of product.stars) {
                 if (star.userId == userInfo._id) {
                     console.log(star);
                     dispatch(checkStar(star.text))
-                    console.log(star);
 
                 }
             }
@@ -63,6 +62,15 @@ const SingleProductPage = () => {
     const ratingChanged = (newRating) => {
         addStar(product._id, { text: newRating, userId: userInfo._id }, dispatch)
     };
+
+    const sD = {
+        count: 5,
+        onChange: ratingChanged,
+        size: 24,
+        activeColor: "#ffd700",
+        value: star
+    }
+
     return (
         <>
             {/*<NavbarUser/>*/}
@@ -106,21 +114,11 @@ const SingleProductPage = () => {
                         </h2>
 
                         <div className="flex items-center mt-4">
-
                             <ReactStars
-                                count={5}
-                                onChange={ratingChanged}
-                                size={24}
-                                activeColor="#ffd700"
-                                value={star}
+                               {...sD}
                             />
                         </div>
 
-                        {/* <div className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12">
-                            {reviews?.map(review => {
-                               return <SingleReview key={review._id} review={review} />;
-                            })}
-                        </div> */}
                     </div>
 
                     {/* /!* Review form*!/ */}
@@ -128,30 +126,11 @@ const SingleProductPage = () => {
                         <h2 className="text-xl font-bold sm:text-2xl mb-5">
                             {/* Write a review */}
                         </h2>
-                        {/* {createProductReviewLoading && <Loading />}
-                       {createProductReviewError && (
-                           <Error title={createProductReviewError} />
-                       )} */}
+                      
                         {role ? (
                             <>
                                 <form>
                                   
-                                    {/* <label
-                                        htmlFor="title"
-                                        className="block my-2 text-sm font-medium text-gray-900 "
-                                    >
-                                        Title
-                                    </label>
-                                    <input
-                                        type="text"
-                                        //    value={title}
-                                        //    onChange={e => setTitle(e.target.value)}
-                                        id="title"
-                                        placeholder="Leave a title..."
-                                        className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
-                                    /> */}
-
-                                    {/*                /!* Message *!/*/}
                                     <label
                                         htmlFor="message"
                                         className="block my-2 text-sm font-medium text-gray-900 "
