@@ -307,7 +307,7 @@ function OrderPage () {
 
   return (
     <div>
-        <Steps/>
+        <Steps step3/>
 
 
         <div className="section-center py-12 md:py-16 lg:py-20 ">
@@ -320,7 +320,7 @@ function OrderPage () {
         <div className="w-full xl:w-8/12 mb-8 xl:mb-0 px-4 ">
               {/* Address */}
                   <div className=" py-6 border-b border-gray-200">
-                     <p className="text-xl font-bold mb-5">Shipping Address</p>
+                     <p className="text-xl font-bold mb-5">Địa chỉ</p>
                 <p className="mb-3">
                   <strong>Name: </strong>
                 </p>
@@ -336,31 +336,31 @@ function OrderPage () {
               {/*)}*/}
               {order.shipping ? (
                 <p className="capitalize bg-amber-100">
-                  <strong>Delivered on: {order.shipping}</strong>
+                  <strong>Phương thức vận chuyển: {order.shipping}</strong>
                 </p>
               ) : (
                 <p className="capitalize text-tertiary-500 bg-red-200">
-                  <strong>Not Delivered</strong>
+                  <strong>Chưa vận chuyển</strong>
                 </p>
               )}
             </div>
              {/*Payment method*/}
             <div className="py-6 border-b border-gray-200">
-              <p className="text-xl font-bold mb-5">Payment method</p>
+              <p className="text-xl font-bold mb-5">Phương thức thanh toán</p>
 
               {/*{order.payment && (*/}
                 <p className="capitalize mb-3">
-                  <strong>Payment method: {order.payment} </strong>
+                  <strong>Phương thức thanh toán: {order.payment} </strong>
                   {/*{orderDetails.paymentMethod}*/}
                 </p>
 
               {order.payment && order.payment === 'done' ? (
                 <p className="capitalize bg-amber-100">
-                  <strong>Status: </strong>Paid
+                  <strong>Trạng thái: </strong> Đã hoàn tất
                 </p>
               ) : (
                 <p className="capitalize text-tertiary-500 bg-red-200">
-                  <strong> Not Paid</strong>
+                  <strong> Chưa thanh toán</strong>
                 </p>
               )}
             </div>
@@ -369,7 +369,7 @@ function OrderPage () {
             </div>
         <button
             onClick={()=>{handelBuy()}}
-        >Buy</button>
+        >Danh sách đơn hàng</button>
 
 
 

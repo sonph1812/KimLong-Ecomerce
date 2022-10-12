@@ -157,11 +157,11 @@ const SingleProductPage = () => {
                                     <Btn name="Submit" />
                                 </form>
                             </>
-                        // ) : (
-                        //     <Link to="/login">
-                        //         <Btn name="Login" />
-                        //     </Link>
-                        // )}
+                         {/*) : (*/}
+                         {/*    <Link to="/login">*/}
+                         {/*        <Btn name="Login" />*/}
+                         {/*    </Link>*/}
+                         {/*)}*/}
                     </div>
                 </>}
                 {/*)}*/}
