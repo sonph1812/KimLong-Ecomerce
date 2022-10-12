@@ -24,15 +24,14 @@ const handleUpdate = (id) => {
  
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <div ><Header category="Page" title="Brand" /></div>
+      <div ><Header category="Danh Sách" title="Hãng Sản Xuất" /></div>
 
       <table className="min-w-full leading-normal ">
         <thead>
           <tr>
-            <td className="px-5 py-2 border-b-2  border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Name</td>
-            <td className="px-5 py-2 border-b-2  border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Description</td>
-            <td className="px-5 py-2 border-b-2  border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Image</td>
-            <td colSpan={2} className=" text-center px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider colSpan={'2'}"  >Action</td>
+              <td className="px-5 py-2 border-b-2  border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Tên</td>
+              <td className="px-5 py-2 border-b-2  border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"></td>
+              <td colSpan={4} className=" text-center px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider "  >Chức Năng</td>
           </tr>
         </thead>
         <tbody>
@@ -41,12 +40,13 @@ const handleUpdate = (id) => {
               <tr key={brand._id}>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {brand.name}</td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                {brand.description}</td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <img src = {brand.image}/>
-                </td>
-
+                {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">*/}
+                {/*{brand.description}</td>*/}
+                {/*<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">*/}
+                {/*<img src = {brand.image}/>*/}
+                {/*</td>*/}
+                  <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
+                  </td>
                   <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                       <IoAddCircleOutline   onClick={() => { handlerCreate() }}></IoAddCircleOutline>
                   </td>
@@ -55,7 +55,7 @@ const handleUpdate = (id) => {
                       <IoReloadOutline  onClick={() => { handleUpdate(brand._id)}}></IoReloadOutline>
                   </td>
 
-                  <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
+                  <td className="px-2 py-2 border-b border-gray-200 bg-white  content-center">
                       <IoTrashOutline onClick={() => { handlerDelete(brand._id) }}></IoTrashOutline>
                   </td>
               </tr>
