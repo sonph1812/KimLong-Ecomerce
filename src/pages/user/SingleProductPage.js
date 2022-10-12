@@ -2,17 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useNavigate, useParams } from 'react-router-dom';
 import Btn from '../../components/Btn';
 import PageHero from '../../components/PageHero';
-import SingleReview from '../../components/SingleReview';
 import Stars from '../../components/Stars';
-// import Loading from '../../components/Loading';
-// import Error from '../../components/Error';
-// import NavbarUser from "../../components/NavbarUser";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment, deleteComment, getDetailProduct, addStar } from "../../service/productService";
 import AddtoCart from "../../components/AddtoCart";
-// import { formatPrice } from "../../utils/helpers";
 import ReactStars from "react-rating-stars-component";
 import { checkStar } from "../../reducer/slice/productSlice"
+import Rating from '../../components/rating/Rating';
 
 const SingleProductPage = () => {
     const dispatch = useDispatch()
@@ -24,7 +20,7 @@ const SingleProductPage = () => {
     const [comment, setComment] = useState('')
     const user = useSelector(s => s.userReducer.userInfo)
     const star = useSelector(s => s.productReducer.star)
-    // console.log(star);
+
     useEffect(() => {
 
         getDetailProduct(dispatch, params.id)
@@ -35,7 +31,6 @@ const SingleProductPage = () => {
         if (product && product.stars) {
             for (let star of product.stars) {
                 if (star.userId == userInfo._id) {
-                    console.log(star);
                     dispatch(checkStar(star.text))
 
                 }
@@ -59,30 +54,25 @@ const SingleProductPage = () => {
     }
 
 
-    const ratingChanged = (newRating) => {
-        addStar(product._id, { text: newRating, userId: userInfo._id }, dispatch)
-    };
+    // const ratingChanged = (newRating) => {
+    //     dispatch(checkStar(newRating))
+    //     addStar(product._id, { text: newRating, userId: userInfo._id }, dispatch)
+    // };
 
-    const sD = {
-        count: 5,
-        onChange: ratingChanged,
-        size: 24,
-        activeColor: "#ffd700",
-        value: star
-    }
-
+    // const sD = {
+    //     count: 5,
+    //     onChange: ratingChanged,
+    //     size: 24,
+    //     activeColor: "#ffd700",
+    //     value: star
+    // }
+    console.log(star);
     return (
         <>
-            {/*<NavbarUser/>*/}
-
 
             <PageHero title={name} product />
             <section className="  px-20  justify-center bg-white py-10 ">
-                {/*{Loading ? (*/}
-                {/*    <Loading />*/}
-                {/*) : error ? (*/}
-                {/*    <Error title={error} />*/}
-                {/*) : (*/}
+            
                 {product && <>
                     {/* Product details */}
                     <div className=" mx-auto flex flex-wrap ">
@@ -114,9 +104,11 @@ const SingleProductPage = () => {
                         </h2>
 
                         <div className="flex items-center mt-4">
-                            <ReactStars
+                            {/* <ReactStars
                                {...sD}
-                            />
+                            /> */}
+                            <Rating star = {star}></Rating>
+                             
                         </div>
 
                     </div>
