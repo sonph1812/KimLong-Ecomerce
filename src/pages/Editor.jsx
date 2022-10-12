@@ -19,6 +19,7 @@ const Editor = () => {
             [e.target.name]: e.target.value
         })
     }
+
     const handlerCreate = async (e) => {
         e.preventDefault()
         let imageUpload = image;
@@ -32,6 +33,7 @@ const Editor = () => {
             });
         }
         navigate('/admin/products')
+
     }
 const handlePreviewAvatar = (e) => {
     const file = e.target.files[0];

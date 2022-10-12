@@ -5,6 +5,7 @@ import { deleteCategory, getDetailCategory, updateCategorys } from "../service/c
 import { useNavigate } from 'react-router-dom';
 import {IoAddCircleOutline, IoReloadOutline, IoTrashOutline} from "react-icons/io5";
 
+
 const Categories = () => {
   const categoryList = useSelector(state => state.categoryReducer.categories);
   const dispatch = useDispatch();
