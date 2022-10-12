@@ -13,6 +13,7 @@ import { useStateContext } from '../contexts/ContextProvider';
 
 const NavbarUser = () => {
   const userInfo = useSelector(s => s.userReducer.userInfo)
+  console.log(userInfo)
   console.log(userInfo,"sontest")
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = (clicked) => setIsClicked(  {userProfile:true,[clicked]:true });

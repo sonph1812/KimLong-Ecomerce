@@ -26,7 +26,7 @@ export const addItem = (id, data, dispatch, navigate) => {
             navigate('/cart')
 
         }).catch((err) => {
-            alert('product not found')
+            alert('You must login')
             // dispatch(addItemSlice(err.data.status))
         })
 
