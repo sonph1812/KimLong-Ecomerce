@@ -6,6 +6,7 @@ function MyOrderPage() {
     const dispatch = useDispatch()
     const handelDelete = (id,index) => {
         deleteOrder(id,index,dispatch)
+
     }
     return (
         <div>
