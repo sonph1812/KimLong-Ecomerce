@@ -57,9 +57,10 @@ const CateGoryDetail = ({list,category}) => {
                     </>
 
 
-                <Link to="/products">
-                    <Btn name="Xem tất cả phụ kiện chính hãng"/>
+                <Link to="/products" className={'mt-6'}>
+                    <Btn name="Xem tất cả " className={'mt-6'}/>
                 </Link>
+
             </div>
         </section>
     );

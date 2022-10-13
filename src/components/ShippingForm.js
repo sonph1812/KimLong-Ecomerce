@@ -54,7 +54,7 @@ const ShippingForm = () => {
   return (
     <div className="flex-col items-center justify-center mt-20 pb-10">
       <div
-        className="w-full px-5 sm:w-1/2 xl:w-1/3  mx-auto"
+        className="w-full px-5 sm:w-1/2 xl:w-1/3  mx-auto border-8 p-4"
       >
         {/* Address */}
         <div className="mb-6">
@@ -99,10 +99,10 @@ const ShippingForm = () => {
         </div>
 
         {/* Postal Code */}
-        <div className="mb-6 bg-yellow-200">
+        <div className="mb-6 ">
           <label
             htmlFor="postalCode"
-            className="block mb-2 text-sm font-medium text-gray-900 bg-yellow-200 "
+            className="block mb-2 text-sm font-medium text-gray-900  "
 
           >
             Phương thức thanh toán

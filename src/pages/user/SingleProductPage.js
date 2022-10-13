@@ -15,11 +15,13 @@ const SingleProductPage = () => {
     const params = useParams()
     const product = useSelector(state => state.productReducer.product)
     const comments = useSelector(s => s.productReducer.comments)
+    console.log(comments)
     const role = localStorage.getItem('role')
     const userInfo = useSelector(s => s.userReducer.userInfo)
     const [comment, setComment] = useState('')
     const user = useSelector(s => s.userReducer.userInfo)
     const star = useSelector(s => s.productReducer.star)
+    console.log(star)
 
     useEffect(() => {
 
@@ -139,40 +141,59 @@ const SingleProductPage = () => {
                                     {/* /!* Submit btn *!/ */}
                                     <p
                                         onClick={(e) => { handelSubmit(e) }}
-                                    ><Btn name="Submit" /></p>
+                                    ><Btn name="Bình luận" /></p>
                                 </form>
                             </>
                         ) : (
                             <Link to="/login">
-                                <Btn name="Login" />
+                                <Btn name="Đăng nhập để bình luận" />
                             </Link>
                         )}
-                        <div>
+                        <div  className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12 border-8 p-3">
                             {
                                 comments[0] && comments.map((item, index) => {
 
                                     return (
-                                        item.userId._id == userInfo._id ? <div key={index}>
-                                            <p>{item.userId.name}</p>
-                                            <p>{item.comment}</p>
+                                        item.userId._id == userInfo._id ? <div key={index} className="rounded">
+                                            <header className="sm:items-center sm:flex ">
+                                                {/*<Stars stars={stars} />*/}
 
+                                                <p className="mt-2 font-medium sm:ml-4 sm:mt-0"></p>
+                                            </header>
+
+                                            <p className="mt-2 text-gray-700">{item.comment}</p>
+
+                                            <footer className="mt-4">
+                                                <p className="text-xs text-gray-500">{item.userId.name}</p>
+                                            </footer>
                                             <button
                                                 onClick={() => { handelDelete(item._id, index) }}
                                             >delete</button>
                                             <button
                                                 onClick={() => { handelEdit(item._id, index) }}
                                             >Edit</button>
-                                        </div> : <div key={index}>
-                                            <p>{item.userId.name}</p>
-                                            <p>{item.comment}</p>
+                                        </div> : <div key={index} className={"bg-gray-200 rounded-lg p-3 border-yellow-300"}>
+                                            <header className="sm:items-center sm:flex">
+                                                {/*<Stars stars={stars} />*/}
+
+                                                <p className=" font-medium sm:ml-4 sm:mt-0"></p>
+                                            </header>
+                                            <footer className="mt-4">
+                                                <img src={item.image} alt=""/>
+                                                <p className=" text-gray-500 text-xl font-bold">{item.userId.name}</p>
+                                            </footer>
+                                            <p className="mt-2 text-gray-700 font-base">Nhận xét: {item.comment}</p>
+
+
                                         </div>
                                     )
                                 })
                             }
                         </div>
                     </div>
-                </>}
-                {/* )} */}
+                </>
+                }
+
             </section>
         </>
     );

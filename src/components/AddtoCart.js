@@ -116,7 +116,7 @@ const AddtoCart = ({ product }) => {
           {formatPrice(price)}
         </span>
         <p
-          className="flex ml-auto bg-secondary-800 border-0 py-2 px-6 focus:outline-none hover:bg-secondary-900 rounded"
+          className="flex ml-auto bg-yellow-200 border-0 py-2 px-6 focus:outline-none hover:bg-secondary-900 rounded"
           onClick={() => { addToCart(_id) }}
         >
           Add to cart

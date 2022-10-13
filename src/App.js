@@ -4,19 +4,8 @@ import {
     Staffs,
     Ecommerce,
     Orders,
-    Calendar,
-    Employees,
-    Stacked,
-    Pyramid,
     Customers,
-    Kanban,
-    Line,
-    Area,
-    Bar,
-    Pie,
-    Financial,
-    ColorPicker,
-    ColorMapping,
+
     Editor
 } from './pages';
 import CreateStaff from './pages/staffs/CreateStaff';

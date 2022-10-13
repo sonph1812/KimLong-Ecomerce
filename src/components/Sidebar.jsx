@@ -24,7 +24,7 @@ const Sidebar = () => {
         name: 'Hóa Đơn',
         link : 'orders',
         icon: <AiOutlineShoppingCart />,
-        role: "admin"
+        role: "accountant"
       },
       {
 
@@ -49,13 +49,13 @@ const Sidebar = () => {
         name : 'Loại Sản Phẩm',
         link : 'categories',
         icon : <AiFillAppstore />,
-        role : 'admin'
+        role : 'seller'
       },
       {
       name : "Hãng Sản Xuất",
       link : "brands",
       icon : <AiFillSketchCircle />,
-      role : 'admin'
+      role : 'seller'
       }
 
     ]
@@ -95,7 +95,7 @@ const Sidebar = () => {
                 Trang Chủ
               </p>
               {pages.map((link) =>
-                  {return (role  && <NavLink
+                  {return (role === link.role && <NavLink
                     to={`/admin/${link.link}`}
                     key={link.name}
                     onClick={handleCloseSideBar}

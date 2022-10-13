@@ -33,7 +33,13 @@ const Orders = () => {
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{index + 1}</td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{order.userId.name}</td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">${order.content?.totals}</td>
-                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{order.status}</td>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+
+                                {order.status === "pending" ? <div className="bg-yellow-400 border-1 rounded-2xl w-1/2  text-center">Đang chờ</div> : (order.status === "ok" ?
+                                <div className="bg-green-700 text-white border-1 rounded-2xl w-1/2  text-center">Thành công</div>
+                                :   <div className="bg-red-500 text-white border-1 rounded-2xl w-1/2  text-center">Hủy</div>)}
+
+                            </td>
 
                             <td   className="px-4 py-4 border-b border-gray-200 bg-white text-sm">
                                 <button 
@@ -47,7 +53,7 @@ const Orders = () => {
                             <td className="px-4 py-2 border-b border-gray-200 bg-white text-sm">
                                 <button
                                     onClick={()=>{handelOk(order._id,index)}}
-                                className="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-red-700 text-white text-sm font-medium rounded-md" >
+                                className="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-700 text-white text-sm font-medium rounded-md" >
 
 
                                     Xác nhận
