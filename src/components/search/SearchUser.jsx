@@ -29,7 +29,9 @@ function SearchUser() {
     }
     const arr = ['product', 'category', 'brand']
 
-
+    const handleGetDetail = (id) => {
+        navigate(`/product/${id}`)
+    }
     const handelClick = () => {
         dispatch(setProductSearch(products.filter(isSearch)))
         dispatch(setBrandSearch(categories.filter(isSearch)))
@@ -103,8 +105,8 @@ function SearchUser() {
                                     {list.map((item,index2) => (
                                         <Combobox.Option key={index2} value={item}>
                                             {({ active}) => (
-                                                <div className={`px-4 py-2 space-x-1 ${active ? 'bg-indigo-600' : 'bg-white'}`} >
-                                                    <span className={`font-medium ${active ? 'text-white' : 'text-gray-900'}`}>{item.name}</span>
+                                                <div className={`px-4 py-2 space-x-1 ${active ? 'bg-yellow-400' : 'bg-white'}`} >
+                                                    <span  onClick={()=>(handleGetDetail(item._id))} className={`font-medium ${active ? 'text-white' : 'text-gray-900'}` }>{item.name}</span>
                                                     {/*<span className={`${active ? 'text-indigo-200' : 'text-gray-400'}`}>{user.gender}</span>*/}
                                                 </div>
                                             )}
