@@ -3,9 +3,24 @@ import { useNavigate } from "react-router-dom"
 import { setProductSearch } from "../../reducer/slice/productSlice"
 import { setBrandSearch } from "../../reducer/slice/brandSlice"
 import { setCategorySearch } from "../../reducer/slice/categorySlice"
-import { useDispatch } from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import {useEffect} from "react";
+import {Combobox, Dialog, Transition} from "@headlessui/react";
+import {Fragment} from "react";
+import {SearchIcon} from "@heroicons/react/outline";
+import {MagnifyingGlassIcon} from "@heroicons/react/20/solid";
 
-function SearchUser({ products, categories, brands }) {
+function SearchUser() {
+    let [isOpen, setIsOpen] = useState(false)
+    let [query, setQuery] = useState('')
+    const categories = useSelector(state => state.categoryReducer.categories)
+    const products = useSelector(state => state.productReducer.products)
+    console.log(products)
+    const brands = useSelector (s => s.brandReducer.brands)
+
+    const categoriesSearch = useSelector(state => state.categoryReducer.listSearch)
+    const productsSearch = useSelector(state => state.productReducer.listSearch)
+    const brandsSearch = useSelector (s => s.brandReducer.listSearch)
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,7 +34,6 @@ function SearchUser({ products, categories, brands }) {
         dispatch(setProductSearch(products.filter(isSearch)))
         dispatch(setBrandSearch(categories.filter(isSearch)))
         dispatch(setCategorySearch(brands.filter(isSearch)))
-        navigate('/user/search')
     }
     const isSearch = (item) => {
         if (search === "") {
@@ -28,58 +42,81 @@ function SearchUser({ products, categories, brands }) {
         return item.name.toLowerCase().includes(search.toLowerCase())
     }
 
+    useEffect(() => {
+        function onKeyDown(event) {
+            if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
+                setIsOpen(!isOpen)
+            }
+        }
+        window.addEventListener("keydown", onKeyDown)
+        return () => {
+            window.removeEventListener("keydown", onKeyDown)
+        }
+    }, [isOpen])
+  var  list = products?.filter(isSearch)
+
     return (
 
         <div>
-            <input style={{
-                position: "absolute", right: "80px", top: "190px",
-                width: "400px"
+            (
+            <Transition.Root show={isOpen} as={Fragment}>
+                <Dialog
+                    className="fixed inset-0 p-4 pt-[25vh] overflow-y-auto"
+                    onClose={setIsOpen}>
+                    <Transition.Child
+                        enter="duration-300 ease-out"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="duration-200 ease-in"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <Dialog.Overlay className="fixed inset-0 bg-gray-50/75" />
+                    </Transition.Child>
 
-            }}
-                onChange={e => { handleChange(e) }}
-                type="text"
-                placeholder="Search" className="mb-3 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-            <button
-                style={{
-                    position: "absolute", right: "90px", top: "195px"
+                    <Transition.Child
+                        enter="duration-300 ease-out"
+                        enterFrom="opacity-0 scale-95"
+                        enterTo="opacity-100 scale-100"
+                        leave="duration-200 ease-in"
+                        leaveFrom="opacity-100 scale-100"
+                        leaveTo="opacity-0 scale-95">
 
-                }}
-                onClick={() => {
-                    handelClick()
-                }}
-                class="p-1 focus:outline-none focus:shadow-outline">
-                <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" class="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            </button>
-            <button onClick={() => {
-                    handelClick()
-                }}>Click</button>
-            {search !== "" && <div className="absolute right-20 z-10 w-96  origin-top-right bg-white border border-gray-100 rounded-md shadow-lg">
-               
-                <div className = "w-40">
-                    {
-                    arr.map((item, index) => {
-                        let list = []
-                        if (item == 'product') {
-                            list = products.filter(isSearch)
-                        } else if (item == "category") {
-                            list = categories.filter(isSearch)
-                        } else if (item == 'brand') {
-                            list = brands.filter(isSearch)
-                        }
-                        return (
-                           list[0] && <div key = {index} >
-                                <p>{item}</p>
-                                {list.map((i,index2) => (
-                                    <div key = {index2}>{i.name}</div>
-                                ))}
+                        <Combobox
+                            as="div"
+                            className="bg-white max-w-lg mx-auto relative rounded-xl shadow-2xl ring-1 ring-black/5 divide-y divide-gray-100 overflow-hidden"
+                            onChange={() => {
+                                setIsOpen(false)
+                            }} value="">
+
+                            <div className="flex items-center px-4">
+                                <MagnifyingGlassIcon className="h-6 w-6 text-gray-500"  onClick={() => {
+                                    handelClick()
+                                }} />
+
+                                <Combobox.Input
+                                    placeholder="Search..."
+                                    className="h-12 w-full border-0 bg-transparent ring-0 focus:ring-transparent focus:ring-0 text-sm text-gray-800 placeholder-gray-400"
+                                    onChange={(e) => (handleChange(e))} />
                             </div>
+                                <Combobox.Options static className="py-4 text-sm max-h-96 overflow-y-auto">
+                                    {list.map((item,index2) => (
+                                        <Combobox.Option key={index2} value={item}>
+                                            {({ active}) => (
+                                                <div className={`px-4 py-2 space-x-1 ${active ? 'bg-indigo-600' : 'bg-white'}`} >
+                                                    <span className={`font-medium ${active ? 'text-white' : 'text-gray-900'}`}>{item.name}</span>
+                                                    {/*<span className={`${active ? 'text-indigo-200' : 'text-gray-400'}`}>{user.gender}</span>*/}
+                                                </div>
+                                            )}
+                                        </Combobox.Option>
+                                    ))}
+                                </Combobox.Options>
+                        </Combobox>
+                    </Transition.Child>
 
-                        )
-
-                    })
-                    }
-                </div>
-            </div>
+                </Dialog>
+            </Transition.Root>
+            )
             }
         </div>)
 }

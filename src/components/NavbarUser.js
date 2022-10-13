@@ -10,11 +10,11 @@ import React, {useState} from "react";
 // import { useProductsContext } from '../context/products_context';
 import { useStateContext } from '../contexts/ContextProvider';
 import {IoSearch} from "react-icons/io5";
+import SearchUser from "./search/SearchUser";
 // import CartBtn from './CartBtn';
 
-const NavbarUser = () => {
+const NavbarUser = ({pro,cate,bra}) => {
   const userInfo = useSelector(s => s.userReducer.userInfo)
-  console.log(userInfo,"sontest")
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = (clicked) => setIsClicked(  {userProfile:true,[clicked]:true });
 
@@ -99,19 +99,7 @@ const NavbarUser = () => {
           {/* Right links */}
 
           <ul className="items-center space-x-1 lg:flex justify-end">
-            <li>
-              <div className="hover:scale-105 shadow-amber-700relative block  w-1/2 bg-white rounded transition-delay-150 duration-300 ease-in-out">
-                <input type="text"   className="absolute right-20 bottom-0  w-fit bg-yellow-200 p-2 text-black hover:scale-105"
-                       placeholder="Search..."/>
-                  <button className="flex items-center justify-center px-5">
-                    <svg className="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path
-                          d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path>
-                    </svg>
-                  </button>
-              </div>
-
-            </li>
+          {/*<SearchUser/>*/}
             <li>
               <CartBtn />
             </li>
