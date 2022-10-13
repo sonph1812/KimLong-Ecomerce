@@ -51,7 +51,7 @@ function Search({ list, model }) {
             {search !== "" && <div className="absolute right-20 z-10 w-96  origin-top-right bg-white border border-gray-100 rounded-md shadow-lg">
                 {list && list.filter(isSearch)
                     .map((item) => (
-                        <Link to=""
+                        <Link to={`/admin/${model}Detail/${item._id}`}
                             className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-200 hover:text-gray-700"
                         >
                             {item.name}
