@@ -36,6 +36,8 @@ const EditProducts = () => {
                     navigate('/admin/products')
                 });
             });
+        }else{
+            updateProducts(dispatch, {product: product, id: id})
         }
 
 

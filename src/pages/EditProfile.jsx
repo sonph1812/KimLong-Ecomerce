@@ -13,6 +13,7 @@ function EditProfile() {
   const userUpdate = useSelector(s => s.userReducer.userInfo)
   const userId = userUpdate._id
   // console.log('id',userId);
+  const role = localStorage.getItem('role')
   const [user, setUser] = useState(userUpdate);
   const [avatar, setAvatar] = useState();
   const handleChange = (e) => {
@@ -34,9 +35,20 @@ function EditProfile() {
                 getDownloadURL(snapshot.ref).then((url) => {
                     user.avatar = url;
                     updateUser(userId,user,dispatch)
+                  if(role === 'user'){
                     navigate("/");
+                  }else{
+                    navigate('/admin')
+                  }
                 });
             });
+        }else{
+          updateUser(userId,user,dispatch)
+          if(role === 'user'){
+            navigate("/");
+          }else{
+            navigate('/admin')
+          }
         }
   };
 

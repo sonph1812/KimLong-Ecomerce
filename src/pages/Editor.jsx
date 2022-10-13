@@ -31,6 +31,8 @@ const Editor = () => {
                     createProduct(products, dispatch);
                 });
             });
+        }else{
+            createProduct(products, dispatch);
         }
         navigate('/admin/products')
 
