@@ -12,7 +12,7 @@ function Profile() {
       <div className="w-full md:w-3/12 md:mx-2">
         <div className="bg-white p-3 border-t-4 border-green-400">
           <img
-            className="h-auto w-full mx-auto"
+            className="h-50  w-50 mx-auto"
             src={
               userInfo.avatar
                 ? userInfo.avatar
