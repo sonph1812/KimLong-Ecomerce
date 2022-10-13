@@ -5,14 +5,9 @@ import {useLocation, useNavigate} from "react-router-dom";
 import { getDetailUser } from "../service/userService";
 
 function Profile() {
-  const dispatch = useDispatch()
   const info = useSelector((s) => s.userReducer.userInfo);
-  const id = useParams().id
-  useEffect(()=>{
-    getDetailUser(id,dispatch)
-  },[])
-  const userInfo = useSelector(s=>s.userReducer.user)
-  // const userInfo = useLocation().state.userInfo
+
+  const userInfo = useLocation().state.userInfo
   const navigate = useNavigate();
 
   const editProfile = ()=>{

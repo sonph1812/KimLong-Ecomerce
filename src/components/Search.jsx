@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
-import { setListSearch , setStaffSearch} from "../reducer/slice/userSlice"
+import { Link, useNavigate } from "react-router-dom"
+import { setListSearch, setStaffSearch } from "../reducer/slice/userSlice"
 import { setProductSearch } from "../reducer/slice/productSlice"
 
 import { useDispatch } from "react-redux"
@@ -10,12 +10,13 @@ function Search({ list, model }) {
     const handleChange = (e) => {
         setSearch(e.target.value)
     }
+    const navigate = useNavigate()
     const handelClick = () => {
         if (model === 'user') {
             dispatch(setListSearch(list.filter(isSearch)))
         } else if (model === 'product') {
             dispatch(setProductSearch(list.filter(isSearch)))
-        }else if (model === 'staff'){
+        } else if (model === 'staff') {
             dispatch(setStaffSearch(list.filter(isSearch)))
         }
     }
@@ -51,11 +52,21 @@ function Search({ list, model }) {
             {search !== "" && <div className="absolute right-20 z-10 w-96  origin-top-right bg-white border border-gray-100 rounded-md shadow-lg">
                 {list && list.filter(isSearch)
                     .map((item) => (
-                        <Link to={`/admin/${model}Detail/${item._id}`}
+                        <p
+
+                            onClick={() => {
+                                if (model === "product") {
+                                    navigate(`/admin/${model}Detail/${item._id}`)
+                                } else if (model === "user" || model === "staff") {
+                                    navigate(`/admin/userDetail/${item._id}`, { state: { userInfo: item } })
+                                }
+                            }
+                            }
+
                             className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-200 hover:text-gray-700"
                         >
                             {item.name}
-                        </Link>
+                        </p>
                     ))}
             </div>}
         </div>)
