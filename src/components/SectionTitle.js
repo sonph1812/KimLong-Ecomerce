@@ -2,7 +2,7 @@ import React from 'react';
 
 const SectionTitle = ({title}) => {
   return (
-    <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 mb-16">
+    <h2  className="relative inline-block bg-white px-4 text-center text-2xl font-bold">
       {title}
     </h2>
   );

@@ -60,15 +60,15 @@ function LoginForm() {
   };
   return (
     <div className="main-bg">
-      <div className="flex  md:flex-row items-center justify-center  px-4 sm:px-8 lg:px-8 bg-yellow-200">
-        <div className="h-full md:h-auto md:w-1/2">
+      <div className="flex  md:flex-row items-center justify-center  border-1 px-4 sm:px-8 lg:px-8 bg-white">
+        <div className="min-h-screen md:h-auto md:w-1/2">
           <img
-            className="mt-8 space-y-6 px-5 py-5   rounded-lg"
+            className="mt-8 space-y-6 px-5 py-12   rounded-lg"
             src={"assets/banner/kimlong-wellcome.png"}
             alt="img"
           />
         </div>
-        <div className="h-full md:h-auto md:w-1/2">
+        <div className="h-full md:h-auto py-28 md:w-1/2">
           <div>
             <h1 className="mt-6 text-center text-3xl font-bold tracking-tight text-black">Đăng nhập vào tài khoản của bạn
             </h1>
@@ -134,7 +134,7 @@ function LoginForm() {
             <div>
               <button
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-yellow-400 py-2 px-4 text-sm font-medium text-white hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+                className="group relative flex w-full justify-center h8 rounded-md border border-transparent bg-yellow-400 py-2 px-4 text-sm font-medium text-white hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
                 onClick={login}
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">

@@ -18,7 +18,7 @@ const CateGoryDetail = ({list,category}) => {
     return (
         <section id="new" className="mx-auto max-w-screen-xl px-4 py-8  bg-white">
             <div className="max-w-2xl mx-auto  px-4  sm:px-6 lg:max-w-7xl lg:px-8 text-center ">
-                <SectionTitle title={category.name} />
+                <SectionTitle title={category.name} className=" relative inline-block bg-white px-4 text-center text-2xl font-bold" />
                 <>
                     <Swiper
                         slidesPerView={4}
@@ -29,11 +29,11 @@ const CateGoryDetail = ({list,category}) => {
                         }}
                         navigation={true}
                         modules={[Pagination, Navigation]}
-                        className="bg-white"
+                        className="bg-white "
                     >
                         {list?.map((product, index) => (
 
-                            <SwiperSlide  className="p-6">
+                            <SwiperSlide  className="p-6 ">
                                 <div className="  gap-x-4 gap-y-8  rounded-2xl ">
 
                                         <a  onClick={()=>(handleGetDetail(product._id))} className="  rounded-2xl hover:scale-90 shadow-amber-700relative block border border-gray-100 transition-delay-150 duration-300 ease-in-out">
@@ -44,6 +44,7 @@ const CateGoryDetail = ({list,category}) => {
                                             />
 
                                             <div className="p-6">
+                                                <p>{formatPrice(product.price)}</p>
                                             </div>
                                         </a>
                                 </div>
@@ -52,7 +53,7 @@ const CateGoryDetail = ({list,category}) => {
 
                         ))}
 
-                    </Swiper>
+                    </Swiper >
                     </>
 
 

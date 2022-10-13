@@ -19,9 +19,9 @@ const HomePage = () => {
     const brands = useSelector (s => s.brandReducer.brands)
     return (
         <><div className="relative min-h-screen">
-            <p className="flex h-10 items-center justify-center bg-yellow-200 px-4 text-sm font-medium text-black sm:px-6 lg:px-8">Get free delivery on orders over $999</p>
+            <p className="flex h-14 items-center justify-center bg-yellow-200 px-4  text-xl font-medium text-black sm:px-6 lg:px-8">Đăng kí ngay nhận ngay hàng ngàn quà tặng</p>
             {/*<Hero />*/}
-            <Banner />
+            {/*<Banner />*/}
             <FeaturedProducts />
             {/*<Promo />*/}
             <SearchUser/>

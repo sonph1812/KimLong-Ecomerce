@@ -74,14 +74,14 @@ const ProductList = () => {
 
     return (
         <>
-            <PageHero title="Sản phẩm" className="bg-amber-200" />
+            <PageHero title="Sản phẩm" className="bg-amber-200  " />
             <section>
                 <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-start">
+                    <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-start" style={{gridGap: '10px'}}>
                         <div className="lg:sticky lg:top-4">
-                            <details open className="overflow-hidden rounded border border-gray-200">
+                            <details open className="overflow-hidden rounded border">
                                 <summary
-                                    className="flex items-center justify-between bg-gray-100 px-5 py-3 lg:hidden"
+                                    className="flex items-center justify-between  px-5 py-3 lg:hidden"
                                 >
                                     <svg
                                         className="h-5 w-5"
@@ -135,7 +135,7 @@ const ProductList = () => {
                                                     onClick={() => { setCate([]) }}
                                                     type="reset"
                                                 >
-                                                    Reset Type
+                                                    Thay đổi lựa chọn
                                                 </button>
                                             </div>
                                         </div>
@@ -151,8 +151,7 @@ const ProductList = () => {
                                             className="rounded text-xs font-medium text-gray-600 underline"
                                             onClick={() => { setList(currentProducts) }}
                                         >
-                                            Reset All
-                                        </button>
+Xóa tất cả lựa chọn                                        </button>
 
                                         <button
                                             name="commit"
@@ -160,7 +159,7 @@ const ProductList = () => {
                                             className="rounded bg-green-600 px-5 py-3 text-xs font-medium text-white"
                                             onClick={() => { handelApply() }}
                                         >
-                                            Apply Filters
+                                            Lọc
                                         </button>
                                     </div>
                                 </form>
@@ -177,26 +176,26 @@ const ProductList = () => {
                                 <div className="ml-4">
                                     <label htmlFor="SortBy" className="sr-only"> Sort </label>
 
-                                    <select
-                                        id="SortBy"
-                                        name="sort_by"
-                                        className="rounded border-gray-100 text-sm"
-                                    >
-                                        <option readonly>Sort</option>
-                                        <option value="title-asc">Title, A-Z</option>
-                                        <option value="title-desc">Title, Z-A</option>
-                                        <option value="price-asc">Price, Low-High</option>
-                                        <option value="price-desc">Price, High-Low</option>
-                                    </select>
+                                    {/*<select*/}
+                                    {/*    id="SortBy"*/}
+                                    {/*    name="sort_by"*/}
+                                    {/*    className="rounded border-gray-100 text-sm"*/}
+                                    {/*>*/}
+                                    {/*    <option readonly>Sort</option>*/}
+                                    {/*    <option value="title-asc">Title, A-Z</option>*/}
+                                    {/*    <option value="title-desc">Title, Z-A</option>*/}
+                                    {/*    <option value="price-asc">Price, Low-High</option>*/}
+                                    {/*    <option value="price-desc">Price, High-Low</option>*/}
+                                    {/*</select>*/}
                                 </div>
                             </div>
 
                             <div
-                                className="mt-4 grid grid-cols-1 gap-px border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-3"
+                                className="mt-4 grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3" style={{gridGap:'10px'}}
                             >
 
                                 {list && list.map((product, index) => (
-                                    <a onClick={() => (handleGetDetail(product._id))} className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                                    <a onClick={() => (handleGetDetail(product._id))} className="hover:scale-105 shadow-amber-700relative block   bg-white rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out pl-2 pr-2">
                                         <img
                                             // alt="Toy"
                                             src={product.image}
@@ -213,7 +212,7 @@ const ProductList = () => {
 
                                             <h5 className="mt-4 text-lg font-bold">{product.name}</h5>
 
-                                            <p className="mt-2 text-sm font-medium text-gray-600">{product.price}</p>
+                                            <p className="mt-2 text-sm font-medium text-gray-600">{formatPrice(product.price)}</p>
 
                                             <button
                                                 type="button"

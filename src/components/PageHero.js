@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const PageHero = ({ title, product }) => {
     return (
-        <div className="w-full bg-amber-200 h-24 flex items-center">
-            <nav className="rounded-md w-full py-5 section-center">
+        <div className="w-full bg-amber-200 h-20 flex items-center ">
+            <nav className="rounded-md w-full py-5 section-center pl-44">
                 <ol className="list-reset flex  sm:text-3xl">
                     <li>
                         <Link

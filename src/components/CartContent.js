@@ -18,7 +18,7 @@ const CartContent = () => {
   return (
     <>
       <section className="container mx-auto text-center py-14">
-        <h2 className="mb-10 text-4xl md:text-5xl font-bold ">Your cart</h2>
+        <h2 className="mb-10 text-4xl md:text-5xl font-bold ">Giỏ hàng</h2>
 
         <div className="flex flex-wrap items-center -mx-4">
           {/* Your Cart */}
@@ -26,16 +26,16 @@ const CartContent = () => {
             {/* Products columns*/}
             <div className="hidden lg:flex w-full">
               <div className="w-full lg:w-3/6 text-center">
-                <h4 className="mb-6 font-bold  text-gray-500">Description</h4>
+                <h4 className="mb-6 font-bold  text-gray-500">Tên sản phẩm</h4>
               </div>
               <div className="w-full lg:w-1/6">
-                <h4 className="mb-6 font-bold  text-gray-500">Price</h4>
+                <h4 className="mb-6 font-bold  text-gray-500">Giá</h4>
               </div>
               <div className="w-full lg:w-1/6 text-center">
-                <h4 className="mb-6 font-bold  text-gray-500">Quantity</h4>
+                <h4 className="mb-6 font-bold  text-gray-500">Số lượng</h4>
               </div>
               <div className="w-full lg:w-1/6 text-right">
-                <h4 className="mb-6 font-bold  text-gray-500">Subtotal</h4>
+                <h4 className="mb-6 font-bold  text-gray-500">Tổng</h4>
               </div>
             </div>
 
@@ -54,7 +54,7 @@ const CartContent = () => {
                 <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                 <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                 <span className="relative text-black group-hover:text-white">
-                  Clear Cart
+                  Làm mới giỏ hàng
                 </span>
               </button>
 
@@ -63,7 +63,7 @@ const CartContent = () => {
                   <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                   <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                   <span className="relative text-black group-hover:text-white">
-                    Back to shop
+                    Quay lại cửa hàng
                   </span>
                 </button>
               </Link>
@@ -71,7 +71,7 @@ const CartContent = () => {
           </div>
 
           {/* Cart totals */}
-          <CartTotals name="Proceed to checkout" to="/shipping" totals = {totals}/>
+          <CartTotals name="Tiến hành thanh toán" to="/shipping" totals = {totals}/>
 
         </div>
       </section>

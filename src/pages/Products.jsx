@@ -109,7 +109,7 @@ const Products = ({currentItems,itemsPerPage}) => {
                 ))}
         </tbody>
       </table>
-            <Pagination className = "justify-center"  productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
+            <Pagination className = "justify-center"  productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate} style={{marginTop:'30px'}}/>
 
         </div>
   );

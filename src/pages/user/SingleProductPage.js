@@ -100,7 +100,7 @@ const SingleProductPage = () => {
                     {/* Product reviews */}
                     <div className="max-w-screen-xl  py-8 mx-auto  ">
                         <h2 className="text-xl font-bold sm:text-2xl">
-                            Customer Reviews
+                            Đánh giá khách hàng
                         </h2>
 
                         <div className="flex items-center mt-4">
@@ -127,7 +127,7 @@ const SingleProductPage = () => {
                                         htmlFor="message"
                                         className="block my-2 text-sm font-medium text-gray-900 "
                                     >
-                                        Your message
+                                        Bình luận của bạn
                                     </label>
                                     <textarea
                                         id="message"

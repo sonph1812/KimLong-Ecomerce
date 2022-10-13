@@ -60,7 +60,7 @@ function SearchUser() {
     return (
 
         <div>
-            (
+
             <Transition.Root show={isOpen} as={Fragment}>
                 <Dialog
                     className="fixed inset-0 p-4 pt-[25vh] overflow-y-auto"
@@ -118,8 +118,7 @@ function SearchUser() {
 
                 </Dialog>
             </Transition.Root>
-            )
-            }
+
         </div>)
 }
 export default SearchUser;

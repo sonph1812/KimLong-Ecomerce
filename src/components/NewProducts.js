@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import {formatPrice} from "../utils/helpers";
 
 const NewProducts = () => {
     const navigate = useNavigate()
@@ -28,7 +29,7 @@ const NewProducts = () => {
                 <div className=" mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 rounded-2xl ">
                     {products?.map((product, index) => (
 
-                        <a onClick={() => (handleGetDetail(product._id))} className=" hover:scale-105 shadow-amber-700relative block rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
+                        <a onClick={() => (handleGetDetail(product._id))} className="hover:scale-105 shadow-amber-700relative block rounded-2xl border border-gray-100 transition-delay-150 duration-300 ease-in-out">
                             <img
                                 alt="Toy"
                                 src={product.image}
@@ -36,7 +37,7 @@ const NewProducts = () => {
                             />
 
                             <div className="p-6">
-                                <p className="text-sm font-medium text-gray-600">${product.price}</p>
+                                <p className="text-sm font-medium text-gray-600">{formatPrice(product.price)}</p>
 
                                 <h5 className="mt-1 text-lg font-bold">{product.name}</h5>
 
