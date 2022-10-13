@@ -5,7 +5,6 @@ import { formatPrice } from '../utils/helpers';
 
 const CartTotals = ({ name, to, totals }) => {
   const userInfo = useSelector(s => s.userReducer.userInfo)
-  const total_amount = 10;
   const shipping_fee = 10;
 
   return (

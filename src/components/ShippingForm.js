@@ -4,6 +4,7 @@ import Btn from './Btn';
 import { Link, useNavigate } from "react-router-dom"
 import { addOrder } from '../service/orderService';
 import Steps from "./Steps";
+import { clearCart } from '../service/cartService';
 const ShippingForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -12,7 +13,7 @@ const ShippingForm = () => {
   const cart = useSelector(s => s.cartReducer.cart)
   const items = useSelector(s => s.cartReducer.items)
   const totals = useSelector(s => s.cartReducer.totals)
-
+  const cartId = useSelector(s => s.cartReducer.cartId)
 
   const [address, setAddress] = useState('');
   const [payment, setPayment] = useState('');
@@ -24,7 +25,6 @@ const ShippingForm = () => {
       navigate('/login')
     }
   }, [])
-
   const handelSubmit = (e) => {
     if (!items[0]) {
       alert('không có sản phẩm trong cart')
@@ -32,6 +32,7 @@ const ShippingForm = () => {
       if (address == '' || payment == '' || shipping == '') {
         alert('điền đầy đủ thông tin')
       } else {
+        
         addOrder({
           address: address,
           userId: userInfo._id,
@@ -43,8 +44,10 @@ const ShippingForm = () => {
             totals: totals
           }
         }, dispatch)
+  
         navigate('/order')
       }
+      clearCart(cartId, dispatch)
     }
   }
 

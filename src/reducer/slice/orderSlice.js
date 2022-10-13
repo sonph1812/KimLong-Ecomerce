@@ -20,10 +20,19 @@ const orderSlice = createSlice({
         myOrdersSlice: (state, action) =>{
             state.orders = action.payload
         },
-        sendOrderSlice: (state,action) => {
-            
+        cancelOrderSlice : (state, action) => {
+            state.orders[action.payload.index] = {
+                ...state.orders[action.payload.index],
+                status: 'cancel'
+            }
+        },
+        okOrderSlice : (state,action) => {
+            state.orders[action.payload.index] = {
+                ...state.orders[action.payload.index],
+                status: 'ok'
+            }
         }
     }
 })
-export const {getAllOrderSlice, addOrderSlice, deleteOrderSlice, myOrdersSlice} = orderSlice.actions;
+export const {cancelOrderSlice,okOrderSlice, getAllOrderSlice, addOrderSlice, deleteOrderSlice, myOrdersSlice} = orderSlice.actions;
 export default orderSlice.reducer

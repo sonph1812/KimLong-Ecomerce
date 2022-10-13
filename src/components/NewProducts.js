@@ -9,8 +9,10 @@ const NewProducts = () => {
 
     }
 
-    const products = useSelector(state => state.productReducer.products)
+    const list = useSelector(state => state.productReducer.products)
+    const products = list.filter((item) => { return item.rating == 5 }).slice(0, 8)
 
+    console.log(products);
     return (
         <section>
             <div className="mx-auto max-w-screen-xl px-4 py-8 bg-white ">
@@ -22,7 +24,7 @@ const NewProducts = () => {
                     <h2
                         className="relative inline-block bg-white px-4 text-center text-2xl font-bold"
                     >
-                        Có Thể Bạn Sẽ Thích                  </h2>
+                        Top Sản Phẩm HOT      </h2>
                 </div>
 
                 <div className=" mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 rounded-2xl ">

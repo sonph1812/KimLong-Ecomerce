@@ -15,7 +15,6 @@ const SingleProductPage = () => {
     const params = useParams()
     const product = useSelector(state => state.productReducer.product)
     const comments = useSelector(s => s.productReducer.comments)
-    console.log(comments)
     const role = localStorage.getItem('role')
     const userInfo = useSelector(s => s.userReducer.userInfo)
     const [comment, setComment] = useState('')
@@ -145,26 +144,18 @@ const SingleProductPage = () => {
                             </>
                         ) : (
                             <Link to="/login">
-                                <Btn name="Đăng nhập để bình luận" />
+                                <Btn name="Login" />
                             </Link>
                         )}
-                        <div  className="grid grid-cols-1 mt-8 lg:grid-cols-2 gap-x-16 gap-y-12 border-8 p-3">
+                        <div>
                             {
                                 comments[0] && comments.map((item, index) => {
 
                                     return (
-                                        item.userId._id == userInfo._id ? <div key={index} className="border-1">
-                                            <header className="sm:items-center sm:flex ">
-                                                {/*<Stars stars={stars} />*/}
+                                        item.userId._id == userInfo._id ? <div key={index}>
+                                            <p>{item.userId.name}</p>
+                                            <p>{item.comment}</p>
 
-                                                <p className="mt-2 font-medium sm:ml-4 sm:mt-0"></p>
-                                            </header>
-
-                                            <p className="mt-2 text-gray-700">{item.comment}</p>
-
-                                            <footer className="mt-4">
-                                                <p className="text-xs text-gray-500">{item.userId.name}</p>
-                                            </footer>
                                             <button
                                                 onClick={() => { handelDelete(item._id, index) }}
                                             >delete</button>
@@ -172,26 +163,16 @@ const SingleProductPage = () => {
                                                 onClick={() => { handelEdit(item._id, index) }}
                                             >Edit</button>
                                         </div> : <div key={index}>
-                                            <header className="sm:items-center sm:flex">
-                                                {/*<Stars stars={stars} />*/}
-
-                                                <p className="mt-2 font-medium sm:ml-4 sm:mt-0"></p>
-                                            </header>
-
-                                            <p className="mt-2 text-gray-700">{item.comment}</p>
-
-                                            <footer className="mt-4">
-                                                <p className="text-xs text-gray-500">{item.userId.name}</p>
-                                            </footer>
+                                            <p>{item.userId.name}</p>
+                                            <p>{item.comment}</p>
                                         </div>
                                     )
                                 })
                             }
                         </div>
                     </div>
-                </>
-                }
-                 )}
+                </>}
+                {/* )} */}
             </section>
         </>
     );

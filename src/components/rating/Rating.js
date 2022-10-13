@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux"
-import "./rating.css"
 import { addStar } from "../../service/productService"
 import { checkStar } from "../../reducer/slice/productSlice"
 

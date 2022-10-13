@@ -15,7 +15,6 @@ function SearchUser() {
     let [query, setQuery] = useState('')
     const categories = useSelector(state => state.categoryReducer.categories)
     const products = useSelector(state => state.productReducer.products)
-    console.log(products)
     const brands = useSelector (s => s.brandReducer.brands)
 
     const categoriesSearch = useSelector(state => state.categoryReducer.listSearch)
@@ -119,7 +118,6 @@ function SearchUser() {
                 </Dialog>
             </Transition.Root>
             )
-            }
         </div>)
 }
 export default SearchUser;
