@@ -5,31 +5,32 @@ import { formatPrice } from '../utils/helpers';
 
 const CartTotals = ({ name, to, totals }) => {
   const userInfo = useSelector(s => s.userReducer.userInfo)
-  const shipping_fee = 10;
+  const total_amount = 10;
+  const shipping_fee = 10000;
 
   return (
     <div className="w-1/2 xl:w-1/3 px-4">
       <div className="p-6 md:p-12 bg-black text-white">
-        <h2 className="mb-6 text-4xl font-bold">Cart totals</h2>
+        <h2 className="mb-6 text-4xl font-bold">Thanh Toán</h2>
         <div className="flex mb-8 items-center justify-between pb-5 border-b border-blue-100">
-          <span className="font-bold text-lg">Subtotal</span>
+          <span className="font-bold text-lg">Giá</span>
           <span className="text-xl font-bold  text-secondary-200">
             {formatPrice(totals)}
           </span>
         </div>
-        <h4 className="mb-2 font-bold text-left text-lg">Shipping</h4>
+        <h4 className="mb-2 font-bold text-left text-lg">Phí vận chuyển</h4>
         <div className="flex mb-2 justify-between items-center">
-          <span className="">Next day</span>
+          <span className="">Phí dịch vụ</span>
           <span className="text-xl font-bold  text-secondary-200">
             {formatPrice(shipping_fee)}
           </span>
         </div>
         <div className="flex mb-10 justify-between items-center">
-          <span className="">Shipping to United States</span>
+          <span className="">Phí giao hàng tận nơi</span>
           <span className="text-xl font-bold  ">-</span>
         </div>
         <div className="flex mb-10 justify-between items-center ">
-          <span className="text-lg sm:text-2xl font-bold ">Order total</span>
+          <span className="text-lg sm:text-2xl font-bold ">Tổng tiền</span>
           <span className="text-xl font-bold  text-secondary-200">
             {formatPrice(totals + shipping_fee)}
           </span>
@@ -42,8 +43,8 @@ const CartTotals = ({ name, to, totals }) => {
           </Link>
         ) : (
           <Link to="/login">
-            <button className="block w-full py-4 bg--500 hover:bg-secondary-200 hover:text-secondary-900 text-center  font-bold uppercase rounded-md transition duration-200 text-secondary-50">
-              Login
+            <button className="block w-full py-4 bg-yellow-300 hover:bg-yellow-200 hover:text-secondary-900 text-center  font-bold  uppercase rounded-md transition duration-200 text-secondary-50">
+              Đăng nhập để mua hàng
             </button>
           </Link>
         )}

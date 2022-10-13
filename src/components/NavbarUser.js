@@ -39,22 +39,12 @@ const NavbarUser = () => {
             </li>
             <li>
               <a
-                href="/#features"
-                aria-label="Our featured products"
-                title="Our featured products"
-                className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
-              >
-                Features
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#new"
+                href="/"
                 aria-label="Our new product"
                 title="Our new product"
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
               >
-                New
+                Sản phẩm mới
               </a>
             </li>
             <li>
@@ -96,7 +86,7 @@ const NavbarUser = () => {
           {/* Right links */}
 
           <ul className="items-center space-x-1 lg:flex justify-end">
-            <li>
+            <li style={{marginRight: '15px'}}>
               <CartBtn />
             </li>
             {userInfo.name && <TooltipComponent content="Profile" position="BottomCenter">
@@ -121,7 +111,7 @@ const NavbarUser = () => {
             {isClicked.userProfile && (<UserProfile userInfo={userInfo} />)}
 
             {!role && <>
-              <li>
+              <li style={{marginRight: '10px'}}>
                 <Link
                   to="/login"
                   aria-label="Log in"
@@ -131,7 +121,7 @@ const NavbarUser = () => {
                   Đăng nhập
                 </Link>
               </li>
-              <li>
+              <li style={{marginRight: '10px'}}>
                 <Link
                   to="/register"
                   aria-label="Register"

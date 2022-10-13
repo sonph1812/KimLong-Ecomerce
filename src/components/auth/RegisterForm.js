@@ -89,11 +89,11 @@ function RegisterForm() {
     };
 
     return (
-        <section className="bg-yellow-200 dark:bg-gradient-to-tl ">
+        <section className="bg- dark:bg-gradient-to-tl pl-52">
         <div className="flex justify-center min-h-screen">
         <div className="hidden bg-cover lg:block lg:w-2/5" >
             <img
-                className="mt-8 space-y-6 px-5 py-5   rounded-lg"
+                className="mt-8 space-y-6 px-5 py-28   rounded-lg"
                 src={"assets/banner/kimlong-wellcome.png"}
                 alt="img"
             />        </div>

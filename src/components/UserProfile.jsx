@@ -16,7 +16,7 @@ const  UserProfile = ({userInfo}) => {
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
       <div className="flex justify-between items-center">
-        <p className="font-semibold text-lg dark:text-gray-200">User Profile</p>
+        <p className="font-semibold text-lg dark:text-gray-200">Hồ sơ</p>
         <Button
 
           icon={<MdOutlineCancel />}
@@ -73,7 +73,7 @@ const  UserProfile = ({userInfo}) => {
         <Button
           color="white"
           bgColor={currentColor}
-          text="Logout"
+          text="Đăng xuất"
           borderRadius="10px"
           width="full"
         />

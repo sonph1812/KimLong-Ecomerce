@@ -1,9 +1,8 @@
 export const formatPrice = (number) => {
 
-    return Intl.NumberFormat('en-US', {
+    return Intl.NumberFormat('vi-VN', {
         style:'currency',
-        currency:'USD',
-    }).format(number/ 100)
-    
-}
+        currency:'VND',
+    }).format(number)
 
+}

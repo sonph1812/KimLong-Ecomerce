@@ -7,7 +7,7 @@ const Pagination = ({productsPerPage, totalProducts, paginate}) => {
         pageNumbers.push(i)
     }
     return (
-        <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+        <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination"  style={{marginTop:'30px'}}>
             <ul className="inline-flex items-center -space-x-px">
                 {pageNumbers.map(number => (
                     <li key={number} >

@@ -13,9 +13,9 @@ const CartPage = () => {
         return(
         <div className=" h-screen ">
             <section className="section-center  text-center py-20">
-                <h2 className="text-4xl font-semibold mb-7">Your cart is empty</h2>
+                <h2 className="text-4xl font-semibold mb-7">Giỏ hàng đang trống</h2>
                 <Link to="/products">
-                    <Btn name="Fill it up" />
+                    <Btn name="Làm đầy giỏ hàng bạn nhé" />
                 </Link>
             </section>
         </div>

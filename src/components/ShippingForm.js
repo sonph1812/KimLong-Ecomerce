@@ -99,10 +99,10 @@ const ShippingForm = () => {
         </div>
 
         {/* Postal Code */}
-        <div className="mb-6">
+        <div className="mb-6 bg-yellow-200">
           <label
             htmlFor="postalCode"
-            className="block mb-2 text-sm font-medium text-gray-900 "
+            className="block mb-2 text-sm font-medium text-gray-900 bg-yellow-200 "
 
           >
             Phương thức thanh toán
@@ -111,7 +111,7 @@ const ShippingForm = () => {
           <select
             value={payment}
             onChange={e => setPayment(e.target.value)}
-            name="Phương thức thanh toán"
+            name="trạng thái"
 
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 "
 
@@ -121,7 +121,7 @@ const ShippingForm = () => {
             <option value={'bank'}>
               Chuyển Khoản Ngân Hàng
             </option>
-            <option value={'done'}>Thanh toán khi nhận hàng </option>
+            <option value={'Thanh toán'}>Thanh toán khi nhận hàng </option>
             <option value={''}></option>
           </select>
         </div>
@@ -148,7 +148,7 @@ const ShippingForm = () => {
         <p
 
           onClick={() => { handelSubmit() }}
-        ><Btn name="Next" /></p>
+        ><Btn name="Tiếp theo" /></p>
       </div>
     </div>
   );
