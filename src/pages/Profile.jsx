@@ -1,9 +1,20 @@
-import { useSelector } from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import {useLocation, useNavigate} from "react-router-dom";
+import { getDetailUser } from "../service/userService";
 
 function Profile() {
-  const userInfo = useSelector((s) => s.userReducer.userInfo);
+  const dispatch = useDispatch()
+  const info = useSelector((s) => s.userReducer.userInfo);
+  const id = useParams().id
+  useEffect(()=>{
+    getDetailUser(id,dispatch)
+  },[])
+  const userInfo = useSelector(s=>s.userReducer.user)
+  // const userInfo = useLocation().state.userInfo
   const navigate = useNavigate();
+
   const editProfile = ()=>{
     navigate(`/admin/profile/update`);
   }
@@ -78,9 +89,9 @@ function Profile() {
               </div>
             </div>
           </div>
-          <button onClick={editProfile} className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+          {userInfo._id == info._id && <button onClick={editProfile} className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
             Edit Profile
-          </button>
+          </button>}
         </div>
       </div>
     </div>
