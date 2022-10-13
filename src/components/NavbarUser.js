@@ -9,11 +9,12 @@ import React, {useState} from "react";
 // import AdminMenu from './AdminMenu';
 // import { useProductsContext } from '../context/products_context';
 import { useStateContext } from '../contexts/ContextProvider';
+import {IoSearch} from "react-icons/io5";
+import SearchUser from "./search/SearchUser";
 // import CartBtn from './CartBtn';
 
-const NavbarUser = () => {
+const NavbarUser = ({pro,cate,bra}) => {
   const userInfo = useSelector(s => s.userReducer.userInfo)
-  console.log(userInfo,"sontest")
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = (clicked) => setIsClicked(  {userProfile:true,[clicked]:true });
 
@@ -98,6 +99,7 @@ const NavbarUser = () => {
           {/* Right links */}
 
           <ul className="items-center space-x-1 lg:flex justify-end">
+          {/*<SearchUser/>*/}
             <li>
               <CartBtn />
             </li>
