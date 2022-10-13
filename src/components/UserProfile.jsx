@@ -18,11 +18,14 @@ const  UserProfile = ({userInfo}) => {
       <div className="flex justify-between items-center">
         <p className="font-semibold text-lg dark:text-gray-200">User Profile</p>
         <Button
+
           icon={<MdOutlineCancel />}
           color="rgb(153, 171, 180)"
           bgHoverColor="light-gray"
           size="2xl"
           borderRadius="50%"
+
+
 
         />
       </div>

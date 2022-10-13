@@ -9,6 +9,8 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import { useStateContext } from '../contexts/ContextProvider';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import {IoSearch} from "react-icons/io5";
+import SearchUser from "./search/SearchUser";
 // import CartBtn from './CartBtn';
 
 const NavbarUser = () => {
@@ -18,7 +20,7 @@ const NavbarUser = () => {
 
   const role = localStorage.getItem('role')
   const dispatch = useDispatch()
-  
+
   return (
     <div className="bg-white">
       <div className="container mx-auto py-5 ">

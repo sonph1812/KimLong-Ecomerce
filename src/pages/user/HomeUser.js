@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 import CategoryDetail from "../../components/CategoryDetail";
 import Banner from "../../components/home/banner";
 import Card from "../../components/home/Card";
+import SearchCommand from "../../components/SearchCommand";
+import SearchUser from "../../components/search/SearchUser";
 
 const HomePage = () => {
     const categories = useSelector(state => state.categoryReducer.categories)
@@ -22,6 +24,7 @@ const HomePage = () => {
             <Banner />
             <FeaturedProducts />
             {/*<Promo />*/}
+            <SearchUser/>
             <NewProducts />
             {/*<AppleWatch/>*/}
             <div>

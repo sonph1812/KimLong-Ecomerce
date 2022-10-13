@@ -56,6 +56,7 @@ import { getAllOrder, myOrders } from './service/orderService';
 import ProductDetail from "./pages/ProductDetail";
 import UserDetail from "./pages/UserDetail";
 import User from "./pages/user/User";
+import EditBrand from './pages/brand/EditBrand';
 import OrderPage from './pages/OrderPage';
 import MyOrderPage from './pages/MyOrderPage';
 import SearchPage from "./components/search/SearchPage";
@@ -112,7 +113,8 @@ const App = () => {
                     <Route path="/search" element={<SearchPage></SearchPage>}></Route>
 
                 </Route>
-
+                <Route path='profile' element={<Profile/>}/>
+                <Route path='profile/update' element={<EditProfile/>}/>
                 <Route path="/admin" element={<Admin></Admin>}>
                     <Route path="editor" element={<Editor/>}/>
                     <Route path="products" element={<Products/>}/>
@@ -120,7 +122,7 @@ const App = () => {
                     <Route path="productDetail/:id" element={<ProductDetail/>}></Route>
                     <Route path="userDetail/:id" element={<Profile/>}></Route>
                     <Route path='profile' element={<Profile/>}/>
-                    <Route path='profile/update' element={<EditProfile/>}/>
+                    {/*<Route path='profile/update' element={<EditProfile/>}/>*/}
 
 
                     <Route path="staffs" element={<Staffs />} />

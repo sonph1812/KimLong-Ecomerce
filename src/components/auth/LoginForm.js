@@ -22,10 +22,10 @@ function LoginForm() {
   const validate = (values) => {
     const errors = {};
     if (!values.userName) {
-      errors.userName = "Username is required!";
+      errors.userName = "Hãy Nhập Tên Người Dùng!";
     }
     if (!values.password) {
-      errors.password = "Password is required!";
+      errors.password = "Hãy Nhập Mật Khẩu!";
     }
     return errors;
   };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 import { SiJavascript } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
@@ -21,32 +21,39 @@ const Sidebar = () => {
     const pages =
     [
       {
-        name: 'orders',
+        name: 'Hóa Đơn',
+        link : 'orders',
         icon: <AiOutlineShoppingCart />,
         role: "admin"
       },
       {
-        name: 'products',
+
+        name: 'Sản Phẩm',
+        link:'products',
         icon: <IoMdContacts />,
         role: "seller"
       },
       {
-        name: 'customers',
+        name: 'Khách Hàng',
+        link : 'customers',
         icon: <RiContactsLine />,
         role: "admin"
       },
       {
-        name: 'staffs',
+        name: 'Nhân Viên',
+        link : 'staffs',
         icon: <RiContactsLine />,
         role: "admin"
       },
       {
-        name : 'categories',
+        name : 'Loại Sản Phẩm',
+        link : 'categories',
         icon : <AiFillAppstore />,
         role : 'admin'
       },
       {
-      name : "brands",
+      name : "Hãng Sản Xuất",
+      link : "brands",
       icon : <AiFillSketchCircle />,
       role : 'admin'
       }
@@ -85,11 +92,11 @@ const Sidebar = () => {
             {/* pages */}
             <div key={'Pages'}>
               <p className="text-gray-400 dark:text-gray-400 m-3 mt-4 uppercase">
-                Pages
+                Trang Chủ
               </p>
               {pages.map((link) =>
                   {return (role  && <NavLink
-                    to={`/admin/${link.name}`}
+                    to={`/admin/${link.link}`}
                     key={link.name}
                     onClick={handleCloseSideBar}
                     style={({ isActive }) => ({
@@ -111,7 +118,7 @@ const Sidebar = () => {
                 </p>
                 {item.links.map((link) => (
                   <NavLink
-                    to={`/admin/${link.name}`}
+                    to={`/admin/${link.link}`}
                     key={link.name}
                     onClick={handleCloseSideBar}
                     style={({ isActive }) => ({
