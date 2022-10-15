@@ -1,9 +1,6 @@
 // import SectionTitle from './SectionTitle';
 // import Btn from './Btn';
-// import FeaturedProduct from './FeaturedProduct';
-import { Link } from 'react-router-dom';
-import {useDispatch, useSelector} from "react-redux";
-// import { useProductsContext } from '../context/products_context';
+import { useSelector} from "react-redux";
 // import Loading from './Loading';
 // import Error from './Error';
 
@@ -35,7 +32,7 @@ const FeaturedProducts = () => {
             <div className="container mx-auto grid grid-cols-3 gap-6">
                 {list.map((product)=>(
                     <SwiperSlide>
-                        <TestSwiper/>
+                        <TestSwiper product = {product}/>
                     </SwiperSlide>
 
                 ))}

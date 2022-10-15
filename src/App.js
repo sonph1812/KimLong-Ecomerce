@@ -69,10 +69,8 @@ const App = () => {
             if (user.roleId.name == "admin") {
                 getAllStaff(dispatch)
                 getAllUser(dispatch)
+            } else if (user.roleId.name == "accountant") {
                 getAllOrder(dispatch)
-            } else if (user.roleId.name == "seller") {
-                // getAllProduct(dispatch)
-                // getAllBrand(dispatch)
             } else if (user.roleId.name == "user") {
                 getDetailCart(user.cartId, dispatch)
                 myOrders(user._id, dispatch)
@@ -86,7 +84,6 @@ const App = () => {
             <Routes>
                 <Route path="/login" element={<LoginForm/>}></Route>
                 <Route path="/register" element={<RegisterForm/>}></Route>
-                {/*<Route path="/test" element={<CategoryDetail1/>}></Route>*/}
 
 
                 <Route path="" element={<User/>}>
@@ -111,7 +108,6 @@ const App = () => {
                     <Route path="productDetail/:id" element={<ProductDetail/>}></Route>
                     <Route path="userDetail/:id" element={<Profile/>}></Route>
                     <Route path='profile' element={<Profile/>}/>
-                    {/*<Route path='profile/update' element={<EditProfile/>}/>*/}
 
 
                     <Route path="staffs" element={<Staffs />} />
@@ -126,27 +122,10 @@ const App = () => {
                     <Route path="editCategories/:id" element={<EditCategories></EditCategories>}/>
                     <Route path="brands" element={<Brands/>}/>;
                     <Route path='addBrands' element={(<CreateBrand/>)}/>
-                    {/*<Route path='addBrands' element={(<EditBrand/>)}/>*/}
-
-
-
-
-
-
 
 
                     <Route path="orders" element={<Orders />} />
-                    {/*<Route path="kanban" element={<Kanban />} />*/}
-                    {/*<Route path="calendar" element={<Calendar />} />*/}
-                    {/*<Route path="color-picker" element={<ColorPicker />} />*/}
-                    {/*<Route path="line" element={<Line />} />*/}
-                    {/*<Route path="area" element={<Area />} />*/}
-                    {/*<Route path="bar" element={<Bar />} />*/}
-                    {/*<Route path="pie" element={<Pie />} />*/}
-                    {/*<Route path="financial" element={<Financial />} />*/}
-                    {/*<Route path="color-mapping" element={<ColorMapping />} />*/}
-                    {/*<Route path="pyramid" element={<Pyramid />} />*/}
-                    {/*<Route path="stacked" element={<Stacked />} />*/}
+                
 
                 </Route>
             </Routes>

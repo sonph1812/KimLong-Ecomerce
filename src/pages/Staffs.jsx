@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../components";
 import { useSelector, useDispatch } from "react-redux";
-import { addStaff, deleteUser } from "../service/userService";
+import { deleteUser } from "../service/userService";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Search from "../components/Search";
 import Swal from "sweetalert2";
 import {
   IoAddCircleOutline,
-  IoInformationCircleOutline,
   IoReloadOutline,
   IoTrashOutline,
 } from "react-icons/io5";
@@ -24,7 +22,6 @@ function Staffs() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleCreateStaffs = (data) => {
-    addStaff(data, dispatch);
     navigate(`/admin/staffs/create`);
   }
   useEffect (()=>{
@@ -39,14 +36,7 @@ function Staffs() {
   }, [list])
 
   const handleDelete = (id) => {
-    // let confirmDelete = window.confirm("Bạn muốn xóa chứ !");
-    // if (confirmDelete) {
-    //   toast("Xoá thành công!");
-    //   deleteUser(id, dispatch);
-    // } else {
-    //   toast("Xoá thất bại!");
-    // }
-    // navigate(`/admin/staffs`);
+
     Swal.fire({
       title: 'Bạn Muốn Xóa Chứ?',
       text: "Hãy Suy Nghĩ Cẩn Thận Khi Xóa!",
@@ -67,9 +57,6 @@ function Staffs() {
   })
   };
 
-  const handleUpdate = () => {
-    // navigate(`/admin/staffs/update`);
-  };
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -132,9 +119,7 @@ function Staffs() {
                             }}></IoAddCircleOutline>
                         </td>
                 <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
-                  <IoReloadOutline  onClick={() => {
-                                handleUpdate(user._id);
-                            }}></IoReloadOutline>
+                  <IoReloadOutline  ></IoReloadOutline>
                 </td>
                 <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                   <IoTrashOutline
