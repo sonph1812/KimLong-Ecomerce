@@ -816,7 +816,7 @@ export const userProfileData = [
     iconBg: '#E5FAFB',
   },
   {
-    link:'',
+    link:'/admin/chat',
     icon: <BsShield />,
     title: 'Tin nhắn ',
     desc: 'tin nhắn và email',
