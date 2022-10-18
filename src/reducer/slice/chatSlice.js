@@ -10,14 +10,23 @@ const chatSlice = createSlice({
         getAllChatSlice: (state, action) => {
             state.chats = action.payload
         },
-        getDetailSlice: (state, action) => {
+        getDetailChatSlice: (state, action) => {
             state.chat = action.payload
         },
+        addChatSlice: (state,action) => {
+            console.log(action.payload);
+            state.chat = action.payload
+        },
+        addMessageSlice: (state,action) => {
+            state.chat.message.push(action.payload)
+        }
 
     }
 })
 export const {
     getAllChatSlice,
-    getDetailChatSlice
+    getDetailChatSlice,
+    addChatSlice,
+    addMessageSlice
 } = chatSlice.actions;
 export default chatSlice.reducer

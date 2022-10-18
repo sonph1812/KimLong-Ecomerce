@@ -27,6 +27,12 @@ const Sidebar = () => {
         role: "accountant"
       },
       {
+        name: "Tin nhắn",
+        link : "chat",
+        icon:<AiOutlineShoppingCart />,
+        role:"accountant"
+      },
+      {
 
         name: 'Sản Phẩm',
         link:'products',

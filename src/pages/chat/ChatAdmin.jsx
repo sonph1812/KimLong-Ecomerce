@@ -1,55 +1,99 @@
 import { useEffect, useState, useRef } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { addMessageSlice } from "../../reducer/slice/chatSlice";
+import { addMessage, getAllChat, getDetailChat } from "../../service/chatService";
 import { socket } from "../../socket/socket"
 
 function ChatAdmin() {
-    const [mess, setMess] = useState([]);
+    const dispatch = useDispatch()
+    const userInfo = useSelector(s => s.userReducer.userInfo)
     const [message, setMessage] = useState('');
-    const [id, setId] = useState();
     let socketIo = useRef()
+    const chat = useSelector(s => s.chatReducer.chat)
+    const chats = useSelector(s => s.chatReducer.chats)
+
+    const getChat = (id) => {
+        getDetailChat(id,dispatch)
+    }
+
     useEffect(() => {
-        socketIo.current = socket
+        getAllChat(dispatch)
 
-        socketIo.current.on('sendDataServer', dataGot => {
-            setMess(oldMsgs => [...oldMsgs, dataGot.data])
-        })
+    }, [userInfo])
 
-        return () => {
-            socketIo.current.disconnect();
-        };
-    }, [])
+    useEffect(() => {
+        if (userInfo._id) {
+            socketIo.current = socket
+            socketIo.current.emit('join_room', userInfo._id)
 
+            socketIo.current.on('sendDataServer', dataGot => {
+                if (userInfo._id != dataGot.userId) {
+                    dispatch(addMessageSlice(dataGot.data))
+                }
+            })
+            socketIo.current.on('sendNotify', data => {
+                if (data.id !== userInfo._id) {
+                    alert(data.message)
+                }
+            })
+            return () => {
+                socketIo.current.disconnect();
+            };
+        }
+    }, [userInfo])
     const sendMessage = () => {
         if (message !== null && message !== '') {
             const msg = {
-                content: message,
-                id: id
+                text: message,
+                userId: userInfo._id
+            }
+
+            const mess = {
+                id: chat._id,
+                message: msg
+
             }
             socketIo.current.emit('sendDataClient', msg)
+            socketIo.current.emit('notify', {
+                id: userInfo._id,
+                message: `${userInfo.name} đã gửi 1 tin nhắn`
+            })
+            addMessage(mess, dispatch)
             setMessage('')
         }
     }
+
 
     const onEnterPress = (e) => {
         if (e.keyCode == 13 && e.shiftKey == false) {
             sendMessage()
         }
     }
-    const renderMess = mess.map((m, index) =>
-        <div key={index} className={`${m.id === id ? 'your-message' : 'other-people'} chat-item`}>
-            {m.content}
-        </div>
-    )
     const handleChange = (e) => {
         setMessage(e.target.value)
-      }
+    }
     return (
         <div class="box-chat">
-            <div class="box-chat_message">
-                {renderMess}
-                
+            <div>
+                {chats[0] && chats.map((item) => (
+                    <p onClick = {()=>{getChat(item._id)}}>{item.userId?.name}</p>
+                ))}
             </div>
+            {chat.userId && <div class="box-chat_message">
+                {
+                    chat.message && chat.message.map((m, index) => (
+                        <div key={index} >
+                            <h1>name</h1>
+                            {m.text}
+                        </div>
+                    ))
+                }
 
-            <div class="send-box">
+            </div>}
+
+            {chat.userId && <div class="send-box">
                 <textarea
                     value={message}
                     onKeyDown={onEnterPress}
@@ -59,7 +103,7 @@ function ChatAdmin() {
                 <button onClick={sendMessage}>
                     Send
                 </button>
-            </div>
+            </div>}
 
         </div>
     )

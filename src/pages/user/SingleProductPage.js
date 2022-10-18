@@ -15,13 +15,11 @@ const SingleProductPage = () => {
     const params = useParams()
     const product = useSelector(state => state.productReducer.product)
     const comments = useSelector(s => s.productReducer.comments)
-    console.log(comments)
     const role = localStorage.getItem('role')
     const userInfo = useSelector(s => s.userReducer.userInfo)
     const [comment, setComment] = useState('')
     const user = useSelector(s => s.userReducer.userInfo)
     const star = useSelector(s => s.productReducer.star)
-    console.log(star)
 
     useEffect(() => {
 
@@ -50,23 +48,7 @@ const SingleProductPage = () => {
     const handelDelete = (idReview, index) => {
         deleteComment(index, product._id, idReview, dispatch)
     }
-    // const handelEdit = (idReview, index) => {
-
-    // }
-    console.log(product);
-
-    // const ratingChanged = (newRating) => {
-    //     dispatch(checkStar(newRating))
-    //     addStar(product._id, { text: newRating, userId: userInfo._id }, dispatch)
-    // };
-
-    // const sD = {
-    //     count: 5,
-    //     onChange: ratingChanged,
-    //     size: 24,
-    //     activeColor: "#ffd700",
-    //     value: star
-    // }
+ 
 
     return (
         <>
@@ -105,9 +87,7 @@ const SingleProductPage = () => {
                         </h2>
 
                         <div className="flex items-center mt-4">
-                            {/* <ReactStars
-                               {...sD}
-                            /> */}
+                           
                             <Rating star = {star} idProduct = {product._id} idUser = {userInfo._id}></Rating>
                              
                         </div>

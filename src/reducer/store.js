@@ -6,6 +6,7 @@ import brandReducer from "./slice/brandSlice"
 import categoryReducer from "./slice/categorySlice";
 import cartReducer from "./slice/cartSlice";
 import orderReducer from "./slice/orderSlice"
+import chatReducer from "./slice/chatSlice"
 const store = configureStore({
     reducer:{
         userReducer: userReducer,
@@ -13,7 +14,8 @@ const store = configureStore({
         brandReducer: brandReducer,
         categoryReducer : categoryReducer,
         cartReducer: cartReducer,
-        orderReducer:orderReducer
+        orderReducer:orderReducer,
+        chatReducer:chatReducer
     }
 })
 export default store

@@ -5,7 +5,6 @@ import {useSelector} from "react-redux";
 
 const CartBtn = () => {
   const items = useSelector(s => s.cartReducer.items)
-  console.log(items,"hihi")
   var total = 0
   for (let i = 0; i < items.length; i++) {
     total += items[i].amount
