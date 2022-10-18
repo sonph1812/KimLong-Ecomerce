@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route,Link } from 'react-router-dom';
 import {
     Staffs,
     Ecommerce,
@@ -13,7 +13,7 @@ import UpdateStaff from './pages/staffs/UpdateStaff';
 import './App.css';
 import { useDispatch, useSelector } from "react-redux"
 import { getUserInfo, isLogin } from './reducer/slice/userSlice';
-import { getAllUser, getAllStaff } from "./service/userService"
+// import { getAllUser, getAllStaff } from "./service/userService"
 import jwt_decode from "jwt-decode"
 
 
@@ -35,7 +35,7 @@ import EditProfile from './pages/EditProfile';
 
 import CartPage from "./pages/user/CartPage";
 import ShippingPage from "./pages/user/ShippingPage";
-import { getDetailCart } from './service/cartService';
+// import { getDetailCart } from './service/cartService';
 import CreateCategory from './pages/CreateCategory';
 import Categories from './pages/Categories';
 import EditCategories from './pages/EditCategories';
@@ -47,40 +47,31 @@ import User from "./pages/user/User";
 import OrderPage from './pages/OrderPage';
 import MyOrderPage from './pages/MyOrderPage';
 import SearchPage from "./components/search/SearchPage";
-import {socket} from "./socket/socket"
+import { socket } from "./socket/socket"
 import ChatAdmin from "./pages/chat/ChatAdmin"
+import Chat from './pages/chat/Chat';
 
 const App = () => {
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
     const userInfo = useSelector(s => s.userReducer.userInfo)
-    const isLoginYet = useSelector(s=> s.userReducer.isLogin)
+    const isLoginYet = useSelector(s => s.userReducer.isLogin)
     let socketIo = useRef()
-
-    useEffect(()=>{
+    useEffect(() => {
         getAllProduct(dispatch)
         getAllBrand(dispatch)
         getAllCategory(dispatch)
-        if(token){
-          dispatch(isLogin)  
+        if (token) {
+            dispatch(isLogin())
         }
-    },[])
-
+    }, [])
     useEffect(() => {
-     
+
         if (isLoginYet) {
             const user = jwt_decode(token).user
             dispatch(getUserInfo(user))
-            if (user.roleId.name == "admin") {
-                getAllStaff(dispatch)
-                getAllUser(dispatch)
-            } else if (user.roleId.name == "accountant") {
-                socketIo.current = socket
-                getAllOrder(dispatch)
-            } else if (user.roleId.name == "user") {
-                getDetailCart(user.cartId, dispatch)
-                myOrders(user._id, dispatch)
-            }
+            socketIo.current = socket
+
         }
     }, [isLoginYet]);
 
@@ -103,6 +94,7 @@ const App = () => {
                     <Route path="order" element={<OrderPage />}></Route>
                     <Route path="myOrder" element={<MyOrderPage />}></Route>
                     <Route path="/search" element={<SearchPage></SearchPage>}></Route>
+                    <Route path='chat' element = {<Chat></Chat>}></Route>
 
                 </Route>
                 <Route path='profile' element={<Profile />} />
@@ -134,6 +126,10 @@ const App = () => {
 
 
                 </Route>
+                <Route path = "/error" element = {<div>
+                    <h1>Loi 404</h1>
+                    <Link to='/'>Quay lai trang chu</Link>
+                </div>}></Route>
             </Routes>
 
 

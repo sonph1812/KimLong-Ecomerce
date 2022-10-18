@@ -45,7 +45,11 @@ const  UserProfile = ({userInfo}) => {
         {userProfileData.map((item, index) => (
            <div key={index}
            onClick={()=>{
-            navigate(`${item.link}`, { state: { userInfo: userInfo} })
+            if(item.link == "/profile"){
+              navigate(`${item.link}`, { state: { userInfo: userInfo} })
+            }else{
+            navigate(`${item.link}`)
+            }
           }}
            className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
             <button

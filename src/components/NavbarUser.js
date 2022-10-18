@@ -17,7 +17,6 @@ const NavbarUser = () => {
   const userInfo = useSelector(s => s.userReducer.userInfo)
   const { handleClick, isClicked } = useStateContext();
 
-
   const role = localStorage.getItem('role')
   const dispatch = useDispatch()
 
