@@ -6,17 +6,23 @@ const initialState = {
     user: {},
     userInfo:{},
     listSearch:null,
-    staffSearch:null
+    staffSearch:null,
+    isLogin: false
 }
 const userSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
         logOut : (state,action) => {
+            state.isLogin = false
             state.userInfo = {}
             localStorage.clear()
             
         },
+        isLogin : (state,action) => {
+            state.isLogin = true
+        },
+
         getUserInfo: (state, action) => {
             state.userInfo = action.payload
         },
@@ -78,7 +84,8 @@ export const {
     getUserInfo,
     logOut,
     setListSearch,
-    setStaffSearch
+    setStaffSearch,
+    isLogin
 } = userSlice.actions;
 
 export default userSlice.reducer;

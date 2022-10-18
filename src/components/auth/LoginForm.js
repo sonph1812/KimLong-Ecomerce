@@ -4,7 +4,7 @@ import { useState } from "react";
 import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from "../context/constants";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { getUserInfo } from "../../reducer/slice/userSlice";
+import { getUserInfo, isLogin } from "../../reducer/slice/userSlice";
 import jwt_decode from "jwt-decode";
 import Footer from "../Footer";
 function LoginForm() {
@@ -40,6 +40,7 @@ function LoginForm() {
         localStorage.setItem("token", response.data.accessToken);
         const decode = jwt_decode(response.data.accessToken);
         dispatch(getUserInfo(decode.user));
+        dispatch(isLogin())
         const role = decode.user.roleId.name;
         localStorage.setItem("role", role);
         if (role == "user") {

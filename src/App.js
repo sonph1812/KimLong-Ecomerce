@@ -12,7 +12,7 @@ import CreateStaff from './pages/staffs/CreateStaff';
 import UpdateStaff from './pages/staffs/UpdateStaff';
 import './App.css';
 import { useDispatch, useSelector } from "react-redux"
-import { getUserInfo } from './reducer/slice/userSlice';
+import { getUserInfo, isLogin } from './reducer/slice/userSlice';
 import { getAllUser, getAllStaff } from "./service/userService"
 import jwt_decode from "jwt-decode"
 
@@ -54,13 +54,21 @@ const App = () => {
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
     const userInfo = useSelector(s => s.userReducer.userInfo)
+    const isLoginYet = useSelector(s=> s.userReducer.isLogin)
     let socketIo = useRef()
 
-    useEffect(() => {
+    useEffect(()=>{
         getAllProduct(dispatch)
         getAllBrand(dispatch)
         getAllCategory(dispatch)
-        if (token) {
+        if(token){
+          dispatch(isLogin)  
+        }
+    },[])
+
+    useEffect(() => {
+     
+        if (isLoginYet) {
             const user = jwt_decode(token).user
             dispatch(getUserInfo(user))
             if (user.roleId.name == "admin") {
@@ -74,7 +82,7 @@ const App = () => {
                 myOrders(user._id, dispatch)
             }
         }
-    }, [token]);
+    }, [isLoginYet]);
 
 
     return (
